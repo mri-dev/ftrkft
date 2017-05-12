@@ -1,0 +1,134 @@
+body,
+ul, ol, li, dl, dt, dd,
+h1, h2, h3, h4, h5, h6,
+p, td, th, address, blockquote,
+pre, code,
+form, fieldset, legend, input, textarea {
+	margin: 0;
+	padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+fieldset, img {
+	border: none;
+}
+input, textarea, select {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+address, cite {
+	font-style: normal;
+}
+table {
+	border-collapse: collapse;
+}
+caption, th {
+	text-align: left;
+}
+a {
+	text-decoration: none;
+}
+section, article, header, footer, nav, aside, hgroup {
+	display: block;
+}
+/* @end */
+/* @group
+
+TYPE
+-------------------------------------- */
+body {
+	font: 62.5%/2.4em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+h1 {
+	font-size: 2.4em;
+	line-height: 1em;
+}
+h2 {
+	font-size: 1.8em;
+	line-height: 1.333em;
+}
+h3, h4, h5, h6,
+dt, legend {
+	font-size: 1.4em;
+	line-height: 1.7143em;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+ul, ol {
+	margin-left: 4.5em;
+}
+ul li {
+	list-style-type: disc;
+}
+ul li ul {
+	margin-bottom: 0;
+}
+p, li, dd, td, th,
+address, blockquote,
+label, input, select, textarea {
+	font-size: 1.4em;
+	line-height: 1.7143em;
+}
+p, address, blockquote, dd {
+	margin-bottom: 1.7143em;
+}
+label {
+	display: block;
+	font-weight: bold;
+}
+code, pre {
+	display: block;
+	font-size: 1.3em;
+	line-height: 1.846153846153846em;
+	margin-bottom: 1.846153846153846em;
+	font-family: Monaco, "Lucida Console", "Courier New", Courier, mono;
+}
+code {
+	white-space: pre;
+}
+table, ul, ol, dl {
+	margin-bottom: 2.4em;
+}
+caption {
+	font-size: 1.2em;
+	line-height: 2em;
+}
+th {
+	font-weight: bold;
+}
+th, td {
+	width: 6em;
+}
+/* nested sizes relative to their parent */
+p code, code pre, pre code, li li, li p, td p, blockquote p {
+	font-size: 1em;
+}
+em, caption, cite, blockquote {
+	font-style: italic;
+}
+blockquote {
+	margin-left: 2em;
+	width: 30em;
+}
+blockquote span.author {
+	padding-right: 1em;
+	display: block;
+	text-align: right;
+}
+strong {
+	font-weight: bold;
+}
+abbr[title]:hover {
+	cursor: help;
+}
+a:link,
+a:active,
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+/* @end */

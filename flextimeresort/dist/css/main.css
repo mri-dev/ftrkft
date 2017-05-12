@@ -1,0 +1,547 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&subset=cyrillic-ext");
+/* line 6, less/_starter.scss */
+body,
+ul, ol, li, dl, dt, dd,
+h1, h2, h3, h4, h5, h6,
+p, td, th, address, blockquote,
+pre, code,
+form, fieldset, legend, input, textarea {
+  margin: 0;
+  padding: 0;
+}
+
+/* line 10, less/_starter.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+/* line 13, less/_starter.scss */
+fieldset, img {
+  border: none;
+}
+
+/* line 16, less/_starter.scss */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* line 21, less/_starter.scss */
+address, cite {
+  font-style: normal;
+}
+
+/* line 24, less/_starter.scss */
+table {
+  border-collapse: collapse;
+}
+
+/* line 27, less/_starter.scss */
+caption, th {
+  text-align: left;
+}
+
+/* line 30, less/_starter.scss */
+a {
+  text-decoration: none;
+}
+
+/* line 33, less/_starter.scss */
+section, article, header, footer, nav, aside, hgroup {
+  display: block;
+}
+
+/* @end */
+/* @group
+
+TYPE
+-------------------------------------- */
+/* line 41, less/_starter.scss */
+body {
+  font: 62.5%/2.4em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+/* line 44, less/_starter.scss */
+h1 {
+  font-size: 2.4em;
+  line-height: 1em;
+}
+
+/* line 48, less/_starter.scss */
+h2 {
+  font-size: 1.8em;
+  line-height: 1.333em;
+}
+
+/* line 53, less/_starter.scss */
+h3, h4, h5, h6,
+dt, legend {
+  font-size: 1.4em;
+  line-height: 1.7143em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* line 59, less/_starter.scss */
+ul, ol {
+  margin-left: 4.5em;
+}
+
+/* line 62, less/_starter.scss */
+ul li {
+  list-style-type: disc;
+}
+
+/* line 65, less/_starter.scss */
+ul li ul {
+  margin-bottom: 0;
+}
+
+/* line 70, less/_starter.scss */
+p, li, dd, td, th,
+address, blockquote,
+label, input, select, textarea {
+  font-size: 1.4em;
+  line-height: 1.7143em;
+}
+
+/* line 74, less/_starter.scss */
+p, address, blockquote, dd {
+  margin-bottom: 1.7143em;
+}
+
+/* line 77, less/_starter.scss */
+label {
+  display: block;
+  font-weight: bold;
+}
+
+/* line 81, less/_starter.scss */
+code, pre {
+  display: block;
+  font-size: 1.3em;
+  line-height: 1.846153846153846em;
+  margin-bottom: 1.846153846153846em;
+  font-family: Monaco, "Lucida Console", "Courier New", Courier, mono;
+}
+
+/* line 88, less/_starter.scss */
+code {
+  white-space: pre;
+}
+
+/* line 91, less/_starter.scss */
+table, ul, ol, dl {
+  margin-bottom: 2.4em;
+}
+
+/* line 94, less/_starter.scss */
+caption {
+  font-size: 1.2em;
+  line-height: 2em;
+}
+
+/* line 98, less/_starter.scss */
+th {
+  font-weight: bold;
+}
+
+/* line 101, less/_starter.scss */
+th, td {
+  width: 6em;
+}
+
+/* nested sizes relative to their parent */
+/* line 105, less/_starter.scss */
+p code, code pre, pre code, li li, li p, td p, blockquote p {
+  font-size: 1em;
+}
+
+/* line 108, less/_starter.scss */
+em, caption, cite, blockquote {
+  font-style: italic;
+}
+
+/* line 111, less/_starter.scss */
+blockquote {
+  margin-left: 2em;
+  width: 30em;
+}
+
+/* line 115, less/_starter.scss */
+blockquote span.author {
+  padding-right: 1em;
+  display: block;
+  text-align: right;
+}
+
+/* line 120, less/_starter.scss */
+strong {
+  font-weight: bold;
+}
+
+/* line 123, less/_starter.scss */
+abbr[title]:hover {
+  cursor: help;
+}
+
+/* line 128, less/_starter.scss */
+a:link,
+a:active,
+a:visited {
+  text-decoration: none;
+}
+
+/* line 131, less/_starter.scss */
+a:hover {
+  text-decoration: underline;
+}
+
+/* @end */
+/* line 6, less/main.scss */
+body {
+  background-color: #eff7f4;
+  background-image: url("/dist/img/bg-pattern-light.png");
+  background-repeat: repeat;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.65em;
+}
+
+/* line 14, less/main.scss */
+.page-width {
+  max-width: 1100px;
+  width: 1100px;
+  margin: 0 auto;
+}
+
+/* line 19, less/main.scss */
+.center {
+  text-align: center;
+}
+
+/* line 23, less/main.scss */
+.right {
+  text-align: right;
+}
+
+/* line 27, less/main.scss */
+.left {
+  text-align: left;
+}
+
+/* line 31, less/main.scss */
+a, a:link, a:visited {
+  color: #006534;
+  text-decoration: none;
+}
+
+/* line 36, less/main.scss */
+a:hover {
+  color: #39ac4f;
+}
+
+/* line 40, less/main.scss */
+ul.navi {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 45, less/main.scss */
+ul.navi li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 51, less/main.scss */
+ul.navi li a {
+  display: block;
+}
+
+/* line 57, less/main.scss */
+img.i15 {
+  height: 15px;
+  margin-right: 5px;
+  margin-top: -3px;
+}
+
+/* line 63, less/main.scss */
+header {
+  background: #ffffff;
+}
+/* line 65, less/main.scss */
+header .main.row {
+  align-items: flex-end;
+  padding: 0 0 25px 0;
+}
+/* line 69, less/main.scss */
+header .main.row .slogan {
+  text-align: right;
+  color: #39ac4f;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  line-height: 1;
+}
+/* line 79, less/main.scss */
+header nav {
+  background: #006534;
+}
+/* line 82, less/main.scss */
+header nav ul li {
+  margin-bottom: 8px;
+}
+/* line 84, less/main.scss */
+header nav ul li a {
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 10px 14px;
+}
+/* line 93, less/main.scss */
+header nav ul li.active a {
+  background: #333333;
+}
+/* line 101, less/main.scss */
+header .top {
+  position: relative;
+}
+/* line 103, less/main.scss */
+header .top nav {
+  float: right;
+  background: #8e8e8e;
+  height: 36px;
+}
+/* line 108, less/main.scss */
+header .top nav ul {
+  position: relative;
+  z-index: 100;
+}
+/* line 111, less/main.scss */
+header .top nav ul li {
+  margin: 0;
+}
+/* line 113, less/main.scss */
+header .top nav ul li a {
+  height: 36px;
+  padding: 0 8px;
+  color: white;
+  font-weight: normal;
+  text-transform: none;
+  font-size: 1em;
+  line-height: 36px;
+}
+/* line 122, less/main.scss */
+header .top nav ul li.social-before {
+  width: 10px;
+  content: "";
+}
+/* line 127, less/main.scss */
+header .top nav ul li.social {
+  background: #757575;
+  -webkit-transform: skewX(-35deg);
+  transform: skewX(-35deg);
+  text-align: center;
+  width: 40px;
+}
+/* line 134, less/main.scss */
+header .top nav ul li.social a {
+  display: block;
+  -webkit-transform: skewX(35deg);
+  transform: skewX(35deg);
+}
+/* line 140, less/main.scss */
+header .top nav ul li.social.facebook:hover {
+  background: #3b5998;
+}
+/* line 143, less/main.scss */
+header .top nav ul li.social.twitter:hover {
+  background: #02d0ff;
+}
+/* line 146, less/main.scss */
+header .top nav ul li.social.googleplus:hover {
+  background: #e85050;
+}
+/* line 152, less/main.scss */
+header .top nav ul:before {
+  content: "";
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  left: -36px;
+  border-width: 18px;
+  border-style: solid;
+  border-color: transparent #9b9b9b #9b9b9b transparent;
+}
+/* line 164, less/main.scss */
+header .top nav .helper {
+  position: absolute;
+  height: 100%;
+  right: 0;
+  width: 100%;
+  background: #9b9b9b;
+  top: 0;
+}
+
+/* line 176, less/main.scss */
+.content-holder {
+  min-height: 600px;
+}
+
+/* line 180, less/main.scss */
+footer {
+  background: #424242;
+  border-top: 20px solid #52c668;
+}
+/* line 184, less/main.scss */
+footer .row {
+  align-items: flex-end;
+}
+/* line 187, less/main.scss */
+footer .row .slogan {
+  color: #39ac4f;
+  text-align: right;
+  font-size: 1.8em;
+}
+/* line 192, less/main.scss */
+footer .row .slogan h4 {
+  margin: 0;
+  line-height: 1;
+}
+/* line 200, less/main.scss */
+footer .menu .row {
+  align-items: flex-start;
+}
+/* line 203, less/main.scss */
+footer .menu nav {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+/* line 210, less/main.scss */
+footer .menu nav ul {
+  flex-basis: calc(100%/3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 216, less/main.scss */
+footer .menu nav ul li {
+  list-style: none;
+  color: #8e8e8e;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+/* line 221, less/main.scss */
+footer .menu nav ul li a {
+  color: #757575;
+  display: block;
+}
+/* line 225, less/main.scss */
+footer .menu nav ul li a:hover {
+  color: #39ac4f;
+}
+/* line 230, less/main.scss */
+footer .menu nav ul li.header {
+  font-size: 1.8em;
+}
+/* line 238, less/main.scss */
+footer .copyright {
+  background: #5b5b5b;
+  padding: 15px 0;
+  color: white;
+  margin-top: 25px;
+  font-size: 1.3em;
+}
+/* line 246, less/main.scss */
+footer .contacts {
+  background: #686868;
+  padding: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  color: white;
+  font-size: 1.5em;
+  line-height: 2.2;
+}
+/* line 256, less/main.scss */
+footer .contacts a, footer .contacts a:hover {
+  color: white;
+}
+/* line 260, less/main.scss */
+footer .contacts h4 {
+  margin-bottom: 8px;
+  text-transform: none;
+  font-size: 1.25em;
+  line-height: 1;
+}
+/* line 268, less/main.scss */
+footer .contacts .navi li a {
+  color: white;
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  line-height: 24px;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  border-radius: 24px;
+  text-align: center;
+}
+/* line 281, less/main.scss */
+footer .contacts .navi li.social.facebook a {
+  background: #3b5998;
+}
+/* line 286, less/main.scss */
+footer .contacts .navi li.social.googleplus a {
+  background: #e85050;
+}
+/* line 291, less/main.scss */
+footer .contacts .navi li.social.twitter a {
+  background: #02d0ff;
+}
+/* line 300, less/main.scss */
+footer .buttons ul li {
+  padding-right: 15px;
+}
+/* line 302, less/main.scss */
+footer .buttons ul li > img {
+  height: 37px;
+  float: left;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+/* line 308, less/main.scss */
+footer .buttons ul li a {
+  margin-left: 48px;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9em;
+  letter-spacing: -1px;
+}
+/* line 316, less/main.scss */
+footer .buttons ul li a.btn-darker {
+  background-color: #757575;
+  border-color: #818181;
+}
+/* line 320, less/main.scss */
+footer .buttons ul li a.btn-darker:hover {
+  background-color: #686868;
+}
+/* line 329, less/main.scss */
+footer .divider {
+  margin: 15px 0;
+  height: 1px;
+  background: #4e4e4e;
+  width: 100%;
+}
+/* line 336, less/main.scss */
+footer .top {
+  padding-top: 25px;
+}
