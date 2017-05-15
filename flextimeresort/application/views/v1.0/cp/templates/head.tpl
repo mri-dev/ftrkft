@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$settings.page_title|strip_tags}</title>
+  {include file='meta.tpl'}
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="admin hold-transition {if "IS_DEV"|defined}dev{/if} {if $admin->logged}skin-green sidebar-mini{else}login-page{/if}">
+<div id="pagepreloader">
+  <div class="loadwrapper">
+    <i class="fa fa-spin fa-spinner"></i>
+    <div class="">
+      Adatok betöltése...
+    </div>
+  </div>
+</div>
+<div class="wrapper">
+{if !$admin->logged}
+<!-- Login module -->
+<div id="login">
+  <div class="logologin">
+    <img src="{$smarty.const.IMG}logo-single-horizontal-greenbg.svg" alt="{$settings.page_title}">
+  </div>
+  <div class="login-wrapper">
+      <div class="">
+        <h3>Adminisztráció bejelentkezés</h3>
+          {$form->getMsg(1)}
+          <form action="/cp/forms" method="post">
+            <input type="hidden" name="return" value="{$settings.page_url}{$settings.admin_root}">
+            <input type="hidden" name="form" value="1">
+            <input type="hidden" name="for" value="login_admin">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+              <input type="text" class="form-control" name="user">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" name="pw">
+            </div>
+            <br>
+            <div class="row col-vertical-middle">
+              <div class="col-md-6 left"><a href="{$settings.page_url}"><i class="fa fa-angle-left"></i> {$settings.page_url}</a></div>
+              <div class="col-md-6 right"><button name="login" class="btn btn-success">Bejelentkezés <i class="fa fa-angle-right"></i></button></div>
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="copyright">
+      {$settings.page_title}
+    </div>
+</div>
+<!--/Login module -->
+{/if}
+
+{if $admin->logged}
+<header class="main-header col-vertical-middle">
+  <a href="{$settings.page_url}{$settings.admin_root}" class="logo">
+    <div class="logo-holder">
+      <img src="{$smarty.const.IMG}logo-embleme-only.svg" alt="{$settings.page_title}">
+      <span class="authortext">{$settings.page_title}</span>
+    </div>
+  </a>
+  <div class="navbar col-vertical-middle">
+    <div class="navi">
+      <ul>
+        <li class="toggler"><a href="#" class="sidebar-toggle"><i class="fa fa-bars"></i></a></li>
+        <li class="quicknav">
+          <ul class="quicknav">
+            <li><a href="#">{$admin->getUsername()}</a></li>
+            <li class="logout"><a data-toggle="tooltip" data-placement="left" title="Kijelentkezés" href="{$root}logout"><i class="fa fa-times"></i></a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<aside class="main-sidebar">
+  <section class="menu">
+    <ul>
+      <li class="active"><a href="{$root}"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
+      <li class=""><a href="{$root}"> <span class="text">Beállítások</span></a></li>
+    </ul>
+  </section>
+</aside>
+<div class="content-wrapper">
+{/if}

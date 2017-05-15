@@ -102,6 +102,10 @@ class Controller
 	function language_translator($params, &$smarty){
 		$text = $this->LANGUAGES->texts;
 
+		if(!isset($text[$params['text']])) {
+			return $params['text'];
+		}
+
 		$text = $text[$params['text']];
 
 		preg_match_all('/%(.*?)%/', $text, $match);
@@ -112,7 +116,6 @@ class Controller
 					$text = str_replace('%'.$m.'%', $params[$m], $text);
 				}
 			}
-
 		}
 
 		return $text;

@@ -5,13 +5,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-<!-- Theme style -->
 <link rel="stylesheet" href="/dist/css/main.css">
 <!-- DataTables -->
 <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
 <link rel="stylesheet" href="/plugins/timepicker/bootstrap-timepicker.min.css">
 <link rel="stylesheet" href="/plugins/iCheck/all.css">
+
+<link rel="stylesheet" href="{$admin_css}">
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 2.2.3 -->
@@ -38,18 +39,26 @@
 {/if}
 
 <script type="text/javascript">
+  var closedSidebar = localStorage.getItem('closedSidebar');
+
   $(function(){
-    var top_nav_position = $('header .top nav').position();
-    $('header .top nav .helper').animate({
-      left: top_nav_position.left
-    }, 0);
+    $('[data-toggle="tooltip"]').tooltip();
 
-    $(window).resize(function(){
-      top_nav_position = $('header .top nav').position();
+    if(closedSidebar != null) {
+      $('body').addClass('sidebar-toggled');
+    }
+    $('#pagepreloader').hide(0);
 
-      $('header .top nav .helper').animate({
-        left: top_nav_position.left
-      }, 0);
+    $('a.sidebar-toggle').click(function(){
+      var toggled = $('body').hasClass('sidebar-toggled');
+
+      if (toggled) {
+        $('body').removeClass('sidebar-toggled');
+        localStorage.removeItem('closedSidebar');
+      } else {
+        $('body').addClass('sidebar-toggled');
+        localStorage.setItem('closedSidebar', 1);
+      }
     });
   })
 </script>

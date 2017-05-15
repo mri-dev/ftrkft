@@ -1,0 +1,283 @@
+/* FONTS */
+/* COLORS */
+/* line 3, scss/media.scss */
+body, html {
+  position: relative;
+  height: 100%;
+}
+
+/* line 8, scss/media.scss */
+body.admin {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.7em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* line 14, scss/media.scss */
+body.admin.login-page {
+  background: #4e4e4e;
+}
+/* line 18, scss/media.scss */
+body.admin #login {
+  margin: 10% auto;
+  width: 550px;
+}
+/* line 22, scss/media.scss */
+body.admin #login .input-group-addon {
+  width: 38px;
+  text-align: center;
+}
+/* line 27, scss/media.scss */
+body.admin #login .logologin {
+  margin: 0 0 40px 0;
+  text-align: center;
+}
+/* line 31, scss/media.scss */
+body.admin #login .logologin img {
+  max-width: 80%;
+}
+/* line 36, scss/media.scss */
+body.admin #login .copyright {
+  color: #8e8e8e;
+  text-align: center;
+  padding: 40px 0 0 0;
+}
+/* line 42, scss/media.scss */
+body.admin #login .login-wrapper {
+  padding: 25px;
+  background: white;
+  -webkit-box-shadow: 5px 5px 25px -8px black;
+  -moz-box-shadow: 5px 5px 25px -8px black;
+  box-shadow: 5px 5px 25px -8px black;
+}
+/* line 49, scss/media.scss */
+body.admin #login .login-wrapper h3 {
+  text-align: center;
+  font-size: 2em;
+  margin: 0 0 25px 0;
+}
+/* line 58, scss/media.scss */
+body.admin nav.navbar .navbar-custom-menu {
+  float: right;
+}
+/* line 62, scss/media.scss */
+body.admin nav.navbar .navbar-nav li {
+  float: left;
+}
+/* line 68, scss/media.scss */
+body.admin .alert.alert-error {
+  background: #f44e5e;
+  color: white;
+}
+/* line 73, scss/media.scss */
+body.admin header.main-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  position: relative;
+  z-index: 1000;
+}
+/* line 84, scss/media.scss */
+body.admin header.main-header a.logo {
+  width: 220px;
+  text-align: left;
+  padding: 10px;
+}
+/* line 92, scss/media.scss */
+body.admin header.main-header a.logo .authortext {
+  font-size: 1.2em;
+  padding-left: 10px;
+}
+/* line 97, scss/media.scss */
+body.admin header.main-header a.logo img {
+  height: 30px;
+  max-height: 30px;
+}
+/* line 103, scss/media.scss */
+body.admin header.main-header .navbar {
+  background: #006534;
+  flex-basis: -webkit-calc(100% - 220px);
+  flex-basis: -moz-calc(100% - 220px);
+  flex-basis: calc(100% - 220px);
+  padding: 0;
+  line-height: 50px;
+}
+/* line 111, scss/media.scss */
+body.admin header.main-header .navbar .sidebar-toggle {
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+/* line 117, scss/media.scss */
+body.admin header.main-header .navbar .navi {
+  float: right;
+  height: 50px;
+  text-align: right;
+}
+/* line 122, scss/media.scss */
+body.admin header.main-header .navbar .navi ul {
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  list-style: none;
+  width: 100%;
+  display: block;
+}
+/* line 131, scss/media.scss */
+body.admin header.main-header .navbar .navi > ul > li {
+  list-style: none;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 141, scss/media.scss */
+body.admin header.main-header .navbar .navi > ul > li.toggler {
+  float: left;
+}
+/* line 145, scss/media.scss */
+body.admin header.main-header .navbar .navi > ul > li.quicknav {
+  float: right;
+}
+/* line 149, scss/media.scss */
+body.admin header.main-header .navbar .navi > ul > li a {
+  color: white;
+  height: 50px;
+  line-height: 50px;
+}
+/* line 157, scss/media.scss */
+body.admin header.main-header .navbar .navi ul.quicknav li {
+  list-style: none;
+  float: left;
+  list-style: none;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 168, scss/media.scss */
+body.admin header.main-header .navbar .navi ul.quicknav li a {
+  display: block;
+  padding: 0 15px;
+}
+/* line 172, scss/media.scss */
+body.admin header.main-header .navbar .navi ul.quicknav li a:hover {
+  background: black;
+}
+/* line 177, scss/media.scss */
+body.admin header.main-header .navbar .navi ul.quicknav li.logout {
+  border-left: 1px solid #00984e;
+}
+/* line 179, scss/media.scss */
+body.admin header.main-header .navbar .navi ul.quicknav li.logout a:hover {
+  background: #f44e5e;
+}
+/* line 187, scss/media.scss */
+body.admin header.main-header .navbar .sidebar-toggle {
+  color: white;
+  line-height: 50px;
+}
+/* line 190, scss/media.scss */
+body.admin header.main-header .navbar .sidebar-toggle i {
+  width: 50px;
+  color: white;
+  font-size: 28px;
+  line-height: 50px;
+  text-align: center;
+}
+/* line 201, scss/media.scss */
+body.admin aside.main-sidebar {
+  width: 220px;
+  background: #5b5b5b;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  padding-top: 50px;
+}
+/* line 211, scss/media.scss */
+body.admin aside.main-sidebar section.menu ul, body.admin aside.main-sidebar section.menu li {
+  list-style: none;
+  margin: 0;
+  left: 0;
+}
+/* line 216, scss/media.scss */
+body.admin aside.main-sidebar section.menu ul a, body.admin aside.main-sidebar section.menu li a {
+  display: block;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px;
+  border-bottom: 1px solid #686868;
+}
+/* line 223, scss/media.scss */
+body.admin aside.main-sidebar section.menu ul a i, body.admin aside.main-sidebar section.menu li a i {
+  padding-left: 9px;
+  padding-right: 8px;
+}
+/* line 230, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.active a {
+  background: #39ac4f;
+}
+/* line 237, scss/media.scss */
+body.admin .content-wrapper {
+  margin-left: 220px;
+  padding: 15px;
+}
+/* line 244, scss/media.scss */
+body.admin.sidebar-toggled aside.main-sidebar,
+body.admin.sidebar-toggled header.main-header a.logo {
+  width: 50px;
+  overflow: hidden;
+}
+/* line 248, scss/media.scss */
+body.admin.sidebar-toggled header.main-header a.logo .authortext {
+  display: none;
+}
+/* line 251, scss/media.scss */
+body.admin.sidebar-toggled header.main-header .navbar {
+  flex-basis: calc(100% - 50px);
+}
+/* line 254, scss/media.scss */
+body.admin.sidebar-toggled .content-wrapper {
+  margin-left: 50px;
+}
+/* line 257, scss/media.scss */
+body.admin.sidebar-toggled aside.main-sidebar section.menu li.active a .text {
+  display: none;
+}
+/* line 262, scss/media.scss */
+body.admin #pagepreloader {
+  background: #5b5b5b;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+/* line 271, scss/media.scss */
+body.admin #pagepreloader .loadwrapper {
+  color: white;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  font-size: 1.4em;
+  font-weight: 100;
+  text-align: center;
+}
+/* line 281, scss/media.scss */
+body.admin #pagepreloader .loadwrapper i {
+  color: #39ac4f;
+  font-size: 42px;
+}

@@ -1,7 +1,7 @@
 @import 'settings';
 @import 'starter';
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&subset=cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700&subset=cyrillic-ext');
 
 body{
   background-color: $color-bg-light;
@@ -26,6 +26,10 @@ body{
 
 .left {
   text-align: left;
+}
+
+.btn {
+  cursor: pointer;
 }
 
 a, a:link, a:visited {
@@ -60,6 +64,16 @@ img.i15{
   margin-top: -3px;
 }
 
+.row.col-vertical-middle{
+  align-items: center;
+}
+.row.col-vertical-bottom{
+  align-items: flex-end;
+}
+.row.col-vertical-top{
+  align-items: flex-start;
+}
+
 header {
   background: #ffffff;
   .main.row {
@@ -71,7 +85,7 @@ header {
       color: $color-primary-light;
       font-weight: bold;
       text-transform: uppercase;
-      font-size: 1.4em;
+      font-size: 1.3em;
       line-height: 1;
     }
   }
@@ -102,7 +116,7 @@ header {
     position: relative;
     nav {
       float: right;
-      background: lighten($color-grey, 20%);
+      background: lighten($color-grey, 25%);
       height: 36px;
 
       ul{
@@ -177,8 +191,49 @@ header {
   min-height: 600px;
 }
 
+body.page404 .content-holder{
+    background-image: url('/dist/img/worldmap.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: center 10px;
+    background-size: contain;
+}
+
+section.content-header{
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 0;
+}
+
+.breadcrumb{
+  float:right;
+  margin: 0;
+  font-size: 0.89em;
+  background-color: transparent;
+}
+
+.error-page{
+  width: 80%;
+  margin: 120px auto 0 auto;
+
+  .headline {
+    font-size: 13em;
+    line-height: 1.2;
+    color: $color-primary;
+    font-weight: 100;
+    float: left;
+  }
+
+  & > .error-content {
+    margin-left: 235px;
+
+    h3 {
+        color: $color-primary;
+    }
+  }
+}
+
 footer {
-  background: darken($color-grey, 10%);
+  background: darken($color-grey, 15%);
   border-top: 20px solid lighten($color-primary-light, 10%);
 
   .row{
@@ -187,7 +242,7 @@ footer {
     .slogan {
       color: $color-primary-light;
       text-align: right;
-      font-size:1.8em;
+      font-size:1.6em;
 
       h4 {
         margin: 0;
@@ -216,10 +271,9 @@ footer {
         li {
           list-style: none;
           color: lighten($color-grey, 20%);
-          font-weight: bold;
           font-size: 1.5em;
           a {
-            color: lighten($color-grey, 10%);
+            color: lighten($color-grey, 18%);
             display: block;
 
             &:hover {
@@ -229,6 +283,7 @@ footer {
 
           &.header{
             font-size: 1.8em;
+            color:  lighten($color-grey, 28%);
           }
         }
       }
@@ -236,7 +291,7 @@ footer {
   }
 
   .copyright{
-    background: $color-grey;
+    background: darken($color-grey, 5%);
     padding: 15px 0;
     color: white;
     margin-top: 25px;
@@ -244,7 +299,7 @@ footer {
   }
 
   .contacts {
-    background: lighten($color-grey, 5%);
+    background: darken($color-grey, 1%);
     padding: 15px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
