@@ -100,7 +100,7 @@ class Admins
 	public function saveSettings( $post )
 	{
 		foreach ( $post as $key => $value ) {
-			$this->db->query("UPDATE beallitasok SET bErtek = '$value' WHERE bKulcs = '$key';");
+			$this->db->query("UPDATE settings SET bErtek = '$value' WHERE bKulcs = '$key';");
 		}
 	}
 
@@ -108,10 +108,8 @@ class Admins
 	{
 		if( count($post['settings']) > 0 ) {
 			foreach ($post['settings'] as $key => $value) {
-				$q = "UPDATE beallitasok SET bErtek = '".$value."' WHERE bKulcs = '$key';";
-
+				$q = "UPDATE settings SET bErtek = '".$value."' WHERE bKulcs = '$key';";
 				$this->db->query( $q );
-
 			}
 		}
 	}

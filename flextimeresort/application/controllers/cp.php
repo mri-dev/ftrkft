@@ -89,6 +89,11 @@ class cp extends Controller {
 		}
 	}
 
+	public function settings()
+	{
+		# code...
+	}
+
 	public function pages()
 	{
 		$pages = new Pages( $this->gets[2], array(
@@ -126,9 +131,7 @@ class cp extends Controller {
 		) );
 
 		$users->getList();
-
 		$this->out( 'lista', $users );
-
 	}
 
 	public function users()
@@ -145,11 +148,6 @@ class cp extends Controller {
 
 		$users->getList();
 		$this->out( 'lista', $users );
-	}
-
-	public function beallitasok()
-	{
-
 	}
 
 	public function logout()

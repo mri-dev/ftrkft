@@ -86,8 +86,9 @@
 <aside class="main-sidebar">
   <section class="menu">
     <ul>
-      <li class="active"><a href="{$root}"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
-      <li class=""><a href="{$root}"> <span class="text">Beállítások</span></a></li>
+      <li class="basehead">Navigáció</li>
+      <li class=""><a href="{$root}"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
+      <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
     </ul>
   </section>
 </aside>

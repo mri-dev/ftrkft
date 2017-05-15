@@ -200,62 +200,126 @@ body.admin aside.main-sidebar {
   width: 220px;
   background: #5b5b5b;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   top: 0;
-  padding-top: 50px;
 }
-/* line 211, scss/media.scss */
+/* line 209, scss/media.scss */
+body.admin aside.main-sidebar section.menu {
+  overflow: auto;
+  height: 100%;
+}
+/* line 212, scss/media.scss */
 body.admin aside.main-sidebar section.menu ul, body.admin aside.main-sidebar section.menu li {
   list-style: none;
   margin: 0;
   left: 0;
 }
-/* line 216, scss/media.scss */
+/* line 217, scss/media.scss */
 body.admin aside.main-sidebar section.menu ul a, body.admin aside.main-sidebar section.menu li a {
   display: block;
   color: white;
   text-transform: uppercase;
   padding: 10px;
   border-bottom: 1px solid #686868;
+  position: relative;
 }
-/* line 223, scss/media.scss */
+/* line 225, scss/media.scss */
 body.admin aside.main-sidebar section.menu ul a i, body.admin aside.main-sidebar section.menu li a i {
   padding-left: 9px;
   padding-right: 8px;
 }
-/* line 230, scss/media.scss */
+/* line 231, scss/media.scss */
+body.admin aside.main-sidebar section.menu li a:hover {
+  background: #4e4e4e;
+}
+/* line 235, scss/media.scss */
 body.admin aside.main-sidebar section.menu li.active a {
   background: #39ac4f;
 }
-/* line 237, scss/media.scss */
+/* line 239, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.basehead {
+  background: #424242;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: #c1c1c1;
+  text-shadow: none;
+}
+/* line 254, scss/media.scss */
 body.admin .content-wrapper {
   margin-left: 220px;
   padding: 15px;
 }
-/* line 244, scss/media.scss */
+/* line 258, scss/media.scss */
+body.admin .content-wrapper h1 {
+  color: black;
+  font-weight: bold;
+  margin: 10px 0 25px 0;
+}
+/* line 264, scss/media.scss */
+body.admin .content-wrapper .box {
+  background: white;
+  padding: 15px;
+  margin: 0 0 25px 0;
+  border: 1px solid #dadada;
+  -webkit-box-shadow: 6px 6px 20px -10px #959595;
+  -moz-box-shadow: 6px 6px 20px -10px #959595;
+  box-shadow: 6px 6px 20px -10px #959595;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 274, scss/media.scss */
+body.admin .content-wrapper .box h3 {
+  font-size: 1.7em;
+  color: #39ac4f;
+}
+/* line 279, scss/media.scss */
+body.admin .content-wrapper .box h3 + .subtitle {
+  color: #9c9c9c;
+}
+/* line 283, scss/media.scss */
+body.admin .content-wrapper .box .data {
+  margin-top: 10px;
+}
+/* line 286, scss/media.scss */
+body.admin .content-wrapper .box .data label {
+  font-size: 1.15em;
+}
+/* line 291, scss/media.scss */
+body.admin .content-wrapper .box input + .comment {
+  color: #aaaaaa;
+  font-size: 0.9em;
+}
+/* line 301, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar,
 body.admin.sidebar-toggled header.main-header a.logo {
   width: 50px;
   overflow: hidden;
 }
-/* line 248, scss/media.scss */
+/* line 305, scss/media.scss */
 body.admin.sidebar-toggled header.main-header a.logo .authortext {
   display: none;
 }
-/* line 251, scss/media.scss */
+/* line 308, scss/media.scss */
 body.admin.sidebar-toggled header.main-header .navbar {
   flex-basis: calc(100% - 50px);
 }
-/* line 254, scss/media.scss */
+/* line 311, scss/media.scss */
 body.admin.sidebar-toggled .content-wrapper {
   margin-left: 50px;
 }
-/* line 257, scss/media.scss */
-body.admin.sidebar-toggled aside.main-sidebar section.menu li.active a .text {
+/* line 314, scss/media.scss */
+body.admin.sidebar-toggled aside.main-sidebar section.menu li a .text {
   display: none;
 }
-/* line 262, scss/media.scss */
+/* line 319, scss/media.scss */
 body.admin #pagepreloader {
   background: #5b5b5b;
   position: fixed;
@@ -265,7 +329,7 @@ body.admin #pagepreloader {
   bottom: 0;
   z-index: 9999;
 }
-/* line 271, scss/media.scss */
+/* line 328, scss/media.scss */
 body.admin #pagepreloader .loadwrapper {
   color: white;
   position: absolute;
@@ -276,7 +340,7 @@ body.admin #pagepreloader .loadwrapper {
   font-weight: 100;
   text-align: center;
 }
-/* line 281, scss/media.scss */
+/* line 338, scss/media.scss */
 body.admin #pagepreloader .loadwrapper i {
   color: #39ac4f;
   font-size: 42px;
