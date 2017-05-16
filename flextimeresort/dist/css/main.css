@@ -461,7 +461,7 @@ section.content-header {
 }
 /* line 237, less/main.scss */
 .error-page .headline {
-  font-size: 13em;
+  font-size: 12em;
   line-height: 1.2;
   color: #006534;
   font-weight: 100;
@@ -469,28 +469,83 @@ section.content-header {
 }
 /* line 245, less/main.scss */
 .error-page > .error-content {
-  margin-left: 235px;
+  margin-left: 300px;
 }
 /* line 248, less/main.scss */
 .error-page > .error-content h3 {
   color: #006534;
+  font-size: 2.5em;
+  font-weight: 100;
 }
 
-/* line 254, less/main.scss */
+/* line 256, less/main.scss */
 input[type=checkbox].ccb {
   display: none;
 }
 
-/* line 258, less/main.scss */
+/* line 260, less/main.scss */
 input[type=checkbox].ccb + label {
   color: black;
   font-size: 1em;
   font-weight: normal;
   margin: 0;
   line-height: initial;
+  padding-left: 16px;
+  position: relative;
+}
+/* line 269, less/main.scss */
+input[type=checkbox].ccb + label:before {
+  content: "\f0c8";
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 14px;
+  color: #c1c1c1;
+  background: white;
+  margin: 0;
+  width: 12px;
+  height: 12px;
+  line-height: 1;
+  border-radius: 2px;
 }
 
-/* line 266, less/main.scss */
+/* line 286, less/main.scss */
+input[type=checkbox].ccb:checked + label:before {
+  content: "\f14a";
+  color: #0fcfbc;
+}
+
+/* line 293, less/main.scss */
+.multiselect-list .value-viewer {
+  position: relative;
+}
+/* line 296, less/main.scss */
+.multiselect-list .value-viewer input {
+  padding-right: 72px !important;
+}
+/* line 299, less/main.scss */
+.multiselect-list .value-viewer .helper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 45px;
+  background: #757575;
+  color: white;
+  width: 55px;
+  text-align: center;
+  line-height: 45px;
+  font-size: 26px;
+  border-radius: 0 4px 4px 0;
+  pointer-events: none;
+}
+/* line 314, less/main.scss */
+.multiselect-list .multi-selector-holder {
+  position: relative;
+  display: none;
+}
+
+/* line 321, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -498,16 +553,136 @@ input[type=checkbox].ccb + label {
   background-repeat: no-repeat;
   background-size: contain;
 }
-/* line 273, less/main.scss */
+/* line 328, less/main.scss */
 .header-searcher-container .home-searcher {
-  min-height: 200px;
+  padding: 40px 0 20px 0;
 }
-/* line 277, less/main.scss */
+/* line 330, less/main.scss */
+.header-searcher-container .home-searcher .input-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+}
+/* line 338, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp {
+  padding: 10px 8px;
+}
+/* line 341, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp input {
+  padding: 12px 16px;
+  font-size: 1.2em;
+  background: white;
+  border: 1px solid #dbdbdb;
+  height: 45px;
+}
+/* line 349, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp input[readonly] {
+  cursor: pointer;
+}
+/* line 354, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
+  width: 100%;
+  height: 45px;
+  font-size: 1.6em;
+  text-transform: uppercase;
+  padding: 0;
+  line-height: 45px;
+}
+/* line 365, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
+  position: relative;
+}
+/* line 367, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
+  width: 44px;
+  height: 55px;
+  background: #39ac4f;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+/* line 379, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
+  width: 65%;
+  position: absolute;
+  border: 0;
+  left: 50%;
+  bottom: 10px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* line 390, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
+  content: "\f107";
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 10px;
+  top: 50%;
+  z-index: 2;
+  font-size: 22px;
+  color: white;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+/* line 404, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order select {
+  position: relative;
+  background: #39ac4f;
+  color: white;
+  height: 45px;
+  padding-left: 45px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+/* line 415, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
+  flex-basis: 40%;
+  order: 1;
+}
+/* line 419, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
+  flex-basis: 40%;
+  order: 2;
+}
+/* line 423, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
+  flex-basis: 20%;
+  order: 3;
+}
+/* line 427, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
+  flex-basis: 40%;
+  order: 4;
+}
+/* line 431, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
+  flex-basis: 20%;
+  order: 5;
+}
+/* line 435, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
+  flex-basis: 20%;
+  order: 6;
+}
+/* line 439, less/main.scss */
+.header-searcher-container .home-searcher .input-holder .inp.inp-order {
+  flex-basis: 20%;
+  order: 7;
+}
+/* line 447, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 282, less/main.scss */
+/* line 452, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -516,25 +691,25 @@ input[type=checkbox].ccb + label {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-/* line 289, less/main.scss */
+/* line 459, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-/* line 293, less/main.scss */
+/* line 463, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-/* line 298, less/main.scss */
+/* line 468, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-/* line 304, less/main.scss */
+/* line 474, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -543,22 +718,22 @@ input[type=checkbox].ccb + label {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-/* line 312, less/main.scss */
+/* line 482, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 316, less/main.scss */
+/* line 486, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 326, less/main.scss */
+/* line 496, less/main.scss */
 .header-searcher-container .home-instruction {
   padding: 0;
-  background: rgba(0, 150, 29, 0.61);
+  background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-/* line 332, less/main.scss */
+/* line 502, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico {
   border: 8px solid white;
   width: 120px;
@@ -567,7 +742,7 @@ input[type=checkbox].ccb + label {
   margin: 0 auto 25px auto;
   position: relative;
 }
-/* line 340, less/main.scss */
+/* line 510, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico img {
   width: 40%;
   max-width: 40%;
@@ -578,7 +753,7 @@ input[type=checkbox].ccb + label {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 351, less/main.scss */
+/* line 521, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -588,100 +763,162 @@ input[type=checkbox].ccb + label {
   font-size: 1.26em;
   align-items: flex-start;
 }
-/* line 360, less/main.scss */
+/* line 530, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-/* line 365, less/main.scss */
+/* line 535, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .text {
   line-height: 1.4;
 }
-/* line 370, less/main.scss */
+/* line 540, less/main.scss */
 .header-searcher-container .home-instruction .instuction .row {
   margin: 0 -25px;
 }
-/* line 374, less/main.scss */
+/* line 544, less/main.scss */
 .header-searcher-container .home-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-/* line 378, less/main.scss */
+/* line 548, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-/* line 384, less/main.scss */
+/* line 554, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-/* line 387, less/main.scss */
+/* line 557, less/main.scss */
 .header-searcher-container .login-holder .login-container {
-  background: #cecece;
-  /*border: 2px solid white;*/
-  padding: 15px;
-  border-radius: 5px;
+  background: #dbdbdb;
+  border: 2px solid #c1c1c1;
+  padding: 5px 15px 15px 15px;
+  border-radius: 10px;
   margin-top: -110px;
 }
-/* line 394, less/main.scss */
+/* line 564, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-/* line 398, less/main.scss */
+/* line 568, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-/* line 402, less/main.scss */
+/* line 572, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
+  color: black;
+  font-weight: bold;
 }
-/* line 406, less/main.scss */
+/* line 578, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-/* line 409, less/main.scss */
+/* line 582, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
+  padding-left: 36px;
 }
-/* line 419, less/main.scss */
+/* line 587, less/main.scss */
+.header-searcher-container .login-holder .login-container .form-holder img {
+  max-height: 24px;
+  height: 24px;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+/* line 600, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo {
+  font-size: 0.8em;
+}
+/* line 603, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo label {
+  display: initial;
+  vertical-align: top;
+  cursor: pointer;
+}
+/* line 609, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
+  vertical-align: middle;
+  height: 14px;
+}
+/* line 613, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
+  vertical-align: top;
+  margin-top: -8px;
+  display: block;
+  text-align: right;
+  color: black;
+}
+/* line 620, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
+  width: 14px;
+  height: 14px;
+}
+/* line 625, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
+  color: #f44e5e;
+  font-size: 14px;
+  width: 14px;
+  line-height: 14px;
+  padding: 0;
+  margin: 0;
+  height: 14px;
+}
+/* line 635, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
+  color: white;
+  font-size: 10px;
+  height: 10px;
+}
+/* line 641, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
+  color: #f44e5e;
+}
+/* line 648, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-/* line 427, less/main.scss */
+/* line 656, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
 
-/* line 437, less/main.scss */
+/* line 666, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 441, less/main.scss */
+/* line 670, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 444, less/main.scss */
+/* line 673, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-/* line 449, less/main.scss */
+/* line 678, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 457, less/main.scss */
+/* line 686, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 460, less/main.scss */
+/* line 689, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -690,34 +927,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 467, less/main.scss */
+/* line 696, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 473, less/main.scss */
+/* line 702, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-/* line 477, less/main.scss */
+/* line 706, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 481, less/main.scss */
+/* line 710, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 486, less/main.scss */
+/* line 715, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 495, less/main.scss */
+/* line 724, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -725,7 +962,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-/* line 503, less/main.scss */
+/* line 732, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -736,18 +973,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 513, less/main.scss */
+/* line 742, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 517, less/main.scss */
+/* line 746, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 525, less/main.scss */
+/* line 754, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -760,30 +997,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 538, less/main.scss */
+/* line 767, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 543, less/main.scss */
+/* line 772, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 548, less/main.scss */
+/* line 777, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 557, less/main.scss */
+/* line 786, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 559, less/main.scss */
+/* line 788, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 565, less/main.scss */
+/* line 794, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -792,23 +1029,23 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 573, less/main.scss */
+/* line 802, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 577, less/main.scss */
+/* line 806, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 586, less/main.scss */
+/* line 815, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 593, less/main.scss */
+/* line 822, less/main.scss */
 footer .top {
   padding-top: 25px;
 }
