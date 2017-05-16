@@ -63,3 +63,6 @@
   </nav>
 </header>
 <div class="content-holder">
+{if !$hidehometop}
+  {include file='inc/home_top.tpl'}
+{/if}

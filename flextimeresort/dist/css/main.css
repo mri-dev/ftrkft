@@ -205,7 +205,7 @@ body {
   background-image: url("/dist/img/bg-pattern-light.png");
   background-repeat: repeat;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.65em;
+  font-size: 0.8em;
 }
 
 /* line 14, less/main.scss */
@@ -236,129 +236,151 @@ body {
 }
 
 /* line 35, less/main.scss */
+.btn.btn-success {
+  background-color: #39ac4f;
+  border-color: #339946;
+  color: white;
+}
+/* line 40, less/main.scss */
+.btn.btn-success:hover {
+  background-color: #3fbf58;
+}
+
+/* line 45, less/main.scss */
+.btn.btn-info {
+  background-color: #48aff6;
+  border-color: #30a4f5;
+  color: white;
+}
+/* line 50, less/main.scss */
+.btn.btn-info:hover {
+  background-color: #60baf7;
+}
+
+/* line 55, less/main.scss */
 a, a:link, a:visited {
   color: #006534;
   text-decoration: none;
 }
 
-/* line 40, less/main.scss */
+/* line 60, less/main.scss */
 a:hover {
   color: #39ac4f;
 }
 
-/* line 44, less/main.scss */
+/* line 64, less/main.scss */
 ul.navi {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 49, less/main.scss */
+/* line 69, less/main.scss */
 ul.navi li {
   display: inline-block;
   *display: inline;
   zoom: 1;
   vertical-align: middle;
 }
-/* line 55, less/main.scss */
+/* line 75, less/main.scss */
 ul.navi li a {
   display: block;
 }
 
-/* line 61, less/main.scss */
+/* line 81, less/main.scss */
 img.i15 {
   height: 15px;
   margin-right: 5px;
   margin-top: -3px;
 }
 
-/* line 67, less/main.scss */
+/* line 87, less/main.scss */
 .row.col-vertical-middle {
   align-items: center;
 }
 
-/* line 70, less/main.scss */
+/* line 90, less/main.scss */
 .row.col-vertical-bottom {
   align-items: flex-end;
 }
 
-/* line 73, less/main.scss */
+/* line 93, less/main.scss */
 .row.col-vertical-top {
   align-items: flex-start;
 }
 
-/* line 77, less/main.scss */
+/* line 97, less/main.scss */
 header {
   background: #ffffff;
 }
-/* line 79, less/main.scss */
+/* line 99, less/main.scss */
 header .main.row {
   align-items: flex-end;
   padding: 0 0 25px 0;
 }
-/* line 83, less/main.scss */
+/* line 103, less/main.scss */
 header .main.row .slogan {
   text-align: right;
   color: #39ac4f;
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 1.3em;
+  font-size: 1.1em;
   line-height: 1;
 }
-/* line 93, less/main.scss */
+/* line 113, less/main.scss */
 header nav {
   background: #006534;
 }
-/* line 96, less/main.scss */
+/* line 116, less/main.scss */
 header nav ul li {
   margin-bottom: 8px;
 }
-/* line 98, less/main.scss */
+/* line 118, less/main.scss */
 header nav ul li a {
   color: white !important;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 0.9em;
   padding: 10px 14px;
 }
-/* line 107, less/main.scss */
+/* line 127, less/main.scss */
 header nav ul li.active a {
   background: #333333;
 }
-/* line 115, less/main.scss */
+/* line 135, less/main.scss */
 header .top {
   position: relative;
 }
-/* line 117, less/main.scss */
+/* line 137, less/main.scss */
 header .top nav {
   float: right;
   background: #9b9b9b;
   height: 36px;
 }
-/* line 122, less/main.scss */
+/* line 142, less/main.scss */
 header .top nav ul {
   position: relative;
   z-index: 100;
 }
-/* line 125, less/main.scss */
+/* line 145, less/main.scss */
 header .top nav ul li {
   margin: 0;
 }
-/* line 127, less/main.scss */
+/* line 147, less/main.scss */
 header .top nav ul li a {
   height: 36px;
   padding: 0 8px;
   color: white;
   font-weight: normal;
   text-transform: none;
-  font-size: 1em;
+  font-size: 0.8em;
   line-height: 36px;
 }
-/* line 136, less/main.scss */
+/* line 156, less/main.scss */
 header .top nav ul li.social-before {
   width: 10px;
   content: "";
 }
-/* line 141, less/main.scss */
+/* line 161, less/main.scss */
 header .top nav ul li.social {
   background: #757575;
   -webkit-transform: skewX(-35deg);
@@ -366,25 +388,25 @@ header .top nav ul li.social {
   text-align: center;
   width: 40px;
 }
-/* line 148, less/main.scss */
+/* line 168, less/main.scss */
 header .top nav ul li.social a {
   display: block;
   -webkit-transform: skewX(35deg);
   transform: skewX(35deg);
 }
-/* line 154, less/main.scss */
+/* line 174, less/main.scss */
 header .top nav ul li.social.facebook:hover {
   background: #3b5998;
 }
-/* line 157, less/main.scss */
+/* line 177, less/main.scss */
 header .top nav ul li.social.twitter:hover {
   background: #02d0ff;
 }
-/* line 160, less/main.scss */
+/* line 180, less/main.scss */
 header .top nav ul li.social.googleplus:hover {
   background: #e85050;
 }
-/* line 166, less/main.scss */
+/* line 186, less/main.scss */
 header .top nav ul:before {
   content: "";
   position: absolute;
@@ -395,22 +417,21 @@ header .top nav ul:before {
   border-style: solid;
   border-color: transparent #9b9b9b #9b9b9b transparent;
 }
-/* line 178, less/main.scss */
+/* line 198, less/main.scss */
 header .top nav .helper {
   position: absolute;
   height: 100%;
   right: 0;
-  width: 100%;
   background: #9b9b9b;
   top: 0;
 }
 
-/* line 190, less/main.scss */
+/* line 209, less/main.scss */
 .content-holder {
   min-height: 600px;
 }
 
-/* line 194, less/main.scss */
+/* line 213, less/main.scss */
 body.page404 .content-holder {
   background-image: url("/dist/img/worldmap.svg");
   background-repeat: no-repeat;
@@ -419,13 +440,13 @@ body.page404 .content-holder {
   background-size: contain;
 }
 
-/* line 202, less/main.scss */
+/* line 221, less/main.scss */
 section.content-header {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 0;
 }
 
-/* line 207, less/main.scss */
+/* line 226, less/main.scss */
 .breadcrumb {
   float: right;
   margin: 0;
@@ -433,12 +454,12 @@ section.content-header {
   background-color: transparent;
 }
 
-/* line 214, less/main.scss */
+/* line 233, less/main.scss */
 .error-page {
   width: 80%;
   margin: 120px auto 0 auto;
 }
-/* line 218, less/main.scss */
+/* line 237, less/main.scss */
 .error-page .headline {
   font-size: 13em;
   line-height: 1.2;
@@ -446,40 +467,221 @@ section.content-header {
   font-weight: 100;
   float: left;
 }
-/* line 226, less/main.scss */
+/* line 245, less/main.scss */
 .error-page > .error-content {
   margin-left: 235px;
 }
-/* line 229, less/main.scss */
+/* line 248, less/main.scss */
 .error-page > .error-content h3 {
   color: #006534;
 }
 
-/* line 235, less/main.scss */
+/* line 254, less/main.scss */
+input[type=checkbox].ccb {
+  display: none;
+}
+
+/* line 258, less/main.scss */
+input[type=checkbox].ccb + label {
+  color: black;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
+  line-height: initial;
+}
+
+/* line 266, less/main.scss */
+.header-searcher-container {
+  background-color: #edf5ef;
+  background-image: url("/dist/img/worldmap.svg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/* line 273, less/main.scss */
+.header-searcher-container .home-searcher {
+  min-height: 200px;
+}
+/* line 277, less/main.scss */
+.header-searcher-container .login-instruction {
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+/* line 282, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+/* line 289, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li {
+  flex-basis: 50%;
+  padding: 5px;
+}
+/* line 293, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li .li-wp {
+  background: white;
+  border-radius: 5px;
+  padding: 15px;
+}
+/* line 298, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li .li-wp > img {
+  height: 37px;
+  float: left;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+/* line 304, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li a {
+  margin-left: 48px;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 0.82em;
+  letter-spacing: -1px;
+}
+/* line 312, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li a.btn-darker {
+  background-color: #757575;
+  border-color: #818181;
+}
+/* line 316, less/main.scss */
+.header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
+  background-color: #686868;
+}
+/* line 326, less/main.scss */
+.header-searcher-container .home-instruction {
+  padding: 0;
+  background: rgba(0, 150, 29, 0.61);
+  color: white;
+}
+/* line 332, less/main.scss */
+.header-searcher-container .home-instruction .instuction .ico {
+  border: 8px solid white;
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  margin: 0 auto 25px auto;
+  position: relative;
+}
+/* line 340, less/main.scss */
+.header-searcher-container .home-instruction .instuction .ico img {
+  width: 40%;
+  max-width: 40%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 351, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  font-size: 1.26em;
+  align-items: flex-start;
+}
+/* line 360, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info .num {
+  padding-right: 5px;
+  font-size: 2.84em;
+  line-height: 1;
+}
+/* line 365, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info .text {
+  line-height: 1.4;
+}
+/* line 370, less/main.scss */
+.header-searcher-container .home-instruction .instuction .row {
+  margin: 0 -25px;
+}
+/* line 374, less/main.scss */
+.header-searcher-container .home-instruction .instuction *[class*=col-md-] {
+  padding: 25px;
+}
+/* line 378, less/main.scss */
+.header-searcher-container .home-instruction .instuction .center-inst {
+  background: rgba(197, 236, 205, 0.2);
+}
+/* line 384, less/main.scss */
+.header-searcher-container .login-holder {
+  position: relative;
+}
+/* line 387, less/main.scss */
+.header-searcher-container .login-holder .login-container {
+  background: #cecece;
+  /*border: 2px solid white;*/
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: -110px;
+}
+/* line 394, less/main.scss */
+.header-searcher-container .login-holder .login-container .line {
+  margin: 10px 0;
+}
+/* line 398, less/main.scss */
+.header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
+  border-radius: 4px;
+}
+/* line 402, less/main.scss */
+.header-searcher-container .login-holder .login-container input {
+  font-size: 0.85em;
+}
+/* line 406, less/main.scss */
+.header-searcher-container .login-holder .login-container .form-holder {
+  background: white;
+  position: relative;
+}
+/* line 409, less/main.scss */
+.header-searcher-container .login-holder .login-container .form-holder input {
+  border: none;
+}
+/* line 419, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions .sub button {
+  width: 100%;
+  text-transform: uppercase;
+  background-color: #339946;
+  font-size: 1em;
+}
+/* line 427, less/main.scss */
+.header-searcher-container .login-holder .login-container .actions a.btn {
+  font-size: 1em;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+/* line 437, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 239, less/main.scss */
+/* line 441, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 242, less/main.scss */
+/* line 444, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
-/* line 247, less/main.scss */
+/* line 449, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 255, less/main.scss */
+/* line 457, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 258, less/main.scss */
+/* line 460, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -488,42 +690,42 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 265, less/main.scss */
+/* line 467, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 271, less/main.scss */
+/* line 473, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
-  font-size: 1.5em;
+  font-size: 1.1em;
 }
-/* line 275, less/main.scss */
+/* line 477, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 279, less/main.scss */
+/* line 481, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 284, less/main.scss */
+/* line 486, less/main.scss */
 footer .menu nav ul li.header {
-  font-size: 1.8em;
+  font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 293, less/main.scss */
+/* line 495, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
-  color: white;
+  color: #cecece;
   margin-top: 25px;
-  font-size: 1.3em;
+  font-size: 0.95em;
 }
-/* line 301, less/main.scss */
+/* line 503, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -531,21 +733,21 @@ footer .contacts {
   -moz-border-radius: 15px;
   border-radius: 15px;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 311, less/main.scss */
+/* line 513, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 315, less/main.scss */
+/* line 517, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 323, less/main.scss */
+/* line 525, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -558,30 +760,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 336, less/main.scss */
+/* line 538, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 341, less/main.scss */
+/* line 543, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 346, less/main.scss */
+/* line 548, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 355, less/main.scss */
+/* line 557, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 357, less/main.scss */
+/* line 559, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 363, less/main.scss */
+/* line 565, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -590,23 +792,23 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 371, less/main.scss */
+/* line 573, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 375, less/main.scss */
+/* line 577, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 384, less/main.scss */
+/* line 586, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 391, less/main.scss */
+/* line 593, less/main.scss */
 footer .top {
   padding-top: 25px;
 }

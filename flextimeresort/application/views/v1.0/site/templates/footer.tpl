@@ -19,8 +19,8 @@
         <div class="col-md-9">
           <div class="buttons">
             <ul class="navi">
-              <li><img src="{$smarty.const.IMG}icons/white/building.svg" class="" alt="{lang text="ADATOK_FELTOLTESE_MUNKAVALLALOKNAK"}"> <a href="#" class="btn btn-default btn-darker">{lang text="ADATOK_FELTOLTESE_MUNKAVALLALOKNAK"}</a></li>
-              <li><img src="{$smarty.const.IMG}icons/white/user.svg" class="" alt="{lang text="ADATOK_FELTOLTESE_MUNKAVALLALOKNAK"}"><a href="#" class="btn btn-success">{lang text="ADATOK_FELTOLTESE_MUNKAVALLALOKNAK"}</a></li>
+              <li><img src="{$smarty.const.IMG}icons/white/building.svg" class="" alt="{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}"> <a href="#" class="btn btn-default btn-darker">{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}</a></li>
+              <li><img src="{$smarty.const.IMG}icons/white/user.svg" class="" alt="{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}"><a href="#" class="btn btn-success">{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}</a></li>
             </ul>
           </div>
           <div class="divider"></div>

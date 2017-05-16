@@ -5,9 +5,9 @@ class PageNotFound extends Controller  {
 			parent::$pageTitle = 'Az oldal nem létezik';
 
 			$this->out('404page', true);
+			$this->out('hidehometop', true);
 
 			header("HTTP/1.0 404 Not Found");
-
 		}
 
 		function __destruct(){

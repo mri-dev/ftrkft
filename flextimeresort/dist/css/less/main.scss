@@ -8,7 +8,7 @@ body{
   background-image: url('/dist/img/bg-pattern-light.png');
   background-repeat: repeat;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.65em;
+  font-size: 0.8em;
 }
 
 .page-width {
@@ -30,6 +30,26 @@ body{
 
 .btn {
   cursor: pointer;
+}
+
+.btn.btn-success {
+  background-color: $color-primary-light;
+  border-color: darken($color-primary-light, 5%);
+  color: white;
+
+  &:hover{
+    background-color: lighten($color-primary-light, 5%);
+  }
+}
+
+.btn.btn-info {
+  background-color: $color-blue;
+  border-color: darken($color-blue, 5%);
+  color: white;
+
+  &:hover{
+    background-color: lighten($color-blue, 5%);
+  }
 }
 
 a, a:link, a:visited {
@@ -85,7 +105,7 @@ header {
       color: $color-primary-light;
       font-weight: bold;
       text-transform: uppercase;
-      font-size: 1.3em;
+      font-size: 1.1em;
       line-height: 1;
     }
   }
@@ -99,7 +119,7 @@ header {
           color: white !important;
           text-transform: uppercase;
           font-weight: bold;
-          font-size: 1.3em;
+          font-size: 0.9em;
           padding: 10px 14px;
         }
 
@@ -130,7 +150,7 @@ header {
             color: white;
             font-weight: normal;
             text-transform: none;
-            font-size: 1em;
+            font-size: 0.8em;
             line-height: 36px;
           }
           &.social-before {
@@ -179,7 +199,6 @@ header {
         position: absolute;
         height: 100%;
         right: 0;
-        width: 100%;
         background: lighten($color-grey, 25%);
         top: 0;
       }
@@ -232,6 +251,189 @@ section.content-header{
   }
 }
 
+input[type=checkbox].ccb {
+  display: none;
+}
+
+input[type=checkbox].ccb + label {
+  color: black;
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
+  line-height: initial;
+}
+
+.header-searcher-container{
+  background-color: #edf5ef;
+  background-image: url("/dist/img/worldmap.svg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  .home-searcher{
+    min-height: 200px;
+  }
+
+  .login-instruction{
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+
+    .buttons{
+      ul {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        margin: 0 -5px;
+        li {
+          flex-basis: 50%;
+          padding: 5px;
+
+          .li-wp {
+            background: white;
+            border-radius: 5px;
+            padding:15px;
+          }
+          & .li-wp > img {
+            height: 37px;
+            float:left;
+            opacity: 0.3;
+            filter:alpha(opacity=30);
+          }
+          a {
+            margin-left: 48px;
+            text-transform: uppercase;
+            color: white;
+            font-weight: bold;
+            font-size: 0.82em;
+            letter-spacing: -1px;
+
+            &.btn-darker {
+              background-color: lighten($color-grey, 10%);
+              border-color: lighten($color-grey, 15%);
+
+              &:hover {
+                background-color: lighten($color-grey, 5%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .home-instruction{
+    padding: 0;
+    background: rgba(0, 150, 29, 0.61);
+    color: white;
+
+    .instuction{
+      .ico {
+        border: 8px solid white;
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        margin: 0 auto 25px auto;
+        position: relative;
+
+        img {
+          width: 40%;
+          max-width: 40%;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          -webkit-transform:translate(-50%,-50%);
+          -moz-transform:translate(-50%,-50%);
+          transform:translate(-50%,-50%);
+        }
+      }
+      .info{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        font-size: 1.26em;
+        align-items: flex-start;
+
+        .num{
+          padding-right: 5px;
+          font-size: 2.84em;
+          line-height: 1;
+        }
+        .text {
+          line-height: 1.4;
+        }
+      }
+
+      .row {
+        margin: 0 -25px;
+      }
+
+      *[class*=col-md-]{
+        padding: 25px;
+      }
+
+      .center-inst{
+        background: transparentize(lighten($color-primary-light, 40%), 0.8);
+      }
+    }
+  }
+
+  .login-holder{
+    position: relative;
+
+    .login-container{
+      background: lighten($color-grey, 45%);
+      /*border: 2px solid white;*/
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: -110px;
+
+      .line {
+        margin: 10px 0;
+      }
+
+      input, button {
+        border-radius: 4px;
+      }
+
+      input{
+        font-size: 0.85em;
+      }
+
+      .form-holder{
+        background: white;
+        position: relative;
+        input{
+          border:none;
+        }
+      }
+
+      .actions{
+        .whattodo{
+
+        }
+        .sub {
+          button{
+            width: 100%;
+            text-transform: uppercase;
+            background-color: darken($color-primary-light, 5%);
+            font-size: 1em;
+          }
+        }
+
+        a.btn{
+          font-size: 1em;
+          text-transform: uppercase;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
 footer {
   background: darken($color-grey, 15%);
   border-top: 20px solid lighten($color-primary-light, 10%);
@@ -242,7 +444,7 @@ footer {
     .slogan {
       color: $color-primary-light;
       text-align: right;
-      font-size:1.6em;
+      font-size:1.4em;
 
       h4 {
         margin: 0;
@@ -271,7 +473,7 @@ footer {
         li {
           list-style: none;
           color: lighten($color-grey, 20%);
-          font-size: 1.5em;
+          font-size: 1.1em;
           a {
             color: lighten($color-grey, 18%);
             display: block;
@@ -282,7 +484,7 @@ footer {
           }
 
           &.header{
-            font-size: 1.8em;
+            font-size: 1.2em;
             color:  lighten($color-grey, 28%);
           }
         }
@@ -293,9 +495,9 @@ footer {
   .copyright{
     background: darken($color-grey, 5%);
     padding: 15px 0;
-    color: white;
+    color: lighten($color-grey, 45%);
     margin-top: 25px;
-    font-size: 1.3em;
+    font-size: 0.95em;
   }
 
   .contacts {
@@ -305,7 +507,7 @@ footer {
     -moz-border-radius: 15px;
     border-radius: 15px;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.1em;
     line-height: 2.2;
 
     a, a:hover {
