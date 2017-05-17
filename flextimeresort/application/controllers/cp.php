@@ -5,6 +5,7 @@ use PortalManager\Categories;
 use PortalManager\Category;
 use PortalManager\UserList;
 use PortalManager\User;
+use PortalManager\Menus;
 use ExceptionManager\RedirectException;
 use PortalManager\Pages;
 use MailManager\Mailer;
@@ -87,6 +88,13 @@ class cp extends Controller {
 				}
 			break;
 		}
+	}
+
+	public function menu()
+	{
+		$menus = new Menus();
+		$menus->getTree();
+		$this->out("menus", $menus);
 	}
 
 	public function settings()

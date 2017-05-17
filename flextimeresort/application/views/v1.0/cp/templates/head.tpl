@@ -88,6 +88,7 @@
     <ul>
       <li class="basehead">Navigáció</li>
       <li class=""><a href="{$root}"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
+      <li class="{if $GETS[1] == 'menu'}active{/if}"><a href="{$root}menu"><i class="fa fa-th"></i> <span class="text">Menük</span></a></li>
       <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
     </ul>
   </section>
