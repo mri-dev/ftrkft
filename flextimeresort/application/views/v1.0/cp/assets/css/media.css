@@ -297,29 +297,33 @@ body.admin .content-wrapper .box input + .comment {
   color: #aaaaaa;
   font-size: 0.9em;
 }
-/* line 301, scss/media.scss */
+/* line 296, scss/media.scss */
+body.admin .content-wrapper .box.editor {
+  border: 5px solid #39ac4f;
+}
+/* line 305, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar,
 body.admin.sidebar-toggled header.main-header a.logo {
   width: 50px;
   overflow: hidden;
 }
-/* line 305, scss/media.scss */
+/* line 309, scss/media.scss */
 body.admin.sidebar-toggled header.main-header a.logo .authortext {
   display: none;
 }
-/* line 308, scss/media.scss */
+/* line 312, scss/media.scss */
 body.admin.sidebar-toggled header.main-header .navbar {
   flex-basis: calc(100% - 50px);
 }
-/* line 311, scss/media.scss */
+/* line 315, scss/media.scss */
 body.admin.sidebar-toggled .content-wrapper {
   margin-left: 50px;
 }
-/* line 314, scss/media.scss */
+/* line 318, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar section.menu li a .text {
   display: none;
 }
-/* line 319, scss/media.scss */
+/* line 323, scss/media.scss */
 body.admin #pagepreloader {
   background: #5b5b5b;
   position: fixed;
@@ -329,7 +333,7 @@ body.admin #pagepreloader {
   bottom: 0;
   z-index: 9999;
 }
-/* line 328, scss/media.scss */
+/* line 332, scss/media.scss */
 body.admin #pagepreloader .loadwrapper {
   color: white;
   position: absolute;
@@ -340,8 +344,79 @@ body.admin #pagepreloader .loadwrapper {
   font-weight: 100;
   text-align: center;
 }
-/* line 338, scss/media.scss */
+/* line 342, scss/media.scss */
 body.admin #pagepreloader .loadwrapper i {
   color: #39ac4f;
   font-size: 42px;
+}
+
+/* line 351, scss/media.scss */
+.actions a {
+  padding: 0 4px;
+  font-size: 13px;
+}
+/* line 355, scss/media.scss */
+.actions i[class*=fa-pencil] {
+  color: #39ac4f !important;
+}
+/* line 358, scss/media.scss */
+.actions i[class*=fa-trash] {
+  color: #f44e5e !important;
+}
+
+/* line 363, scss/media.scss */
+.btn.btn-danger {
+  color: white;
+}
+
+/* line 367, scss/media.scss */
+input[type=checkbox].ccb + label:before {
+  color: #c1c1c1 !important;
+  font-size: 20px !important;
+}
+
+/* line 372, scss/media.scss */
+input[type=checkbox].ccb + label {
+  font-size: 1.4em !important;
+  padding-left: 24px !important;
+}
+
+/* line 376, scss/media.scss */
+input[type=checkbox].ccb:checked + label:before {
+  color: #39ac4f !important;
+}
+
+/* line 381, scss/media.scss */
+.menu-list .mi {
+  background: #f3f3f3;
+  margin: 5px 0;
+  padding: 10px;
+}
+/* line 385, scss/media.scss */
+.menu-list .mi .title {
+  font-size: 1.3em;
+  color: black;
+}
+/* line 389, scss/media.scss */
+.menu-list .mi .position {
+  color: #f44e5e;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin-right: 5px;
+  text-transform: uppercase;
+}
+/* line 396, scss/media.scss */
+.menu-list .mi.deep1 {
+  margin-left: 10px;
+  border-left: 2px solid #aaaaaa;
+}
+/* line 400, scss/media.scss */
+.menu-list .mi.deep2 {
+  margin-left: 20px;
+  border-left: 4px solid #aaaaaa;
+}
+/* line 404, scss/media.scss */
+.menu-list .mi.deep3 {
+  margin-left: 30px;
+  border-left: 8px solid #aaaaaa;
 }

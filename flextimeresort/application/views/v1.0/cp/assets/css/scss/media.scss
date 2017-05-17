@@ -292,6 +292,10 @@ body.admin {
         color: #aaaaaa;
         font-size: 0.9em;
       }
+
+      &.editor {
+        border: 5px solid $color-primary-light;
+      }
     }
 
   }
@@ -339,6 +343,67 @@ body.admin {
         color: $color-primary-light;
         font-size: 42px;
       }
+    }
+  }
+}
+
+.actions {
+  a {
+    padding: 0 4px;
+    font-size: 13px;
+  }
+  i[class*=fa-pencil] {
+    color: $color-primary-light !important;
+  }
+  i[class*=fa-trash] {
+    color: $color-red !important;
+  }
+}
+
+.btn.btn-danger{
+  color: white;
+}
+
+input[type=checkbox].ccb + label:before{
+  color: lighten($color-grey, 40%) !important;
+  font-size: 20px !important;
+
+}
+input[type=checkbox].ccb + label{
+  font-size: 1.4em !important;
+  padding-left: 24px !important;
+}
+input[type=checkbox].ccb:checked + label:before{
+  color: $color-primary-light !important;
+}
+
+.menu-list{
+  .mi {
+    background: #f3f3f3;
+    margin: 5px 0;
+    padding: 10px;
+    .title {
+      font-size: 1.3em;
+      color: black;
+    }
+    .position {
+      color: $color-red;
+      font-weight: bold;
+      letter-spacing: 0;
+      margin-right: 5px;
+      text-transform: uppercase;
+    }
+    &.deep1{
+      margin-left: 10px;
+      border-left: 2px solid #aaaaaa;
+    }
+    &.deep2{
+      margin-left: 20px;
+      border-left: 4px solid #aaaaaa;
+    }
+    &.deep3{
+      margin-left: 30px;
+      border-left: 8px solid #aaaaaa;
     }
   }
 }

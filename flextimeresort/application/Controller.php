@@ -6,6 +6,7 @@ use PortalManager\User;
 use PortalManager\Portal;
 use Applications\Captcha;
 use PortalManager\Lang;
+use PortalManager\Menus;
 
 class Controller
 {
@@ -26,7 +27,7 @@ class Controller
 
 		if ( $arg['root'] ) { $this->subfolder = $arg['root'].'/'; }
 
-        /**
+    /**
 		* CORE
 		**/
 		// SMARTY
@@ -62,6 +63,11 @@ class Controller
 			'smarty' => $this->smarty,
 			'view' => $this->getAllVars()
 		) );
+
+		/*$this->MENUS = new Menus(false, array('useincontroller' => true));
+		$this->MENUS->addFilter('menu_type', 'header')->getTree();
+		$this->out( 'header_menu', $this->MENUS);
+		*/
 
     $user = $this->USERS->get( self::$user_opt );
 

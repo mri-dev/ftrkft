@@ -92,9 +92,16 @@ class cp extends Controller {
 
 	public function menu()
 	{
+		$menuid = false;
+		if ($this->gets[2] == 'edit') {
+			$menuid = (int)$this->gets[3];
+		}
+
 		$menus = new Menus();
-		$menus->getTree();
+		$menus->getTree(false, array('admin' => true));
+
 		$this->out("menus", $menus);
+		$this->out("check", $menus->get($menuid));
 	}
 
 	public function settings()

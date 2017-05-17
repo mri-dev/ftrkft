@@ -1,6 +1,8 @@
 <?
 namespace PortalManager;
 
+use ExceptionManager\RedirectException;
+
 /**
 * class Menus
 * @package PortalManager
@@ -13,9 +15,7 @@ class Menus extends \Controller
 	private $allowed_positions = array( 'header', 'footer' );
 	// Elérhető menü típusok
 	private $allowed_menu_type = array(
-		'url' => 'URL',
-		'oldal_link' => 'Oldal link',
-		'template' => 'Előformázott tartalom'
+		'url' => 'URL'
 	);
 	public $tree = false;
 	private $current_item = false;
@@ -30,6 +30,7 @@ class Menus extends \Controller
 	function __construct( $menu_id = false, $arg = array() )
 	{
 		parent::__construct();
+
 		$this->selected_menu_id = $menu_id;
 
 		return $this;
@@ -73,22 +74,6 @@ class Menus extends \Controller
 		$kep 	= ($data['url_img']) ?: NULL;
 		$datavalue = NULL;
 
-		switch ( $type ) {
-			case 'oldal_link':
-				if(	!$data['page_elem_id'] ) {
-					throw new \Exception("Kérjük, hogy válassza ki a <strong>kapcsolódó oldalt</strong> a listából!");
-				}
-				$elem_id = $data['page_elem_id'];
-				break;
-			case 'template':
-				if(	!$data['data_value'] ) {
-					throw new \Exception("Kérjük, hogy adja meg a <strong>a template azonosító kulcsát</strong>!");
-				}
-				$datavalue = $data['data_value'];
-			break;
-			default: break;
-		}
-
 		if ($parent) {
 			$xparent = explode('_',$parent);
 			$deep = $xparent[1]+1;
@@ -97,8 +82,8 @@ class Menus extends \Controller
 			$parent = NULL;
 		}
 
-		if (!$pos) { throw new \Exception("Kérjük, hogy válassza ki a <strong>Menü pozícióját</strong> a listából!"); }
-		if (!$type) { throw new \Exception("Kérjük, hogy válassza ki a <strong>Menü típusát</strong> a listából!"); }
+		if (!$pos) { $this->error("Kérjük, hogy válassza ki a Menü pozícióját a listából!"); }
+		if (!$type) { $this->error("Kérjük, hogy válassza ki a Menü típusát a listából!"); }
 
 		$this->db->insert(
 			"menu",
@@ -135,29 +120,7 @@ class Menus extends \Controller
 		$url 	= ($data['url']) ?: NULL;
 		$felirat= ($data['nev']) ?: NULL;
 		$kep 	= ($data['url_img']) ?: NULL;
-			$datavalue = NULL;
-
-		switch ( $type ) {
-			case 'kategoria_link': case 'kategoria_alkategoria_lista':
-				if(	!$data['cat_elem_id'] ) {
-					throw new \Exception("Kérjük, hogy válassza ki a <strong>kapcsolódó kategóriát</strong> a listából!");
-				}
-				$elem_id = $data['cat_elem_id'];
-				break;
-			case 'oldal_link':
-				if(	!$data['page_elem_id'] ) {
-					throw new \Exception("Kérjük, hogy válassza ki a <strong>kapcsolódó oldalt</strong> a listából!");
-				}
-				$elem_id = $data['page_elem_id'];
-				break;
-			case 'template':
-				if(	!$data['data_value'] ) {
-					throw new \Exception("Kérjük, hogy adja meg a <strong>a template azonosító kulcsát</strong>!");
-				}
-				$datavalue = $data['data_value'];
-			break;
-			default: break;
-		}
+		$datavalue = NULL;
 
 		if ($parent) {
 			$xparent = explode('_',$parent);
@@ -167,8 +130,8 @@ class Menus extends \Controller
 			$parent = NULL;
 		}
 
-		if (!$pos) { throw new \Exception("Kérjük, hogy válassza ki a <strong>Menü pozícióját</strong> a listából!"); }
-		if (!$type) { throw new \Exception("Kérjük, hogy válassza ki a <strong>Menü típusát</strong> a listából!"); }
+		if (!$pos) { $this->error("Kérjük, hogy válassza ki a Menü pozícióját a listából!"); }
+		if (!$type) { $this->error("Kérjük, hogy válassza ki a Menü típusát a listából!"); }
 
 		$this->db->update(
 			"menu",
@@ -210,7 +173,7 @@ class Menus extends \Controller
 		$qry = $this->db->query(sprintf("
 			SELECT 				*
 			FROM 				menu
-			WHERE 				ID = %d",$menu_id));
+			WHERE 			ID = %d",$menu_id));
 
 		$this->current_get_item = $qry->fetch(\PDO::FETCH_ASSOC);
 
@@ -439,7 +402,7 @@ class Menus extends \Controller
 	}
 	public function getTitle()
 	{
-		return $this->current_get_item;
+		return $this->current_get_item['nev'];
 	}
 	public function getUrl()
 	{
@@ -466,6 +429,12 @@ class Menus extends \Controller
 		return $this->current_get_item['kep'];
 	}
 	/*-----  End of GETTERS  ------*/
+
+	private function error( $msg )
+	{
+		throw new RedirectException( $msg, $_POST['form'], $_POST['return'], $_POST['session_path'] );
+	}
+
 	public function __destruct()
 	{
 		$this->tree = false;
@@ -476,5 +445,6 @@ class Menus extends \Controller
 		$this->walk_step = 0;
 		$this->final = false;
 	}
+
 }
 ?>
