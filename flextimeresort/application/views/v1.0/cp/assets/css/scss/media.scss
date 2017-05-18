@@ -296,6 +296,9 @@ body.admin {
       &.editor {
         border: 5px solid $color-primary-light;
       }
+      &.delete {
+        border: 5px solid $color-red;
+      }
     }
 
   }

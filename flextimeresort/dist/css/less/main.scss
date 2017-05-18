@@ -66,13 +66,59 @@ ul.navi {
   padding: 0;
   list-style: none;
 
-  li {
+  & > li {
     display: inline-block;
     *display: inline;
     zoom: 1;
     vertical-align: middle;
+    position: relative;
 
     a {
+      display: block;
+    }
+
+    ul.submenu {
+      display: none;
+      z-index: 9999;
+      position: absolute;
+      background: transparentize(darken($color-grey, 30%), 0.1);
+      border-top: 4px solid $color-primary;
+      top: 54px;
+      left: 50%;
+      margin: 0;
+      padding: 0;
+      width: 250px;
+      -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+
+      li {
+        margin: 0;
+        display: block;
+
+        a {
+          font-size: 0.7em;
+          line-height: 1.2;
+          display: block;
+          padding: 12px;
+          border: none !important;
+        }
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent transparentize(darken($color-grey, 30%), 0.11) transparent;
+        left: 50%;
+        pointer-events: none;
+        -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+      }
+    }
+
+    &:hover > ul.submenu {
       display: block;
     }
   }
@@ -112,15 +158,16 @@ header {
 
   nav {
     background: $color-primary;
-    ul{
+    border-bottom: 4px solid $color-primary;
+     ul{
       li {
-        margin-bottom: 8px;
         a{
           color: white !important;
           text-transform: uppercase;
           font-weight: bold;
           font-size: 0.9em;
           padding: 10px 14px;
+          border-bottom: 4px solid $color-primary;
         }
 
         &.active {
@@ -145,6 +192,7 @@ header {
         li {
           margin: 0;
           a{
+            border: none !important;
             height: 36px;
             padding: 0 8px;
             color: white;

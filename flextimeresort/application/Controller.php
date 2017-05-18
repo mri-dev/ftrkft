@@ -64,10 +64,10 @@ class Controller
 			'view' => $this->getAllVars()
 		) );
 
-		/*$this->MENUS = new Menus(false, array('useincontroller' => true));
-		$this->MENUS->addFilter('menu_type', 'header')->getTree();
-		$this->out( 'header_menu', $this->MENUS);
-		*/
+		$this->out('menu_header', $this->menu_load('header'));
+		$this->out('menu_footer_left', $this->menu_load('footer_left'));
+		$this->out('menu_footer_center', $this->menu_load('footer_center'));
+		$this->out('menu_footer_right', $this->menu_load('footer_right'));
 
     $user = $this->USERS->get( self::$user_opt );
 
@@ -87,6 +87,7 @@ class Controller
 		$this->out( 'GETS', $this->gets );
 		$this->out( 'settings', $this->settings );
 		$this->out( 'template_root', $template_root );
+		$this->out( 'defaultlang', $this->LANGUAGES->isDefaultLangNow());
 
 		if( $_GET['logout'] == '1' ) {
         $this->USERS->logout();
@@ -227,50 +228,75 @@ class Controller
 	}
 
 
-    function setTitle($title){
-        $this->title = $title;
-    }
+  function setTitle($title){
+      $this->title = $title;
+  }
 
-    function valtozok($key){
-        $d = $this->db->query("SELECT bErtek FROM settings WHERE bKulcs = '$key'");
-        $dt = $d->fetch(PDO::FETCH_ASSOC);
+  function valtozok($key){
+      $d = $this->db->query("SELECT bErtek FROM settings WHERE bKulcs = '$key'");
+      $dt = $d->fetch(PDO::FETCH_ASSOC);
 
-        return $dt[bErtek];
-    }
+      return $dt[bErtek];
+  }
 
-    function getAllValtozo(){
-        $v = array( );
-        $d = $this->db->query("SELECT bErtek, bKulcs FROM settings");
-        $dt = $d->fetchAll(PDO::FETCH_ASSOC);
+  function getAllValtozo(){
+      $v = array( );
+      $d = $this->db->query("SELECT bErtek, bKulcs FROM settings");
+      $dt = $d->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($dt as $d){
-            $v[$d[bKulcs]] = $d[bErtek];
-        }
+      foreach($dt as $d){
+          $v[$d[bKulcs]] = $d[bErtek];
+      }
 
-        $v['title'] = ' &mdash; ' . $v['page_slogan'];
+      $v['title'] = ' &mdash; ' . $v['page_slogan'];
 
-        // Országkód: 1 = HU
-        $v['country_id'] = 1;
-         // Valuta
-        $v['valuta'] = 'HUF';
-         // Nyelv
-        $v['language'] = 'hu';
+      // Országkód: 1 = HU
+      $v['country_id'] = 1;
+       // Valuta
+      $v['valuta'] = 'HUF';
+       // Nyelv
+      $v['language'] = 'hu';
 
-        return $v;
-    }
+      return $v;
+  }
 
-    function setValtozok($key,$val){
-        $iq = "UPDATE settings SET bErtek = '$val' WHERE bKulcs = '$key'";
-        $this->model->db->query($iq);
-    }
+  function setValtozok($key,$val){
+      $iq = "UPDATE settings SET bErtek = '$val' WHERE bKulcs = '$key'";
+      $this->model->db->query($iq);
+  }
 
-    function setThemeFolder($folder = ''){
-        $this->theme_folder = $folder;
-    }
+  function setThemeFolder($folder = ''){
+      $this->theme_folder = $folder;
+  }
 
-    protected function getThemeFolder(){
-        return $this->theme_folder;
-    }
+  protected function getThemeFolder(){
+      return $this->theme_folder;
+  }
+
+	private function menu_load( $key = 'header', $szulo_id = false )
+	{
+		$menu = array();
+		$where = '';
+
+		if($szulo_id) {
+			$where .= ' and szulo_id = ' . $szulo_id;
+		} else {
+			$where .= ' and szulo_id IS NULL ';
+		}
+
+		$iq = "SELECT ID, nev, url, szulo_id, langkey FROM menu WHERE lathato = 1 and gyujto = '{$key}' {$where} ORDER BY sorrend ASC;";
+
+		$q = $this->db->query($iq)->fetchAll(\PDO::FETCH_ASSOC);
+
+		if(count($q) == 0) return array();
+
+		foreach ((array)$q as $d) {
+			$d['child'] = $this->menu_load($key, $d['ID']);
+			$menu[] = $d;
+		}
+
+		return $menu;
+	}
 
 	public function displayView( $tpl, $has_folder = false){
 		$folder = '';
@@ -297,24 +323,23 @@ class Controller
 		$this->smarty->display( $folder . $tpl.'.tpl' );
 	}
 
+  function __destruct(){
+      $mode       = false;
+      $subfolder  = '';
 
-    function __destruct(){
-        $mode       = false;
-        $subfolder  = '';
+      if($this->getThemeFolder() != ''){
+          $mode       = true;
+          $subfolder  = $this->getThemeFolder().'/';
+      }
 
-        if($this->getThemeFolder() != ''){
-            $mode       = true;
-            $subfolder  = $this->getThemeFolder().'/';
-        }
+      if(!$this->hidePatern){
+          # Render FOOTER
+		$this->displayView( $subfolder.$this->theme_wire.'footer' );
+      }
 
-        if(!$this->hidePatern){
-            # Render FOOTER
-			$this->displayView( $subfolder.$this->theme_wire.'footer' );
-        }
-
-        $this->db = null;
-        $this->smarty = null;
-    }
+      $this->db = null;
+      $this->smarty = null;
+  }
 }
 
 ?>

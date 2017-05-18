@@ -55,8 +55,20 @@
         <li class="active"><a href="#">{lang text="MUNKALTATOKNAK"}</a></li>
       </ul>
       <ul class="navi pull-right sec-nav">
-        <li><a href="#">C</a></li>
-        <li><a href="#">D</a></li>
+        {foreach from=$menu_header item=menu}
+          <li>
+            <a href="{$menu.url}">{if !$defaultlang && !empty($menu.langkey)}{lang text=$menu.langkey}{else}{$menu.nev}{/if}</a>
+            {if count($menu.child) != 0}
+              <ul class="submenu childof{$menu.ID}">
+              {foreach from=$menu.child item=ma}
+                <li>
+                  <a href="{$ma.url}">{if !$defaultlang && !empty($ma.langkey)}{lang text=$ma.langkey}{else}{$ma.nev}{/if}</a>
+                </li>
+              {/foreach}
+              </ul>
+            {/if}
+          </li>
+        {/foreach}
       </ul>
     </div>
     <div class="clearfix"></div>

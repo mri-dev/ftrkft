@@ -93,7 +93,7 @@ class cp extends Controller {
 	public function menu()
 	{
 		$menuid = false;
-		if ($this->gets[2] == 'edit') {
+		if ($this->gets[2] == 'edit' || $this->gets[2] == 'del') {
 			$menuid = (int)$this->gets[3];
 		}
 

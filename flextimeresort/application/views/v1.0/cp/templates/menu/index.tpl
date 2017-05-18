@@ -4,7 +4,7 @@
 {/if}
 <div class="row">
   <div class="col-md-4">
-    <div class="box {if $GETS[2] == 'edit'}editor{/if}">
+    <div class="box {if $GETS[2] == 'edit'}editor{elseif $GETS[2] =='del'}delete{/if}">
       <form class="" action="/forms/menu" method="post">
         <input type="hidden" name="form" value="1">
         <input type="hidden" name="session_path" value="{$root}menu">
@@ -18,6 +18,7 @@
         <input type="hidden" name="id" value="{$check->getId()}">
         <h3><i class="fa fa-pencil"></i> Elem szerkesztés</h3>
         {/if}
+        {if $GETS[2] != 'del'}
         <div class="row">
           <div class="col-md-12">
             <label for="nev">Felirat*</label>
@@ -27,11 +28,20 @@
         <br>
         <div class="row">
           <div class="col-md-12">
+            <label for="langkey">Nyelvi szöveg azonosító kulcs</label>
+            <input type="text" id="langkey" class="form-control" name="langkey" value="{if $check}{$check->getLangkey()}{else}{$form->getPost('langkey')}{/if}">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
             <label for="menu_pos">Menü pozíció*</label>
             <select class="form-control" name="menu_pos" id="menu_pos">
               <option value="" selected="selected">-- válasszon --</option>
               <option value="header" {if $check && $check->getPosition() == 'header'}selected="selected"{elseif $form->getPost('menu_pos') == 'header'}selected="selected"{/if}>Fejrész</option>
-              <option value="footer" {if $check && $check->getPosition() == 'footer'}selected="selected"{elseif $form->getPost('menu_pos') == 'footer'}selected="selected"{/if}>Lábrész</option>
+              <option value="footer_left" {if $check && $check->getPosition() == 'footer_left'}selected="selected"{elseif $form->getPost('menu_pos') == 'footer_left'}selected="selected"{/if}>Lábrész (Bal)</option>
+              <option value="footer_center" {if $check && $check->getPosition() == 'footer_center'}selected="selected"{elseif $form->getPost('menu_pos') == 'footer_center'}selected="selected"{/if}>Lábrész (Közép)</option>
+              <option value="footer_right" {if $check && $check->getPosition() == 'footer_right'}selected="selected"{elseif $form->getPost('menu_pos') == 'footer_right'}selected="selected"{/if}>Lábrész (Jobb)</option>
             </select>
           </div>
         </div>
@@ -61,7 +71,7 @@
             <select class="form-control" name="parent" id="parent">
               <option value="" selected="selected">-- ne legyen --</option>
               {while $menus->walk()} {assign var="menu" value=$menus->the_menu()}
-                <option value="{$menu.ID}_{$menu.deep}" {if $check && $check->getParentId() == $menu.ID}selected="selected"{elseif $form->getPost('parent') == $menu.ID}selected="selected"{/if}>{$menu.nev}</option>
+                <option value="{$menu.ID}_{$menu.deep}" {if $check && $check->getParentId() == $menu.ID}selected="selected"{elseif $form->getPost('parent') == $menu.ID}selected="selected"{/if}>{"&mdash; "|str_repeat:$menu.deep}{$menu.nev}</option>
               {/while}
             </select>
           </div>
@@ -88,6 +98,20 @@
             <button type="submit" class="btn btn-success">Mehet</button>
           </div>
         </div>
+        {else}
+        <input type="hidden" name="return" value="{$root}menu/">
+        <input type="hidden" name="for" value="del">
+        <input type="hidden" name="id" value="{$check->getId()}">
+        <h3><i class="fa fa-trash"></i> Elem törlése</h3>
+        Biztos, hogy törli a(z) <strong>{$check->getTitle()}</strong> menü elemet? A művelet nem visszavonható!
+        <br><br>
+        <div class="row">
+          <div class="col-md-12 right">
+            <a href="{$root}menu" class="btn btn-default pull-left"><i class="fa fa-long-arrow-left"></i> mégse</a>
+            <button type="submit" class="btn btn-danger">Végleges törlés</button>
+          </div>
+        </div>
+        {/if}
       </form>
     </div>
   </div>
@@ -129,7 +153,7 @@
             </div>
             <div class="col-md-1 center actions">
               <a href="{$root}menu/edit/{$menu.ID}"><i class="fa fa-pencil"></i></a>
-              <a href="#"><i class="fa fa-trash"></i></a>
+              <a href="{$root}menu/del/{$menu.ID}"><i class="fa fa-trash"></i></a>
             </div>
           </div>
         </div>

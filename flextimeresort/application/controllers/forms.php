@@ -122,6 +122,14 @@ class forms extends Controller {
 					$e->redirect();
 				}
 			break;
+			case 'del':
+				try {
+					$menus->delete($_POST['id']);
+					\PortalManager\Form::formDone( 'Sikeresen eltávolította a menü elemet.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
 		}
 	}
 

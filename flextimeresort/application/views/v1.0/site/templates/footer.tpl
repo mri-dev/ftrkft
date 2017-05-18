@@ -26,13 +26,19 @@
           <div class="divider"></div>
           <nav>
             <ul>
-              <li><a href="#">Kapcsolat</a></li>
-              <li><a href="#">Kapcsolat</a></li>
+              {foreach from=$menu_footer_left item=footer_left}
+                <li><a href="{$footer_left.url}">{if !$defaultlang && !empty($footer_left.langkey)}{lang text=$footer_left.langkey}{else}{$footer_left.nev}{/if}</a></li>
+              {/foreach}
             </ul>
             <ul>
-              <li class="header">Munkavállalóknak</li>
-              <li><a href="#">Kapcsolat</a></li>
-              <li><a href="#">Kapcsolat</a></li>
+              {foreach from=$menu_footer_center item=footer_center}
+                <li><a href="{$footer_center.url}">{if !$defaultlang && !empty($footer_center.langkey)}{lang text=$footer_center.langkey}{else}{$footer_center.nev}{/if}</a></li>
+              {/foreach}
+            </ul>
+            <ul>
+              {foreach from=$menu_footer_right item=footer_right}
+                <li><a href="{$footer_right.url}">{if !$defaultlang && !empty($footer_right.langkey)}{lang text=$footer_right.langkey}{else}{$footer_right.nev}{/if}</a></li>
+              {/foreach}
             </ul>
             <div class="clearfix"></div>
           </nav>
