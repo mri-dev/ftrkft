@@ -589,8 +589,60 @@ input[type=checkbox].ccb:checked + label:before {
   position: relative;
   display: none;
 }
+/* line 366, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  z-index: 9999;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+  -webkit-box-shadow: 0 5px 20px -7px black;
+  -moz-box-shadow: 0 5px 20px -7px black;
+  box-shadow: 0 5px 20px -7px black;
+}
+/* line 380, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label {
+  padding: 10px 10px 10px 30px;
+  margin: 3px;
+  cursor: pointer;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+/* line 388, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:hover {
+  background: #f1f1f1;
+}
+/* line 391, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:before {
+  font-size: 18px;
+  top: 50%;
+  left: 8px;
+  width: auto;
+  height: auto;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/* line 401, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label {
+  background: #39ac4f;
+  color: white;
+}
+/* line 405, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label:before {
+  background: transparent;
+  color: white;
+}
+/* line 411, less/main.scss */
+.multiselect-list .multi-selector-holder.opened {
+  display: block;
+}
 
-/* line 369, less/main.scss */
+/* line 418, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -598,11 +650,11 @@ input[type=checkbox].ccb:checked + label:before {
   background-repeat: no-repeat;
   background-size: contain;
 }
-/* line 376, less/main.scss */
+/* line 425, less/main.scss */
 .header-searcher-container .home-searcher {
   padding: 40px 0 20px 0;
 }
-/* line 378, less/main.scss */
+/* line 427, less/main.scss */
 .header-searcher-container .home-searcher .input-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -611,11 +663,11 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-/* line 386, less/main.scss */
+/* line 435, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp {
   padding: 10px 8px;
 }
-/* line 389, less/main.scss */
+/* line 438, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input {
   padding: 12px 16px;
   font-size: 1.2em;
@@ -623,11 +675,11 @@ input[type=checkbox].ccb:checked + label:before {
   border: 1px solid #dbdbdb;
   height: 45px;
 }
-/* line 397, less/main.scss */
+/* line 446, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input[readonly] {
   cursor: pointer;
 }
-/* line 402, less/main.scss */
+/* line 451, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
   width: 100%;
   height: 45px;
@@ -636,11 +688,11 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0;
   line-height: 45px;
 }
-/* line 413, less/main.scss */
+/* line 462, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
   position: relative;
 }
-/* line 415, less/main.scss */
+/* line 464, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
   width: 44px;
   height: 55px;
@@ -653,7 +705,7 @@ input[type=checkbox].ccb:checked + label:before {
   pointer-events: none;
   z-index: 1;
 }
-/* line 427, less/main.scss */
+/* line 476, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
   width: 65%;
   position: absolute;
@@ -663,7 +715,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 438, less/main.scss */
+/* line 487, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
   content: "\f107";
   position: absolute;
@@ -677,7 +729,7 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 452, less/main.scss */
+/* line 501, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order select {
   position: relative;
   background: #39ac4f;
@@ -687,47 +739,47 @@ input[type=checkbox].ccb:checked + label:before {
   cursor: pointer;
   -webkit-appearance: none;
 }
-/* line 463, less/main.scss */
+/* line 512, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
   flex-basis: 40%;
   order: 1;
 }
-/* line 467, less/main.scss */
+/* line 516, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
   flex-basis: 40%;
   order: 2;
 }
-/* line 471, less/main.scss */
+/* line 520, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
   flex-basis: 20%;
   order: 3;
 }
-/* line 475, less/main.scss */
+/* line 524, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
   flex-basis: 40%;
   order: 4;
 }
-/* line 479, less/main.scss */
+/* line 528, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
   flex-basis: 20%;
   order: 5;
 }
-/* line 483, less/main.scss */
+/* line 532, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
   flex-basis: 20%;
   order: 6;
 }
-/* line 487, less/main.scss */
+/* line 536, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order {
   flex-basis: 20%;
   order: 7;
 }
-/* line 495, less/main.scss */
+/* line 544, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 500, less/main.scss */
+/* line 549, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -736,25 +788,25 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-/* line 507, less/main.scss */
+/* line 556, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-/* line 511, less/main.scss */
+/* line 560, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-/* line 516, less/main.scss */
+/* line 565, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-/* line 522, less/main.scss */
+/* line 571, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -763,22 +815,22 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-/* line 530, less/main.scss */
+/* line 579, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 534, less/main.scss */
+/* line 583, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 544, less/main.scss */
+/* line 593, less/main.scss */
 .header-searcher-container .home-instruction {
   padding: 0;
   background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-/* line 550, less/main.scss */
+/* line 599, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico {
   border: 8px solid white;
   width: 120px;
@@ -787,7 +839,7 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0 auto 25px auto;
   position: relative;
 }
-/* line 558, less/main.scss */
+/* line 607, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico img {
   width: 40%;
   max-width: 40%;
@@ -798,7 +850,7 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 569, less/main.scss */
+/* line 618, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -808,33 +860,33 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 1.26em;
   align-items: flex-start;
 }
-/* line 578, less/main.scss */
+/* line 627, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-/* line 583, less/main.scss */
+/* line 632, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .text {
   line-height: 1.4;
 }
-/* line 588, less/main.scss */
+/* line 637, less/main.scss */
 .header-searcher-container .home-instruction .instuction .row {
   margin: 0 -25px;
 }
-/* line 592, less/main.scss */
+/* line 641, less/main.scss */
 .header-searcher-container .home-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-/* line 596, less/main.scss */
+/* line 645, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-/* line 602, less/main.scss */
+/* line 651, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-/* line 605, less/main.scss */
+/* line 654, less/main.scss */
 .header-searcher-container .login-holder .login-container {
   background: #dbdbdb;
   border: 2px solid #c1c1c1;
@@ -842,31 +894,31 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 10px;
   margin-top: -110px;
 }
-/* line 612, less/main.scss */
+/* line 661, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-/* line 616, less/main.scss */
+/* line 665, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-/* line 620, less/main.scss */
+/* line 669, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
   color: black;
   font-weight: bold;
 }
-/* line 626, less/main.scss */
+/* line 675, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-/* line 630, less/main.scss */
+/* line 679, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
   padding-left: 36px;
 }
-/* line 635, less/main.scss */
+/* line 684, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder img {
   max-height: 24px;
   height: 24px;
@@ -877,22 +929,22 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 648, less/main.scss */
+/* line 697, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo {
   font-size: 0.8em;
 }
-/* line 651, less/main.scss */
+/* line 700, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo label {
   display: initial;
   vertical-align: top;
   cursor: pointer;
 }
-/* line 657, less/main.scss */
+/* line 706, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
   vertical-align: middle;
   height: 14px;
 }
-/* line 661, less/main.scss */
+/* line 710, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
   vertical-align: top;
   margin-top: -8px;
@@ -900,12 +952,12 @@ input[type=checkbox].ccb:checked + label:before {
   text-align: right;
   color: black;
 }
-/* line 668, less/main.scss */
+/* line 717, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
   width: 14px;
   height: 14px;
 }
-/* line 673, less/main.scss */
+/* line 722, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
   color: #f44e5e;
   font-size: 14px;
@@ -915,55 +967,55 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0;
   height: 14px;
 }
-/* line 683, less/main.scss */
+/* line 732, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
   color: white;
   font-size: 10px;
   height: 10px;
 }
-/* line 689, less/main.scss */
+/* line 738, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
   color: #f44e5e;
 }
-/* line 696, less/main.scss */
+/* line 745, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-/* line 704, less/main.scss */
+/* line 753, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
 
-/* line 714, less/main.scss */
+/* line 763, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 718, less/main.scss */
+/* line 767, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 721, less/main.scss */
+/* line 770, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-/* line 726, less/main.scss */
+/* line 775, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 734, less/main.scss */
+/* line 783, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 737, less/main.scss */
+/* line 786, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -972,34 +1024,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 744, less/main.scss */
+/* line 793, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 750, less/main.scss */
+/* line 799, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-/* line 754, less/main.scss */
+/* line 803, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 758, less/main.scss */
+/* line 807, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 763, less/main.scss */
+/* line 812, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 772, less/main.scss */
+/* line 821, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -1007,7 +1059,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-/* line 780, less/main.scss */
+/* line 829, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -1018,18 +1070,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 790, less/main.scss */
+/* line 839, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 794, less/main.scss */
+/* line 843, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 802, less/main.scss */
+/* line 851, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -1042,30 +1094,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 815, less/main.scss */
+/* line 864, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 820, less/main.scss */
+/* line 869, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 825, less/main.scss */
+/* line 874, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 834, less/main.scss */
+/* line 883, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 836, less/main.scss */
+/* line 885, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 842, less/main.scss */
+/* line 891, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1074,23 +1126,23 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 850, less/main.scss */
+/* line 899, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 854, less/main.scss */
+/* line 903, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 863, less/main.scss */
+/* line 912, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 870, less/main.scss */
+/* line 919, less/main.scss */
 footer .top {
   padding-top: 25px;
 }

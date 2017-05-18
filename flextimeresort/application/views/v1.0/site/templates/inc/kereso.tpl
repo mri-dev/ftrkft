@@ -46,7 +46,15 @@
         </div>
         <div class="multi-selector-holder" id="tipus_multiselect">
           <div class="selector-wrapper">
-            wa
+            <div class="selector-row lvl-0">
+              <input type="checkbox" class="ccb" name="" value="" id="cb1"> <label for="cb1">egy</label>
+            </div>
+            <div class="selector-row lvl-0">
+              <input type="checkbox" class="ccb" name="" value="" id="cb2"> <label for="cb2">egy</label>
+            </div>
+            <div class="selector-row lvl-0">
+              <input type="checkbox" class="ccb" name="" value="" id="cb3"> <label for="cb3">egy</label>
+            </div>
           </div>
         </div>
       </div>

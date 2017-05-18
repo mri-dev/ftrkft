@@ -51,5 +51,29 @@
         left: top_nav_position.left
       }, 0);
     });
+
+    $(window).click(function(event) {
+      if (!$(event.target).closest('.toggler-opener').length) {
+        $('.toggler-opener').removeClass('opened toggler-opener');
+        $('*[tglwatcher].toggled').removeClass('toggled');
+      }
+    });
+
+    $('*[tglwatcher]').click(function(event){
+       event.stopPropagation();
+       event.preventDefault();
+       var e = $(this);
+       var target_id = e.attr('tglwatcher');
+       var opened = e.hasClass('toggled');
+
+       if(opened) {
+         e.removeClass('toggled');
+         $('#'+target_id).removeClass('opened toggler-opener');
+       } else {
+         e.addClass('toggled');
+         $('#'+target_id).addClass('opened toggler-opener');
+       }
+     });
+
   })
 </script>

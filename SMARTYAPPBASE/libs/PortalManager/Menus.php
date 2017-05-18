@@ -368,6 +368,10 @@ class Menus extends \Controller
 	{
 		return $this->allowed_menu_type;
 	}
+	public function getLangkey()
+	{
+		return $this->current_get_item['langkey'];
+	}
 	public function getPosition()
 	{
 		return $this->current_get_item['gyujto'];

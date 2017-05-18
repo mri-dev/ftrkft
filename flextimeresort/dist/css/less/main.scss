@@ -362,6 +362,55 @@ input[type=checkbox].ccb:checked + label:before {
   .multi-selector-holder{
     position: relative;
     display: none;
+
+    .selector-wrapper{
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      z-index: 9999;
+      border-radius: 4px;
+      border: 1px solid lightgrey;
+      -webkit-box-shadow: 0 5px 20px -7px #000000;
+      -moz-box-shadow: 0 5px 20px -7px #000000;
+      box-shadow: 0 5px 20px -7px #000000;
+
+      input[type=checkbox] + label{
+        padding: 10px 10px 10px 30px;
+        margin: 3px;
+        cursor: pointer;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+      }
+      input[type=checkbox] + label:hover{
+          background: #f1f1f1;
+      }
+      input[type=checkbox] + label:before{
+        font-size: 18px;
+        top: 50%;
+        left: 8px;
+        width: auto;
+        height: auto;
+        -webkit-transform: translateY(-50%);
+           transform: translateY(-50%);
+      }
+
+      input[type=checkbox]:checked + label {
+        background: $color-primary-light;
+        color: white;
+      }
+      input[type=checkbox]:checked + label:before {
+        background: transparent;
+        color: white;
+      }
+    }
+
+    &.opened {
+      display: block;
+    }
   }
 }
 
