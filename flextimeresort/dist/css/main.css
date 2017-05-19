@@ -637,12 +637,19 @@ input[type=checkbox].ccb:checked + label:before {
   background: transparent;
   color: white;
 }
-/* line 411, less/main.scss */
+/* line 410, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper .no-input {
+  text-align: center;
+  padding: 10px;
+  color: #a9a9a9;
+  font-size: 0.9em;
+}
+/* line 418, less/main.scss */
 .multiselect-list .multi-selector-holder.opened {
   display: block;
 }
 
-/* line 418, less/main.scss */
+/* line 425, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -650,11 +657,11 @@ input[type=checkbox].ccb:checked + label:before {
   background-repeat: no-repeat;
   background-size: contain;
 }
-/* line 425, less/main.scss */
+/* line 432, less/main.scss */
 .header-searcher-container .home-searcher {
   padding: 40px 0 20px 0;
 }
-/* line 427, less/main.scss */
+/* line 434, less/main.scss */
 .header-searcher-container .home-searcher .input-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -663,11 +670,11 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-/* line 435, less/main.scss */
+/* line 442, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp {
   padding: 10px 8px;
 }
-/* line 438, less/main.scss */
+/* line 445, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input {
   padding: 12px 16px;
   font-size: 1.2em;
@@ -675,11 +682,11 @@ input[type=checkbox].ccb:checked + label:before {
   border: 1px solid #dbdbdb;
   height: 45px;
 }
-/* line 446, less/main.scss */
+/* line 453, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input[readonly] {
   cursor: pointer;
 }
-/* line 451, less/main.scss */
+/* line 458, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
   width: 100%;
   height: 45px;
@@ -688,11 +695,11 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0;
   line-height: 45px;
 }
-/* line 462, less/main.scss */
+/* line 469, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
   position: relative;
 }
-/* line 464, less/main.scss */
+/* line 471, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
   width: 44px;
   height: 55px;
@@ -705,7 +712,7 @@ input[type=checkbox].ccb:checked + label:before {
   pointer-events: none;
   z-index: 1;
 }
-/* line 476, less/main.scss */
+/* line 483, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
   width: 65%;
   position: absolute;
@@ -715,7 +722,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 487, less/main.scss */
+/* line 494, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
   content: "\f107";
   position: absolute;
@@ -729,7 +736,7 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 501, less/main.scss */
+/* line 508, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order select {
   position: relative;
   background: #39ac4f;
@@ -739,47 +746,47 @@ input[type=checkbox].ccb:checked + label:before {
   cursor: pointer;
   -webkit-appearance: none;
 }
-/* line 512, less/main.scss */
+/* line 519, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
   flex-basis: 40%;
   order: 1;
 }
-/* line 516, less/main.scss */
+/* line 523, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
   flex-basis: 40%;
   order: 2;
 }
-/* line 520, less/main.scss */
+/* line 527, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
   flex-basis: 20%;
   order: 3;
 }
-/* line 524, less/main.scss */
+/* line 531, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
   flex-basis: 40%;
   order: 4;
 }
-/* line 528, less/main.scss */
+/* line 535, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
   flex-basis: 20%;
   order: 5;
 }
-/* line 532, less/main.scss */
+/* line 539, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
   flex-basis: 20%;
   order: 6;
 }
-/* line 536, less/main.scss */
+/* line 543, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order {
   flex-basis: 20%;
   order: 7;
 }
-/* line 544, less/main.scss */
+/* line 551, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 549, less/main.scss */
+/* line 556, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -788,25 +795,25 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-/* line 556, less/main.scss */
+/* line 563, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-/* line 560, less/main.scss */
+/* line 567, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-/* line 565, less/main.scss */
+/* line 572, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-/* line 571, less/main.scss */
+/* line 578, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -815,22 +822,22 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-/* line 579, less/main.scss */
+/* line 586, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 583, less/main.scss */
+/* line 590, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 593, less/main.scss */
+/* line 600, less/main.scss */
 .header-searcher-container .home-instruction {
   padding: 0;
   background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-/* line 599, less/main.scss */
+/* line 606, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico {
   border: 8px solid white;
   width: 120px;
@@ -839,7 +846,7 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0 auto 25px auto;
   position: relative;
 }
-/* line 607, less/main.scss */
+/* line 614, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico img {
   width: 40%;
   max-width: 40%;
@@ -850,7 +857,7 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 618, less/main.scss */
+/* line 625, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -860,33 +867,33 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 1.26em;
   align-items: flex-start;
 }
-/* line 627, less/main.scss */
+/* line 634, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-/* line 632, less/main.scss */
+/* line 639, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .text {
   line-height: 1.4;
 }
-/* line 637, less/main.scss */
+/* line 644, less/main.scss */
 .header-searcher-container .home-instruction .instuction .row {
   margin: 0 -25px;
 }
-/* line 641, less/main.scss */
+/* line 648, less/main.scss */
 .header-searcher-container .home-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-/* line 645, less/main.scss */
+/* line 652, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-/* line 651, less/main.scss */
+/* line 658, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-/* line 654, less/main.scss */
+/* line 661, less/main.scss */
 .header-searcher-container .login-holder .login-container {
   background: #dbdbdb;
   border: 2px solid #c1c1c1;
@@ -894,31 +901,31 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 10px;
   margin-top: -110px;
 }
-/* line 661, less/main.scss */
+/* line 668, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-/* line 665, less/main.scss */
+/* line 672, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-/* line 669, less/main.scss */
+/* line 676, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
   color: black;
   font-weight: bold;
 }
-/* line 675, less/main.scss */
+/* line 682, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-/* line 679, less/main.scss */
+/* line 686, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
   padding-left: 36px;
 }
-/* line 684, less/main.scss */
+/* line 691, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder img {
   max-height: 24px;
   height: 24px;
@@ -929,22 +936,22 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 697, less/main.scss */
+/* line 704, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo {
   font-size: 0.8em;
 }
-/* line 700, less/main.scss */
+/* line 707, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo label {
   display: initial;
   vertical-align: top;
   cursor: pointer;
 }
-/* line 706, less/main.scss */
+/* line 713, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
   vertical-align: middle;
   height: 14px;
 }
-/* line 710, less/main.scss */
+/* line 717, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
   vertical-align: top;
   margin-top: -8px;
@@ -952,12 +959,12 @@ input[type=checkbox].ccb:checked + label:before {
   text-align: right;
   color: black;
 }
-/* line 717, less/main.scss */
+/* line 724, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
   width: 14px;
   height: 14px;
 }
-/* line 722, less/main.scss */
+/* line 729, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
   color: #f44e5e;
   font-size: 14px;
@@ -967,55 +974,55 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0;
   height: 14px;
 }
-/* line 732, less/main.scss */
+/* line 739, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
   color: white;
   font-size: 10px;
   height: 10px;
 }
-/* line 738, less/main.scss */
+/* line 745, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
   color: #f44e5e;
 }
-/* line 745, less/main.scss */
+/* line 752, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-/* line 753, less/main.scss */
+/* line 760, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
 
-/* line 763, less/main.scss */
+/* line 770, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 767, less/main.scss */
+/* line 774, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 770, less/main.scss */
+/* line 777, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-/* line 775, less/main.scss */
+/* line 782, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 783, less/main.scss */
+/* line 790, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 786, less/main.scss */
+/* line 793, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1024,34 +1031,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 793, less/main.scss */
+/* line 800, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 799, less/main.scss */
+/* line 806, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-/* line 803, less/main.scss */
+/* line 810, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 807, less/main.scss */
+/* line 814, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 812, less/main.scss */
+/* line 819, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 821, less/main.scss */
+/* line 828, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -1059,7 +1066,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-/* line 829, less/main.scss */
+/* line 836, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -1070,18 +1077,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 839, less/main.scss */
+/* line 846, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 843, less/main.scss */
+/* line 850, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 851, less/main.scss */
+/* line 858, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -1094,30 +1101,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 864, less/main.scss */
+/* line 871, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 869, less/main.scss */
+/* line 876, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 874, less/main.scss */
+/* line 881, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 883, less/main.scss */
+/* line 890, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 885, less/main.scss */
+/* line 892, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 891, less/main.scss */
+/* line 898, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1126,23 +1133,23 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 899, less/main.scss */
+/* line 906, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 903, less/main.scss */
+/* line 910, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 912, less/main.scss */
+/* line 919, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 919, less/main.scss */
+/* line 926, less/main.scss */
 footer .top {
   padding-top: 25px;
 }

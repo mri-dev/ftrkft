@@ -14,7 +14,9 @@
         </div>
         <div class="multi-selector-holder" id="munkakor_multiselect">
           <div class="selector-wrapper">
-            wa
+            <div class="no-input">
+              {lang text="NINCS_MULTISELECT_INPUT"}
+            </div>
           </div>
         </div>
       </div>
@@ -30,7 +32,9 @@
         </div>
         <div class="multi-selector-holder" id="telepules_multiselect">
           <div class="selector-wrapper">
-            wa
+            <div class="no-input">
+              {lang text="NINCS_MULTISELECT_INPUT"}
+            </div>
           </div>
         </div>
       </div>
@@ -38,7 +42,7 @@
     <div class="inp inp-tipus">
       <div class="multiselect-list">
         <div class="value-viewer">
-          <input type="text" class="form-control viewer" class="tglwatcher" tglwatcher="tipus_multiselect" placeholder="{lang text='TIPUS'}" readonly="readonly" value="">
+          <input type="text" data-toggle="tooltip" data-placement="top" title="" class="form-control viewer" class="tglwatcher" tglwatcher="tipus_multiselect" placeholder="{lang text='TIPUS'}" readonly="readonly" value="">
           <input type="hidden" id="tipus_multiselect_ids" name="t" value="">
           <div class="helper">
             <i class="fa fa-angle-down"></i>
@@ -47,13 +51,13 @@
         <div class="multi-selector-holder" id="tipus_multiselect">
           <div class="selector-wrapper">
             <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" name="" value="" id="cb1"> <label for="cb1">egy</label>
+              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="1" id="cb1"> <label for="cb1">Egy</label>
             </div>
             <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" name="" value="" id="cb2"> <label for="cb2">egy</label>
+              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="2" id="cb2"> <label for="cb2">Kettő</label>
             </div>
             <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" name="" value="" id="cb3"> <label for="cb3">egy</label>
+              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="3" id="cb3"> <label for="cb3">Három</label>
             </div>
           </div>
         </div>
@@ -70,7 +74,9 @@
         </div>
         <div class="multi-selector-holder" id="kategoria_multiselect">
           <div class="selector-wrapper">
-            wa
+            <div class="no-input">
+              {lang text="NINCS_MULTISELECT_INPUT"}
+            </div>
           </div>
         </div>
       </div>

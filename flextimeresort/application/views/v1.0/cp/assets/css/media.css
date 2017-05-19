@@ -294,40 +294,42 @@ body.admin .content-wrapper .box .data label {
 }
 /* line 291, scss/media.scss */
 body.admin .content-wrapper .box input + .comment {
-  color: #aaaaaa;
+  color: #898989;
   font-size: 0.9em;
+  line-height: 1.3;
+  margin-top: 5px;
 }
-/* line 296, scss/media.scss */
+/* line 298, scss/media.scss */
 body.admin .content-wrapper .box.editor {
   border: 5px solid #39ac4f;
 }
-/* line 299, scss/media.scss */
+/* line 301, scss/media.scss */
 body.admin .content-wrapper .box.delete {
   border: 5px solid #f44e5e;
 }
-/* line 308, scss/media.scss */
+/* line 310, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar,
 body.admin.sidebar-toggled header.main-header a.logo {
   width: 50px;
   overflow: hidden;
 }
-/* line 312, scss/media.scss */
+/* line 314, scss/media.scss */
 body.admin.sidebar-toggled header.main-header a.logo .authortext {
   display: none;
 }
-/* line 315, scss/media.scss */
+/* line 317, scss/media.scss */
 body.admin.sidebar-toggled header.main-header .navbar {
   flex-basis: calc(100% - 50px);
 }
-/* line 318, scss/media.scss */
+/* line 320, scss/media.scss */
 body.admin.sidebar-toggled .content-wrapper {
   margin-left: 50px;
 }
-/* line 321, scss/media.scss */
+/* line 323, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar section.menu li a .text {
   display: none;
 }
-/* line 326, scss/media.scss */
+/* line 328, scss/media.scss */
 body.admin #pagepreloader {
   background: #5b5b5b;
   position: fixed;
@@ -337,7 +339,7 @@ body.admin #pagepreloader {
   bottom: 0;
   z-index: 9999;
 }
-/* line 335, scss/media.scss */
+/* line 337, scss/media.scss */
 body.admin #pagepreloader .loadwrapper {
   color: white;
   position: absolute;
@@ -348,60 +350,60 @@ body.admin #pagepreloader .loadwrapper {
   font-weight: 100;
   text-align: center;
 }
-/* line 345, scss/media.scss */
+/* line 347, scss/media.scss */
 body.admin #pagepreloader .loadwrapper i {
   color: #39ac4f;
   font-size: 42px;
 }
 
-/* line 354, scss/media.scss */
+/* line 356, scss/media.scss */
 .actions a {
   padding: 0 4px;
   font-size: 13px;
 }
-/* line 358, scss/media.scss */
+/* line 360, scss/media.scss */
 .actions i[class*=fa-pencil] {
   color: #39ac4f !important;
 }
-/* line 361, scss/media.scss */
+/* line 363, scss/media.scss */
 .actions i[class*=fa-trash] {
   color: #f44e5e !important;
 }
 
-/* line 366, scss/media.scss */
+/* line 368, scss/media.scss */
 .btn.btn-danger {
   color: white;
 }
 
-/* line 370, scss/media.scss */
+/* line 372, scss/media.scss */
 input[type=checkbox].ccb + label:before {
   color: #c1c1c1 !important;
   font-size: 20px !important;
 }
 
-/* line 375, scss/media.scss */
+/* line 377, scss/media.scss */
 input[type=checkbox].ccb + label {
   font-size: 1.4em !important;
   padding-left: 24px !important;
 }
 
-/* line 379, scss/media.scss */
+/* line 381, scss/media.scss */
 input[type=checkbox].ccb:checked + label:before {
   color: #39ac4f !important;
 }
 
-/* line 384, scss/media.scss */
+/* line 386, scss/media.scss */
 .menu-list .mi {
   background: #f3f3f3;
   margin: 5px 0;
   padding: 10px;
 }
-/* line 388, scss/media.scss */
+/* line 390, scss/media.scss */
 .menu-list .mi .title {
   font-size: 1.3em;
   color: black;
 }
-/* line 392, scss/media.scss */
+/* line 394, scss/media.scss */
 .menu-list .mi .position {
   color: #f44e5e;
   font-weight: bold;
@@ -409,17 +411,17 @@ input[type=checkbox].ccb:checked + label:before {
   margin-right: 5px;
   text-transform: uppercase;
 }
-/* line 399, scss/media.scss */
+/* line 401, scss/media.scss */
 .menu-list .mi.deep1 {
   margin-left: 10px;
   border-left: 2px solid #aaaaaa;
 }
-/* line 403, scss/media.scss */
+/* line 405, scss/media.scss */
 .menu-list .mi.deep2 {
   margin-left: 20px;
   border-left: 4px solid #aaaaaa;
 }
-/* line 407, scss/media.scss */
+/* line 409, scss/media.scss */
 .menu-list .mi.deep3 {
   margin-left: 30px;
   border-left: 8px solid #aaaaaa;

@@ -104,6 +104,20 @@ class cp extends Controller {
 		$this->out("check", $menus->get($menuid));
 	}
 
+	public function oldalak()
+	{
+		$id = false;
+		if ($this->gets[2] == 'edit' || $this->gets[2] == 'del') {
+			$id = (int)$this->gets[3];
+		}
+
+		$object = new Pages();
+		$object->getTree(false, array('admin' => true));
+
+		$this->out("object", $object);
+		$this->out("check", $object->get($id));
+	}
+
 	public function settings()
 	{
 		# code...

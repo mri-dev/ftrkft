@@ -406,6 +406,13 @@ input[type=checkbox].ccb:checked + label:before {
         background: transparent;
         color: white;
       }
+
+      .no-input{
+        text-align: center;
+        padding: 10px;
+        color: #a9a9a9;
+        font-size: 0.9em;
+      }
     }
 
     &.opened {

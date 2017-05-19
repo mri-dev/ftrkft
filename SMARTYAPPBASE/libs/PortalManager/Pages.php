@@ -357,6 +357,11 @@ class Pages extends \Controller
 	/*===============================
 	=            GETTERS            =
 	===============================*/
+
+	public function getLangkey()
+	{
+		return $this->current_get_item['langkey'];
+	}
 	public function getParentId()
 	{
 		return $this->current_get_item['szulo_id'];
@@ -430,6 +435,7 @@ class Pages extends \Controller
 			  `sorrend` smallint(6) NOT NULL DEFAULT '100',
 			  `gyujto` tinyint(1) NOT NULL DEFAULT '0',
 			  `lathato` tinyint(1) NOT NULL DEFAULT '1',
+			  `langkey` varchar(250) DEFAULT NULL,
 			  `idopont` datetime DEFAULT NULL
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
