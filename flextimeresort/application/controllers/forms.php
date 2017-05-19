@@ -5,6 +5,7 @@ use PortalManager\User;
 use PortalManager\Admins;
 use PortalManager\Form;
 use PortalManager\Menus;
+use PortalManager\Pages;
 use TransactionManager\Barion;
 use TransactionManager\Transaction;
 use ExceptionManager\RedirectException;
@@ -126,6 +127,44 @@ class forms extends Controller {
 				try {
 					$menus->delete($_POST['id']);
 					\PortalManager\Form::formDone( 'Sikeresen eltávolította a menü elemet.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+		}
+	}
+
+	public function pages()
+	{
+		$this->hidePatern = true;
+		$return_url = $_POST['return'];
+
+		$id = (isset($_POST['id'])) ? $_POST['id'] : false;
+
+		$ctrl = new Pages($id);
+
+		switch( $_POST['for'] )
+		{
+			case 'add':
+				try {
+					$ctrl->add($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen létrehozta az oldalt.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'edit':
+				try {
+					$ctrl->save($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen módosította az oldal adatait.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'del':
+				try {
+					$ctrl->delete($_POST['id']);
+					\PortalManager\Form::formDone( 'Sikeresen eltávolította az oldalt.', false, $return_url );
 				} catch (RedirectException $e) {
 					$e->redirect();
 				}

@@ -766,7 +766,45 @@ input[type=checkbox].ccb:checked + label:before {
     }
   }
 }
+.single-page{
+  .page-wrapper{
+    position: relative;
+    background: white;
+    padding: 25px;
+  }
 
+  h1.title{
+    color: $color-primary-light;
+    text-transform: uppercase;
+    margin: 10px 0 30px 0;
+  }
+
+  .content-wrapper{
+    min-height: 300px !important;
+  }
+  .page-not-found{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    font-size: 1.2em;
+    color: #5c5c5c;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    strong{
+      color: black;
+    }
+
+    h1{
+      color: $color-primary-light;
+      margin: 0 0 20px 0;
+      font-size: 2.4em;
+    }
+  }
+}
 footer {
   background: darken($color-grey, 15%);
   border-top: 20px solid lighten($color-primary-light, 10%);

@@ -41,8 +41,7 @@ class Controller
 		$this->smarty->setConfigDir( './settings' );
 		$this->smarty->setCacheDir( VIEW . $this->subfolder . 'cache/' );
 		$this->smarty->configLoad( 'vars.conf' );
-
-
+		
 		define( 'IMG', '/'.VIEW . $this->subfolder . 'assets/images/' );
 		define( 'STYLE','/'.VIEW . $this->subfolder . 'assets/css/' );
 		define( 'JS', '/'.VIEW . $this->subfolder . 'assets/js/' );
@@ -308,7 +307,7 @@ class Controller
 			$folder = ($this->gets[1] ?: 'home') . '/';
 		}
 
-        $templateDir = $this->smarty->getTemplateDir();
+    $templateDir = $this->smarty->getTemplateDir();
 
 		if( !file_exists( $templateDir[0] . $folder . $tpl.'.tpl') ) {
 			if( $this->subfolder == 'site/' ) {
@@ -317,9 +316,6 @@ class Controller
 				$folder = 'PageNotFound/';
 			}
 		}
-
-		//echo $folder . $tpl.'.tpl' . '<br>';
-
 		$this->smarty->display( $folder . $tpl.'.tpl' );
 	}
 
@@ -334,7 +330,7 @@ class Controller
 
       if(!$this->hidePatern){
           # Render FOOTER
-		$this->displayView( $subfolder.$this->theme_wire.'footer' );
+					$this->displayView( $subfolder.$this->theme_wire.'footer' );
       }
 
       $this->db = null;

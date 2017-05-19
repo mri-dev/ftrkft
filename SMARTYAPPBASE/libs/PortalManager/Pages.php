@@ -129,7 +129,6 @@ class Pages extends \Controller
 
 		if (!$cim) { $this->error("Kérjük, hogy adja meg az <strong>Oldal címét</strong>!"); }
 
-
 		if (!$eleres) {
 			$eleres = $this->checkEleres( $cim );
 		} else {
@@ -459,6 +458,17 @@ class Pages extends \Controller
 	private function error( $msg )
 	{
 		throw new RedirectException( $msg, $_POST['form'], $_POST['return'], $_POST['session_path'] );
+	}
+
+	public function __destruct()
+	{
+		$this->tree = false;
+		$this->current_item = false;
+		$this->current_get_item = false;
+		$this->tree_steped_item = false;
+		$this->tree_items = 0;
+		$this->walk_step = 0;
+		$this->selected_page_id = false;
 	}
 
 }

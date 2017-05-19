@@ -1,9 +1,12 @@
 <div class="header-searcher-container">
+  {if !$hide_searcher}
   <div class="home-searcher">
     <div class="page-width">
       {include file='inc/kereso.tpl'}
     </div>
   </div>
+  {/if}
+  {if !$hide_login_instruction}
   <div class="login-instruction">
     <div class="page-width">
       <div class="instuction">
@@ -11,6 +14,8 @@
       </div>
     </div>
   </div>
+  {/if}
+  {if !$hide_home_instruction}
   <div class="home-instruction">
     <div class="page-width">
       <div class="row">
@@ -27,4 +32,5 @@
       </div>
     </div>
   </div>
+  {/if}
 </div>

@@ -69,24 +69,6 @@ class cp extends Controller {
 					$e->redirect();
 				}
 			break;
-			case 'pages_save':
-				$pages = new Pages( $_POST['page_id'], array( 'db' => $this->db )  );
-				try{
-					$pages->save( $_POST['data'] );
-					\PortalManager\Form::formDone( 'Változások mentésre kerültek!', false, $return_url );
-				}catch(RedirectException $e){
-					$e->redirect();
-				}
-			break;
-			case 'pages_create':
-				$pages = new Pages( $_POST['page_id'], array( 'db' => $this->db )  );
-				try{
-					$pages->add( $_POST['data'] );
-					\PortalManager\Form::formDone( 'Oldal sikeresen létrehozva!', false, $return_url );
-				}catch(RedirectException $e){
-					$e->redirect();
-				}
-			break;
 		}
 	}
 
@@ -111,40 +93,13 @@ class cp extends Controller {
 			$id = (int)$this->gets[3];
 		}
 
-		$object = new Pages();
-		$object->getTree(false, array('admin' => true));
+		$ctrl = new Pages();
+		$ctrl->setAdmin(true);
+		$ctrl->getTree();
 
-		$this->out("object", $object);
-		$this->out("check", $object->get($id));
-	}
+		$this->out("ctrl", $ctrl);
+		$this->out("check", $ctrl->get($id));
 
-	public function settings()
-	{
-		# code...
-	}
-
-	public function pages()
-	{
-		$pages = new Pages( $this->gets[2], array(
-			'db' => $this->db )
-		);
-		$pages->setAdmin( true );
-
-		switch( $this->gets[1] ){
-			case 'szerkeszt': case 'torles':
-				$this->out( 'page', $pages->get( $this->gets[2]) );
-			break;
-		}
-
-		if( $this->gets[2] == 'szerkeszt' || $this->gets[2] == 'torol' ) {
-			$this->out( 'page', $pages->get( $this->gets[3] ) );
-		}
-
-		// Oldal fa betöltés
-		$page_tree 	= $pages->getTree();
-		$this->out( 'pages', $page_tree );
-
-		$this->out('tooltip_gyujto', \PortalManager\Formater::tooltip('A gyűjtő oldalnak jelölt oldalaknál nincs tartalom megjelenítés. Csak arra szolgál, hogy fa szerkezetbe rendezzük és összefogjunk egy adott témakörrel foglalkozó oldalakat.') );
 	}
 
 	public function employers()

@@ -2,14 +2,17 @@ AddDefaultCharset UTF-8
 Options -Indexes
 RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^kapcsolat$ index.php?tag=p/kapcsolat [QSA,L]
 
-# Minta
-#RewriteRule ^login$ index.php?tag=user [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^rolunk$ index.php?tag=p/rolunk [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?tag=$1 [QSA,L]
-
 
 <ifModule mod_gzip.c>
 	mod_gzip_on Yes
