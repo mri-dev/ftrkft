@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4">
     <div class="ico">
-      <img src="{$smarty.const.IMG}icons/white/user.svg" alt="{lang text="KERESSEN_AZ_AJANLATOK_KOZOTT"}">
+      <img src="{$smarty.const.IMG}icons/white/searcher.svg" alt="{lang text="KERESSEN_AZ_AJANLATOK_KOZOTT"}">
     </div>
     <div class="info">
       <div class="num">
@@ -14,7 +14,7 @@
   </div>
   <div class="col-md-4 center-inst">
     <div class="ico">
-      <img src="{$smarty.const.IMG}icons/white/user.svg" alt="{lang text="KERESSEN_AZ_AJANLATOK_KOZOTT"}">
+      <img src="{$smarty.const.IMG}icons/white/documents.svg" alt="{lang text="KERESSEN_AZ_AJANLATOK_KOZOTT"}">
     </div>
     <div class="info">
       <div class="num">

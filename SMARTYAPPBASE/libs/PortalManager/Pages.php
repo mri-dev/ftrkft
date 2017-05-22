@@ -67,6 +67,7 @@ class Pages extends \Controller
 		$cim 	= ($data['cim']) ?: false;
 		$parent = ($data['parent']) ?: false;
 		$eleres = ($data['eleres']) ?: false;
+		$kivonat = ($data['kivonat']) ?: NULL;
 		$szoveg = ($data['szoveg']) ?: NULL;
 		$keys 	= ($data['kulcsszavak']) ?: NULL;
 		$lathato= ($data['lathato'] == 'on') ? 1 : 0;
@@ -96,6 +97,7 @@ class Pages extends \Controller
 				'cim' 		=> addslashes($cim),
 				'szulo_id' 	=> $parent,
 				'eleres' 	=> $eleres,
+				'kivonat' 	=> addslashes($kivonat),
 				'szoveg' 	=> addslashes($szoveg),
 				'deep' 		=> $deep,
 				'idopont' 	=> NOW,
@@ -114,6 +116,7 @@ class Pages extends \Controller
 		$cim 	= ($data['cim']) 	?: false;
 		$parent = ($data['parent']) ?: false;
 		$eleres = ($data['eleres']) ?: false;
+		$kivonat = ($data['kivonat']) ?: NULL;
 		$szoveg = ($data['szoveg']) ?: NULL;
 		$keys 	= ($data['kulcsszavak']) ?: NULL;
 		$lathato= ($data['lathato'])? 1 : 0;
@@ -141,6 +144,7 @@ class Pages extends \Controller
 				'cim' 		=> addslashes($cim),
 				'szulo_id' 	=> $parent,
 				'eleres' 	=> $eleres,
+				'kivonat' 	=> addslashes($kivonat),
 				'szoveg' 	=> addslashes($szoveg),
 				'deep' 		=> $deep,
 				'idopont' 	=> NOW,
@@ -386,15 +390,21 @@ class Pages extends \Controller
 	{
 		return $this->current_get_item['cim'];
 	}
-	public function getKeywords( $arrayed = false )
+	public function getKeywords( $arrayed = false, $prefix = ' ' )
 	{
 		if ( !$arrayed ) {
-			return $this->current_get_item['kulcsszavak'];
+
+			return str_replace(" ", $prefix, $this->current_get_item['kulcsszavak']);
 		} else {
 			return explode( " ", trim($this->current_get_item['kulcsszavak']) );
 		}
-
 	}
+
+	public function getSEODesc()
+	{
+		return strip_tags($this->current_get_item['kivonat']);
+	}
+
 	public function getUrl()
 	{
 		return $this->current_get_item['eleres'];
@@ -429,6 +439,7 @@ class Pages extends \Controller
 			  `cim` varchar(250) NOT NULL,
 			  `eleres` varchar(250) NOT NULL,
 			  `szoveg` longtext,
+				`kivonat` text DEFAULT NULL,
 			  `kulcsszavak` text,
 			  `szulo_id` int(11) DEFAULT NULL,
 			  `sorrend` smallint(6) NOT NULL DEFAULT '100',

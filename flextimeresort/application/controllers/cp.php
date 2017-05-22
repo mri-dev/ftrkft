@@ -72,6 +72,11 @@ class cp extends Controller {
 		}
 	}
 
+	public function terms()
+	{
+		# code...
+	}
+
 	public function menu()
 	{
 		$menuid = false;

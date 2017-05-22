@@ -36,6 +36,15 @@
             <input type="text" id="langkey" class="form-control" name="langkey" value="{if $check}{$check->getLangkey()}{else}{$form->getPost('langkey')}{/if}">
           </div>
         </div>
+
+
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="kivonat">Rövid ismertető szöveg (SEO)</label>
+            <textarea name="kivonat" id="kivonat" class="form-control">{if $check}{$check->getSEODesc()}{else}{$form->getPost('kivonat')}{/if}</textarea>
+          </div>
+        </div>
         <br>
         <div class="row">
           <div class="col-md-12">

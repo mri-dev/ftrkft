@@ -6,6 +6,7 @@
         <div class="content-wrapper">
           {$page->getHtmlContent()}
         </div>
+        {include file='inc/sharer.tpl'}
       {else}
         <div class="content-wrapper">
           <div class="page-not-found">

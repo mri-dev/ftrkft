@@ -36,6 +36,13 @@
 <!-- iCheck -->
 <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
 {/if}
+<script >
+  window.___gcfg = {
+    lang: 'hu-HU',
+    parsetags: 'onload'
+  };
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script type="text/javascript">
   $(function(){

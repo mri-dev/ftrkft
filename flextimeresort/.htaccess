@@ -10,6 +10,15 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^rolunk$ index.php?tag=p/rolunk [QSA,L]
 
+# Admin - Tematikus lista rewrite
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/cat$ index.php?tag=cp/terms [NC,QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/cat-([a-zA-Z]+)(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1 [NC,QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?tag=$1 [QSA,L]
