@@ -250,18 +250,56 @@ body.admin aside.main-sidebar section.menu li.basehead {
   color: #c1c1c1;
   text-shadow: none;
 }
-/* line 254, scss/media.scss */
+/* line 253, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.sub a {
+  font-size: 0.85em;
+  text-transform: none;
+  background: #424242;
+  border-bottom: 1px solid #686868;
+  color: #c3c3c3;
+}
+/* line 260, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.sub a:hover {
+  background: #353535;
+}
+/* line 265, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.sub.active {
+  padding-left: 10px;
+}
+/* line 267, scss/media.scss */
+body.admin aside.main-sidebar section.menu li.sub.active a {
+  background: #52c668;
+  color: white;
+}
+/* line 276, scss/media.scss */
 body.admin .content-wrapper {
   margin-left: 220px;
   padding: 15px;
 }
-/* line 258, scss/media.scss */
+/* line 280, scss/media.scss */
 body.admin .content-wrapper h1 {
   color: black;
   font-weight: bold;
   margin: 10px 0 25px 0;
 }
-/* line 264, scss/media.scss */
+/* line 285, scss/media.scss */
+body.admin .content-wrapper h1 strong {
+  color: #39ac4f;
+}
+/* line 289, scss/media.scss */
+body.admin .content-wrapper h1 a.backurl {
+  background-color: white;
+  border: 1px solid #d7d7d7;
+  margin-right: 5px;
+  font-size: 13px;
+  padding: 0 10px;
+  line-height: 26px;
+  display: block;
+  float: left;
+  border-radius: 5px;
+  color: #6b6b6b;
+}
+/* line 303, scss/media.scss */
 body.admin .content-wrapper .box {
   background: white;
   padding: 15px;
@@ -275,61 +313,63 @@ body.admin .content-wrapper .box {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 274, scss/media.scss */
+/* line 313, scss/media.scss */
 body.admin .content-wrapper .box h3 {
   font-size: 1.7em;
   color: #39ac4f;
 }
-/* line 279, scss/media.scss */
+/* line 318, scss/media.scss */
 body.admin .content-wrapper .box h3 + .subtitle {
   color: #9c9c9c;
 }
-/* line 283, scss/media.scss */
+/* line 322, scss/media.scss */
 body.admin .content-wrapper .box .data {
   margin-top: 10px;
 }
-/* line 286, scss/media.scss */
+/* line 325, scss/media.scss */
 body.admin .content-wrapper .box .data label {
   font-size: 1.15em;
 }
-/* line 291, scss/media.scss */
-body.admin .content-wrapper .box input + .comment {
+/* line 332, scss/media.scss */
+body.admin .content-wrapper .box input + .comment,
+body.admin .content-wrapper .box select + .comment,
+body.admin .content-wrapper .box textarea + .comment {
   color: #898989;
   font-size: 0.9em;
   line-height: 1.3;
   margin-top: 5px;
 }
-/* line 298, scss/media.scss */
+/* line 339, scss/media.scss */
 body.admin .content-wrapper .box.editor {
   border: 5px solid #39ac4f;
 }
-/* line 301, scss/media.scss */
+/* line 342, scss/media.scss */
 body.admin .content-wrapper .box.delete {
   border: 5px solid #f44e5e;
 }
-/* line 310, scss/media.scss */
+/* line 351, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar,
 body.admin.sidebar-toggled header.main-header a.logo {
   width: 50px;
   overflow: hidden;
 }
-/* line 314, scss/media.scss */
+/* line 355, scss/media.scss */
 body.admin.sidebar-toggled header.main-header a.logo .authortext {
   display: none;
 }
-/* line 317, scss/media.scss */
+/* line 358, scss/media.scss */
 body.admin.sidebar-toggled header.main-header .navbar {
   flex-basis: calc(100% - 50px);
 }
-/* line 320, scss/media.scss */
+/* line 361, scss/media.scss */
 body.admin.sidebar-toggled .content-wrapper {
   margin-left: 50px;
 }
-/* line 323, scss/media.scss */
+/* line 364, scss/media.scss */
 body.admin.sidebar-toggled aside.main-sidebar section.menu li a .text {
   display: none;
 }
-/* line 328, scss/media.scss */
+/* line 369, scss/media.scss */
 body.admin #pagepreloader {
   background: #5b5b5b;
   position: fixed;
@@ -339,7 +379,7 @@ body.admin #pagepreloader {
   bottom: 0;
   z-index: 9999;
 }
-/* line 337, scss/media.scss */
+/* line 378, scss/media.scss */
 body.admin #pagepreloader .loadwrapper {
   color: white;
   position: absolute;
@@ -350,60 +390,60 @@ body.admin #pagepreloader .loadwrapper {
   font-weight: 100;
   text-align: center;
 }
-/* line 347, scss/media.scss */
+/* line 388, scss/media.scss */
 body.admin #pagepreloader .loadwrapper i {
   color: #39ac4f;
   font-size: 42px;
 }
 
-/* line 356, scss/media.scss */
+/* line 397, scss/media.scss */
 .actions a {
   padding: 0 4px;
   font-size: 13px;
 }
-/* line 360, scss/media.scss */
+/* line 401, scss/media.scss */
 .actions i[class*=fa-pencil] {
   color: #39ac4f !important;
 }
-/* line 363, scss/media.scss */
+/* line 404, scss/media.scss */
 .actions i[class*=fa-trash] {
   color: #f44e5e !important;
 }
 
-/* line 368, scss/media.scss */
+/* line 409, scss/media.scss */
 .btn.btn-danger {
   color: white;
 }
 
-/* line 372, scss/media.scss */
+/* line 413, scss/media.scss */
 input[type=checkbox].ccb + label:before {
   color: #c1c1c1 !important;
   font-size: 20px !important;
 }
 
-/* line 377, scss/media.scss */
+/* line 418, scss/media.scss */
 input[type=checkbox].ccb + label {
   font-size: 1.4em !important;
   padding-left: 24px !important;
 }
 
-/* line 381, scss/media.scss */
+/* line 422, scss/media.scss */
 input[type=checkbox].ccb:checked + label:before {
   color: #39ac4f !important;
 }
 
-/* line 386, scss/media.scss */
+/* line 427, scss/media.scss */
 .menu-list .mi {
   background: #f3f3f3;
   margin: 5px 0;
   padding: 10px;
 }
-/* line 390, scss/media.scss */
+/* line 431, scss/media.scss */
 .menu-list .mi .title {
   font-size: 1.3em;
   color: black;
 }
-/* line 394, scss/media.scss */
+/* line 435, scss/media.scss */
 .menu-list .mi .position {
   color: #f44e5e;
   font-weight: bold;
@@ -411,17 +451,17 @@ input[type=checkbox].ccb:checked + label:before {
   margin-right: 5px;
   text-transform: uppercase;
 }
-/* line 401, scss/media.scss */
+/* line 442, scss/media.scss */
 .menu-list .mi.deep1 {
   margin-left: 10px;
   border-left: 2px solid #aaaaaa;
 }
-/* line 405, scss/media.scss */
+/* line 446, scss/media.scss */
 .menu-list .mi.deep2 {
   margin-left: 20px;
   border-left: 4px solid #aaaaaa;
 }
-/* line 409, scss/media.scss */
+/* line 450, scss/media.scss */
 .menu-list .mi.deep3 {
   margin-left: 30px;
   border-left: 8px solid #aaaaaa;

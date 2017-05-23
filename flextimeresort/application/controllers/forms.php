@@ -6,6 +6,8 @@ use PortalManager\Admins;
 use PortalManager\Form;
 use PortalManager\Menus;
 use PortalManager\Pages;
+use PortalManager\Categories;
+use PortalManager\Category;
 use TransactionManager\Barion;
 use TransactionManager\Transaction;
 use ExceptionManager\RedirectException;
@@ -89,6 +91,71 @@ class forms extends Controller {
 				try {
 					$payment->delete();
 					\PortalManager\Form::formDone( 'Sikeresen törölte a díjbekérőt.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+		}
+	}
+
+	function terms()
+	{
+		$this->hidePatern = true;
+		$return_url = $_POST['return'];
+
+		$id = (isset($_POST['id'])) ? $_POST['id'] : false;
+
+		$terms = new Categories();
+
+		switch( $_POST['for'] )
+		{
+			case 'addList':
+				try {
+					$terms->addList($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen létrehozta a tematikus lista elemet.', false, $return_url);
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'editList':
+				try {
+					$terms->editList($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen módosította a tematikus lista adatait.', false, $return_url);
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'delList':
+				try {
+					$terms->deleteList($_POST['id']);
+					\PortalManager\Form::formDone( 'Sikeresen eltávolította a tematikus lista elemet.', false, $return_url);
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'add':
+				$cat = new Category();
+				try {
+					$cat->add($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen létrehozta a tematikus lista elemet.', false, $return_url);
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'edit':
+				$cat = new Category();
+				try {
+					$cat->edit($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen módosította a tematikus lista adatait.', false, $return_url);
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'del':
+				$cat = new Category();
+				try {
+					$cat->delete($_POST['id']);
+					\PortalManager\Form::formDone( 'Sikeresen eltávolította a tematikus lista elemet.', false, $return_url);
 				} catch (RedirectException $e) {
 					$e->redirect();
 				}

@@ -13,11 +13,11 @@ RewriteRule ^rolunk$ index.php?tag=p/rolunk [QSA,L]
 # Admin - Tematikus lista rewrite
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^cp/cat$ index.php?tag=cp/terms [NC,QSA,L]
+RewriteRule ^cp/cat/(edit|del)?(/)?(.+)?$ index.php?tag=cp/terms&mod=$1&id=$3 [NC,QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^cp/cat-([a-zA-Z]+)(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1 [NC,QSA,L]
+RewriteRule ^cp/cat-([a-zA-Z_]+)(/)?(edit|del)?(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1&mod=$3&id=$5 [NC,QSA,L]
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

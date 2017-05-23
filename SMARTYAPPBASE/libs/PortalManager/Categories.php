@@ -4,18 +4,19 @@ namespace PortalManager;
 use PortalManager\Category;
 use ExceptionManager\RedirectException;
 
-class Categories
+class Categories extends \Controller
 {
+	const DB_LIST = 'term_list';
+	const DBTERMS = 'terms';
+
 	const TYPE_MUNKATIPUS 	= 'munkatipusok';
 	const TYPE_STUDIES 		= 'oktatas_kategoriak';
 	const TYPE_MUNKAKOROK 	= 'munkakorok';
 	const TYPE_TERULETEK 	= 'teruletek';
 	const TYPE_KOMPETENCIAK = 'munkavallaloi_kompetenciak';
 
-	const TYPE_TERULETEK_BUDAPEST_ID = 8;
-
 	private $category_table = false;
-	private $db = null;
+	public $db = null;
 	public $tree = false;
 	private $current_category = false;
 	private $tree_steped_item = false;
@@ -26,14 +27,106 @@ class Categories
 
 	function __construct( $category_table = false, $arg = array() )
 	{
-		$this->db = $arg[db];
+		parent::__construct();
 		$this->category_table = $category_table;
 		$this->o = $arg;
+  }
 
-		if( !$this->category_table ) {
-			$this->kill( 'ERROR @ '.__CLASS__.': Hiányzik a kategória táblája. Kérjük adja meg!' );
+	public function getTermList()
+	{
+		$q = "SELECT
+		cl.*
+		FROM ".self::DB_LIST." as cl
+		ORDER BY cl.neve ASC
+		";
+
+		$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
+
+		return $data;
+	}
+
+	public function getList($key)
+	{
+		$q = "SELECT
+		cl.*
+		FROM ".self::DB_LIST." as cl
+		WHERE 1=1
+		";
+
+		if (is_numeric($key)) {
+			$q .= " and cl.ID = {$key}";
+		} else {
+			$q .= " and cl.termkey = '{$key}'";
 		}
-    }
+
+		$data = $this->db->query($q)->fetch(\PDO::FETCH_ASSOC);
+		return $data;
+	}
+
+	public function addList( $data = array() )
+	{
+		$name = ($data['neve']) ?: false;
+		$description = ($data['description']) ?: NULL;
+		$termkey = ($data['termkey']) ?: \Helper::makeSafeUrl($name);
+
+		$termkey = str_replace(array('-',' '), array('_', '_'), $termkey);
+
+		if ( !$name ) {
+			$this->error( "Kérjük, hogy adja meg a tematikus lista elnevezését!" );
+		}
+
+		if ( !$termkey ) {
+			$this->error( "Kérjük, hogy adja meg a tematikus lista egyedi azonosító kulcsát!" );
+		}
+		// Termkey check
+		$hasterm = (int)$this->db->query("SELECT 1 FROM ".self::DB_LIST." WHERE termkey = '{$termkey}'")->fetchColumn();
+
+		if ( $hasterm == 1 ) {
+			$this->error( "Ilyen egyedi azonosító kulccsal már létrehoztak egy tematikus listát." );
+		}
+
+		$this->db->insert(
+			self::DB_LIST,
+			array(
+				'neve' 		=> $name,
+				'description' 	=> $description,
+				'termkey' 	=> $termkey
+			)
+		);
+	}
+
+	public function editList( $data = array() )
+	{
+		$id = $data['id'];
+		$name = ($data['neve']) ?: false;
+		$description = ($data['description']) ?: NULL;
+		$termkey = ($data['termkey']) ?: \Helper::makeSafeUrl($name);
+
+		if ( !$name ) {
+			$this->error( "Kérjük, hogy adja meg a tematikus lista elnevezését!" );
+		}
+
+		if ( !$termkey ) {
+			$this->error( "Kérjük, hogy adja meg a tematikus lista egyedi azonosító kulcsát!" );
+		}
+		// Termkey check
+		$hasterm = (int)$this->db->query("SELECT 1 FROM ".self::DB_LIST." WHERE termkey = '{$termkey}' and ID != {$id}")->fetchColumn();
+
+		if ( $hasterm == 1 ) {
+			$this->error( "Ilyen egyedi azonosító kulccsal már létrehoztak egy tematikus listát." );
+		}
+
+		$this->db->update(
+			self::DB_LIST,
+			array(
+				'neve' 		=> $name,
+				'description' 	=> $description,
+				'termkey' 	=> $termkey
+			),
+			sprintf("ID = %d", $id)
+		);
+	}
+
 
 	/**
 	 * Kategória létrehzás
@@ -54,7 +147,7 @@ class Categories
 		}
 
 		if ( !$name ) {
-			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );			
+			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );
 		}
 
 		$this->db->insert(
@@ -88,7 +181,7 @@ class Categories
 		}
 
 		if ( !$name ) {
-			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );			
+			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );
 		}
 
 		$category->edit(array(
@@ -110,49 +203,49 @@ class Categories
 	 * a teljes kategória fa listázódik.
 	 * @return array Kategóriák
 	 */
-	public function getTree( $top_category_id = false )
+	public function getTree( $groupkey, $top_category_id = false )
 	{
-		$tree 		= array();
+		$tree = array();
 
 		if ( $top_category_id ) {
-			$this->parent_data = $this->db->query( sprintf("SELECT * FROM ".$this->category_table." WHERE id = %d", $top_category_id) )->fetch(\PDO::FETCH_ASSOC);
+			$this->parent_data = $this->db->query( sprintf("SELECT * FROM ".self::DBTERMS." WHERE groupkey = %s and id = %d", $groupkey, $top_category_id) )->fetch(\PDO::FETCH_ASSOC);
 		}
 
 		// Legfelső színtű kategóriák
 		$qry = "
-			SELECT 			* 
-			FROM 			".$this->category_table." 
-			WHERE 			";
-		
+			SELECT 			*
+			FROM 			".self::DBTERMS."
+			WHERE 		1=1 and groupkey = '{$groupkey}' ";
+
 		if ( !$top_category_id ) {
-			$qry .= " szulo_id IS NULL ";
+			$qry .= " and szulo_id IS NULL ";
 		} else {
-			$qry .= " szulo_id = ".$top_category_id;
+			$qry .= " and szulo_id = ".$top_category_id;
 		}
 
 		if( !$this->o['orderby'] ) {
-			$qry .= "  
-				ORDER BY 		sorrend ASC, id ASC;";
+			$qry .= "
+				ORDER BY 		sorrend ASC, neve ASC, id ASC;";
 		} else {
-			$qry .= "  
+			$qry .= "
 				ORDER BY 		".$this->o['orderby']." ".$this->o['order'].";";
 		}
 
 		$top_cat_qry 	= $this->db->query($qry);
-		$top_cat_data 	= $top_cat_qry->fetchAll(\PDO::FETCH_ASSOC); 
+		$top_cat_data 	= $top_cat_qry->fetchAll(\PDO::FETCH_ASSOC);
 
-		if( $top_cat_qry->rowCount() == 0 ) return $this; 
-		
+		if( $top_cat_qry->rowCount() == 0 ) return $this;
+
 		foreach ( $top_cat_data as $top_cat ) {
 			$this->tree_items++;
 
 			// Kapcsolódó elemek száma
-			$top_cat['items'] = $this->calcItemNumbers( $top_cat );
+			//$top_cat['items'] = $this->calcItemNumbers( $top_cat );
 
 			$this->tree_steped_item[] = $top_cat;
-			
+
 			// Alkategóriák betöltése
-			$top_cat['child'] = $this->getChildCategories($top_cat['id']);
+			$top_cat['child'] = $this->getChildCategories($groupkey, $top_cat['id']);
 			$tree[] = $top_cat;
 		}
 
@@ -163,15 +256,15 @@ class Categories
 
 	/**
 	 * Végigjárja az összes kategóriát, amit betöltöttünk a getFree() függvény segítségével. while php függvénnyel
-	 * járjuk végig. A while függvényen belül használjuk a the_cat() objektum függvényt, ami az aktuális kategória 
+	 * járjuk végig. A while függvényen belül használjuk a the_cat() objektum függvényt, ami az aktuális kategória
 	 * adataiat tartalmazza tömbbe sorolva.
 	 * @return boolean
 	 */
 	public function walk()
-	{	
+	{
 		if( !$this->tree_steped_item ) return false;
-		
-		$this->current_category = $this->tree_steped_item[$this->walk_step];		
+
+		$this->current_category = $this->tree_steped_item[$this->walk_step];
 
 		$this->walk_step++;
 
@@ -183,14 +276,14 @@ class Categories
 			return false;
 		}
 
-		return true;	
+		return true;
 	}
 
 	public function getParentData( $field = false )
 	{
 		if ( $field ) {
 			return $this->parent_data[$field];
-		} else 
+		} else
 		return $this->parent_data;
 	}
 
@@ -199,70 +292,70 @@ class Categories
 	 * @param  int $parent_id 	Szülő kategória ID
 	 * @return array 			Szülő kategória alkategóriái
 	 */
-	public function getChildCategories( $parent_id )
+	public function getChildCategories( $groupkey, $parent_id )
 	{
 		$tree = array();
-	
+
 		// Gyerek kategóriák
 		$q = "
-		SELECT 			* 
-		FROM 			".$this->category_table." 
-		WHERE 			szulo_id = %d";
+		SELECT 			*
+		FROM 			".self::DBTERMS."
+		WHERE 		groupkey = '%s' and szulo_id = %d";
 
 		if( !$this->o['orderby'] ) {
 			$q .= "
 				ORDER BY 		sorrend ASC, id ASC;";
 		} else {
-			$q .= "  
+			$q .= "
 				ORDER BY 		".$this->o['orderby']." ".$this->o['order'].";";
 		}
 
-		$child_cat_qry 	= $this->db->query( sprintf( $q, $parent_id ) );
-		$child_cat_data	= $child_cat_qry->fetchAll(\PDO::FETCH_ASSOC); 
+		$child_cat_qry 	= $this->db->query( sprintf( $q, $groupkey, $parent_id ) );
+		$child_cat_data	= $child_cat_qry->fetchAll(\PDO::FETCH_ASSOC);
 
-		if( $child_cat_qry->rowCount() == 0 ) return false; 
+		if( $child_cat_qry->rowCount() == 0 ) return false;
 		foreach ( $child_cat_data as $child_cat ) {
 			$this->tree_items++;
-			
+
 			$child_cat['link'] = DOMAIN.'termekek/'.\PortalManager\Formater::makeSafeUrl($child_cat['neve'],'_-'.$child_cat['id']);
 			// Kapcsolódó elemek száma
-			$child_cat['items'] = $this->calcItemNumbers($child_cat);
+			//$child_cat['items'] = $this->calcItemNumbers($child_cat);
 
 			$this->tree_steped_item[] = $child_cat;
-			
-			$child_cat['child'] = $this->getChildCategories($child_cat['id']);
+
+			$child_cat['child'] = $this->getChildCategories($groupkey, $child_cat['id']);
 			$tree[] = $child_cat;
 		}
-		
+
 		return $tree;
 
 	}
 
-	public function getChildIDS($parent_id)
+	public function getChildIDS($groupkey, $parent_id)
 	{
 		$ids = array();
 
 		// Gyerek kategóriák
 		$q = "
-		SELECT 			id 
-		FROM 			".$this->category_table." 
-		WHERE 			szulo_id = %d ";
+		SELECT 			id
+		FROM 			".self::DBTERMS."
+		WHERE 		groupkey = %s and szulo_id = %d ";
 
 		$q .= " ORDER BY sorrend ASC, id ASC;";
 
-		$child_cat_qry 	= $this->db->query( sprintf( $q, $parent_id ) );
-		$child_cat_data	= $child_cat_qry->fetchAll(\PDO::FETCH_ASSOC); 
+		$child_cat_qry 	= $this->db->query( sprintf( $q, $groupkey, $parent_id ) );
+		$child_cat_data	= $child_cat_qry->fetchAll(\PDO::FETCH_ASSOC);
 
-		if( $child_cat_qry->rowCount() == 0 ) return $ids; 
+		if( $child_cat_qry->rowCount() == 0 ) return $ids;
 
 		foreach ( $child_cat_data as $child_cat ) {
 			$ids[] = $child_cat['id'];
 		}
-		
+
 		return $ids;
 	}
 
-	public function getCategoryParentRow( $id, $return_row = 'id', $deep_allow_under = 0 )
+	public function getCategoryParentRow( $id, $groupkey, $return_row = 'id', $deep_allow_under = 0 )
 	{
 		$row = array();
 
@@ -273,8 +366,8 @@ class Categories
 		$sid = $id;
 
 		while( $has_parent && $limit > 0 ) {
-			$q 		= "SELECT ".$return_row.", szulo_id, deep FROM ".$this->category_table." WHERE id = ".$sid.";";
-			$qry 	= $this->db->query($q); 
+			$q 		= "SELECT ".$return_row.", szulo_id, deep FROM ".self::DBTERMS." WHERE groupkey = '{$groupkey}' and id = ".$sid.";";
+			$qry 	= $this->db->query($q);
 			$data 	= $qry->fetch(\PDO::FETCH_ASSOC);
 
 			$sid = $data['szulo_id'];
@@ -286,7 +379,7 @@ class Categories
 			if( (int)$data['deep'] >= $deep_allow_under ) {
 				$row[] = $data[$return_row];
 			}
-			
+
 			$limit--;
 		}
 
@@ -296,7 +389,7 @@ class Categories
 	/*===============================
 	=            GETTERS            =
 	===============================*/
-	
+
 	public function getID()
 	{
 		return $this->current_category['id'];
@@ -311,6 +404,15 @@ class Categories
 	{
 		return $this->current_category['deep'];
 	}
+	public function getLangKey()
+	{
+		return $this->current_category['langkey'];
+	}
+
+	public function getParentID()
+	{
+		return  $this->current_category['szulo_id'];
+	}
 
 	public function getParentKey()
 	{
@@ -322,6 +424,11 @@ class Categories
 		return $this->current_category['sorrend'];
 	}
 
+	public function getSlug()
+	{
+		return $this->current_category['slug'];
+	}
+
 	public function isTop()
 	{
 		return ( (int) $this->current_category['deep'] === 0 ? true : false );
@@ -331,10 +438,10 @@ class Categories
 	{
 		return $this->current_category['items'];
 	}
-	
-	
+
+
 	/*=====  End of GETTERS  ======*/
-	
+
 
 	private function kill( $msg = '' )
 	{
@@ -358,7 +465,7 @@ class Categories
 					$set[] = $item_object['id'];
 
 					if( $set ) {
-						
+
 						$set = implode(",", $set);
 
 						switch ( $this->o['nums_for']) {
@@ -372,14 +479,14 @@ class Categories
 								$q .= " and u.engedelyezve = 1 and u.aktivalva IS NOT NULL ";
 
 								$q .= " and (SELECT ertek FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE fiok_id = u.ID and nev = 'city') IN(".$set.") ";
-								
-							
+
+
 								$qry = $this->db->query( $q );
-								
+
 								$num = $qry->fetchColumn();
 							break;
 							case 'ad':default:
-								
+
 								$q = "SELECT count(id) FROM hirdetmenyek WHERE  1=1 ";
 
 								if( isset($this->o['calc_item_type']) ) {
@@ -387,17 +494,17 @@ class Categories
 								}
 
 								$q .= " and active = 1 and now() > feladas_ido and now() < lejarat_ido  and terulet_id IN (".$set.");";
-								
+
 								$qry = $this->db->query( $q );
-								
+
 								$num = $qry->fetchColumn();
 
 							break;
 						}
-						
+
 					}
 
-				}				
+				}
 			break;
 			case self::TYPE_MUNKAKOROK:
 				if( true ) {
@@ -408,20 +515,20 @@ class Categories
 					if( $set ) {
 						$set = implode(",", $set);
 
-						$q = "SELECT count(id) FROM hirdetmenyek WHERE 1=1 "; 
+						$q = "SELECT count(id) FROM hirdetmenyek WHERE 1=1 ";
 
 						if( isset($this->o['calc_item_type']) ) {
 							$q .= sprintf( " and tipus = '%s' ", $this->o['calc_item_type'] );
 						}
 
 						$q .= " and active = 1 and now() > feladas_ido and now() < lejarat_ido  and jobmode_id IN (".$set.");";
-						
+
 						$qry = $this->db->query( $q );
-						
+
 						$num = $qry->fetchColumn();
 					}
 
-				}				
+				}
 			break;
 			case self::TYPE_MUNKATIPUS:
 				if( true ) {
@@ -439,13 +546,13 @@ class Categories
 						}
 
 						$q .= " and active = 1 and now() > feladas_ido and now() < lejarat_ido  and jobtype_id IN (".$set.");";
-						
+
 						$qry = $this->db->query( $q );
-						
+
 						$num = $qry->fetchColumn();
 					}
 
-				}				
+				}
 			break;
 			case self::TYPE_STUDIES:
 				if( true ) {
@@ -463,16 +570,16 @@ class Categories
 						}
 
 						$q .= " and active = 1 and now() > feladas_ido and now() < lejarat_ido  and jobmode_id IN (".$set.");";
-						
+
 						$qry = $this->db->query( $q );
-						
+
 						$num = $qry->fetchColumn();
 					}
 
-				}				
+				}
 			break;
 		}
-		
+
 
 		return $num;
 	}
@@ -480,6 +587,7 @@ class Categories
 	public function __destruct()
 	{
 		//echo ' -DEST- ';
+		$this->db = null;
 		$this->tree = false;
 		$this->current_category = false;
 		$this->tree_steped_item = false;

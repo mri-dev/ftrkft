@@ -41,7 +41,7 @@ class Controller
 		$this->smarty->setConfigDir( './settings' );
 		$this->smarty->setCacheDir( VIEW . $this->subfolder . 'cache/' );
 		$this->smarty->configLoad( 'vars.conf' );
-		
+
 		define( 'IMG', '/'.VIEW . $this->subfolder . 'assets/images/' );
 		define( 'STYLE','/'.VIEW . $this->subfolder . 'assets/css/' );
 		define( 'JS', '/'.VIEW . $this->subfolder . 'assets/js/' );
@@ -67,6 +67,7 @@ class Controller
 		$this->out('menu_footer_left', $this->menu_load('footer_left'));
 		$this->out('menu_footer_center', $this->menu_load('footer_center'));
 		$this->out('menu_footer_right', $this->menu_load('footer_right'));
+		$this->out('tematic_list', $this->tematikus_lista());
 
     $user = $this->USERS->get( self::$user_opt );
 
@@ -295,6 +296,18 @@ class Controller
 		}
 
 		return $menu;
+	}
+
+	public function tematikus_lista()
+	{
+		$q = "SELECT
+		cl.*
+		FROM ".\PortalManager\Categories::DB_LIST." as cl
+		ORDER BY cl.neve ASC
+		";
+
+		$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
+		return $data;
 	}
 
 	public function displayView( $tpl, $has_folder = false){

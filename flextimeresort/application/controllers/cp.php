@@ -74,7 +74,28 @@ class cp extends Controller {
 
 	public function terms()
 	{
-		# code...
+		$categories = new Categories();
+		$this->out('term_list', $categories->getTermList());
+
+		if (empty($_GET['groupkey'])) {
+			switch ($_GET['mod']) {
+				case 'edit': case 'del':
+					$this->out('check', $categories->getList($_GET['id']));
+				break;
+			}
+		} else {
+			$this->out('list', $categories->getList($_GET['groupkey']));
+
+			$categories->getTree($_GET['groupkey']);
+			$this->out('terms', $categories);
+			switch ($_GET['mod']) {
+				case 'edit': case 'del':
+				 	$cat = new Category($_GET['groupkey'], $_GET['id']);
+					$this->out('check', $cat);
+				break;
+			}
+		}
+
 	}
 
 	public function menu()

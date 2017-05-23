@@ -89,6 +89,12 @@
       <li class="basehead">Navigáció</li>
       <li class="{if $GETS[1] == 'oldalak'}active{/if}"><a href="{$root}oldalak"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
       <li class="{if $GETS[1] == 'menu'}active{/if}"><a href="{$root}menu"><i class="fa fa-th"></i> <span class="text">Menük</span></a></li>
+      <li class="{if $smarty.get.tag == 'cp/terms'}active{/if}"><a href="{$root}cat/"><i class="fa fa-bars"></i> <span class="text">Tematikus listák</span></a></li>
+      {if $smarty.get.tag == 'cp/terms'}
+        {foreach from=$tematic_list item=tl}
+        <li class="sub {if $smarty.get.groupkey == $tl.termkey}active{/if}"><a {if !empty($tl.description)}data-toggle="tooltip" data-placement="right" title="{$tl.description}"{/if} href="{$root}cat-{$tl.termkey}"><i class="fa fa-{$tl.faico}"></i> <span class="text">{$tl.neve}</span></a></li>
+        {/foreach}
+      {/if}
       <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
     </ul>
   </section>

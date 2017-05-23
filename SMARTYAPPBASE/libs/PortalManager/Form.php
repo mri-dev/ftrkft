@@ -76,7 +76,7 @@ class Form {
 			unset($_SESSION['_form_post']);
 
 			if( $msg ) {
-				$url = rtrim( $url, '/' );
+				//$url = rtrim( $url, '/' );
 				$xurl = explode('?',$url);
 				$ret_get = '';
 
