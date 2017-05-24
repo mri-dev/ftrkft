@@ -1,20 +1,22 @@
 <?
 namespace ExceptionManager;
 
-class RedirectException extends \Exception { 
+class RedirectException extends \Exception {
 	private $url = false;
 	private $session_path = false;
 	private $post = null;
 	private $ecode = 0;
 	private $emsg = '';
+	private $error_fields = false;
 
-	public function __construct( $message, $code = 0, $url = false, $session_path = false, \Exception $previous = null) {
+	public function __construct( $message, $code = 0, $url = false, $session_path = false, $error_fields = false, \Exception $previous = null) {
 	    parent::__construct($message, $code, $previous);
 
 	    $this->ecode 	= $code;
 	    $this->emsg 	= $message;
 	    $this->post 	= (!empty($_POST)) ? json_encode( $_POST, JSON_UNESCAPED_UNICODE ) : null;
 	    $this->session_path = $session_path;
+			$this->error_fields = $error_fields;
 
 	    if( $url ) {
 	    	$this->url = $url;
@@ -23,10 +25,9 @@ class RedirectException extends \Exception {
 
 	public function redirect( $anchor = false )
 	{
-		
 		if( $this->url ) {
 			ob_start();
-			
+
 			setcookie( "_form_post", null, time() - 60 );
 			unset($_SESSION['_form_post'][trim($this->session_path,"/")]);
 
@@ -37,24 +38,28 @@ class RedirectException extends \Exception {
 
 			$xurl = explode('?',$this->url);
 			$ret_get = '';
-			
+
 			if( count( $xurl ) > 1 ) {
 				$ret_get = end($xurl).'&';
 				$this->url = $xurl[0];
-			}	
+			}
 
+			$errfields = '';
 
-			$this->url = rtrim( $this->url, '/' ) . '/?'.$ret_get.'response='.base64_encode( $this->ecode.'::error::'.$this->emsg );
+			if ($this->error_fields) {
+				$errfields = '::'.implode(',', $this->error_fields);
+			}
+
+			$this->url = rtrim( $this->url, '/' ) . '/?'.$ret_get.'response='.base64_encode( $this->ecode.'::error::'.$this->emsg.$errfields );
 
 			if( $anchor ) {
 				$this->url = $this->url . "#".$anchor;
 			}
 
 			header( 'Location: '.$this->url );
-
 			ob_end_flush();
 		}
-		
+
 	}
 }
 ?>

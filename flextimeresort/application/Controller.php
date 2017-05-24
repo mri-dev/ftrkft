@@ -57,10 +57,7 @@ class Controller
 		$this->settings = $this->getAllValtozo();
 
 		$this->USERS = new Users( array(
-			'db' => $this->db,
-			'lang' => $lang_users,
-			'smarty' => $this->smarty,
-			'view' => $this->getAllVars()
+			'controller' => $this
 		) );
 
 		$this->out('menu_header', $this->menu_load('header'));
@@ -98,13 +95,12 @@ class Controller
 
 		$this->smarty->registerPlugin('function', 'lang', array($this, 'language_translator'));
 
-      if( $_GET['start'] == 'off' ) {
-          setcookie( 'stredir', '1', time() + 3600*24*365, '/' );
-      }
-
-      if(!$arg[hidePatern]){ $this->hidePatern = false; }
+    if( $_GET['start'] == 'off' ) {
+    	setcookie( 'stredir', '1', time() + 3600*24*365, '/' );
     }
 
+  	if(!$arg[hidePatern]){ $this->hidePatern = false; }
+  }
 
 	function language_translator($params, &$smarty){
 		$text = $this->LANGUAGES->texts;

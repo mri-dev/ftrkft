@@ -1,3 +1,4 @@
+{if !$hide_home_top}
 <div class="header-searcher-container">
   {if !$hide_searcher}
   <div class="home-searcher">
@@ -34,3 +35,4 @@
   </div>
   {/if}
 </div>
+{/if}

@@ -267,7 +267,7 @@ class forms extends Controller {
 		$this->hidePatern = true;
 
 		// Users class
-		$users = $this->User;
+		$users = $this->USERS;
 
 		$return_url = $_POST['return'];
 
@@ -277,7 +277,6 @@ class forms extends Controller {
 		} catch (RedirectException $e) {
 			$e->redirect();
 		}
-
 	}
 
 	/**

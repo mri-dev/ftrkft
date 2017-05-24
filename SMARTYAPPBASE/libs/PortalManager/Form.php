@@ -12,7 +12,8 @@ class Form {
 			$this->response[$response[0]] = array(
 				'form' 	=> $response[0],
 				'type' 	=> $response[1],
-				'msg' 	=> $response[2]
+				'msg' 	=> $response[2],
+				'error_field' => $response[3]
 			);
 		}
 	}
@@ -20,6 +21,22 @@ class Form {
 	public function getFormId( $index )
 	{
 		return $this->response[ $index ]['form'];
+	}
+
+	public function getErrorFields( $index )
+	{
+		return explode(",", $this->response[ $index ]['error_field']);
+	}
+
+	public function hasError($index, $field )
+	{
+		$fields = $this->getErrorFields($index);
+
+		if (!empty($fields) && in_array($field, $fields)) {
+		 return true;
+		}
+
+		return false;
 	}
 
 	public function getType( $index )
