@@ -74,6 +74,16 @@ body{
   }
 }
 
+.btn.btn-danger {
+  background-color: $color-red;
+  border-color: darken($color-red, 5%);
+  color: white;
+
+  &:hover{
+    background-color: lighten($color-red, 5%);
+  }
+}
+
 .btn.btn-info {
   background-color: $color-blue;
   border-color: darken($color-blue, 5%);
@@ -290,7 +300,8 @@ header {
   min-height: 600px;
 }
 
-body.page404 .content-holder{
+body.page404 .content-holder,
+body.activationpage .content-holder{
     background-image: url('/dist/img/worldmap.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -1082,7 +1093,8 @@ footer {
 }
 
 .user-section{
-  &.user-register{
+  &.user-register,
+  &.user-login{
     section.info {
       background-color: rgba(245, 245, 245, 0.64);
       background-image: url(/dist/img/worldmap.svg);
@@ -1111,7 +1123,8 @@ footer {
         color: $color-primary-light;
       }
     }
-    section.register{
+    section.register,
+    section.login{
       .tabs {
         position: absolute;
         left: 50%;
@@ -1187,6 +1200,104 @@ footer {
           margin: 0 0 25px 0;
         }
       }
+    }
+  }
+
+  &.user-login{
+    section.info {
+      background-color: rgba(9, 171, 59, 0.58);
+      h1 {
+        color: #0c4629;
+        margin: 0;
+      }
+    }
+
+    .form {
+      width: 100% !important;
+      margin: 30px !important;
+
+      .actions {
+
+        a{
+          color: black;
+        }
+
+        a:hover {
+          color: $color-red;
+        }
+        .fa-stack {
+          color: $color-red;
+
+          i {
+            font-size: 22px;
+          }
+
+          .fa-stack-1x{
+            color: white;
+            font-size: 14px;
+            line-height: 21px;
+          }
+        }
+      }
+
+      h1 {
+        text-transform: uppercase;
+        color: $color-primary-light;
+        margin: 0 0 25px 0;
+        font-weight: bold;
+      }
+    }
+
+    .reg-instruction{
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+
+      .text{
+        line-height: 1.3;
+        font-size: 1.2em;
+      }
+
+      a {
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+.activator-content{
+  min-height: 600px;
+  position: relative;
+
+  .pw{
+    background: transparentize(white, 0.3);
+    padding: 25px;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform:translate(-50%, -50%);
+          transform:translate(-50%, -50%);
+    h1 {
+      text-transform: uppercase;
+      color: $color-primary-light;
+      margin: 0 0 15px 0;
+      font-weight: bold;
+
+      i {
+        font-size: 64px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .sub {
+      font-size: 1.2em;
+      color: #444444;
+      margin-bottom: 10px;
+      -webkit-box-shadow: 0 15px 54px -27px #000000;
+      -moz-box-shadow: 0 15px 54px -27px #000000;
+      box-shadow: 0 15px 54px -27px #000000;
+      border-radius: 8px;
     }
   }
 }

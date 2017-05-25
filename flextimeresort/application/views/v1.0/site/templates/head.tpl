@@ -14,7 +14,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="{if $404page}page404{/if}">
+<body class="{$bodyclass}{if $404page}page404{/if}">
 <header>
   <div class="top">
     <div class="page-width">

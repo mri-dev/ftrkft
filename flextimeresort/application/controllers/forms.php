@@ -273,7 +273,7 @@ class forms extends Controller {
 
 		try {
 			$users->add( $_POST );
-			\PortalManager\Form::formDone( 'Sikeres regisztráció! E-mail címére küldünk egy aktiváló e-mailt, amivel aktiválhatja regisztrációját. Bizonyos levelező szolgáltatókhoz később érkezhet meg az e-mail. A biztonság kedvéért ellenőrizze a SPAM mappákat is.', false, $return_url );
+			\PortalManager\Form::formDone( $this->lang('REGISTER_SIKERES_MSG'), false, $return_url );
 		} catch (RedirectException $e) {
 			$e->redirect();
 		}

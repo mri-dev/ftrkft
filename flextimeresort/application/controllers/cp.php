@@ -47,6 +47,20 @@ class cp extends Controller {
 		$this->out( 'SEOSERVICE', $SEO );
 	}
 
+	function test()
+	{
+		// Aktiváló e-mail kiküldése
+		/*$mail = new Mailer( $this->settings['page_title'], $this->settings['email_noreply_address'], $this->settings['mail_sender_mode'] );
+
+		$mail->add( 'molnar.istvan@web-pro.hu' );
+		$mail->setSubject( 'Teszt' );
+		$mail->setMsg( $this->smarty->fetch( 'mails/hu/test.tpl' ) );
+
+		$re = $mail->sendMail();
+*/
+		print_r($re);
+	}
+
 	function forms() {
 		$this->hidePatern = true;
 
@@ -95,7 +109,6 @@ class cp extends Controller {
 				break;
 			}
 		}
-
 	}
 
 	public function menu()

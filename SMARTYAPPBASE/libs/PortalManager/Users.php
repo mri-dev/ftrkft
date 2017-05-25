@@ -84,7 +84,7 @@ class Users
 		$ret[user_group] 		= $ret[data][user_group];
 
 		switch ( $ret[user_group] ) {
-			case $this->settings['USERS_GROUP_EMPLOYER']:
+			case $this->settings['USERS_GROUP_MUNKAADO']:
 			break;
 			case $this->settings['USERS_GROUP_USER']:
 			break;
@@ -473,19 +473,20 @@ class Users
 	}
 
 	function activate( $activate_arr ){
+
 		$email 	= $activate_arr[0];
 		$userID = $activate_arr[1];
 		$pwHash = $activate_arr[2];
 
-		if($email == '' || $userID == '' || $pwHash == '') throw new \Exception('Hibás azonosító');
+		if($email == '' || $userID == '' || $pwHash == '') throw new \Exception($this->controller->lang('HIBAS_AZONOSITO'));
 
 		$q = $this->db->query("SELECT * FROM ".self::TABLE_NAME." WHERE ID = $userID and email = '$email' and password = '$pwHash'");
 
-		if($q->rowCount() == 0) throw new \Exception('Hibás azonosító');
+		if($q->rowCount() == 0) throw new \Exception($this->controller->lang('HIBAS_AZONOSITO'));
 
 		$d = $q->fetch(\PDO::FETCH_ASSOC);
 
-		if(!is_null($d[aktivalva]))  throw new \Exception('A fiók már aktiválva van!');
+		if(!is_null($d["aktivalva"]))  throw new \Exception('<i class="fa fa-check-circle-o"></i><br>'.$this->controller->lang('A_FIOK_MAR_AKTIVALVA'));
 
 		$this->db->update(self::TABLE_NAME,
 			array(
@@ -562,8 +563,8 @@ class Users
 			self::TABLE_NAME,
 			array(
 				'email' 		=> trim($data[email]),
-				'nev' 			=> trim($data[name]),
-				'jelszo' 		=> \Hash::jelszo($data[password2]),
+				'name' 			=> trim($data[name]),
+				'password' 		=> \Hash::jelszo($data[password2]),
 				'user_group' 	=> $user_group
 			)
 		);
@@ -986,33 +987,33 @@ class Users
 	{
 		$data = $this->db->query( sprintf(" SELECT * FROM ".self::TABLE_NAME." WHERE user_group = $user_group and email = '%s';", $email) )->fetch(\PDO::FETCH_ASSOC);
 
+		$lang = $this->settings['language'];
+
 		if( !$data ) return false;
 
-		$account_details = $this->getAccountDetails( $data['ID'] );
+		$account_details = $this->getData( $data['ID'], 'ID' );
 
-		$activateKey = base64_encode(trim($email).'='.$data['ID'].'='.$data['jelszo']);
+		$activateKey = $this->settings['page_url'].'/activate/'.base64_encode(trim($email).'='.$data['ID'].'='.$data['password']);
 
 		// Aktiváló e-mail kiküldése
 		$mail = new Mailer( $this->settings['page_title'], $this->settings['email_noreply_address'], $this->settings['mail_sender_mode'] );
 		$mail->add( $email );
 
-		$this->smarty->assign( 'company', trim($data['nev']) );
-		$this->smarty->assign( 'nev', trim($account_details['contact_name']) );
-		$this->smarty->assign( 'activateKey', $activateKey );
-		$this->smarty->assign( 'infoMsg', $this->lang['lng_mail_donotreply'] );
+		$this->smarty->assign( 'activateURL', $activateKey );
+		$this->smarty->assign( 'account', $account_details );
 
 		switch( $user_group ) {
 			// Felh.
 			case $this->settings['USERS_GROUP_USER']:
-				$mail->setSubject( $this->lang['lng_mail_user_reg_activation_title'] );
+				$mail->setSubject( $this->controller->lang('MAIL_REGISZTRACIO_ACTIVATION_TITLE') );
 			break;
 			// Munkáltató
-			case $this->settings['USERS_GROUP_EMPLOYER']:
-				$mail->setSubject( $this->lang['lng_mail_employer_reg_activation_title'] );
+			case $this->settings['USERS_GROUP_MUNKAADO']:
+				$mail->setSubject( $this->controller->lang('MAIL_REGISZTRACIO_ACTIVATION_TITLE') );
 			break;
 		}
 
-		$mail->setMsg( $this->smarty->fetch( 'mails/register_activation.tpl' ) );
+		$mail->setMsg( $this->smarty->fetch( 'mails/'.$lang.'/register_activation.tpl' ) );
 		$re = $mail->sendMail();
 	}
 
@@ -1284,7 +1285,7 @@ class Users
 			  `last_login_date` datetime DEFAULT NULL,
 			  `user_group` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0: user, 10: admin',
 			  `engedelyezve` tinyint(1) DEFAULT '1',
-			  `aktivalva` tinyint(1) NOT NULL DEFAULT '0'
+			  `aktivalva` datetime DEFAULT NULL
 			) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
 			$qry[] = "ALTER TABLE `".self::TABLE_NAME."`

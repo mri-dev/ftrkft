@@ -1,0 +1,11 @@
+{include file="mails/header.tpl"}
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien ex, aliquet non tincidunt sit amet, luctus sed tellus. In metus ante, fermentum eget facilisis eget, sodales vel ipsum. Aliquam finibus varius neque ut mattis. Pellentesque sit amet aliquet arcu, mattis eleifend libero. Donec mattis tempus turpis a pharetra. Donec aliquet nisl non tellus faucibus, a porttitor nisi mattis. Nam id nulla vel lacus vestibulum molestie varius id leo. Nullam auctor sodales diam, a varius tellus pharetra vel. Sed rhoncus quis mi et porttitor.
+</p><p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien ex, aliquet non tincidunt sit amet, luctus sed tellus. In metus ante, fermentum eget facilisis eget, sodales vel ipsum. Aliquam finibus varius neque ut mattis. Pellentesque sit amet aliquet arcu, mattis eleifend libero. Donec mattis tempus turpis a pharetra. Donec aliquet nisl non tellus faucibus, a porttitor nisi mattis. Nam id nulla vel lacus vestibulum molestie varius id leo. Nullam auctor sodales diam, a varius tellus pharetra vel. Sed rhoncus quis mi et porttitor.
+</p><p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien ex, aliquet non tincidunt sit amet, luctus sed tellus. In metus ante, fermentum eget facilisis eget, sodales vel ipsum. Aliquam finibus varius neque ut mattis. Pellentesque sit amet aliquet arcu, mattis eleifend libero. Donec mattis tempus turpis a pharetra. Donec aliquet nisl non tellus faucibus, a porttitor nisi mattis. Nam id nulla vel lacus vestibulum molestie varius id leo. Nullam auctor sodales diam, a varius tellus pharetra vel. Sed rhoncus quis mi et porttitor.
+</p><p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien ex, aliquet non tincidunt sit amet, luctus sed tellus. In metus ante, fermentum eget facilisis eget, sodales vel ipsum. Aliquam finibus varius neque ut mattis. Pellentesque sit amet aliquet arcu, mattis eleifend libero. Donec mattis tempus turpis a pharetra. Donec aliquet nisl non tellus faucibus, a porttitor nisi mattis. Nam id nulla vel lacus vestibulum molestie varius id leo. Nullam auctor sodales diam, a varius tellus pharetra vel. Sed rhoncus quis mi et porttitor.
+</p>
+{include file="mails/footer.tpl"}

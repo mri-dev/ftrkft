@@ -47,6 +47,13 @@ class user extends Controller{
 			$this->out('usergroup', $usergroup);
 		}
 
+		function belepes()
+		{
+			$this->temp = '/'.__FUNCTION__;
+
+			$this->out('hide_home_top', true);
+		}
+
 		function dashboard() {
 			//$this->temp = '/'.__FUNCTION__;
 		}
@@ -64,31 +71,7 @@ class user extends Controller{
 
 		function settings() {
 			//$this->temp = '/'.__FUNCTION__;
-			$user = $this->getVar('user');
-
-			// Kompetencia adatok
-			$c = (new Categories( \PortalManager\Categories::TYPE_KOMPETENCIAK, array( 'db' => $this->db ) ))->getTree();
-			$this->out( 'kompetenciak', $c );
-
-			// Kompetencia ID-k
-			$this->out( 'kompetencia_id', $user['data']['kompetenciak'] );
-
-			// Területek
-			$c = (new Categories( 'teruletek', array(
-				'db' => $this->db,
-				'orderby' => 'neve',
-				'order' => 'ASC'
-			) ))->getTree( 1 );
-
-			// Terület adatok
-			$this->out( 'teruletek', $c );
-			// Családi állapotok
-			$this->out( 'marital_statuses', $this->User->csaladi_allapotok );
-			$this->out( 'budapest_id', 	\PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID );
-			$this->out( 'districts', 	(new Categories( \PortalManager\Categories::TYPE_TERULETEK, array( 'db' => $this->db ) ))->getChildCategories( \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID ) );
-			$this->out( 'tooltip_logo', \PortalManager\Formater::tooltip( $this->User->lang['lng_users_profilimg']));
 		}
-
 
 		function logout()
 		{
