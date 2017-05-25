@@ -301,7 +301,8 @@ header {
 }
 
 body.page404 .content-holder,
-body.activationpage .content-holder{
+body.activationpage .content-holder,
+body.resetpassword .content-holder{
     background-image: url('/dist/img/worldmap.svg');
     background-repeat: no-repeat;
     background-position: center;
@@ -1094,7 +1095,8 @@ footer {
 
 .user-section{
   &.user-register,
-  &.user-login{
+  &.user-login,
+  &.user-resetpassword{
     section.info {
       background-color: rgba(245, 245, 245, 0.64);
       background-image: url(/dist/img/worldmap.svg);
@@ -1261,6 +1263,23 @@ footer {
       a {
         margin-top: 25px;
       }
+    }
+  }
+
+  &.user-resetpassword{
+    min-height: 600px;
+    position: relative;
+    background: transparentize($color-primary, 0.4);
+
+    section.resetpassword{
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 25px;
+      -webkit-transform:translate(-50%, -50%);
+      transform:translate(-50%, -50%);
+      background: white;
     }
   }
 }

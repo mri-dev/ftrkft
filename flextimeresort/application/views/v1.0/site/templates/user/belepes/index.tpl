@@ -16,8 +16,7 @@
               <form class="" action="/forms/auth" method="post">
     						<input type="hidden" name="return" value="{$smarty.server.REQUEST_URI}">
                 <input type="hidden" name="form" value="1">
-                <input type="hidden" name="session_path" value="/user/belepes
-                ">
+                <input type="hidden" name="session_path" value="/user/belepes">
                 <input type="hidden" name="user_group" value="{$usergroup}">
                 <h1>{lang text="BEJELENTKEZES_FIOKJABA"}</h1>
     						<div class="row col-vertical-middle">

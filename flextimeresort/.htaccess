@@ -30,6 +30,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^activate/(.+)$ index.php?tag=activate/reg/&key=$1 [NC,QSA,L]
 
+# Jelszó generálás
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^elfelejtett-jelszo(/)?$ index.php?tag=resetpassword [NC,QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^cp/cat-([a-zA-Z_]+)(/)?(edit|del)?(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1&mod=$3&id=$5 [NC,QSA,L]
