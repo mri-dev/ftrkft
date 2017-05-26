@@ -286,19 +286,15 @@ class forms extends Controller {
 		$this->hidePatern = true;
 
 		// Users class
-		$users = $this->User;
+		$users = $this->USERS;
 
 		$return_url = $_POST['return'];
 
-		switch( $_POST['for'] ) {
-			case 'user':
-				try {
-					$users->login( $_POST );
-					\PortalManager\Form::formDone( 'Sikeresen bejelentkezett!', false, $return_url );
-				} catch (RedirectException $e) {
-					$e->redirect();
-				}
-			break;
+		try {
+			$users->login( $_POST );
+			\PortalManager\Form::formDone( $this->lang('SIKERESEN_BEJELENTKEZETT'), false, $return_url );
+		} catch (RedirectException $e) {
+			$e->redirect();
 		}
 	}
 
@@ -411,15 +407,11 @@ class forms extends Controller {
 	 * **/
 	public function resetpassword()
 	{
-		$lang = array_merge (
-	        $this->lang->loadLangText( 'class/users', true )
-	    );
 
 		/* */
 		try {
-			$this->User->resetPassword( $_POST['data'], $_POST['user_group'] );
-
-			\PortalManager\Form::formDone( $lang['lng_users_form_password_reset_success'], false, '/'.__FUNCTION__ );
+			$this->USERS->resetPassword( $_POST['data'] );
+			\PortalManager\Form::formDone( $this->lang('RESETPASS_JELSZOGENERALAS_SIKERULT', array('email', $_POST['data']['email'])), false, $_POST['return'] );
 		} catch (RedirectException $e) {
 			$e->redirect();
 		}

@@ -35,6 +35,21 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^elfelejtett-jelszo(/)?$ index.php?tag=resetpassword [NC,QSA,L]
 
+# Ügyfélkapu üzenetek
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ugyfelkapu/uzenetek/(inbox|outbox)$ index.php?tag=user/ugyfelkapu&p=uzenetek&sub=$1 [NC,QSA,L]
+
+# Ügyfélkapu profil
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ugyfelkapu/profil/([a-z]*)(/)?$ index.php?tag=user/ugyfelkapu&p=profil&sub=$1 [NC,QSA,L]
+
+# Ügyfélkapu
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ugyfelkapu(/)?(.+)?(/)?$ index.php?tag=user/ugyfelkapu&p=$2 [NC,QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^cp/cat-([a-zA-Z_]+)(/)?(edit|del)?(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1&mod=$3&id=$5 [NC,QSA,L]

@@ -122,28 +122,25 @@ class Users
 		return $this->alerts;
 	}
 
-	public function resetPassword( $data, $group = false ){
+	public function resetPassword( $data ){
 		$password =  rand(1111111,9999999);
 
-		if( !$group ){
-			$this->error( $this->lang['lng_users_form_password_wronggroupid'] );
+		if(!$this->userExists( 'email', $data['email'])){
+			$this->error( $this->controller->lang('NINCS_ILYEN_EMAIL_CIM') );
 		}
 
-		if(!$this->userExists( 'email', $data['email'], $group )){
-			$this->error( $this->lang['lng_users_form_password_wrongemail'] );
-		}
-
-		$user = $this->getData( $data['email'], 'email', $group);
+		$user = $this->getData( $data['email'], 'email');
 
 		$this->db->update(self::TABLE_NAME,
 			array(
-				'jelszo' => \Hash::jelszo($jelszo)
+				'password' => \Hash::jelszo($password)
 			),
-			"email = '".$data['email']."' and user_group = ".$group
+			sprintf("email = '%s'", $data['email'] )
 		);
 
+
 		$arg = array();
-		$arg['password'] 	= $jelszo;
+		$arg['password'] 	= $password;
 		$arg['user'] 		= $user;
 
 		(new Mails( $this, 'password_reset', $data['email'], $arg ))->send();
@@ -421,29 +418,30 @@ class Users
 	function login($data){
 		$re 	= array();
 
-		$user_group = ($data['user_group'] == '') ? false: (int)$data['user_group'];
-
-
-		if( empty($data['email']) || empty($data['pw'])) {
-			$this->error( $this->lang['lng_form_missing_details'] );
+		if( empty($data['email']) || empty($data['password'])) {
+			$this->error( $this->controller->lang('HIANYZO_ADATOK') );
 		}
 
-		if(!$this->userExists('email',$data['email'], $user_group)){
-			$this->error( $this->lang['lng_form_login_notregisteredemail'] );
+		if(!$this->userExists('email',$data['email'])){
+			$this->error( $this->controller->lang('EZ_EZ_EMAIL_NINCS_REGISZTRALVA') );
 		}
 
-		if(!$this->validUser($data['email'],$data[pw], $user_group)){
-			$this->error( $this->lang['lng_form_login_invaliddetails'] );
+		try {
+			if(!$this->validUser($data['email'],$data['password'])){
+				$this->error( $this->controller->lang('HIBAS_ADATOKAT_ADOTT_MEG') );
+			}
+		} catch (Exception $e) {
+			$this->error( $e->getMessage() );
 		}
 
-		if(!$this->isActivated($data[email], $user_group)){
-			$resendemailtext = '<form method="post" action=""><div class="text-form">'. sprintf( $this->lang['lng_form_login_resendactivatoremail'], $data['email'] ) .'</div></form>';
 
-			$this->error( $this->lang['lng_form_login_notactivatedaccount'].'<br>'.$resendemailtext  );
+
+		if(!$this->isActivated($data[email])){
+			$this->error( $this->controller->lang('AZ_ON_FIOKJA_MEG_NINCS_AKTIVALVA') );
 		}
 
-		if(!$this->isEnabled($data[email], $user_group)){
-			$this->error( $this->lang['lng_form_login_accountblocked'] );
+		if(!$this->isEnabled($data[email])){
+			$this->error( $this->controller->lang('BLOKKOLT_FIOK') );
 		}
 
 		// Refresh
@@ -452,10 +450,10 @@ class Users
 			array(
 				'last_login_date' => NOW
 			),
-			"user_group = ".$user_group." and email = '".$data[email]."'"
+			"email = '".$data[email]."'"
 		);
 
-		$data 	= $this->getData( $data[email], 'email', $user_group  );
+		$data 	= $this->getData( $data[email], 'email' );
 
 		\Session::set( 'loginsession_id', $data[ID] );
 		\Session::set( 'loginsession_ug', $user_group );

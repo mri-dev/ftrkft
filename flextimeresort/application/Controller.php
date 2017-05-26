@@ -19,6 +19,7 @@ class Controller
 	public $LANGUAGES;
 	public $vars;
 	public $db;
+	public $ME = null;
 
     function __construct($arg = array()){
         Session::init();
@@ -68,13 +69,10 @@ class Controller
 
     $user = $this->USERS->get( self::$user_opt );
 
-		$me = new User(
+		$this->ME = new User(
 			$user['data']['ID'],
 			array(
-				'db' => $this->db,
-				'lang' => $lang_users,
-				'smarty' => $this->smarty,
-				'settings' => $this->settings
+				'controller' => $this
 			)
 		);
 
@@ -85,6 +83,7 @@ class Controller
 		$this->out( 'settings', $this->settings );
 		$this->out( 'template_root', $template_root );
 		$this->out( 'defaultlang', $this->LANGUAGES->isDefaultLangNow());
+		$this->out( 'me', $this->ME);
 
 		if( $_GET['logout'] == '1' ) {
         $this->USERS->logout();

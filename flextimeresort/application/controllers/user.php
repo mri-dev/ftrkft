@@ -31,6 +31,10 @@ class user extends Controller{
 		function regisztracio() {
 			$this->temp = '/'.__FUNCTION__;
 
+			if ($this->ME->logged()) {
+				\Helper::reload('/ugyfelkapu'); exit;
+			}
+
 			$as = (isset($_GET['as']) && !empty($_GET['as'])) ? $_GET['as'] : 'munkavallalo';
 			$usergroup = -1;
 			switch ($as) {
@@ -51,11 +55,15 @@ class user extends Controller{
 		{
 			$this->temp = '/'.__FUNCTION__;
 
+			if ($this->ME->logged()) {
+				\Helper::reload('/ugyfelkapu'); exit;
+			}
+
 			$this->out('hide_home_top', true);
 		}
 
-		function dashboard() {
-			//$this->temp = '/'.__FUNCTION__;
+		function ugyfelkapu() {
+			$this->temp = '/'.__FUNCTION__;
 		}
 
 		function applicant_for_job() {

@@ -10,15 +10,14 @@
 				<div class="form">
           <div class="row col-vertical-middle">
             <div class="col-md-6">
-              {if $form}
-    						{$form->getMsg(1)}
-    					{/if}
               <form class="" action="/forms/auth" method="post">
     						<input type="hidden" name="return" value="{$smarty.server.REQUEST_URI}">
                 <input type="hidden" name="form" value="1">
                 <input type="hidden" name="session_path" value="/user/belepes">
-                <input type="hidden" name="user_group" value="{$usergroup}">
                 <h1>{lang text="BEJELENTKEZES_FIOKJABA"}</h1>
+	              {if $form}
+	    						{$form->getMsg(1)}
+	    					{/if}
     						<div class="row col-vertical-middle">
     							<div class="col-md-12 {if $form && $form->hasError(1, 'email')}input-error{/if}">
     								<label for="email">{lang text="EMAIL"} *</label>

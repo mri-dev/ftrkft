@@ -20,8 +20,13 @@
     <div class="page-width">
       <nav>
         <ul class="navi">
+          {if $me && $me->logged()}
+          <li class="account"><a href="/ugyfelkapu">{lang text="BEJELENTKEZVE_MINT_XY" who=$me->getName()}</a></li>
+          <li class="account account-logout"><a data-toggle="tooltip" data-placement="bottom" title="{lang text='KIJELENTKEZES'}" href="/ugyfelkapu/?logout=1"><i class="fa fa-sign-out"></i></a></li>
+          {else}
           <li><a href="/belepes"><img src="{$smarty.const.IMG}icons/white/user.svg" class="i15" alt="{lang text="BELEPES"}">{lang text="BELEPES"}</a></li>
           <li><a href="/regisztracio"><img src="{$smarty.const.IMG}icons/white/lock.svg" class="i15" alt="{lang text="REGISZTRACIO"}">{lang text="REGISZTRACIO"}</a></li>
+          {/if}
           <li><a href="/ugyfelkapu"><img src="{$smarty.const.IMG}icons/white/user_add.svg" class="i15" alt="{lang text="UGYFELKAPU"}">{lang text="UGYFELKAPU"}</a></li>
           <li><a href="/kapcsolat"><img src="{$smarty.const.IMG}icons/white/envelope.svg" class="i15" alt="{lang text="KAPCSOLAT"}">{lang text="KAPCSOLAT"}</a></li>
           <li class="social-before"></li>

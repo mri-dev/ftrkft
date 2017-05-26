@@ -227,6 +227,7 @@ header {
       float: right;
       background: lighten($color-grey, 25%);
       height: 36px;
+      border: none !important;
 
       ul{
       position: relative;
@@ -269,6 +270,22 @@ header {
             }
             &.googleplus:hover {
               background: #e85050;
+            }
+          }
+
+          &.account {
+            a{
+              padding: 0;
+            }
+            &.account-logout{
+              -webkit-transform: skewX(-30deg);
+              transform: skewX(-30deg);
+              a{
+                padding:  0 10px;
+                -webkit-transform: skewX(30deg);
+              transform: skewX(30deg);
+              }
+              border-right:  1px solid #c5c5c5;
             }
           }
         }
@@ -703,7 +720,7 @@ input[type=checkbox].ccb:checked + label:before {
   .login-holder{
     position: relative;
 
-    .login-container{
+    .login-container {
       background: lighten($color-grey, 50%);
       border: 2px solid lighten($color-grey, 40%);
       padding: 5px 15px 15px 15px;
@@ -806,6 +823,110 @@ input[type=checkbox].ccb:checked + label:before {
           font-size: 1em;
           text-transform: uppercase;
           width: 100%;
+        }
+      }
+
+      &.as-logged{
+        background: #e8e8e8;
+        border: 1px solid #c3c3c3;
+        padding: 0;
+        nav {
+          ul, li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+          }
+
+          li {
+            font-size: 1.1em;
+            border-bottom: 1px solid #e3e3e3;
+
+            a {
+              padding: 4px 8px;
+              background: #f1f1f1;
+              display: block;
+              color: #999999;
+              position: relative;
+
+              i {
+                color: $color-primary-light;
+              }
+
+              &:hover{
+                background: $color-primary-light;
+                color: white;
+
+                i {
+                  color: white;
+                }
+              }
+
+              .badge {
+                position: absolute;
+                background: $color-red;
+                color: white;
+                right: 5px;
+                top: 50%;
+                font-size: 1em;
+                -webkit-transform:translateY(-50%);
+                transform:translateY(-50%);
+              }
+            }
+
+            &.header {
+              padding: 10px 8px;
+              text-transform: uppercase;
+              color: $color-primary-light;
+              font-weight: bold;
+            }
+
+            &.logout {
+              text-align: center;
+              font-size: 1em;
+
+              a{
+                color: #999999;
+
+                i {
+                  color: #999999;
+                }
+              }
+
+              a:hover{
+                background: $color-red;
+                color: white;
+
+                i {
+                  color: white;
+                }
+
+              }
+            }
+
+            &:last-child{
+              border-bottom: none;
+
+              a{
+                border-radius: 0 0 8px 8px;
+              }
+            }
+
+            &.active {
+              border-bottom: 1px solid darken($color-primary-light, 10%);
+              a{
+                background: $color-primary-light;
+                color: white;
+                i {
+                  color: white;
+                }
+              }
+            }
+          }
+
+          .ico {
+            text-align: center;
+            margin: 0 8px 0 4px;
+          }
         }
       }
     }
@@ -1269,9 +1390,30 @@ footer {
   &.user-resetpassword{
     min-height: 600px;
     position: relative;
-    background: transparentize($color-primary, 0.4);
+    background: rgba(153, 0, 0, 0.72);
+    text-align: center;
 
     section.resetpassword{
+      text-align: center;
+
+      h1 {
+        text-transform: uppercase;
+        color: white;
+        margin: 0 0 50px 0;
+        font-weight: 300;
+      }
+
+      .form{
+        background: white;
+        padding: 25px;
+
+        h2 {
+          color: black;
+          font-weight: bold;
+          margin: 0 0 25px 0;
+        }
+      }
+
       width: 50%;
       position: absolute;
       top: 50%;
@@ -1279,7 +1421,6 @@ footer {
       padding: 25px;
       -webkit-transform:translate(-50%, -50%);
       transform:translate(-50%, -50%);
-      background: white;
     }
   }
 }
