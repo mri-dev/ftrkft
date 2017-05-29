@@ -715,6 +715,15 @@ input[type=checkbox].ccb:checked + label:before {
         background: transparentize(lighten($color-primary-light, 40%), 0.8);
       }
     }
+
+    &.ugyfelkapu{
+      padding: 25px 0;
+
+      h1{
+        text-transform: uppercase;
+        font-size: 1.8em;
+      }
+    }
   }
 
   .login-holder{
@@ -971,6 +980,21 @@ input[type=checkbox].ccb:checked + label:before {
     }
   }
 }
+
+.ugyfelkapu-content-holder{
+  .inside{
+    background: #ffffff;
+    min-height: 500px;
+  }
+}
+
+.home-instruction.ugyfelkapu .login-holder .login-container{
+  margin-top: 0 !important;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
 footer {
   background: darken($color-grey, 15%);
   border-top: 20px solid lighten($color-primary-light, 10%);
@@ -1460,4 +1484,9 @@ footer {
       border-radius: 8px;
     }
   }
+}
+
+body.ugyfelkapu-view{
+  background-color: #ffffff;
+  background-image: none;
 }

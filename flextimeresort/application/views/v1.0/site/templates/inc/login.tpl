@@ -3,12 +3,13 @@
   <nav>
     <ul>
       <li class="header"><span class="ico"><i class="fa fa-gears"></i></span> {lang text="SAJAT_PROFIL"}</li>
-      <li class="{if $smarty.get.tag='user/ugyfelkapu' && $smarty.get.p == 'beallitasok'}active{/if}"><a href="/ugyfelkapu/beallitasok"><span class="ico"><i class="fa fa-gear"></i></span> {lang text="BEALLITASOK"}</a></li>
-      <li class="{if $smarty.get.tag='user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == ''}active{/if}"><a href="/ugyfelkapu/"><span class="ico"><i class="fa fa-commenting-o"></i></span> {lang text="ERTESITO_KOSZPONT"}</a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'beallitasok'}active{/if}"><a href="/ugyfelkapu/beallitasok"><span class="ico"><i class="fa fa-gear"></i></span> {lang text="BEALLITASOK"}</a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>
       {if $me && $me->isMunkaado()}
       <li><a href="/ugyfelkapu/uj_allashirdetes"><span class="ico"><i class="fa fa-plus"></i></span> {lang text="UJ_ALLASHIRDETES_FELTOLTESE"}</a></li>
       {/if}
-      <li class="{if $smarty.get.tag='user/ugyfelkapu' && $smarty.get.p == 'uzenetek'}active{/if}"><a href="/ugyfelkapu/uzenetek/inbox"><span class="ico"><i class="fa fa-envelope-square"></i></span> {lang text="UZENETEK_BEERKEZETT"} <span class="badge">0</span></a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'uzenetek'}active{/if}"><a href="/ugyfelkapu/uzenetek/inbox"><span class="ico"><i class="fa fa-envelope-square"></i></span> {lang text="UZENETEK_BEERKEZETT"} <span class="badge">0</span></a></li>
       <li class="logout"><a href="/ugyfelkapu/?logout=1">{lang text="KIJELENTKEZES"} <i class="fa fa-sign-out"></i></a></li>
     </ul>
   </nav>

@@ -64,6 +64,36 @@ class user extends Controller{
 
 		function ugyfelkapu() {
 			$this->temp = '/'.__FUNCTION__;
+
+			if (!$this->ME->logged()) {
+				\Helper::reload('/belepes?re='.$_SERVER['REQUEST_URI']); exit;
+			}
+
+			$subtitle = '';
+
+			switch ($_GET['p']) {
+				case 'beallitasok':
+					$subtitle = $this->lang('BEALLITASOK');
+				break;
+				case 'profil':
+					$subtitle = $this->lang('PROFIL_SZERKESZTES');
+				break;
+				case 'uzenetek':
+					$subtitle = $this->lang('UZENETEK');
+
+					switch ($_GET['sub']) {
+						case 'inbox':
+							$subtitle .= ' / '.$this->lang('BEJOVO');
+						break;
+					}
+				break;
+			}
+
+			$this->out('hide_home_top', true);
+			$this->out('hide_searcher', true);
+			$this->out('show_ugyfelkapu_top', true);
+			$this->out('subtitle', ($subtitle != '') ? ' / <strong>'.$subtitle.'</strong>' : '');
+			$this->out('bodyclass', 'ugyfelkapu-view');
 		}
 
 		function applicant_for_job() {

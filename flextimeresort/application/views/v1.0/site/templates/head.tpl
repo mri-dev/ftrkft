@@ -85,3 +85,6 @@
 {if !$hidehometop}
   {include file='inc/home_top.tpl'}
 {/if}
+{if $show_ugyfelkapu_top}
+  {include file='inc/ugyfelkapu_top.tpl'}
+{/if}

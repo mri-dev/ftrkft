@@ -288,7 +288,7 @@ class forms extends Controller {
 		// Users class
 		$users = $this->USERS;
 
-		$return_url = $_POST['return'];
+		$return_url = (isset($_GET['re'])) ? $_GET['re'] : $_POST['return'];
 
 		try {
 			$users->login( $_POST );
