@@ -307,7 +307,6 @@ class forms extends Controller {
 
 		$return_url = $_POST['return'];
 
-
 		switch( $_POST['for'] ) {
 			// Munkavállaló alapadatok módosítása
 			case 'settings_basic':
@@ -328,22 +327,16 @@ class forms extends Controller {
 			break;
 			// Munkavállaló jelszó csere
 			case 'settings_password':
-
-		        $lang = array_merge (
-		            $this->lang->loadLangText( 'class/users', true ),
-		            $this->lang->loadLangText( 'mails', true )
-		        );
-
-		        // Users class
-				$users 	= $this->User;
+		 		// Users class
+				$users 	= $this->USERS;
 				$user 	= $this->getVar('user');
 
-		        /* */
+		    /* */
 				try {
-					$users->changePassword( $user['data']['ID'], $_POST['data'] );
-					\PortalManager\Form::formDone( $lang['lng_users_form_password_success_change'], false, '/user/settings/', 'password' );
+					$users->changePassword( $this->ME->getId(), $_POST['data'] );
+					\PortalManager\Form::formDone($this->lang('PASSWORD_SUCCESS_CHANGE'), false, $return_url, 'jelszo' );
 				} catch (RedirectException $e) {
-					$e->redirect( 'password' );
+					$e->redirect( 'jelszo' );
 				}
 				/* */
 			break;
@@ -381,7 +374,7 @@ class forms extends Controller {
 				$users 	= $this->User;
 				$user 	= $this->getVar('user');
 
-		        /* */
+		    /* */
 				try {
 					$ad = new Ad( $_POST['id'], array(
 						'db' => $this->db,
@@ -407,7 +400,6 @@ class forms extends Controller {
 	 * **/
 	public function resetpassword()
 	{
-
 		/* */
 		try {
 			$this->USERS->resetPassword( $_POST['data'] );

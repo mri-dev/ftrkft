@@ -71,7 +71,9 @@ class user extends Controller{
 
 			$subtitle = '';
 
-			switch ($_GET['p']) {
+			$p = rtrim($_GET['p'], "/");
+
+			switch ($p) {
 				case 'beallitasok':
 					$subtitle = $this->lang('BEALLITASOK');
 				break;
@@ -88,7 +90,7 @@ class user extends Controller{
 					}
 				break;
 			}
-
+			$this->out('subpage', $p);
 			$this->out('hide_home_top', true);
 			$this->out('hide_searcher', true);
 			$this->out('show_ugyfelkapu_top', true);

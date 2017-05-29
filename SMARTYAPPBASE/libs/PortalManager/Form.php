@@ -53,7 +53,7 @@ class Form {
 				$head = '<h4><i class="fa fa-check"></i> Rendszerüzenet</h4>';
 			break;
 		}
-		return '<div class="alert alert-'.$this->getType( $index ).'">' .$head . $this->response[ $index ]['msg'] . '</div>';
+		return '<div class="alert alert-'.$this->getType( $index ).'">' .$head . nl2br($this->response[ $index ]['msg']) . '</div>';
 	}
 
 	public function getPost( $key = false, $array_item = false )

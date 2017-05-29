@@ -218,11 +218,11 @@ class Mails
 	}
 
 	// Felhasználó jelszó csere
-	private function password_change()
+	private function password_changed()
 	{
-		$this->setSubject($this->controller->lang['lng_mailtemp_subject_passwordchange']);
+		$this->setSubject($this->controller->controller->lang('MAIL_CHANGEDPASSWORD_SUBJECT'));
 
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_change.tpl' ) );
+		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_changed.tpl' ) );
 
 		return $this;
 	}

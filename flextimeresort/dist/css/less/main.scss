@@ -65,22 +65,22 @@ body{
 }
 
 .btn.btn-success {
-  background-color: $color-primary-light;
-  border-color: darken($color-primary-light, 5%);
+  background-color: #5FC96D;
+  border-color: darken(#5FC96D, 5%);
   color: white;
 
   &:hover{
-    background-color: lighten($color-primary-light, 5%);
+    background-color: lighten(#5FC96D, 5%);
   }
 }
 
 .btn.btn-danger {
-  background-color: $color-red;
-  border-color: darken($color-red, 5%);
+  background-color: #ED4C5D;
+  border-color: darken(#ED4C5D, 5%);
   color: white;
 
   &:hover{
-    background-color: lighten($color-red, 5%);
+    background-color: lighten(#ED4C5D, 5%);
   }
 }
 
@@ -1489,4 +1489,25 @@ footer {
 body.ugyfelkapu-view{
   background-color: #ffffff;
   background-image: none;
+
+  .group{
+    margin: 25px 0 15px 0;
+    h2{
+      color: $color-primary-light;
+      text-transform: uppercase;
+      margin: 0 0 5px 0;
+    }
+
+    h2 + .subtitle{
+      margin: 0 0 20px 0;
+      line-height: 1.4;
+      color: #888888;
+    }
+
+    .cont{
+      label {
+        font-size: 1em;
+      }
+    }
+  }
 }

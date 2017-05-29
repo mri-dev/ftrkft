@@ -354,39 +354,67 @@ class Users
 			$this->editAccountDetail( $userID, 'megye',	$megye );
 		}
 
-
 		return $this->lang['lng_users_form_success_saving'];
 	}
 
-	function changePassword($userID, $post){
+	function changePassword($userID, $post) {
 		extract($post);
+		$err_code = array();
+		$err = '';
+		$error = false;
 
-		if($userID == '') $this->error($this->lang['lng_users_form_password_miss_user']);
-		if($old == '')  $this->error($this->lang['lng_users_form_password_miss_old']);
-		if($new == '' || $new2 == '')  $this->error($this->lang['lng_users_form_password_miss_new']);
-		if($new !== $new2)  $this->error($this->lang['lng_users_form_password_miss_different']);
+		if($userID == '') {
+			$error = true;
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_USER') . "\r\n";
+		}
+
+		if($old == '') {
+			$error = true;
+			$err_code[] = 'old';
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_OLD') . "\r\n";
+		}
+
+		if($new == '' || $new2 == '') {
+			$error = true;
+			$err_code[] = 'new';
+			$err_code[] = 'new2';
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_NEW') . "\r\n";
+		}
+
+		if($new !== $new2) {
+			$error = true;
+			$err_code[] = 'new';
+			$err_code[] = 'new2';
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_DIFFERENT');
+		}
 
 		$password = \Hash::jelszo($old);
 
-		$checkOld = $this->db->query("SELECT id, email FROM ".self::TABLE_NAME." WHERE id = $userID and password = '$jelszo'");
+		$checkOld = $this->db->query("SELECT id, email FROM ".self::TABLE_NAME." WHERE id = {$userID} and password = '$password'");
+
 		if($checkOld->rowCount() == 0){
-			$this->error($this->lang['lng_users_form_password_miss_oldnotgood']);
+			$error = true;
+			$err_code[] = 'old';
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_OLDNOTGOOD');
+		}
+
+		if ($error) {
+			$this->error($err, $err_code);
 		}
 
 		$checkdata = $checkOld->fetch(\PDO::FETCH_ASSOC);
 
 		$this->db->update(self::TABLE_NAME,
 			array(
-				'jelszo' => \Hash::jelszo($new2)
+				'password' => \Hash::jelszo($new2)
 			),
 			"ID = $userID"
 		);
 
 		$marg = array();
-
 		$marg[password] = $new2;
 
-		(new Mails( $this, 'password_change', $checkdata['email'], $marg ))->send();
+		(new Mails( $this, 'password_changed', $checkdata['email'], $marg ))->send();
 	}
 
 	function getData( $account_id, $db_by = 'email', $user_group = false ){

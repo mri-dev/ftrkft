@@ -275,26 +275,26 @@ body {
 
 /* line 67, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .btn.btn-success {
-  background-color: #39ac4f;
-  border-color: #339946;
+  background-color: #5FC96D;
+  border-color: #4cc35c;
   color: white;
 }
 
 /* line 72, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .btn.btn-success:hover {
-  background-color: #3fbf58;
+  background-color: #72cf7e;
 }
 
 /* line 77, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .btn.btn-danger {
-  background-color: #f44e5e;
-  border-color: #f33648;
+  background-color: #ED4C5D;
+  border-color: #eb3548;
   color: white;
 }
 
 /* line 82, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .btn.btn-danger:hover {
-  background-color: #f56674;
+  background-color: #ef6372;
 }
 
 /* line 87, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
@@ -1947,6 +1947,30 @@ footer .top {
 body.ugyfelkapu-view {
   background-color: #ffffff;
   background-image: none;
+}
+
+/* line 1493, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+body.ugyfelkapu-view .group {
+  margin: 25px 0 15px 0;
+}
+
+/* line 1495, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+body.ugyfelkapu-view .group h2 {
+  color: #39ac4f;
+  text-transform: uppercase;
+  margin: 0 0 5px 0;
+}
+
+/* line 1501, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+body.ugyfelkapu-view .group h2 + .subtitle {
+  margin: 0 0 20px 0;
+  line-height: 1.4;
+  color: #888888;
+}
+
+/* line 1508, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+body.ugyfelkapu-view .group .cont label {
+  font-size: 1em;
 }
 
 /*# sourceMappingURL=../main.map */
