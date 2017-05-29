@@ -1176,7 +1176,6 @@ class Users
 			}
 		}
 
-
 		if(count($arg[filters]) > 0){
 			foreach($arg[filters] as $key => $v){
 				switch($key)
@@ -1184,7 +1183,7 @@ class Users
 					case 'ID':
 						$q .= " and t.".$key." LIKE '".$v."%' ";
 					break;
-					case 'nev':
+					case 'name':
 						$q .= " and ".$key." LIKE '".$v."%' ";
 					break;
 					default:
@@ -1202,7 +1201,7 @@ class Users
 
 		$B = array();
 		foreach($data as $d){
-			//$d[details] 		= $this->getAccountDetails( $d['ID'] );
+			$d[details] 		= $this->getAccountDetails( $d['ID'] );
 
 			$B[] = $d;
 		}

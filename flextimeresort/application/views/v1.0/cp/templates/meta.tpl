@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
 <link rel="stylesheet" href="/plugins/timepicker/bootstrap-timepicker.min.css">
 <link rel="stylesheet" href="/plugins/iCheck/all.css">
-
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="{$admin_css}">
-
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 2.2.3 -->
 <script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -34,16 +35,27 @@
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script src="/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
+
 {if !$user}
 <!-- iCheck -->
 <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
 {/if}
-
 <script type="text/javascript">
   var closedSidebar = localStorage.getItem('closedSidebar');
 
   $(function(){
     $('[data-toggle="tooltip"]').tooltip();
+    $('table.datatable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Hungarian.json"
+        },
+        "pageLength": 50
+    });
+
     tinymce.init({
       selector: "textarea.editor",
       editor_deselector : 'no-editor',

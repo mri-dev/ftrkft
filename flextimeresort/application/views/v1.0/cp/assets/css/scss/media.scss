@@ -320,7 +320,7 @@ body.admin {
       }
 
       .data{
-        margin-top: 10px;
+        margin: 20px -15px 0 -15px;
 
         label {
           font-size: 1.15em;
@@ -452,4 +452,8 @@ input[type=checkbox].ccb:checked + label:before{
       border-left: 8px solid #aaaaaa;
     }
   }
+}
+
+table.table{
+  font-size: 0.85em;
 }

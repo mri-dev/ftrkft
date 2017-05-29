@@ -160,17 +160,10 @@ class cp extends Controller {
 	public function users()
 	{
 		$filters = array();
-		$filters['user_group'] 	= $this->settings['USERS_GROUP_USER'];
-		$filters['orderby'] 	= 'u.nev ASC';
-
-		$users = new UserList( array(
-			'db' => $this->db,
-			'settings' => $this->settings,
-			'filters' => $filters
-		) );
-
-		$users->getList();
-		$this->out( 'lista', $users );
+		$users = $this->USERS;
+		$list = $users->getUserList();
+		
+		$this->out( 'lista', $list );
 	}
 
 	public function logout()
