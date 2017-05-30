@@ -437,6 +437,12 @@ class forms extends Controller {
 
 			// Jelszó csere
 			case 'user_changepassword':
+				try {
+					$msg = $this->USERS->changePasswordByAdmin( $_POST['id'], $_POST['pw'] );
+					\PortalManager\Form::formDone( $msg, false, $return_url, 'password' );
+				} catch (RedirectException $e) {
+					$e->redirect( 'password' );
+				}
 			break;
 		}
 	}

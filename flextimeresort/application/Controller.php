@@ -188,7 +188,7 @@ class Controller
   }
 
 	function lang( $key, $sprinf_params = array() ){
-		$this->checklangtext($key);
+		$key = $this->checklangtext($key);
 		$text = $this->LANGUAGES->texts[$key];
 		$params = $sprinf_params;
 

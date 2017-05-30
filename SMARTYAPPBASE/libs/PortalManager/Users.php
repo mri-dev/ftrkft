@@ -220,6 +220,13 @@ class Users
 			$err .= ' - '.$this->controller->lang('FORM_USER_REG_EMAIL_HIANYZIK') . "\r\n";
 		}
 
+		$checkemail = $this->db->query("SELECT 1 FROM ".self::TABLE_NAME." WHERE email = '{$email}' and ID != {$userID}")->fetchColumn();
+		if($checkemail == 1){
+			$error = true;
+			$err_code[] = 'email';
+			$err .= ' - '.$this->controller->lang('Ezt az e-mail címet már használja egy fiók.') . "\r\n";
+		}
+
 		$post['name'] = strip_tags($post['name']);
 
 		// Details check
@@ -253,6 +260,45 @@ class Users
 		}
 
 		return $this->controller->lang('SIKERESEN_MODOSITOTVA_A_FIOK_ADATOK');
+	}
+
+	function changePasswordByAdmin($userID, $pw = false) {
+		$err_code = array();
+		$err = '';
+		$error = false;
+
+		if( !$pw && $pw == '' ) {
+			$error = true;
+			$err_code[] = 'pw';
+			$err .= '- '.$this->controller->lang('Adja meg az új jelszót a cseréhez.') . "\r\n";
+		}
+
+		$password = \Hash::jelszo($pw);
+
+		$user = $this->db->query("SELECT id, email, name FROM ".self::TABLE_NAME." WHERE ID = {$userID}");
+
+		if ($error) {
+			$this->error($err, $err_code);
+		}
+
+		$userdata = $user->fetch(\PDO::FETCH_ASSOC);
+
+		$this->db->update(
+			self::TABLE_NAME,
+			array(
+				'password' => \Hash::jelszo($pw)
+			),
+			"ID = $userID"
+		);
+
+		$marg = array();
+		$marg[password] = $pw;
+		$marg[email] = $userdata['email'];
+		$marg[name] = $userdata['name'];
+
+		(new Mails( $this, 'password_changed_by_admin', $userdata['email'], $marg ))->send();
+
+		return $this->controller->lang('FROM_ADMIN_CHANGEDPASSWORD');
 	}
 
 	function changePassword($userID, $post) {

@@ -468,18 +468,23 @@ input[type=checkbox].ccb:checked + label:before {
   color: #39ac4f !important;
 }
 
-/* line 465, scss/media.scss */
+/* line 464, scss/media.scss */
+.input-group-addon a {
+  color: black;
+}
+
+/* line 469, scss/media.scss */
 .menu-list .mi {
   background: #f3f3f3;
   margin: 5px 0;
   padding: 10px;
 }
-/* line 469, scss/media.scss */
+/* line 473, scss/media.scss */
 .menu-list .mi .title {
   font-size: 1.3em;
   color: black;
 }
-/* line 473, scss/media.scss */
+/* line 477, scss/media.scss */
 .menu-list .mi .position {
   color: #f44e5e;
   font-weight: bold;
@@ -487,44 +492,44 @@ input[type=checkbox].ccb:checked + label:before {
   margin-right: 5px;
   text-transform: uppercase;
 }
-/* line 480, scss/media.scss */
+/* line 484, scss/media.scss */
 .menu-list .mi.deep1 {
   margin-left: 10px;
   border-left: 2px solid #aaaaaa;
 }
-/* line 484, scss/media.scss */
+/* line 488, scss/media.scss */
 .menu-list .mi.deep2 {
   margin-left: 20px;
   border-left: 4px solid #aaaaaa;
 }
-/* line 488, scss/media.scss */
+/* line 492, scss/media.scss */
 .menu-list .mi.deep3 {
   margin-left: 30px;
   border-left: 8px solid #aaaaaa;
 }
 
-/* line 495, scss/media.scss */
+/* line 499, scss/media.scss */
 .nav-container {
   text-align: center;
 }
 
-/* line 499, scss/media.scss */
+/* line 503, scss/media.scss */
 ul.pagination {
   margin: 10px 0;
   justify-content: center;
 }
-/* line 503, scss/media.scss */
+/* line 507, scss/media.scss */
 ul.pagination li {
   list-style: none;
 }
 
-/* line 507, scss/media.scss */
+/* line 511, scss/media.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 513, scss/media.scss */
+/* line 517, scss/media.scss */
 table.table {
   font-size: 0.85em;
 }

@@ -461,6 +461,10 @@ input[type=checkbox].ccb:checked + label:before{
   color: $color-primary-light !important;
 }
 
+.input-group-addon a {
+  color: black;
+}
+
 .menu-list{
   .mi {
     background: #f3f3f3;

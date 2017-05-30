@@ -9,6 +9,7 @@
           <input type="hidden" name="for" value="user_edit">
           <input type="hidden" name="return" value="{$root}users/edit/{$user->getId()}">
           <input type="hidden" name="session_path" value="{$root}users">
+          <a name="settings"></a>
           <h3><i class="fa fa-gear"></i> Fiók adatok</h3>
           {if $form}
             {$form->getMsg(1)}
@@ -68,24 +69,59 @@
     </div>
     <div class="col-md-4">
       <div class="box">
+        <a name="password"></a>
         <h3><i class="fa fa-lock"></i> Új jelszó beállítás</h3>
         <div class="subtitle">
           A felhasználó e-mailt kap a jelszó változásról, melyben megkapja az új beállított jelszót.
         </div>
+        <br>
         {if $form}
           {$form->getMsg(2)}
         {/if}
-        <br>
-        <div class="row">
-          <div class="col-md-12">
-            <label for="pw">Új jelszó beállítása</label>
-            <input type="text" name="pw" id="pw" value="" autocomplete="off" class="form-control">
+        <form action="/forms/admins" method="post">
+          <input type="hidden" name="form" value="2">
+          <input type="hidden" name="id" value="{$user->getId()}">
+          <input type="hidden" name="for" value="user_changepassword">
+          <input type="hidden" name="return" value="{$root}users/edit/{$user->getId()}">
+          <div class="row">
+            <div class="col-md-12 {if $form && $form->hasError(2, 'pw')}input-error{/if}">
+              <label for="pw">Új jelszó beállítása</label>
+              <div class="input-group">
+                <span class="input-group-addon"><a data-toggle="tooltip" title="Jelszó generálás." href="javascript:void(0);" onclick="randString($(this));" data-size="12" data-character-set="a-z,A-Z,0-9"><i class="fa fa-refresh"></i></a></span>
+                <input type="text" name="pw" id="pw" value="" autocomplete="off" class="form-control">
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="col-md-12 right">
+              <button type="submit" class="btn btn-danger">Jelszó csere <i class="fa fa-refresh"></i></button>
+            </div>
           </div>
-          <div class="divider"></div>
-          <div class="col-md-12 right">
-            <button type="submit" class="btn btn-danger">Jelszó csere <i class="fa fa-refresh"></i></button>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+  function randString(e){
+    var dataSet = e.attr('data-character-set').split(',');
+    var possible = '';
+    if($.inArray('a-z', dataSet) >= 0){
+      possible += 'abcdefghijklmnopqrstuvwxyz';
+    }
+    if($.inArray('A-Z', dataSet) >= 0){
+      possible += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    }
+    if($.inArray('0-9', dataSet) >= 0){
+      possible += '0123456789';
+    }
+    if($.inArray('#', dataSet) >= 0){
+      possible += '![]{}()%&*$#^<>~@|';
+    }
+    var text = '';
+    for(var i=0; i < e.attr('data-size'); i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    console.log(dataSet);
+    $('#pw').val(text);
+  }
+  </script>

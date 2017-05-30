@@ -100,113 +100,6 @@ class Mails
 	=            MAIL TEMPLATES            =
 	======================================*/
 
-	// Hamarosan lejáró hirdetések kiértesítése
-	private function alerts_ad_expire()
-	{
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/'.__FUNCTION__.'.tpl' ) );
-
-		return $this;
-	}
-
-	// Már lejárt hiretések kiértesítése
-	private function alerts_ad_expired_renew()
-	{
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/'.__FUNCTION__.'.tpl' ) );
-
-		return $this;
-	}
-
-	// Egyenleg jóváírás - átutalásos
-	private function balance_transfer_topup()
-	{
-		$this->setSubject($this->controller->lang['lng_mailtemp_subject_topup_tranfer']);
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_transfer_topup.tpl' ) );
-
-		return $this;
-	}
-
-	// Egyenleg jóváírás - átutalásos
-	private function balance_transfer_addition()
-	{
-		$this->setSubject($this->controller->lang['lng_mailtemp_subject_topup_addition']);
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_transfer_topup.tpl' ) );
-
-		return $this;
-	}
-
-	// Szolgáltatás megrendelés - Hirdetés kiemelés országos
-	private function balance_JOBADTOPO7()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_services_order'], $this->passed_vars['service_title']));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_services_ad_up.tpl' ) );
-
-		return $this;
-	}
-
-	// Szolgáltatás megrendelés - Hirdetés kiemelés megyei
-	private function balance_JOBADTOPM7()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_services_order'], $this->passed_vars['service_title']));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_services_ad_up.tpl' ) );
-
-		return $this;
-	}
-
-	// Szolgáltatás megrendelés - Hirdetés kiemelés országos
-	private function balance_EMPCONTACTWATCH()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_services_order'], $this->passed_vars['service_title']));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_services_EMPCONTACTWATCH.tpl' ) );
-
-		return $this;
-	}
-
-	// Hirdetés meghosszabbítása
-	private function balance_ad_renew()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_ad_renew'], $this->passed_vars['ad']->getName()));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_ad_renew.tpl' ) );
-
-		return $this;
-	}
-
-	// Szolgáltatás megrendelése
-	private function balance_services_order_ad()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_services_order'], $this->passed_vars['service']->getTitle()));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/balance_services_order_ad.tpl' ) );
-
-		return $this;
-	}
-
-	// Munkáltató üzenet küldése a munkavállaló felé
-	private function message_by_appjob()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_message_by_appjob'], $this->passed_vars['ad']->getName()));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/message_by_appjob.tpl' ) );
-
-		return $this;
-	}
-
-	// Munkáltató üzenet küldése a munkavállaló felé
-	private function message_by_employer()
-	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_message_by_employer'], $this->passed_vars['employer']['data']['nev']));
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/message_by_employer.tpl' ) );
-
-		return $this;
-	}
-
-
 	// Felhasználó jelszó reszetelés
 	private function password_reset()
 	{
@@ -227,51 +120,17 @@ class Mails
 		return $this;
 	}
 
-	// Jelentkezés állásra értesítő - felhasználó
-	private function jobapplicant_to_user()
+	// Felhasználó jelszó csere admin által
+	private function password_changed_by_admin()
 	{
-		$this->setSubject(sprintf($this->controller->lang['lng_mailtemp_subject_jobapplicant_foruser'], $this->passed_vars['ad']->getName().' - '.$this->passed_vars['ad']->getEmployerName()));
+		$this->setSubject($this->controller->controller->lang('MAIL_ADMINCHANGEDPASSWORD_SUBJECT'));
 
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/jobapplicant_to_user.tpl' ) );
+		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_changed_by_admin.tpl' ) );
 
 		return $this;
 	}
-
-	// Jelentkezés állásra értesítő - hirdető
-	private function jobapplicant_to_employer()
-	{
-		$this->setSubject( sprintf( $this->controller->lang['lng_mailtemp_subject_jobapplicant_foremployer'], $this->passed_vars['ad']->getName().' álláshirdetés' )  );
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/jobapplicant_to_employer.tpl' ) );
-
-		return $this;
-	}
-
-
-	// Europass insert email
-	private function europass_insert()
-	{
-		$this->setSubject($this->controller->lang['lng_mailtemp_subject_'.__FUNCTION__]);
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/europass_cv_insert.tpl' ) );
-
-		return $this;
-	}
-
-	// Europass update email
-	private function europass_update()
-	{
-		$this->setSubject($this->controller->lang['lng_mailtemp_subject_'.__FUNCTION__]);
-
-		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/europass_cv_update.tpl' ) );
-
-		return $this;
-	}
-
-
 
 	/*=====  End of MAIL TEMPLATES  ======*/
-
 
 	private function testMsg()
 	{
