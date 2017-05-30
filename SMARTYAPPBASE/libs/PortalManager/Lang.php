@@ -71,77 +71,18 @@ class Lang {
 		}
 
 		$this->texts = $texts;
-
 	}
 
 	private function install_db()
 	{
 		if($_GET['appinstaller'] != '1') return false;
 
-		$created = (int)$this->db->query("SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = '".DB_NAME."' and TABLE_NAME = '".self::DB_TABLE_TRANSLATES."'")->fetchColumn();
-
-		if( $created === 0 )
-		{
-			$qry = array();
-			$qry[] = "CREATE TABLE IF NOT EXISTS `".self::DB_TABLE_TRANSLATES."` (
-			  `ID` int(11) NOT NULL,
-			  `lang` varchar(5) DEFAULT NULL,
-			  `groupkey` varchar(50) NOT NULL DEFAULT 'global',
-			  `srcstr` text,
-			  `origin_id` int(11) DEFAULT NULL
-			) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-
-			$qry[] = "ALTER TABLE `".self::DB_TABLE_TRANSLATES."`
-			  ADD PRIMARY KEY (`ID`),
-			  ADD KEY `lang` (`lang`),
-			  ADD KEY `origin_id` (`origin_id`),
-			  ADD KEY `groupkey` (`groupkey`);
-			ALTER TABLE `language_texts` ADD FULLTEXT KEY `srcstr` (`srcstr`);";
-
-			$qry[] = "ALTER TABLE `".self::DB_TABLE_TRANSLATES."`
-				MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;";
-
-
-
-			foreach($qry as $q) {
-				$this->db->query($q);
-			}
-		}
-		$created = false;
-
-		$created = (int)$this->db->query("SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = '".DB_NAME."' and TABLE_NAME = '".self::DB_TABLE_LANGUAGES."'")->fetchColumn();
-
-		if( $created === 0 )
-		{
-			$qry = array();
-			$qry[] = "CREATE TABLE IF NOT EXISTS  `".self::DB_TABLE_LANGUAGES."` (
-				`ID` smallint(6) NOT NULL,
-				`code` varchar(3) NOT NULL DEFAULT 'hu',
-				`default_lang` tinyint(1) NOT NULL DEFAULT '0',
-				`active` tinyint(1) NOT NULL DEFAULT '1'
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
-
-			$qry[] = "ALTER TABLE `".self::DB_TABLE_LANGUAGES."`
-			    ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `code` (`code`)";
-
-			$qry[] = "ALTER TABLE `".self::DB_TABLE_LANGUAGES."`
-			  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;";
-
-			$qry[] = "INSERT INTO `".self::DB_TABLE_LANGUAGES."`
-				(`ID`, `code`, `default_lang`, `active`) VALUES
-				(null, 'hu', 1, 1);";
-
-			foreach($qry as $q) {
-				$this->db->query($q);
-			}
-		}
-
+		//$created = (int)$this->db->query("SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = '".DB_NAME."' and TABLE_NAME = '".self::DB_TABLE_TRANSLATES."'")->fetchColumn();
 	}
 
-    public function __destruct()
-    {
+  public function __destruct()
+  {
 
-    }
+  }
 }
 ?>

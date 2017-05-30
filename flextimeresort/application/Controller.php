@@ -103,12 +103,13 @@ class Controller
 
 	function language_translator($params, &$smarty){
 		$text = $this->LANGUAGES->texts;
+		$t = $this->checklangtext($params['text']);
 
-		if(!isset($text[$params['text']])) {
-			return $params['text'];
+		if(!isset($text[$t])) {
+			return $t;
 		}
 
-		$text = $text[$params['text']];
+		$text = $text[$t];
 
 		preg_match_all('/%(.*?)%/', $text, $match);
 
@@ -123,52 +124,71 @@ class Controller
 		return $text;
 	}
 
-    function out( $viewKey, $output ){
-        $this->smarty->assign( $viewKey, $output );
-    }
+	private function checklangtext( $key )
+	{
+		$origin_text = $key;
+		$key = strtoupper(str_replace('-','_',\Helper::makeSafeURL($key)));
 
-    function outSet( $set_array = array() ){
-        foreach ($set_array as $key => $value) {
-          $this->smarty->assign( $key, $value );
-        }
-    }
+		if(!array_key_exists($key, $this->LANGUAGES->texts)) {
+			$this->db->insert(
+				\PortalManager\Lang::DB_TABLE_TRANSLATES,
+				array(
+					'srcstr' => $key,
+					'textvalue' => $origin_text
+				)
+			);
+		}
 
-    public function getAllVars()
-    {
-       $vars = array();
+		return $key;
+	}
 
-       if( !$this->smarty ) return false;
+  function out( $viewKey, $output ){
+      $this->smarty->assign( $viewKey, $output );
+  }
 
-       $list = $this->smarty->tpl_vars;
+  function outSet( $set_array = array() ){
+      foreach ($set_array as $key => $value) {
+        $this->smarty->assign( $key, $value );
+      }
+  }
 
-       foreach ( $list as $key => $value ) {
-          $vars[$key] = $value->value;
-       }
+  public function getAllVars()
+  {
+     $vars = array();
 
-       return $vars;
-    }
+     if( !$this->smarty ) return false;
 
-     public function loadAllVars()
-    {
-       $vars = array();
+     $list = $this->smarty->tpl_vars;
 
-       if( !$this->smarty ) return false;
+     foreach ( $list as $key => $value ) {
+        $vars[$key] = $value->value;
+     }
 
-       $list = $this->smarty->tpl_vars;
+     return $vars;
+  }
 
-       foreach ( $list as $key => $value ) {
-          $this->vars[$key] = $value->value;
-       }
-    }
+   public function loadAllVars()
+  {
+     $vars = array();
 
-     public function getVar( $key )
-    {
-       $vars = $this->smarty->tpl_vars[$key]->value;
+     if( !$this->smarty ) return false;
 
-       return $vars;
-    }
+     $list = $this->smarty->tpl_vars;
+
+     foreach ( $list as $key => $value ) {
+        $this->vars[$key] = $value->value;
+     }
+  }
+
+   public function getVar( $key )
+  {
+     $vars = $this->smarty->tpl_vars[$key]->value;
+
+     return $vars;
+  }
 
 	function lang( $key, $sprinf_params = array() ){
+		$this->checklangtext($key);
 		$text = $this->LANGUAGES->texts[$key];
 		$params = $sprinf_params;
 
@@ -186,31 +206,31 @@ class Controller
 		return $text;
 	}
 
-    function bodyHead($key = ''){
-        $subfolder  = '';
+  function bodyHead($key = ''){
+      $subfolder  = '';
 
-        $this->theme_wire   = ($key != '') ? $key : '';
+      $this->theme_wire   = ($key != '') ? $key : '';
 
-        if($this->getThemeFolder() != ''){
-            $subfolder  = $this->getThemeFolder().'/';
-        }
+      if($this->getThemeFolder() != ''){
+          $subfolder  = $this->getThemeFolder().'/';
+      }
 
-        # Oldal címe
-        if(self::$pageTitle != null){
-            $this->title = self::$pageTitle . ' | ' . $this->settings['page_title'];
-        } else {
-            $this->title = $this->settings['page_title'] .$this->settings['page_description'];
-        }
+      # Oldal címe
+      if(self::$pageTitle != null){
+          $this->title = self::$pageTitle . ' | ' . $this->settings['page_title'];
+      } else {
+          $this->title = $this->settings['page_title'] .$this->settings['page_description'];
+      }
 
-        # Render HEADER
-        if(!$this->hidePatern){
-					$this->out( 'title', $this->title );
-					$this->displayView( $subfolder.$this->theme_wire.'head' );
-        }
+      # Render HEADER
+      if(!$this->hidePatern){
+				$this->out( 'title', $this->title );
+				$this->displayView( $subfolder.$this->theme_wire.'head' );
+      }
 
-        # Aloldal átadása a VIEW-nek
-        $this->called = $this->fnTemp;
-    }
+      # Aloldal átadása a VIEW-nek
+      $this->called = $this->fnTemp;
+  }
 
 	// Facebook content
 	function addOG($type, $content){

@@ -53,11 +53,12 @@ class Form {
 				$head = '<h4><i class="fa fa-check"></i> Rendszerüzenet</h4>';
 			break;
 		}
-		return '<div class="alert alert-'.$this->getType( $index ).'">' .$head . nl2br($this->response[ $index ]['msg']) . '</div>';
+		return '<div class="alert alert-'.$this->getType( $index ).'">' .$head . (nl2br($this->response[ $index ]['msg'])) . '</div>';
 	}
 
 	public function getPost( $key = false, $array_item = false )
 	{
+		if( !$this->response) return false;
 
 		//$post = json_decode( $_COOKIE['_form_post'], true );
 		$post = json_decode($_SESSION['_form_post'][trim($_GET['tag'],"/")], true );

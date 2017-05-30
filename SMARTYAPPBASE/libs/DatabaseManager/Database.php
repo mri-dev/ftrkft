@@ -248,13 +248,14 @@ class Database
 		$return_str = ($arg[ret_str]) ? $arg[ret_str] : 'ret';
 		$current_page = ($arg['page']) ? $arg['page'] : \Helper::getLastParam();
 		$get 		= count(\Helper::GET());
-		if($get <= 2) $current_page = 1;
-			$pages[current] = (is_numeric($current_page) && $current_page > 0) ? $current_page : 1;
+
+		//if($get <= 2) $current_page = 1;
+		$pages[current] = (is_numeric($current_page) && $current_page > 0) ? $current_page : 1;
+
 		$limit 		= 50;
 		$data 		= array();
 		//////////////////////
 		$query = preg_replace('/^SELECT/i', 'SELECT SQL_CALC_FOUND_ROWS ', $query);
-
 
 		// LIMIT
 		if($arg[limit]){
@@ -265,8 +266,6 @@ class Database
 			$query .= " LIMIT $l_min, $limit";
 			$query .= ";";
 		}
-
-       	//echo $query.'<br><br>';
 
 		$q = $this->query($query);
 

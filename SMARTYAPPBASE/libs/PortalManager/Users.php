@@ -42,16 +42,27 @@ class Users
 		'alerts' 		=> array()
 	);
 
-	public $csaladi_allapotok = array(
-		'single' 		=> 'lng_marital_status_single',
-		'relationship' 	=> 'lng_marital_status_relationship',
-		'married' 		=> 'lng_marital_status_married',
-		'divorced' 		=> 'lng_marital_status_divorced',
-		'widow'			=> 'lng_marital_status_widow'
+	public $user_groups = array(
+		0 => 'MUNKAVALLALO',
+		10 => 'MUNKALTATO'
 	);
 
-	function __construct( $arg = array() ){
+	public $user_datails = array(
+		'default' => array(
+			'telefon' => array(
+				'lang' => 'TELEFON',
+				'required' => true
+			)
+		),
+		0 => array(
+		),
+		10 => array(
 
+		)
+	);
+
+	function __construct( $arg = array() )
+	{
 		if (isset($arg['controller'])) {
 			$this->controller = $arg['controller'];
 			$this->db = $arg['controller']->db;
@@ -68,6 +79,34 @@ class Users
 
 		$this->Portal 		= new Portal( $arg );
 		$this->getUser();
+	}
+
+	public function getUserDetails( $user_group )
+	{
+		$list = array();
+
+		// Default
+		foreach ($this->user_datails['default'] as $key => $value) {
+			$list[$key] = array(
+				'text' => $this->controller->lang($value['lang']),
+				'required' => (int)$value[required],
+				'by' => 'default'
+			);
+		}
+		// By Group
+		foreach ((array)$this->user_datails[$user_group] as $key => $value) {
+			$list[$key] = array(
+				'text' => $this->controller->lang($value['lang']),
+				'required' => (int)$value[required],
+				'by' => 'group',
+				'group' => array(
+					'id' => $user_group,
+					'text' => $this->controller->lang($this->user_groups[$user_group]),
+				)
+			);
+		}
+
+		return $list;
 	}
 
 	function get( $arg = array() )
@@ -152,96 +191,55 @@ class Users
 		}
 	}
 
-	public function change( $userID, $user_group, $post, $details = array() )
+	public function change( $userID, $post, $details = array() )
 	{
-		try {
-			return $this->changeUserAdat( $userID, $user_group, $post, $details );
-		} catch (\Exception $e) {
-			$this->error( $e->getMessage() );
-		}
+		return $this->changeUserAdat( $userID, $post, $details );
 	}
 
-	private function changeUserAdat( $userID, $user_group, $post, $details = array() ){
-		extract($post);
-		extract($details);
+	private function changeUserAdat( $userID, $post, $details = array() ){
+		extract((array)$post);
+		extract((array)$details);
 
-		// Felhasználó csoport prefix
-		switch( $user_group ) {
-			case $this->settings['USERS_GROUP_EMPLOYER']:
-				$gp = 'employer';
-			break;
-			case $this->settings['USERS_GROUP_USER']:
-				$gp = 'user';
-			break;
-		}
+		$err_code = array();
+		$err = '';
+		$error = false;
+
 		/**
-		 * VALIDATE
-		 */
+		* VALIDATE
+		**/
 
-		if($nev == '') throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_name'] );
-		$post['nev'] = strip_tags($post['nev']);
-
-		// Munkáltató specifikus | employer
-		if( $gp == 'employer' ) {
-			if($city 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_city'] );
-			if($megye 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_megye'] );
-			if($contact_name == '') 	throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_contact_name'] );
-			if($contact_phone == '') 	throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_contact_phone'] );
-			if($company_hq == '') 		throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_company_hq'] );
-			if($company_adoszam == '') 	throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_company_adoszam'] );
-
-			// Logó feltöltése
-			if( $_FILES['logo']['tmp_name'][0] ) {
-
-				$file_format = '.jpg';
-				if( $_FILES['logo']['type'][0] == 'image/png' ) {
-					$file_format = '.png';
-				}
-
-				$logo = \PortalManager\Image::upload(array(
-					'src' 			=> 'logo',
-					'upDir' 		=> 'source/images/profil/employer/',
-					'noRoot' 		=> true,
-					'maxFileSize' 	=> 256,
-					'fileName' 		=> md5($userID).$file_format,
-					'lang' 			=> $this->lang
-				));
-
-				$post['logo'] = '/'.$logo['file'];
-			}
-
+		if($name == ''){
+			$error = true;
+			$err_code[] = 'name';
+			$err .= ' - '.$this->controller->lang('FORM_USER_REG_NEV_HIANYZIK') . "\r\n";
 		}
 
-		// Felhasználó specifikus | user
-		if( $gp == 'user' ) {
-			if($city 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_city'] );
-			if($megye 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_megye'] );
-			if($gender 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_gender'] );
-			if($born 	== '') 			throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_born'] );
-			if($csaladi_allapot == '') 	throw new \Exception( $this->lang['lng_users_form_'.$gp.'_miss_maritan_status'] );
+		if($email == ''){
+			$error = true;
+			$err_code[] = 'email';
+			$err .= ' - '.$this->controller->lang('FORM_USER_REG_EMAIL_HIANYZIK') . "\r\n";
+		}
 
-			// Logó feltöltése
-			if( $_FILES['logo']['tmp_name'][0] ) {
+		$post['name'] = strip_tags($post['name']);
 
-				$file_format = '.jpg';
-				if( $_FILES['logo']['type'][0] == 'image/png' ) {
-					$file_format = '.png';
+		// Details check
+		$possdetails = $this->getUserDetails( $post['user_group'] );
+		foreach ((array)$details as $key => $value) {
+			$ddata = $possdetails[$key];
+
+			if($ddata['required'] == 1) {
+				if($value == '') {
+					$error = true;
+					$err_code[] = $key;
+					$err .= ' - '.$this->controller->lang('KOTELEZO_MEZO_HIANYZIK_XY', array('key' => $ddata['text'])) . "\r\n";
 				}
-
-				$logo = \PortalManager\Image::upload(array(
-					'src' 			=> 'logo',
-					'upDir' 		=> 'source/images/profil/users/',
-					'noRoot' 		=> true,
-					'maxFileSize' 	=> 1024,
-					'fileName' 		=> md5($userID).$file_format,
-					'lang' 			=> $this->lang
-				));
-
-				$post['logo'] = '/'.$logo['file'];
 			}
 		}
 
-		unset($post['kerulet']);
+
+		if ($error) {
+			$this->error($err, $err_code);
+		}
 
 		$this->db->update(
 			self::TABLE_NAME,
@@ -249,112 +247,12 @@ class Users
 			"ID = $userID"
 		);
 
-		// Extra adatok módosítása
-		if( $gp == 'employer' ) {
-
-			$city_id = \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID;
-
-			/**
-			 * VÁROS MENTÉSE TERÜLETEK KÖZÉ
-			 * deep = 2
-			 * kivéve, ha Budapest
-			 * */
-			if( $megye != \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID ) {
-
-				$cat = new Category( \PortalManager\Categories::TYPE_TERULETEK, false, array('db' => $this->db) );
-
-				$cat_neve 	= trim($city);
-				$cat_szulo 	= $megye."_1";
-
-				// Város terület beszúrása, ha nem található az adatbázisban
-				$check_city = $cat->checkExists( array( 'neve' => $cat_neve, 'szulo_id' => $cat_szulo ) );
-				$city_id 	= $check_city;
-
-				if( !$check_city ) {
-					$city_id = $cat->add( array(
-						'neve' 		=> $cat_neve,
-						'szulo_id' 	=> $cat_szulo
-					) );
-				}
-			} else {
-				$megye 		= \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID;
-				$city_id 	= $kerulet;
-			}
-
-			$this->editAccountDetail( $userID, 'web', 				addslashes(strip_tags($web)) );
-			$this->editAccountDetail( $userID, 'description', 		addslashes($description) );
-			$this->editAccountDetail( $userID, 'contact_name',		addslashes($contact_name) );
-			$this->editAccountDetail( $userID, 'contact_phone', 	addslashes($contact_phone) );
-			$this->editAccountDetail( $userID, 'company_hq', 		addslashes($company_hq) );
-			$this->editAccountDetail( $userID, 'company_adoszam', 	addslashes($company_adoszam) );
-			$this->editAccountDetail( $userID, 'city', 				$city_id );
-			$this->editAccountDetail( $userID, 'megye', 			$megye );
+		// Details save
+		foreach ((array)$details as $key => $value) {
+			$this->editAccountDetail($userID, $key, $value);
 		}
 
-		if( $gp == 'user' ) {
-			$this->editAccountDetail( $userID, 'kompetencia_kiegeszites', 	addslashes(strip_tags($kompetencia_kiegeszites)) );
-			$this->editAccountDetail( $userID, 'phone', 					addslashes($phone) );
-			$this->editAccountDetail( $userID, 'zip_code', 					$zip_code );
-			$this->editAccountDetail( $userID, 'gender', 					$gender );
-			$this->editAccountDetail( $userID, 'born', 						$born );
-			$this->editAccountDetail( $userID, 'csaladi_allapot', 			$csaladi_allapot );
-
-			// Kompetenciák mentése
-			if( is_array($kompetenciak) && !empty($kompetenciak) ) {
-				$komp_data = array();
-
-				foreach ( $kompetenciak as $k ) {
-					$komp_data[] = array( $userID, $k );
-				}
-
-				// Kiürítés
-				$this->db->query("DELETE FROM ".self::TABLE_COMPETENCE_XREF." WHERE fiok_id = $userID;");
-
-				$this->db->multi_insert(
-					self::TABLE_COMPETENCE_XREF,
-					array( 'fiok_id', 'komp_id' ),
-					$komp_data
-				);
-
-				unset( $komp_data );
-			}
-
-
-			$city_id = \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID;
-
-			/**
-			 * VÁROS MENTÉSE TERÜLETEK KÖZÉ
-			 * deep = 2
-			 * kivéve, ha Budapest
-			 * */
-			if( $megye != \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID ) {
-
-				$cat = new Category( \PortalManager\Categories::TYPE_TERULETEK, false, array('db' => $this->db) );
-
-				$cat_neve 	= trim($city);
-				$cat_szulo 	= $megye."_1";
-
-				// Város terület beszúrása, ha nem található az adatbázisban
-				$check_city = $cat->checkExists( array( 'neve' => $cat_neve, 'szulo_id' => $cat_szulo ) );
-				$city_id 	= $check_city;
-
-				if( !$check_city ) {
-					$city_id = $cat->add( array(
-						'neve' => $cat_neve,
-						'szulo_id' => $cat_szulo
-					) );
-				}
-
-			} else {
-				$megye 		= \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID;
-				$city_id 	= $kerulet;
-			}
-
-			$this->editAccountDetail( $userID, 'city', $city_id );
-			$this->editAccountDetail( $userID, 'megye',	$megye );
-		}
-
-		return $this->lang['lng_users_form_success_saving'];
+		return $this->controller->lang('SIKERESEN_MODOSITOTVA_A_FIOK_ADATOK');
 	}
 
 	function changePassword($userID, $post) {
@@ -1165,6 +1063,7 @@ class Users
 		// WHERE
 		$q .= " WHERE 1=1 ";
 
+
 		if( $user_group != -1 ) {
 			$q .= " and f.user_group = ".$user_group;
 		}
@@ -1178,24 +1077,26 @@ class Users
 
 		if(count($arg[filters]) > 0){
 			foreach($arg[filters] as $key => $v){
-				switch($key)
-				{
-					case 'ID':
-						$q .= " and t.".$key." LIKE '".$v."%' ";
-					break;
-					case 'name':
-						$q .= " and ".$key." LIKE '".$v."%' ";
-					break;
-					default:
-						$q .= " and ".$key." = '".$v."' ";
-					break;
+				if($v != '') {
+					switch($key)
+					{
+						case 'name':
+							$q .= " and ".$key." LIKE '".$v."%' ";
+						break;
+						case 'emailname':
+							$q .= " and (f.name LIKE '%".$v."%' or f.email LIKE '%".$v."%') ";
+						break;
+						default:
+							$q .= " and ".$key." = '".$v."' ";
+						break;
+					}
 				}
-
 			}
 		}
 		$q .= "
 		ORDER BY f.register_date DESC
 		";
+
 		$arg[multi] = "1";
 		extract($this->db->q($q, $arg));
 

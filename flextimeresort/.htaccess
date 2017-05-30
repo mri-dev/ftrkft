@@ -19,6 +19,16 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^cp/cat/(edit|del)?(/)?(.+)?$ index.php?tag=cp/terms&mod=$1&id=$3 [NC,QSA,L]
 
+# Admin - User edit/del/create
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/users/(edit|create|del)(/)?(\d)?(/)?$ index.php?tag=cp/users&sub=$1&id=$3 [NC,QSA,L]
+
+# Admin - Users
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/users(/)?(\d)?(/)?$ index.php?tag=cp/users&page=$2 [NC,QSA,L]
+
 # Users
 # Reg
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -299,7 +299,7 @@ class forms extends Controller {
 	}
 
 	/**
-	 * Munkavállalóval kapcsolatos űrlap feldolgozások
+	 * Felhasználók
 	 * **/
 	public function user()
 	{
@@ -391,6 +391,52 @@ class forms extends Controller {
 					$e->redirect();
 				}
 				/* */
+			break;
+		}
+	}
+
+	public function admins()
+	{
+		$this->hidePatern = true;
+		$return_url = $_POST['return'];
+
+		$admins = new Admins( array(
+			'db' => $this->db,
+			'smarty' => $this->smarty,
+			'view' => $this->getAllVars()
+		));
+		$admin = $admins->get();
+
+		if (!$admin->logged) {
+			\Helper::reload($return_url);
+			 exit;
+		}
+
+		switch( $_POST['for'] )
+		{
+			/**
+			* Felhasználók
+			**/
+			// Létrehozás
+			case 'user_create':
+			break;
+
+			// Szerkesztés
+			case 'user_edit':
+				try {
+					$msg = $this->USERS->change( $_POST['id'], $_POST['data'], $_POST['details'] );
+					\PortalManager\Form::formDone( $msg, false, $return_url, 'settings' );
+				} catch (RedirectException $e) {
+					$e->redirect( 'settings' );
+				}
+			break;
+
+			// Törlés
+			case 'user_del':
+			break;
+
+			// Jelszó csere
+			case 'user_changepassword':
 			break;
 		}
 	}

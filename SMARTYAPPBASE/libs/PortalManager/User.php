@@ -76,6 +76,11 @@ class User
 		return (int)$this->user['data']['user_group'];
 	}
 
+	public function getUserGroupName()
+	{
+		$ug = (int)$this->user['data']['user_group'];
+	}
+
 	public function getValue( $key )
 	{
 		$v = $this->user['data'][$key];
@@ -103,6 +108,11 @@ class User
 			return true;
 		}
 		return false;
+	}
+
+	public function getAccountData( $key )
+	{
+		return $this->user['data'][$key];
 	}
 
 	public function getName()

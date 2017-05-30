@@ -289,18 +289,19 @@ body.admin {
       a.backurl {
         background-color: white;
         border: 1px solid #d7d7d7;
-        margin-right: 5px;
         font-size: 13px;
         padding: 0 10px;
-        line-height: 26px;
+        line-height: 30px;
         display: block;
         float: left;
         border-radius: 5px;
         color: #6b6b6b;
+        margin: 6px 10px 0px 0;
       }
     }
 
     .box{
+      position: relative;
       background: white;
       padding: 15px;
       margin: 0 0 25px 0;
@@ -319,8 +320,45 @@ body.admin {
         color: #9c9c9c;
       }
 
+      .page-infos {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+      }
+
       .data{
-        margin: 20px -15px 0 -15px;
+        margin: 15px;
+
+        .row.row-head {
+          & > div {
+            border-bottom: 2px solid #aaaaaa;
+            padding: 8px 15px;
+            font-size: 1.1em;
+          }
+        }
+
+        .row.row-search {
+          background: #dcdcdc;
+
+          input[type=text],
+          select {
+            padding: 6px;
+            font-size: 0.9em;
+            color: $color-primary-light;
+          }
+
+          select option {
+            text-align: center;
+          }
+        }
+
+        .row:not(.row-head){
+          padding: 10px 0;
+        }
+
+        .row:not(.row-head):not(.row-search):nth-child(even){
+          background: #f1f1f1;
+        }
 
         label {
           font-size: 1.15em;
@@ -453,6 +491,24 @@ input[type=checkbox].ccb:checked + label:before{
     }
   }
 }
+
+.nav-container{
+  text-align: center;
+}
+
+ul.pagination{
+  margin: 10px 0;
+  justify-content: center;
+
+  li {
+    list-style: none;
+  }
+}
+.page-item.active .page-link{
+  background-color: $color-primary-light;
+  border-color: darken($color-primary-light, 10%);
+}
+
 
 table.table{
   font-size: 0.85em;

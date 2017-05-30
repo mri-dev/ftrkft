@@ -6,12 +6,14 @@ use PortalManager\Category;
 use PortalManager\UserList;
 use PortalManager\User;
 use PortalManager\Menus;
+use PortalManager\Pagination;
 use ExceptionManager\RedirectException;
 use PortalManager\Pages;
 use MailManager\Mailer;
 
 class cp extends Controller {
 	private $admin;
+	private $temp = '';
 	function __construct(){
 		parent::__construct( array(
 			'root' => 'cp'
@@ -160,10 +162,57 @@ class cp extends Controller {
 	public function users()
 	{
 		$filters = array();
+		$arg = array();
 		$users = $this->USERS;
-		$list = $users->getUserList();
-		
-		$this->out( 'lista', $list );
+
+		$sub = $_GET['sub'];
+
+		switch ($sub)
+		{
+			// Szerkesztés
+			case 'edit':
+				$this->temp = '/'.$sub;
+				$user = new User($_GET[id], array('controller' => $this));
+
+				$this->out('usergroups', $this->USERS->user_groups);
+				$this->out('userdetails', $this->USERS->getUserDetails($user->getUserGroup()));
+				$this->out('user', $user);
+			break;
+
+			// Létrehozás
+			case 'create':
+				$this->temp = '/'.$sub;
+			break;
+
+			// Törlés
+			case 'del':
+				$this->temp = '/'.$sub;
+			break;
+
+			// Lista
+			default:
+				$usergroup = ($_GET['user_group'] != '') ? (int)$_GET['user_group'] : -1;
+				$filters['id'] = $_GET['id'];
+				$filters['emailname'] = $_GET['emailname'];
+				$filters['engedelyezve'] = $_GET['engedelyezve'];
+				$arg['filters'] = $filters;
+				$arg['limit'] = 50;
+				$arg['page'] = ($_GET[page] != '') ? (int)$_GET['page'] : 1;
+
+				$list = $users->getUserList( $arg, $usergroup );
+
+				$this->out( 'pagination', (new Pagination(array(
+					'max' => $list[info][pages][max],
+					'current' => $list[info][pages][current],
+					'root' => '/'.$this->subfolder . 'users',
+					'after' => '?'.http_build_query($filters),
+					'lang' => $this->LANGUAGES->texts
+				)))->render());
+
+				$this->out( 'lista', $list );
+				$this->out( 'usergroups', $this->USERS->user_groups);
+			break;
+		}
 	}
 
 	public function logout()
@@ -176,7 +225,7 @@ class cp extends Controller {
 	function __destruct(){
 		// RENDER OUTPUT
 		parent::bodyHead();					# HEADER
-		$this->displayView( __CLASS__.'/index', true );		# CONTENT
+		$this->displayView( __CLASS__.$this->temp.'/index', true );		# CONTENT
 		parent::__destruct();				# FOOTER
 	}
 }
