@@ -190,6 +190,9 @@ class cp extends Controller {
 			// Törlés
 			case 'del':
 				$this->temp = '/'.$sub;
+				$user = new User($_GET[id], array('controller' => $this));
+
+				$this->out('user', $user);
 			break;
 
 			// Lista

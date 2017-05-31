@@ -402,6 +402,8 @@ class Users
 
 		extract($this->db->q($q));
 
+		if(empty($data)) return false;
+
 		$account_id = $data['ID'];
 
 		// Details
@@ -926,7 +928,19 @@ class Users
 				$this->register_munkaado( $data, $user_group );
 			break;
 		}
+	}
 
+	public function delete( $id )
+	{
+		$data = $this->getData( $id, 'ID');
+
+		// Kiegészítő adatok törlése
+		if( $data ){
+			$this->db->query("DELETE FROM ".self::TABLE_DETAILS_NAME." WHERE fiok_id = ".$id);
+		}
+
+		// Fiók törlése
+		$this->db->query("DELETE FROM ".self::TABLE_NAME." WHERE ID = ".$id);
 	}
 
 	public function getUserNum($user_group = false, $arg = array() )

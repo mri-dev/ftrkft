@@ -94,7 +94,7 @@
 			</div>
 			<div class="col-md-1 center actions">
 				<a href="{$root}users/edit/{$user.ID}" target="_blank"><i class="fa fa-pencil"></i></a>
-				<a href="{$root}users/del/{$user.ID}" target="_blank"><i class="fa fa-trash"></i></a>
+				<a href="{$root}users/del/{$user.ID}"><i class="fa fa-trash"></i></a>
 			</div>
 		</div>
 		{/foreach}

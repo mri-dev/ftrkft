@@ -433,6 +433,12 @@ class forms extends Controller {
 
 			// Törlés
 			case 'user_del':
+				try {
+					$msg = $this->USERS->delete( $_POST['id'] );
+					\PortalManager\Form::formDone( 'Sikeresen törölte a felhasználót.', false, '/cp/users' );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
 			break;
 
 			// Jelszó csere
