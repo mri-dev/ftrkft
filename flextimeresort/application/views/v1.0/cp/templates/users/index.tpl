@@ -1,4 +1,10 @@
-<h1>Felhasználók</h1>
+<div class="pull-left">
+	<h1>Felhasználók</h1>
+</div>
+<div class="pull-right">
+	<a href="{$root}users/create" class="btn btn-success"><i class="fa fa-plus-circle"></i> új felhasználó</a>
+</div>
+<div class="clearfix"></div>
 <div class="box">
 	<h3>Felhasználók ({$lista.info.total_num})</h3>
 	<div class="page-infos">

@@ -55,9 +55,16 @@ class Users
 			)
 		),
 		0 => array(
+			'nick' => array(
+				'lang' => 'TELEFON',
+				'required' => false
+			)
 		),
 		10 => array(
-
+			'ceg' => array(
+				'lang' => 'TELEFON',
+				'required' => false
+			)
 		)
 	);
 
@@ -81,30 +88,51 @@ class Users
 		$this->getUser();
 	}
 
-	public function getUserDetails( $user_group )
+	public function getUserDetails( $user_group = -1 )
 	{
 		$list = array();
 
-		// Default
-		foreach ($this->user_datails['default'] as $key => $value) {
-			$list[$key] = array(
-				'text' => $this->controller->lang($value['lang']),
-				'required' => (int)$value[required],
-				'by' => 'default'
-			);
+		if($user_group != -1) {
+			// Default
+			foreach ($this->user_datails['default'] as $key => $value) {
+				$list[$key] = array(
+					'text' => $this->controller->lang($value['lang']),
+					'required' => (int)$value[required],
+					'by' => 'default',
+					'group' => false,
+				);
+			}
+
+			// By Group
+			foreach ((array)$this->user_datails[$user_group] as $key => $value) {
+				$list[$key] = array(
+					'text' => $this->controller->lang($value['lang']),
+					'required' => (int)$value[required],
+					'by' => 'group',
+					'group' => array(
+						'id' => $user_group,
+						'text' => $this->controller->lang($this->user_groups[$user_group]),
+					)
+				);
+			}
+		} else {
+			foreach ((array)$this->user_datails as $group => $items) {
+				$by = ($group === 'default') ? 'default' : 'group';
+				foreach ((array)$items as $key => $value) {
+					$groups = array(
+						'id' => $group,
+						'text' => $this->controller->lang($this->user_groups[$group]),
+					);
+					$list[$key] = array(
+						'text' => $this->controller->lang($value['lang']),
+						'required' => (int)$value[required],
+						'by' => $by,
+						'group' => $groups
+					);
+				}
+			}
 		}
-		// By Group
-		foreach ((array)$this->user_datails[$user_group] as $key => $value) {
-			$list[$key] = array(
-				'text' => $this->controller->lang($value['lang']),
-				'required' => (int)$value[required],
-				'by' => 'group',
-				'group' => array(
-					'id' => $user_group,
-					'text' => $this->controller->lang($this->user_groups[$user_group]),
-				)
-			);
-		}
+
 
 		return $list;
 	}

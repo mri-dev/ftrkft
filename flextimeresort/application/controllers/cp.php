@@ -182,6 +182,9 @@ class cp extends Controller {
 			// Létrehozás
 			case 'create':
 				$this->temp = '/'.$sub;
+
+				$this->out('usergroups', $this->USERS->user_groups);
+				$this->out('userdetails', $this->USERS->getUserDetails(-1));
 			break;
 
 			// Törlés
