@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700&subset=cyrillic-ext");
-/* line 1, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 6, less/_starter.scss */
 body,
 ul, ol, li, dl, dt, dd,
 h1, h2, h3, h4, h5, h6,
@@ -10,44 +10,44 @@ form, fieldset, legend, input, textarea {
   padding: 0;
 }
 
-/* line 10, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 10, less/_starter.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
-/* line 13, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 13, less/_starter.scss */
 fieldset, img {
   border: none;
 }
 
-/* line 16, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 16, less/_starter.scss */
 input, textarea, select {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
 }
 
-/* line 21, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 21, less/_starter.scss */
 address, cite {
   font-style: normal;
 }
 
-/* line 24, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 24, less/_starter.scss */
 table {
   border-collapse: collapse;
 }
 
-/* line 27, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 27, less/_starter.scss */
 caption, th {
   text-align: left;
 }
 
-/* line 30, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 30, less/_starter.scss */
 a {
   text-decoration: none;
 }
 
-/* line 33, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 33, less/_starter.scss */
 section, article, header, footer, nav, aside, hgroup {
   display: block;
 }
@@ -57,24 +57,24 @@ section, article, header, footer, nav, aside, hgroup {
 
 TYPE
 -------------------------------------- */
-/* line 41, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 41, less/_starter.scss */
 body {
   font: 62.5%/2.4em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
 
-/* line 44, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 44, less/_starter.scss */
 h1 {
   font-size: 2.4em;
   line-height: 1em;
 }
 
-/* line 48, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 48, less/_starter.scss */
 h2 {
   font-size: 1.8em;
   line-height: 1.333em;
 }
 
-/* line 52, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 53, less/_starter.scss */
 h3, h4, h5, h6,
 dt, legend {
   font-size: 1.4em;
@@ -83,22 +83,22 @@ dt, legend {
   font-weight: bold;
 }
 
-/* line 59, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 59, less/_starter.scss */
 ul, ol {
   margin-left: 4.5em;
 }
 
-/* line 62, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 62, less/_starter.scss */
 ul li {
   list-style-type: disc;
 }
 
-/* line 65, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 65, less/_starter.scss */
 ul li ul {
   margin-bottom: 0;
 }
 
-/* line 68, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 70, less/_starter.scss */
 p, li, dd, td, th,
 address, blockquote,
 label, input, select, textarea {
@@ -106,18 +106,18 @@ label, input, select, textarea {
   line-height: 1.7143em;
 }
 
-/* line 74, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 74, less/_starter.scss */
 p, address, blockquote, dd {
   margin-bottom: 1.7143em;
 }
 
-/* line 77, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 77, less/_starter.scss */
 label {
   display: block;
   font-weight: bold;
 }
 
-/* line 81, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 81, less/_starter.scss */
 code, pre {
   display: block;
   font-size: 1.3em;
@@ -126,80 +126,80 @@ code, pre {
   font-family: Monaco, "Lucida Console", "Courier New", Courier, mono;
 }
 
-/* line 88, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 88, less/_starter.scss */
 code {
   white-space: pre;
 }
 
-/* line 91, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 91, less/_starter.scss */
 table, ul, ol, dl {
   margin-bottom: 2.4em;
 }
 
-/* line 94, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 94, less/_starter.scss */
 caption {
   font-size: 1.2em;
   line-height: 2em;
 }
 
-/* line 98, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 98, less/_starter.scss */
 th {
   font-weight: bold;
 }
 
-/* line 101, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 101, less/_starter.scss */
 th, td {
   width: 6em;
 }
 
 /* nested sizes relative to their parent */
-/* line 105, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 105, less/_starter.scss */
 p code, code pre, pre code, li li, li p, td p, blockquote p {
   font-size: 1em;
 }
 
-/* line 108, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 108, less/_starter.scss */
 em, caption, cite, blockquote {
   font-style: italic;
 }
 
-/* line 111, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 111, less/_starter.scss */
 blockquote {
   margin-left: 2em;
   width: 30em;
 }
 
-/* line 115, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 115, less/_starter.scss */
 blockquote span.author {
   padding-right: 1em;
   display: block;
   text-align: right;
 }
 
-/* line 120, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 120, less/_starter.scss */
 strong {
   font-weight: bold;
 }
 
-/* line 123, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 123, less/_starter.scss */
 abbr[title]:hover {
   cursor: help;
 }
 
-/* line 126, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 128, less/_starter.scss */
 a:link,
 a:active,
 a:visited {
   text-decoration: none;
 }
 
-/* line 131, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/_starter.scss */
+/* line 131, less/_starter.scss */
 a:hover {
   text-decoration: underline;
 }
 
 /* @end */
-/* line 6, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 6, less/main.scss */
 body {
   background-color: #eff7f4;
   background-image: url("/dist/img/bg-pattern-light.png");
@@ -208,40 +208,40 @@ body {
   font-size: 0.8em;
 }
 
-/* line 14, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 14, less/main.scss */
 .page-width {
   max-width: 1100px;
   width: 1100px;
   margin: 0 auto;
 }
 
-/* line 19, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 19, less/main.scss */
 .center {
   text-align: center;
 }
 
-/* line 23, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 23, less/main.scss */
 .right {
   text-align: right;
 }
 
-/* line 27, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 27, less/main.scss */
 .left {
   text-align: left;
 }
 
-/* line 31, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 31, less/main.scss */
 .btn {
   cursor: pointer;
 }
 
-/* line 35, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 35, less/main.scss */
 .alert.alert-error {
   color: #A53734;
   background: #ffa8a8;
 }
 
-/* line 40, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 40, less/main.scss */
 .error-msg {
   color: #f44e5e;
   font-style: italic;
@@ -250,18 +250,16 @@ body {
   display: block;
 }
 
-/* line 48, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 48, less/main.scss */
 .input-error {
   position: relative;
 }
-
-/* line 50, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 50, less/main.scss */
 .input-error input {
   border: 1px solid #e98c95;
   border-bottom: 2px solid #e98c95;
 }
-
-/* line 55, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 55, less/main.scss */
 .input-error:after {
   font-size: 24px;
   content: "\f06a";
@@ -273,61 +271,57 @@ body {
   pointer-events: none;
 }
 
-/* line 67, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 67, less/main.scss */
 .btn.btn-success {
   background-color: #5FC96D;
   border-color: #4cc35c;
   color: white;
 }
-
-/* line 72, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 72, less/main.scss */
 .btn.btn-success:hover {
   background-color: #72cf7e;
 }
 
-/* line 77, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 77, less/main.scss */
 .btn.btn-danger {
   background-color: #ED4C5D;
   border-color: #eb3548;
   color: white;
 }
-
-/* line 82, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 82, less/main.scss */
 .btn.btn-danger:hover {
   background-color: #ef6372;
 }
 
-/* line 87, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 87, less/main.scss */
 .btn.btn-info {
   background-color: #48aff6;
   border-color: #30a4f5;
   color: white;
 }
-
-/* line 92, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 92, less/main.scss */
 .btn.btn-info:hover {
   background-color: #60baf7;
 }
 
-/* line 97, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 97, less/main.scss */
 a, a:link, a:visited {
   color: #006534;
   text-decoration: none;
 }
 
-/* line 102, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 102, less/main.scss */
 a:hover {
   color: #39ac4f;
 }
 
-/* line 106, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 106, less/main.scss */
 ul.navi {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-
-/* line 111, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 111, less/main.scss */
 ul.navi > li {
   display: inline-block;
   *display: inline;
@@ -335,13 +329,11 @@ ul.navi > li {
   vertical-align: middle;
   position: relative;
 }
-
-/* line 118, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 118, less/main.scss */
 ul.navi > li a {
   display: block;
 }
-
-/* line 122, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 122, less/main.scss */
 ul.navi > li ul.submenu {
   display: none;
   z-index: 9999;
@@ -356,14 +348,12 @@ ul.navi > li ul.submenu {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-
-/* line 136, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 136, less/main.scss */
 ul.navi > li ul.submenu li {
   margin: 0;
   display: block;
 }
-
-/* line 140, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 140, less/main.scss */
 ul.navi > li ul.submenu li a {
   font-size: 0.7em;
   line-height: 1.2;
@@ -371,8 +361,7 @@ ul.navi > li ul.submenu li a {
   padding: 12px;
   border: none !important;
 }
-
-/* line 149, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 149, less/main.scss */
 ul.navi > li ul.submenu:before {
   content: "";
   position: absolute;
@@ -385,46 +374,43 @@ ul.navi > li ul.submenu:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-
-/* line 163, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 163, less/main.scss */
 ul.navi > li:hover > ul.submenu {
   display: block;
 }
 
-/* line 169, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 169, less/main.scss */
 img.i15 {
   height: 15px;
   margin-right: 5px;
   margin-top: -3px;
 }
 
-/* line 175, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 175, less/main.scss */
 .row.col-vertical-middle {
   align-items: center;
 }
 
-/* line 178, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 178, less/main.scss */
 .row.col-vertical-bottom {
   align-items: flex-end;
 }
 
-/* line 181, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 181, less/main.scss */
 .row.col-vertical-top {
   align-items: flex-start;
 }
 
-/* line 185, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 185, less/main.scss */
 header {
   background: #ffffff;
 }
-
-/* line 187, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 187, less/main.scss */
 header .main.row {
   align-items: flex-end;
   padding: 0 0 25px 0;
 }
-
-/* line 191, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 191, less/main.scss */
 header .main.row .slogan {
   text-align: right;
   color: #39ac4f;
@@ -433,14 +419,12 @@ header .main.row .slogan {
   font-size: 1.1em;
   line-height: 1;
 }
-
-/* line 201, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 201, less/main.scss */
 header nav {
   background: #006534;
   border-bottom: 4px solid #006534;
 }
-
-/* line 206, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 206, less/main.scss */
 header nav ul li a {
   color: white !important;
   text-transform: uppercase;
@@ -449,37 +433,31 @@ header nav ul li a {
   padding: 10px 14px;
   border-bottom: 4px solid #006534;
 }
-
-/* line 216, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 216, less/main.scss */
 header nav ul li.active a {
   background: #333333;
 }
-
-/* line 224, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 224, less/main.scss */
 header .top {
   position: relative;
 }
-
-/* line 226, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 226, less/main.scss */
 header .top nav {
   float: right;
   background: #9b9b9b;
   height: 36px;
   border: none !important;
 }
-
-/* line 232, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 232, less/main.scss */
 header .top nav ul {
   position: relative;
   z-index: 100;
 }
-
-/* line 235, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 235, less/main.scss */
 header .top nav ul li {
   margin: 0;
 }
-
-/* line 237, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 237, less/main.scss */
 header .top nav ul li a {
   border: none !important;
   height: 36px;
@@ -490,14 +468,12 @@ header .top nav ul li a {
   font-size: 0.8em;
   line-height: 36px;
 }
-
-/* line 247, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 247, less/main.scss */
 header .top nav ul li.social-before {
   width: 10px;
   content: "";
 }
-
-/* line 252, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 252, less/main.scss */
 header .top nav ul li.social {
   background: #757575;
   -webkit-transform: skewX(-35deg);
@@ -505,49 +481,41 @@ header .top nav ul li.social {
   text-align: center;
   width: 40px;
 }
-
-/* line 259, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 259, less/main.scss */
 header .top nav ul li.social a {
   display: block;
   -webkit-transform: skewX(35deg);
   transform: skewX(35deg);
 }
-
-/* line 265, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 265, less/main.scss */
 header .top nav ul li.social.facebook:hover {
   background: #3b5998;
 }
-
-/* line 268, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 268, less/main.scss */
 header .top nav ul li.social.twitter:hover {
   background: #02d0ff;
 }
-
-/* line 271, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 271, less/main.scss */
 header .top nav ul li.social.googleplus:hover {
   background: #e85050;
 }
-
-/* line 277, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 277, less/main.scss */
 header .top nav ul li.account a {
   padding: 0;
 }
-
-/* line 280, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 280, less/main.scss */
 header .top nav ul li.account.account-logout {
   -webkit-transform: skewX(-30deg);
   transform: skewX(-30deg);
   border-right: 1px solid #c5c5c5;
 }
-
-/* line 283, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 283, less/main.scss */
 header .top nav ul li.account.account-logout a {
   padding: 0 10px;
   -webkit-transform: skewX(30deg);
   transform: skewX(30deg);
 }
-
-/* line 293, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 293, less/main.scss */
 header .top nav ul:before {
   content: "";
   position: absolute;
@@ -558,8 +526,7 @@ header .top nav ul:before {
   border-style: solid;
   border-color: transparent #9b9b9b #9b9b9b transparent;
 }
-
-/* line 305, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 305, less/main.scss */
 header .top nav .helper {
   position: absolute;
   height: 100%;
@@ -568,12 +535,12 @@ header .top nav .helper {
   top: 0;
 }
 
-/* line 316, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 316, less/main.scss */
 .content-holder {
   min-height: 600px;
 }
 
-/* line 320, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 322, less/main.scss */
 body.page404 .content-holder,
 body.activationpage .content-holder,
 body.resetpassword .content-holder {
@@ -584,13 +551,13 @@ body.resetpassword .content-holder {
   background-size: contain;
 }
 
-/* line 330, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 330, less/main.scss */
 section.content-header {
   background-color: rgba(255, 255, 255, 0.4);
   padding: 0;
 }
 
-/* line 335, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 335, less/main.scss */
 .breadcrumb {
   float: right;
   margin: 0;
@@ -598,13 +565,12 @@ section.content-header {
   background-color: transparent;
 }
 
-/* line 342, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 342, less/main.scss */
 .error-page {
   width: 80%;
   margin: 120px auto 0 auto;
 }
-
-/* line 346, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 346, less/main.scss */
 .error-page .headline {
   font-size: 12em;
   line-height: 1.2;
@@ -612,25 +578,23 @@ section.content-header {
   font-weight: 100;
   float: left;
 }
-
-/* line 354, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 354, less/main.scss */
 .error-page > .error-content {
   margin-left: 300px;
 }
-
-/* line 357, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 357, less/main.scss */
 .error-page > .error-content h3 {
   color: #006534;
   font-size: 2.5em;
   font-weight: 100;
 }
 
-/* line 365, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 365, less/main.scss */
 input[type=checkbox].ccb {
   display: none;
 }
 
-/* line 369, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 369, less/main.scss */
 input[type=checkbox].ccb + label {
   color: black;
   cursor: pointer;
@@ -641,8 +605,7 @@ input[type=checkbox].ccb + label {
   padding-left: 16px;
   position: relative;
 }
-
-/* line 379, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 379, less/main.scss */
 input[type=checkbox].ccb + label:before {
   content: "\f0c8";
   font-family: "FontAwesome";
@@ -659,23 +622,21 @@ input[type=checkbox].ccb + label:before {
   border-radius: 2px;
 }
 
-/* line 396, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 396, less/main.scss */
 input[type=checkbox].ccb:checked + label:before {
   content: "\f14a";
   color: #0fcfbc;
 }
 
-/* line 403, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 403, less/main.scss */
 .multiselect-list .value-viewer {
   position: relative;
 }
-
-/* line 406, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 406, less/main.scss */
 .multiselect-list .value-viewer input {
   padding-right: 72px !important;
 }
-
-/* line 409, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 409, less/main.scss */
 .multiselect-list .value-viewer .helper {
   position: absolute;
   top: 0;
@@ -690,14 +651,12 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 0 4px 4px 0;
   pointer-events: none;
 }
-
-/* line 424, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 424, less/main.scss */
 .multiselect-list .multi-selector-holder {
   position: relative;
   display: none;
 }
-
-/* line 428, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 428, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper {
   background: white;
   position: absolute;
@@ -708,12 +667,11 @@ input[type=checkbox].ccb:checked + label:before {
   z-index: 9999;
   border-radius: 4px;
   border: 1px solid lightgrey;
-  -webkit-box-shadow: 0 5px 20px -7px #000000;
-  -moz-box-shadow: 0 5px 20px -7px #000000;
-  box-shadow: 0 5px 20px -7px #000000;
+  -webkit-box-shadow: 0 5px 20px -7px black;
+  -moz-box-shadow: 0 5px 20px -7px black;
+  box-shadow: 0 5px 20px -7px black;
 }
-
-/* line 442, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 442, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label {
   padding: 10px 10px 10px 30px;
   margin: 3px;
@@ -722,13 +680,11 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-
-/* line 450, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 450, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:hover {
   background: #f1f1f1;
 }
-
-/* line 453, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 453, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:before {
   font-size: 18px;
   top: 50%;
@@ -738,33 +694,29 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
-/* line 463, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 463, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label {
   background: #39ac4f;
   color: white;
 }
-
-/* line 467, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 467, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label:before {
   background: transparent;
   color: white;
 }
-
-/* line 472, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 472, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper .no-input {
   text-align: center;
   padding: 10px;
   color: #a9a9a9;
   font-size: 0.9em;
 }
-
-/* line 480, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 480, less/main.scss */
 .multiselect-list .multi-selector-holder.opened {
   display: block;
 }
 
-/* line 487, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 487, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -772,13 +724,11 @@ input[type=checkbox].ccb:checked + label:before {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
-/* line 494, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 494, less/main.scss */
 .header-searcher-container .home-searcher {
   padding: 40px 0 20px 0;
 }
-
-/* line 496, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 496, less/main.scss */
 .header-searcher-container .home-searcher .input-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -787,13 +737,11 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-
-/* line 504, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 504, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp {
   padding: 10px 8px;
 }
-
-/* line 507, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 507, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input {
   padding: 12px 16px;
   font-size: 1.2em;
@@ -801,13 +749,11 @@ input[type=checkbox].ccb:checked + label:before {
   border: 1px solid #dbdbdb;
   height: 45px;
 }
-
-/* line 515, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 515, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input[readonly] {
   cursor: pointer;
 }
-
-/* line 520, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 520, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
   width: 100%;
   height: 45px;
@@ -816,13 +762,11 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0;
   line-height: 45px;
 }
-
-/* line 531, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 531, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
   position: relative;
 }
-
-/* line 533, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 533, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
   width: 44px;
   height: 55px;
@@ -835,8 +779,7 @@ input[type=checkbox].ccb:checked + label:before {
   pointer-events: none;
   z-index: 1;
 }
-
-/* line 545, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 545, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
   width: 65%;
   position: absolute;
@@ -846,8 +789,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-
-/* line 556, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 556, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
   content: "\f107";
   position: absolute;
@@ -861,8 +803,7 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-
-/* line 570, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 570, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order select {
   position: relative;
   background: #39ac4f;
@@ -872,56 +813,47 @@ input[type=checkbox].ccb:checked + label:before {
   cursor: pointer;
   -webkit-appearance: none;
 }
-
-/* line 581, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 581, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
   flex-basis: 40%;
   order: 1;
 }
-
-/* line 585, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 585, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
   flex-basis: 40%;
   order: 2;
 }
-
-/* line 589, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 589, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
   flex-basis: 20%;
   order: 3;
 }
-
-/* line 593, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 593, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
   flex-basis: 40%;
   order: 4;
 }
-
-/* line 597, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 597, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
   flex-basis: 20%;
   order: 5;
 }
-
-/* line 601, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 601, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
   flex-basis: 20%;
   order: 6;
 }
-
-/* line 605, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 605, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order {
   flex-basis: 20%;
   order: 7;
 }
-
-/* line 613, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 613, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-
-/* line 618, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 618, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -930,29 +862,25 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-
-/* line 625, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 625, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-
-/* line 629, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 629, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-
-/* line 634, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 634, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-
-/* line 640, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 640, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -961,27 +889,25 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-
-/* line 648, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 648, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-
-/* line 652, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 652, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-
-/* line 662, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction {
+/* line 663, less/main.scss */
+.header-searcher-container .home-instruction,
+.header-searcher-container .profil-instruction {
   padding: 0;
   background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-
-/* line 668, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .ico {
+/* line 669, less/main.scss */
+.header-searcher-container .home-instruction .instuction .ico,
+.header-searcher-container .profil-instruction .instuction .ico {
   border: 8px solid white;
   width: 120px;
   height: 120px;
@@ -989,9 +915,9 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0 auto 25px auto;
   position: relative;
 }
-
-/* line 676, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .ico img {
+/* line 677, less/main.scss */
+.header-searcher-container .home-instruction .instuction .ico img,
+.header-searcher-container .profil-instruction .instuction .ico img {
   width: 40%;
   max-width: 40%;
   position: absolute;
@@ -1001,9 +927,9 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-/* line 687, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .info {
+/* line 688, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info,
+.header-searcher-container .profil-instruction .instuction .info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1012,51 +938,62 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 1.26em;
   align-items: flex-start;
 }
-
-/* line 696, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .info .num {
+/* line 697, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info .num,
+.header-searcher-container .profil-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-
-/* line 701, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .info .text {
+/* line 702, less/main.scss */
+.header-searcher-container .home-instruction .instuction .info .text,
+.header-searcher-container .profil-instruction .instuction .info .text {
   line-height: 1.4;
 }
-
-/* line 706, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .row {
+/* line 707, less/main.scss */
+.header-searcher-container .home-instruction .instuction .row,
+.header-searcher-container .profil-instruction .instuction .row {
   margin: 0 -25px;
 }
-
-/* line 710, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction *[class*=col-md-] {
+/* line 711, less/main.scss */
+.header-searcher-container .home-instruction .instuction *[class*=col-md-],
+.header-searcher-container .profil-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-
-/* line 714, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction .instuction .center-inst {
+/* line 715, less/main.scss */
+.header-searcher-container .home-instruction .instuction .center-inst,
+.header-searcher-container .profil-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-
-/* line 719, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction.ugyfelkapu {
+/* line 720, less/main.scss */
+.header-searcher-container .home-instruction.ugyfelkapu,
+.header-searcher-container .profil-instruction.ugyfelkapu {
   padding: 25px 0;
 }
-
-/* line 722, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
-.header-searcher-container .home-instruction.ugyfelkapu h1 {
+/* line 723, less/main.scss */
+.header-searcher-container .home-instruction.ugyfelkapu h1,
+.header-searcher-container .profil-instruction.ugyfelkapu h1 {
   text-transform: uppercase;
   font-size: 1.8em;
 }
-
-/* line 729, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 730, less/main.scss */
+.header-searcher-container .profil-instruction {
+  background: rgba(0, 150, 29, 0.46);
+}
+/* line 732, less/main.scss */
+.header-searcher-container .profil-instruction .instuction .info .text {
+  font-size: 0.95em;
+  padding-top: 5px;
+}
+/* line 736, less/main.scss */
+.header-searcher-container .profil-instruction .instuction .info .num {
+  font-size: 1.85em;
+}
+/* line 741, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-
-/* line 732, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 744, less/main.scss */
 .header-searcher-container .login-holder .login-container {
   background: #dbdbdb;
   border: 2px solid #c1c1c1;
@@ -1064,37 +1001,31 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 10px;
   margin-top: -110px;
 }
-
-/* line 739, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 751, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-
-/* line 743, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 755, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-
-/* line 747, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 759, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
   color: black;
   font-weight: bold;
 }
-
-/* line 753, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 765, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-
-/* line 757, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 769, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
   padding-left: 36px;
 }
-
-/* line 762, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 774, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder img {
   max-height: 24px;
   height: 24px;
@@ -1105,26 +1036,22 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-
-/* line 775, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 787, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo {
   font-size: 0.8em;
 }
-
-/* line 778, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 790, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo label {
   display: initial;
   vertical-align: top;
   cursor: pointer;
 }
-
-/* line 784, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 796, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
   vertical-align: middle;
   height: 14px;
 }
-
-/* line 788, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 800, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
   vertical-align: top;
   margin-top: -8px;
@@ -1132,14 +1059,12 @@ input[type=checkbox].ccb:checked + label:before {
   text-align: right;
   color: black;
 }
-
-/* line 795, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 807, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
   width: 14px;
   height: 14px;
 }
-
-/* line 800, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 812, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
   color: #f44e5e;
   font-size: 14px;
@@ -1149,55 +1074,47 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0;
   height: 14px;
 }
-
-/* line 810, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 822, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
   color: white;
   font-size: 10px;
   height: 10px;
 }
-
-/* line 816, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 828, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
   color: #f44e5e;
 }
-
-/* line 823, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 835, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-
-/* line 831, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 843, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
-
-/* line 838, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 850, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged {
   background: #e8e8e8;
   border: 1px solid #c3c3c3;
   padding: 0;
 }
-
-/* line 843, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 855, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav ul, .header-searcher-container .login-holder .login-container.as-logged nav li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-
-/* line 849, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 861, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li {
   font-size: 1.1em;
   border-bottom: 1px solid #e3e3e3;
 }
-
-/* line 853, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 865, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a {
   padding: 4px 8px;
   background: #f1f1f1;
@@ -1205,24 +1122,20 @@ input[type=checkbox].ccb:checked + label:before {
   color: #999999;
   position: relative;
 }
-
-/* line 860, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 872, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a i {
   color: #39ac4f;
 }
-
-/* line 864, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 876, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover {
   background: #39ac4f;
   color: white;
 }
-
-/* line 868, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 880, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover i {
   color: white;
 }
-
-/* line 873, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 885, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a .badge {
   position: absolute;
   background: #f44e5e;
@@ -1233,94 +1146,79 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-
-/* line 885, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 897, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.header {
   padding: 10px 8px;
   text-transform: uppercase;
   color: #39ac4f;
   font-weight: bold;
 }
-
-/* line 892, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 904, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout {
   text-align: center;
   font-size: 1em;
 }
-
-/* line 896, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 908, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a {
   color: #999999;
 }
-
-/* line 899, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 911, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a i {
   color: #999999;
 }
-
-/* line 904, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 916, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover {
   background: #f44e5e;
   color: white;
 }
-
-/* line 908, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 920, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover i {
   color: white;
 }
-
-/* line 915, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 927, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child {
   border-bottom: none;
 }
-
-/* line 918, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 930, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child a {
   border-radius: 0 0 8px 8px;
 }
-
-/* line 923, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 935, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active {
   border-bottom: 1px solid #2c863d;
 }
-
-/* line 925, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 937, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a {
   background: #39ac4f;
   color: white;
 }
-
-/* line 928, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 940, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a i {
   color: white;
 }
-
-/* line 935, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 947, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav .ico {
   text-align: center;
   margin: 0 8px 0 4px;
 }
 
-/* line 945, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 957, less/main.scss */
 .single-page .page-wrapper {
   position: relative;
   background: white;
   padding: 25px;
 }
-
-/* line 951, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 963, less/main.scss */
 .single-page h1.title {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 10px 0 30px 0;
 }
-
-/* line 957, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 969, less/main.scss */
 .single-page .content-wrapper {
   min-height: 300px !important;
 }
-
-/* line 960, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 972, less/main.scss */
 .single-page .page-not-found {
   width: 100%;
   position: absolute;
@@ -1333,26 +1231,24 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-/* line 972, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 984, less/main.scss */
 .single-page .page-not-found strong {
   color: black;
 }
-
-/* line 976, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 988, less/main.scss */
 .single-page .page-not-found h1 {
   color: #39ac4f;
   margin: 0 0 20px 0;
   font-size: 2.4em;
 }
 
-/* line 985, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 997, less/main.scss */
 .ugyfelkapu-content-holder .inside {
   background: #ffffff;
   min-height: 500px;
 }
 
-/* line 991, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1003, less/main.scss */
 .home-instruction.ugyfelkapu .login-holder .login-container {
   margin-top: 0 !important;
   position: absolute;
@@ -1360,36 +1256,31 @@ input[type=checkbox].ccb:checked + label:before {
   z-index: 1000;
 }
 
-/* line 998, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1010, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-
-/* line 1002, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1014, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-
-/* line 1005, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1017, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-
-/* line 1010, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1022, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-
-/* line 1018, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1030, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-
-/* line 1021, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1033, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1398,40 +1289,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-
-/* line 1028, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1040, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-
-/* line 1034, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1046, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-
-/* line 1038, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1050, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-
-/* line 1042, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1054, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-
-/* line 1047, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1059, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-
-/* line 1056, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1068, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -1439,8 +1324,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-
-/* line 1064, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1076, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -1451,21 +1335,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-
-/* line 1074, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1086, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-
-/* line 1078, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1090, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-
-/* line 1086, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1098, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -1478,36 +1359,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-
-/* line 1099, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1111, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-
-/* line 1104, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1116, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-
-/* line 1109, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1121, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-
-/* line 1118, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1130, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-
-/* line 1120, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1132, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-
-/* line 1126, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1138, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1516,38 +1391,33 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-
-/* line 1134, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1146, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-
-/* line 1138, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1150, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-
-/* line 1147, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1159, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-
-/* line 1154, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1166, less/main.scss */
 footer .top {
   padding-top: 25px;
 }
 
-/* line 1159, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1171, less/main.scss */
 .sharing {
   position: relative;
   margin-top: 40px;
 }
-
-/* line 1163, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1175, less/main.scss */
 .sharing .title {
   text-transform: uppercase;
   padding: 10px 0 10px 0;
@@ -1556,8 +1426,7 @@ footer .top {
   font-size: 1.2em;
   font-weight: 300;
 }
-
-/* line 1171, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1183, less/main.scss */
 .sharing .title:before {
   content: "";
   border-top: 1px solid #dedede;
@@ -1566,8 +1435,7 @@ footer .top {
   left: 0;
   top: 0;
 }
-
-/* line 1180, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1192, less/main.scss */
 .sharing .shares {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1575,22 +1443,19 @@ footer .top {
   flex-wrap: wrap;
   align-items: center;
 }
-
-/* line 1187, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1199, less/main.scss */
 .sharing .shares > div {
   height: 20px;
   line-height: 20px;
   padding-right: 12px;
 }
-
-/* line 1193, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1205, less/main.scss */
 .sharing .shares .email {
   background: white;
   border: 1px solid #dcdcdc;
   padding: 3px;
 }
-
-/* line 1198, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1210, less/main.scss */
 .sharing .shares .email a {
   display: block;
   line-height: 1;
@@ -1599,47 +1464,43 @@ footer .top {
   margin: 0;
   color: #555;
 }
-
-/* line 1207, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1219, less/main.scss */
 .sharing .shares .email:hover {
   background: #f44e5e;
 }
-
-/* line 1210, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1222, less/main.scss */
 .sharing .shares .email:hover a {
   color: white;
 }
 
-/* line 1218, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1230, less/main.scss */
 .wbox {
   position: relative;
   background-color: white;
 }
 
-/* line 1223, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1235, less/main.scss */
 .dp {
   padding: 20px;
 }
 
-/* line 1227, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1239, less/main.scss */
 .divider {
   margin: 10px 0;
   height: 1px;
   width: 100%;
   display: block;
 }
-
-/* line 1232, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1244, less/main.scss */
 .divider.lined {
   background-color: #d7d7d7;
 }
-
-/* line 1236, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1248, less/main.scss */
 .divider.fat {
   margin: 25px 0;
 }
 
-/* line 1245, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1257, less/main.scss */
 .user-section.user-register section.info, .user-section.user-login section.info, .user-section.user-resetpassword section.info {
   background-color: rgba(245, 245, 245, 0.64);
   background-image: url(/dist/img/worldmap.svg);
@@ -1649,30 +1510,26 @@ footer .top {
   text-align: center;
   padding: 50px 0 70px 0;
 }
-
-/* line 1254, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1266, less/main.scss */
 .user-section.user-register section.info h1, .user-section.user-login section.info h1, .user-section.user-resetpassword section.info h1 {
   text-transform: uppercase;
   font-weight: bold;
   margin: 0 0 15px 0;
   color: black;
 }
-
-/* line 1261, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1273, less/main.scss */
 .user-section.user-register section.info h2, .user-section.user-login section.info h2, .user-section.user-resetpassword section.info h2 {
   color: #006534;
   font-weight: 300;
 }
-
-/* line 1266, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1278, less/main.scss */
 .user-section.user-register section.info .ask-as, .user-section.user-login section.info .ask-as, .user-section.user-resetpassword section.info .ask-as {
   margin-top: 40px;
   font-size: 2em;
   font-weight: bold;
   color: #39ac4f;
 }
-
-/* line 1275, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1287, less/main.scss */
 .user-section.user-register section.register .tabs,
 .user-section.user-register section.login .tabs, .user-section.user-login section.register .tabs,
 .user-section.user-login section.login .tabs, .user-section.user-resetpassword section.register .tabs,
@@ -1685,8 +1542,7 @@ footer .top {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-
-/* line 1284, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1296, less/main.scss */
 .user-section.user-register section.register .tabs ul,
 .user-section.user-register section.login .tabs ul, .user-section.user-login section.register .tabs ul,
 .user-section.user-login section.login .tabs ul, .user-section.user-resetpassword section.register .tabs ul,
@@ -1694,8 +1550,7 @@ footer .top {
   margin: 0;
   padding: 0;
 }
-
-/* line 1288, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1300, less/main.scss */
 .user-section.user-register section.register .tabs ul li,
 .user-section.user-register section.login .tabs ul li, .user-section.user-login section.register .tabs ul li,
 .user-section.user-login section.login .tabs ul li, .user-section.user-resetpassword section.register .tabs ul li,
@@ -1707,8 +1562,7 @@ footer .top {
   padding: 0 4px;
   text-align: center;
 }
-
-/* line 1296, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1308, less/main.scss */
 .user-section.user-register section.register .tabs ul li a,
 .user-section.user-register section.login .tabs ul li a, .user-section.user-login section.register .tabs ul li a,
 .user-section.user-login section.login .tabs ul li a, .user-section.user-resetpassword section.register .tabs ul li a,
@@ -1723,8 +1577,7 @@ footer .top {
   display: block;
   font-weight: 300;
 }
-
-/* line 1309, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1321, less/main.scss */
 .user-section.user-register section.register .tabs ul li.active a,
 .user-section.user-register section.login .tabs ul li.active a, .user-section.user-login section.register .tabs ul li.active a,
 .user-section.user-login section.login .tabs ul li.active a, .user-section.user-resetpassword section.register .tabs ul li.active a,
@@ -1733,8 +1586,7 @@ footer .top {
   background: white;
   font-weight: bold;
 }
-
-/* line 1316, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1328, less/main.scss */
 .user-section.user-register section.register .tabs ul li.login a,
 .user-section.user-register section.login .tabs ul li.login a, .user-section.user-login section.register .tabs ul li.login a,
 .user-section.user-login section.login .tabs ul li.login a, .user-section.user-resetpassword section.register .tabs ul li.login a,
@@ -1743,8 +1595,7 @@ footer .top {
   color: white;
   text-transform: none;
 }
-
-/* line 1326, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1338, less/main.scss */
 .user-section.user-register section.register .form,
 .user-section.user-register section.login .form, .user-section.user-login section.register .form,
 .user-section.user-login section.login .form, .user-section.user-resetpassword section.register .form,
@@ -1752,32 +1603,28 @@ footer .top {
   margin: 20px auto;
   width: 70%;
 }
-
-/* line 1330, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1342, less/main.scss */
 .user-section.user-register section.register .form .submit,
 .user-section.user-register section.login .form .submit, .user-section.user-login section.register .form .submit,
 .user-section.user-login section.login .form .submit, .user-section.user-resetpassword section.register .form .submit,
 .user-section.user-resetpassword section.login .form .submit {
   text-align: right;
 }
-
-/* line 1334, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1346, less/main.scss */
 .user-section.user-register section.register .form .aszf,
 .user-section.user-register section.login .form .aszf, .user-section.user-login section.register .form .aszf,
 .user-section.user-login section.login .form .aszf, .user-section.user-resetpassword section.register .form .aszf,
 .user-section.user-resetpassword section.login .form .aszf {
   text-align: left;
 }
-
-/* line 1338, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1350, less/main.scss */
 .user-section.user-register section.register .form label,
 .user-section.user-register section.login .form label, .user-section.user-login section.register .form label,
 .user-section.user-login section.login .form label, .user-section.user-resetpassword section.register .form label,
 .user-section.user-resetpassword section.login .form label {
   font-size: 1em;
 }
-
-/* line 1342, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1354, less/main.scss */
 .user-section.user-register section.register .form h2,
 .user-section.user-register section.login .form h2, .user-section.user-login section.register .form h2,
 .user-section.user-login section.login .form h2, .user-section.user-resetpassword section.register .form h2,
@@ -1788,86 +1635,72 @@ footer .top {
   text-align: center;
   margin: 0 0 25px 0;
 }
-
-/* line 1354, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1366, less/main.scss */
 .user-section.user-login section.info {
   background-color: rgba(9, 171, 59, 0.58);
 }
-
-/* line 1356, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1368, less/main.scss */
 .user-section.user-login section.info h1 {
   color: #0c4629;
   margin: 0;
 }
-
-/* line 1362, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1374, less/main.scss */
 .user-section.user-login .form {
   width: 100% !important;
   margin: 30px !important;
 }
-
-/* line 1368, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1380, less/main.scss */
 .user-section.user-login .form .actions a {
   color: black;
 }
-
-/* line 1372, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1384, less/main.scss */
 .user-section.user-login .form .actions a:hover {
   color: #f44e5e;
 }
-
-/* line 1375, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1387, less/main.scss */
 .user-section.user-login .form .actions .fa-stack {
   color: #f44e5e;
 }
-
-/* line 1378, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1390, less/main.scss */
 .user-section.user-login .form .actions .fa-stack i {
   font-size: 22px;
 }
-
-/* line 1382, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1394, less/main.scss */
 .user-section.user-login .form .actions .fa-stack .fa-stack-1x {
   color: white;
   font-size: 14px;
   line-height: 21px;
 }
-
-/* line 1390, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1402, less/main.scss */
 .user-section.user-login .form h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 25px 0;
   font-weight: bold;
 }
-
-/* line 1398, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1410, less/main.scss */
 .user-section.user-login .reg-instruction {
   width: 80%;
   margin: 0 auto;
   text-align: center;
 }
-
-/* line 1403, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1415, less/main.scss */
 .user-section.user-login .reg-instruction .text {
   line-height: 1.3;
   font-size: 1.2em;
 }
-
-/* line 1408, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1420, less/main.scss */
 .user-section.user-login .reg-instruction a {
   margin-top: 25px;
 }
-
-/* line 1414, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1426, less/main.scss */
 .user-section.user-resetpassword {
   min-height: 600px;
   position: relative;
   background: rgba(153, 0, 0, 0.72);
   text-align: center;
 }
-
-/* line 1420, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1432, less/main.scss */
 .user-section.user-resetpassword section.resetpassword {
   text-align: center;
   width: 50%;
@@ -1878,35 +1711,31 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-/* line 1423, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1435, less/main.scss */
 .user-section.user-resetpassword section.resetpassword h1 {
   text-transform: uppercase;
   color: white;
   margin: 0 0 50px 0;
   font-weight: 300;
 }
-
-/* line 1430, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1442, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form {
   background: white;
   padding: 25px;
 }
-
-/* line 1434, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1446, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form h2 {
   color: black;
   font-weight: bold;
   margin: 0 0 25px 0;
 }
 
-/* line 1452, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1464, less/main.scss */
 .activator-content {
   min-height: 600px;
   position: relative;
 }
-
-/* line 1456, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1468, less/main.scss */
 .activator-content .pw {
   background: rgba(255, 255, 255, 0.7);
   padding: 25px;
@@ -1917,60 +1746,208 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
-/* line 1465, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1477, less/main.scss */
 .activator-content .pw h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 15px 0;
   font-weight: bold;
 }
-
-/* line 1471, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1483, less/main.scss */
 .activator-content .pw h1 i {
   font-size: 64px;
   margin-bottom: 10px;
 }
-
-/* line 1477, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1489, less/main.scss */
 .activator-content .pw .sub {
   font-size: 1.2em;
   color: #444444;
   margin-bottom: 10px;
-  -webkit-box-shadow: 0 15px 54px -27px #000000;
-  -moz-box-shadow: 0 15px 54px -27px #000000;
-  box-shadow: 0 15px 54px -27px #000000;
+  -webkit-box-shadow: 0 15px 54px -27px black;
+  -moz-box-shadow: 0 15px 54px -27px black;
+  box-shadow: 0 15px 54px -27px black;
   border-radius: 8px;
 }
 
-/* line 1489, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1501, less/main.scss */
 body.ugyfelkapu-view {
   background-color: #ffffff;
   background-image: none;
 }
-
-/* line 1493, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1505, less/main.scss */
 body.ugyfelkapu-view .group {
   margin: 25px 0 15px 0;
 }
-
-/* line 1495, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1507, less/main.scss */
 body.ugyfelkapu-view .group h2 {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 0 0 5px 0;
 }
-
-/* line 1501, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1513, less/main.scss */
 body.ugyfelkapu-view .group h2 + .subtitle {
   margin: 0 0 20px 0;
   line-height: 1.4;
   color: #888888;
 }
-
-/* line 1508, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 1520, less/main.scss */
 body.ugyfelkapu-view .group .cont label {
   font-size: 1em;
 }
 
-/*# sourceMappingURL=../main.map */
+/* line 1528, less/main.scss */
+.profil-progress-container .wrapper {
+  padding: 35px 0 15px 0;
+}
+/* line 1530, less/main.scss */
+.profil-progress-container .wrapper .line {
+  position: relative;
+  background: #eaeaea;
+  height: 10px;
+  width: 100%;
+}
+/* line 1535, less/main.scss */
+.profil-progress-container .wrapper .line .progress-line {
+  background: #39ac4f;
+  height: 10px;
+  width: 0%;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  position: relative;
+}
+/* line 1543, less/main.scss */
+.profil-progress-container .wrapper .line .progress-line .status {
+  position: absolute;
+  background: #f44e5e;
+  color: white;
+  padding: 5px 7px;
+  line-height: 1;
+  left: 50%;
+  top: -28px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* line 1554, less/main.scss */
+.profil-progress-container .wrapper .line .progress-line .status:after {
+  content: "";
+  border-color: #f44e5e transparent transparent transparent;
+  border-width: 8px;
+  background: transparent;
+  border-style: solid;
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+/* line 1572, less/main.scss */
+.profil-changer-nav {
+  background: #f3f3f3;
+  border: 1px solid #e1e1e1;
+}
+/* line 1576, less/main.scss */
+.profil-changer-nav ul, .profil-changer-nav li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/* line 1581, less/main.scss */
+.profil-changer-nav ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* line 1586, less/main.scss */
+.profil-changer-nav ul li {
+  flex-basis: calc(100%/7);
+  border-right: 1px solid #e1e1e1;
+  height: 98px;
+}
+/* line 1590, less/main.scss */
+.profil-changer-nav ul li a {
+  display: block;
+  font-size: 0.7em;
+  color: #000000;
+  line-height: 1.1;
+  text-align: center;
+  padding: 10px 8px;
+  height: 98px;
+}
+/* line 1599, less/main.scss */
+.profil-changer-nav ul li a .ico {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 10px auto;
+  background-size: contain;
+  background-position: center;
+}
+/* line 1609, less/main.scss */
+.profil-changer-nav ul li.ico-user .ico {
+  background-image: url("/dist/img/icons/green/user.svg");
+}
+/* line 1615, less/main.scss */
+.profil-changer-nav ul li.ico-document .ico {
+  background-image: url("/dist/img/icons/green/documents.svg");
+}
+/* line 1621, less/main.scss */
+.profil-changer-nav ul li.ico-mobil .ico {
+  background-image: url("/dist/img/icons/green/mobil.svg");
+}
+/* line 1627, less/main.scss */
+.profil-changer-nav ul li.ico-idcard .ico {
+  background-image: url("/dist/img/icons/green/idcard.svg");
+}
+/* line 1633, less/main.scss */
+.profil-changer-nav ul li.ico-briefcase .ico {
+  background-image: url("/dist/img/icons/green/briefcase.svg");
+}
+/* line 1639, less/main.scss */
+.profil-changer-nav ul li.ico-target .ico {
+  background-image: url("/dist/img/icons/green/target.svg");
+}
+/* line 1645, less/main.scss */
+.profil-changer-nav ul li.ico-download .ico {
+  background-image: url("/dist/img/icons/green/download.svg");
+}
+/* line 1651, less/main.scss */
+.profil-changer-nav ul li:hover a {
+  color: #39ac4f;
+}
+/* line 1657, less/main.scss */
+.profil-changer-nav ul li.active a {
+  background: #39ac4f;
+  color: white;
+}
+/* line 1663, less/main.scss */
+.profil-changer-nav ul li.active.ico-user .ico {
+  background-image: url("/dist/img/icons/white/user.svg");
+}
+/* line 1669, less/main.scss */
+.profil-changer-nav ul li.active.ico-document .ico {
+  background-image: url("/dist/img/icons/white/documents.svg");
+}
+/* line 1675, less/main.scss */
+.profil-changer-nav ul li.active.ico-mobil .ico {
+  background-image: url("/dist/img/icons/white/mobil.svg");
+}
+/* line 1681, less/main.scss */
+.profil-changer-nav ul li.active.ico-idcard .ico {
+  background-image: url("/dist/img/icons/white/idcard.svg");
+}
+/* line 1687, less/main.scss */
+.profil-changer-nav ul li.active.ico-briefcase .ico {
+  background-image: url("/dist/img/icons/white/briefcase.svg");
+}
+/* line 1693, less/main.scss */
+.profil-changer-nav ul li.active.ico-target .ico {
+  background-image: url("/dist/img/icons/white/target.svg");
+}
+/* line 1699, less/main.scss */
+.profil-changer-nav ul li.active.ico-download .ico {
+  background-image: url("/dist/img/icons/white/download.svg");
+}
+/* line 1706, less/main.scss */
+.profil-changer-nav ul li.last-child {
+  border-right: none;
+}

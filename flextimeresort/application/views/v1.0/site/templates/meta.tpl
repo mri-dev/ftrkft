@@ -51,12 +51,18 @@
       left: top_nav_position.left
     }, 0);
 
+
     $(window).resize(function(){
       top_nav_position = $('header .top nav').position();
 
       $('header .top nav .helper').animate({
         left: top_nav_position.left
       }, 0);
+    });
+
+    $('*[data-progresslineauto]').each(function(i,e){
+      var perc = parseInt($(e).data('progresslineauto'));
+      progressBindChange(e, perc);
     });
 
     $(window).click(function(event) {
@@ -90,6 +96,18 @@
 
        $('#'+key+'_ids').val(selected);
      });
+
+     function progressBindChange(e, perc) {
+       $(e).parent().css({
+         width: perc+'%'
+       });
+       $(e).find('.percentvalue').text(perc);
+     }
+
+     function progressLineStatus(what, perc) {
+       var e = $('*[data-progressline=\''+what+'\']');
+       progressBindChange(e, perc);
+     }
 
      function collect_checkbox(key, loader)
       {

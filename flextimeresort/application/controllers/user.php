@@ -79,6 +79,15 @@ class user extends Controller{
 				break;
 				case 'profil':
 					$subtitle = $this->lang('PROFIL_SZERKESZTES');
+
+					$subprofil = 'alap';
+
+					if($_GET['sub'] != '') {
+						$subprofil = $_GET['sub'];
+					}
+
+					$this->out('show_profil_flow', true);
+					$this->out('subprofil', $subprofil);
 				break;
 				case 'uzenetek':
 					$subtitle = $this->lang('UZENETEK');
