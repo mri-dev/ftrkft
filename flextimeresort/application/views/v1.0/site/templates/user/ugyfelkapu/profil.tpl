@@ -14,4 +14,8 @@
 
 <div class="profil-changer-container" ng-app="profilModifier">
   {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
+  <div class="buttons">
+    <button class="btn btn-success">{lang text="Mentés"}</button>
+    <button class="btn btn-danger btn-redhigh">{lang text="Mentés és tovább"}</button>
+  </div>
 </div>

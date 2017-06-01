@@ -84,6 +84,16 @@ body{
   }
 }
 
+.btn.btn-redhigh {
+  background-color: #fb2d43;
+  border-color: darken(#fb2d43, 5%);
+  color: white;
+
+  &:hover{
+    background-color: lighten(#fb2d43, 5%);
+  }
+}
+
 .btn.btn-info {
   background-color: $color-blue;
   border-color: darken($color-blue, 5%);
