@@ -32,6 +32,8 @@
 <script src="/plugins/iCheck/icheck.min.js"></script>
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script type="text/javascript" src="/dist/js/ang.app.js"></script>
 {if !$user}
 <!-- iCheck -->
 <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">

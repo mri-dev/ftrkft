@@ -1534,6 +1534,70 @@ body.ugyfelkapu-view{
   }
 }
 
+.profil-changer-container{
+  .group{
+    .title{
+      position: relative;
+      h3 {
+        position: relative;
+        z-index: 100;
+        color: $color-primary-light;
+        text-transform: none;
+        float: left;
+        padding: 0 10px 0 0;
+        line-height: 1;
+        margin: 0;
+        background: white;
+      }
+
+      .line {
+        z-index: 1;
+        height: 1px;
+        top: 50%;
+        left: 0;
+        right: 0;
+        -webkit-transform:translateY(-50%);
+          transform:translateY(-50%);
+        width: 100%;
+        background: #eeeeee;
+        position: absolute;
+      }
+    }
+
+    .input-line{
+      margin: 20px -15px;
+      align-items: center;
+
+      label {
+        font-weight: normal;
+        font-size: 1em;
+        line-height: 1.1;
+        color: black;
+        padding-left: 25px;
+        margin: 0;
+      }
+
+      .input-wrapper{
+        padding-right: 75px;
+      }
+
+      input, textarea, select {
+        color: $color-primary-light;
+      }
+    }
+  }
+
+  .buttons{
+    border-top: 1px solid #eeeeee;
+    padding: 15px 0 0 0;
+    margin: 15px 0 0 0;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+}
+
 .profil-progress-container{
   .wrapper {
     padding: 35px 0 15px 0;
