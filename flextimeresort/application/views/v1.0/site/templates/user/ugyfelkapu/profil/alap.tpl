@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <input type="text" id="default_name" class="form-control" required="required" ng-model="default.name">
+        <input type="text" id="default_name" class="form-control" required="required" ng-model="form.name">
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        
+        {$formdesigns->singleSelector('nem', 'nem')}
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <input type="email" id="default_email" class="form-control" required="required" ng-model="default.email">
+        <input type="email" id="default_email" class="form-control" required="required" ng-model="form.email">
       </div>
     </div>
   </div>

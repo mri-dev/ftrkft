@@ -53,7 +53,6 @@
       left: top_nav_position.left
     }, 0);
 
-
     $(window).resize(function(){
       top_nav_position = $('header .top nav').position();
 
@@ -136,6 +135,5 @@
 
         return arr.join(",");
       }
-
   })
 </script>

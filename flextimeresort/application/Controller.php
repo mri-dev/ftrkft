@@ -357,8 +357,8 @@ class Controller
       }
 
       if(!$this->hidePatern){
-          # Render FOOTER
-					$this->displayView( $subfolder.$this->theme_wire.'footer' );
+        # Render FOOTER
+				$this->displayView( $subfolder.$this->theme_wire.'footer' );
       }
 
       $this->db = null;

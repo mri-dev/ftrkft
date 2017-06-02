@@ -2,6 +2,7 @@
 use PortalManager\Form;
 use PortalManager\Categories;
 use PortalManager\Ad;
+use DesignCreator\FormDesigns;
 
 class user extends Controller{
 		private $temp = '';
@@ -79,6 +80,7 @@ class user extends Controller{
 				break;
 				case 'profil':
 					$subtitle = $this->lang('PROFIL_SZERKESZTES');
+					$formdesign = new FormDesigns();
 
 					$subprofil = 'alap';
 
@@ -86,6 +88,7 @@ class user extends Controller{
 						$subprofil = $_GET['sub'];
 					}
 
+					$this->out('formdesigns', $formdesign);
 					$this->out('show_profil_flow', true);
 					$this->out('subprofil', $subprofil);
 				break;

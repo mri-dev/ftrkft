@@ -12,10 +12,10 @@
   </ul>
 </div>
 
-<div class="profil-changer-container" ng-app="profilModifier" ng-controller="formValidor">
+<div class="profil-changer-container" ng-app="profilModifier" ng-controller="formValidor" ng-init="settings('{$subprofil}')">
   {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
   <div class="buttons" ng-show="dataloaded && cansavenow">
-    <button class="btn btn-success">{lang text="Mentés"}</button>
-    <button class="btn btn-danger btn-redhigh">{lang text="Mentés és tovább"}</button>
+    <button class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
+    <button class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
   </div>
 </div>

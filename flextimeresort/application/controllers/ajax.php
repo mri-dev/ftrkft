@@ -42,6 +42,25 @@ class ajax extends Controller  {
 					$data['alap']['name'] = $this->ME->getName();
 					$data['alap']['email'] = $this->ME->getEmail();
 				break;
+				case 'lists':
+					// Listák
+					$lists = explode(",", $params['lists']);
+					foreach ((array)$lists as $list) {
+						$cat = new Categories();
+						$ld = $cat->getList($list);
+						$terms = $cat->getTree($list);
+
+						$data[lists][$list] = $ld;
+
+						while ( $terms->walk() ) {
+							$data[terms][$list][] = array(
+								'id' => (int)$cat->getID(),
+								'value' => $cat->getName(),
+								'slug' => $cat->getSlug(),
+							);
+						}
+					}
+				break;
 			}
 			echo json_encode( $data );
 		}
