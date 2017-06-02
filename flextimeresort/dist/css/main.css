@@ -1944,9 +1944,8 @@ body.ugyfelkapu-view .group .cont label {
 .profil-changer-container .group .input-line input, .profil-changer-container .group .input-line textarea, .profil-changer-container .group .input-line select, .profil-changer-container .group .input-line .select-list {
   color: #39ac4f;
   position: relative;
-  z-index: 2;
 }
-/* line 1650, less/main.scss */
+/* line 1649, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper, .profil-changer-container .group .input-line textarea + .form-helper, .profil-changer-container .group .input-line select + .form-helper, .profil-changer-container .group .input-line .select-list + .form-helper {
   position: absolute;
   right: 25px;
@@ -1956,7 +1955,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 1660, less/main.scss */
+/* line 1659, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper:before, .profil-changer-container .group .input-line textarea + .form-helper:before, .profil-changer-container .group .input-line select + .form-helper:before, .profil-changer-container .group .input-line .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -1971,49 +1970,49 @@ body.ugyfelkapu-view .group .cont label {
   text-align: center;
   content: "";
 }
-/* line 1675, less/main.scss */
+/* line 1674, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.invalid:before, .profil-changer-container .group .input-line textarea + .form-helper.invalid:before, .profil-changer-container .group .input-line select + .form-helper.invalid:before, .profil-changer-container .group .input-line .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1680, less/main.scss */
+/* line 1679, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.valid:before, .profil-changer-container .group .input-line textarea + .form-helper.valid:before, .profil-changer-container .group .input-line select + .form-helper.valid:before, .profil-changer-container .group .input-line .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1686, less/main.scss */
+/* line 1685, less/main.scss */
 .profil-changer-container .group .input-line input.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line select.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1690, less/main.scss */
+/* line 1689, less/main.scss */
 .profil-changer-container .group .input-line input.ng-valid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-valid + .form-helper:before, .profil-changer-container .group .input-line select.ng-valid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-valid + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1698, less/main.scss */
+/* line 1697, less/main.scss */
 .profil-changer-container .buttons {
   border-top: 1px solid #eeeeee;
   padding: 15px 0 0 0;
   margin: 15px 0 0 0;
 }
-/* line 1703, less/main.scss */
+/* line 1702, less/main.scss */
 .profil-changer-container .buttons button {
   margin-right: 10px;
 }
 
-/* line 1710, less/main.scss */
+/* line 1709, less/main.scss */
 .profil-progress-container .wrapper {
   padding: 35px 0 15px 0;
 }
-/* line 1712, less/main.scss */
+/* line 1711, less/main.scss */
 .profil-progress-container .wrapper .line {
   position: relative;
   background: #eaeaea;
   height: 10px;
   width: 100%;
 }
-/* line 1717, less/main.scss */
+/* line 1716, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line {
   background: #39ac4f;
   height: 10px;
@@ -2022,7 +2021,7 @@ body.ugyfelkapu-view .group .cont label {
   transition: all 1s;
   position: relative;
 }
-/* line 1725, less/main.scss */
+/* line 1724, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status {
   position: absolute;
   background: #f44e5e;
@@ -2034,7 +2033,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1736, less/main.scss */
+/* line 1735, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status:after {
   content: "";
   border-color: #f44e5e transparent transparent transparent;
@@ -2048,30 +2047,30 @@ body.ugyfelkapu-view .group .cont label {
   transform: translateX(-50%);
 }
 
-/* line 1754, less/main.scss */
+/* line 1753, less/main.scss */
 .profil-changer-nav {
   background: #f3f3f3;
   border: 1px solid #e1e1e1;
 }
-/* line 1758, less/main.scss */
+/* line 1757, less/main.scss */
 .profil-changer-nav ul, .profil-changer-nav li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 1763, less/main.scss */
+/* line 1762, less/main.scss */
 .profil-changer-nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-/* line 1768, less/main.scss */
+/* line 1767, less/main.scss */
 .profil-changer-nav ul li {
   flex-basis: calc(100%/7);
   border-right: 1px solid #e1e1e1;
   height: 98px;
 }
-/* line 1772, less/main.scss */
+/* line 1771, less/main.scss */
 .profil-changer-nav ul li a {
   display: block;
   font-size: 0.7em;
@@ -2081,7 +2080,7 @@ body.ugyfelkapu-view .group .cont label {
   padding: 10px 8px;
   height: 98px;
 }
-/* line 1781, less/main.scss */
+/* line 1780, less/main.scss */
 .profil-changer-nav ul li a .ico {
   width: 40px;
   height: 40px;
@@ -2089,72 +2088,72 @@ body.ugyfelkapu-view .group .cont label {
   background-size: contain;
   background-position: center;
 }
-/* line 1791, less/main.scss */
+/* line 1790, less/main.scss */
 .profil-changer-nav ul li.ico-user .ico {
   background-image: url("/dist/img/icons/green/user.svg");
 }
-/* line 1797, less/main.scss */
+/* line 1796, less/main.scss */
 .profil-changer-nav ul li.ico-document .ico {
   background-image: url("/dist/img/icons/green/documents.svg");
 }
-/* line 1803, less/main.scss */
+/* line 1802, less/main.scss */
 .profil-changer-nav ul li.ico-mobil .ico {
   background-image: url("/dist/img/icons/green/mobil.svg");
 }
-/* line 1809, less/main.scss */
+/* line 1808, less/main.scss */
 .profil-changer-nav ul li.ico-idcard .ico {
   background-image: url("/dist/img/icons/green/idcard.svg");
 }
-/* line 1815, less/main.scss */
+/* line 1814, less/main.scss */
 .profil-changer-nav ul li.ico-briefcase .ico {
   background-image: url("/dist/img/icons/green/briefcase.svg");
 }
-/* line 1821, less/main.scss */
+/* line 1820, less/main.scss */
 .profil-changer-nav ul li.ico-target .ico {
   background-image: url("/dist/img/icons/green/target.svg");
 }
-/* line 1827, less/main.scss */
+/* line 1826, less/main.scss */
 .profil-changer-nav ul li.ico-download .ico {
   background-image: url("/dist/img/icons/green/download.svg");
 }
-/* line 1833, less/main.scss */
+/* line 1832, less/main.scss */
 .profil-changer-nav ul li:hover a {
   color: #39ac4f;
 }
-/* line 1839, less/main.scss */
+/* line 1838, less/main.scss */
 .profil-changer-nav ul li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 1845, less/main.scss */
+/* line 1844, less/main.scss */
 .profil-changer-nav ul li.active.ico-user .ico {
   background-image: url("/dist/img/icons/white/user.svg");
 }
-/* line 1851, less/main.scss */
+/* line 1850, less/main.scss */
 .profil-changer-nav ul li.active.ico-document .ico {
   background-image: url("/dist/img/icons/white/documents.svg");
 }
-/* line 1857, less/main.scss */
+/* line 1856, less/main.scss */
 .profil-changer-nav ul li.active.ico-mobil .ico {
   background-image: url("/dist/img/icons/white/mobil.svg");
 }
-/* line 1863, less/main.scss */
+/* line 1862, less/main.scss */
 .profil-changer-nav ul li.active.ico-idcard .ico {
   background-image: url("/dist/img/icons/white/idcard.svg");
 }
-/* line 1869, less/main.scss */
+/* line 1868, less/main.scss */
 .profil-changer-nav ul li.active.ico-briefcase .ico {
   background-image: url("/dist/img/icons/white/briefcase.svg");
 }
-/* line 1875, less/main.scss */
+/* line 1874, less/main.scss */
 .profil-changer-nav ul li.active.ico-target .ico {
   background-image: url("/dist/img/icons/white/target.svg");
 }
-/* line 1881, less/main.scss */
+/* line 1880, less/main.scss */
 .profil-changer-nav ul li.active.ico-download .ico {
   background-image: url("/dist/img/icons/white/download.svg");
 }
-/* line 1888, less/main.scss */
+/* line 1887, less/main.scss */
 .profil-changer-nav ul li.last-child {
   border-right: none;
 }

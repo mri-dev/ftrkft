@@ -1645,7 +1645,6 @@ body.ugyfelkapu-view{
       input, textarea, select, .select-list {
         color: $color-primary-light;
         position: relative;
-        z-index: 2;
 
         & + .form-helper {
 
