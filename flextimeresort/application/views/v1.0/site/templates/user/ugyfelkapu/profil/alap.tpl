@@ -71,7 +71,7 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <input type="email" id="default_email" class="form-control" required="required" ng-model="form.email">
+        <input type="email" id="default_email" class="form-control" required="required" readonly="readonly" ng-model="form.email">
         <div class="form-helper"></div>
       </div>
     </div>
@@ -88,6 +88,18 @@
         <div class="infotext" ng-style="(szuletesi_datum_focus==true ? texthintfocusstyle : '')">
           {lang text="Elvárt dátum formátum: %date%" date=$smarty.now|date_format:"%F"}
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row input-line">
+    <div class="col-md-3">
+      <label for="default_birthday">{lang text="Profilkép"}</label>
+    </div>
+    <div class="col-md-9">
+      <div class="input-wrapper">
+        <input type="file" ng-model="profil" value="">
+        <div class="form-helper"></div>
       </div>
     </div>
   </div>
