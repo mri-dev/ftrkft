@@ -161,6 +161,27 @@ class User
 		$this->editAccountDetail('profil_img', $img);
 	}
 
+	public function profilPercent()
+	{
+		$dataset = $this->user['data'];
+		$req = array('email', 'name', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'csaladi_allapot', 'nem', 'profil_kep');
+		$current = 0;
+
+		//
+		foreach ($req as $k ) {
+			$d = $dataset[$k];
+			if (isset($d) && !empty($d)) {
+				$current++;
+			}
+		}
+
+		$total = count($req);
+
+		if($current == 0) return 0;
+
+		return round(($current / $total) * 100);
+	}
+
 	public function getLastloginTime( $formated = false )
 	{
 		if( $formated ) {
