@@ -327,12 +327,17 @@ a:hover {
 }
 
 /* line 116, less/main.scss */
+.hide {
+  display: none;
+}
+
+/* line 120, less/main.scss */
 ul.navi {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 121, less/main.scss */
+/* line 125, less/main.scss */
 ul.navi > li {
   display: inline-block;
   *display: inline;
@@ -340,11 +345,11 @@ ul.navi > li {
   vertical-align: middle;
   position: relative;
 }
-/* line 128, less/main.scss */
+/* line 132, less/main.scss */
 ul.navi > li a {
   display: block;
 }
-/* line 132, less/main.scss */
+/* line 136, less/main.scss */
 ul.navi > li ul.submenu {
   display: none;
   z-index: 9999;
@@ -359,12 +364,12 @@ ul.navi > li ul.submenu {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 146, less/main.scss */
+/* line 150, less/main.scss */
 ul.navi > li ul.submenu li {
   margin: 0;
   display: block;
 }
-/* line 150, less/main.scss */
+/* line 154, less/main.scss */
 ul.navi > li ul.submenu li a {
   font-size: 0.7em;
   line-height: 1.2;
@@ -372,7 +377,7 @@ ul.navi > li ul.submenu li a {
   padding: 12px;
   border: none !important;
 }
-/* line 159, less/main.scss */
+/* line 163, less/main.scss */
 ul.navi > li ul.submenu:before {
   content: "";
   position: absolute;
@@ -385,43 +390,43 @@ ul.navi > li ul.submenu:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 173, less/main.scss */
+/* line 177, less/main.scss */
 ul.navi > li:hover > ul.submenu {
   display: block;
 }
 
-/* line 179, less/main.scss */
+/* line 183, less/main.scss */
 img.i15 {
   height: 15px;
   margin-right: 5px;
   margin-top: -3px;
 }
 
-/* line 185, less/main.scss */
+/* line 189, less/main.scss */
 .row.col-vertical-middle {
   align-items: center;
 }
 
-/* line 188, less/main.scss */
+/* line 192, less/main.scss */
 .row.col-vertical-bottom {
   align-items: flex-end;
 }
 
-/* line 191, less/main.scss */
+/* line 195, less/main.scss */
 .row.col-vertical-top {
   align-items: flex-start;
 }
 
-/* line 195, less/main.scss */
+/* line 199, less/main.scss */
 header {
   background: #ffffff;
 }
-/* line 197, less/main.scss */
+/* line 201, less/main.scss */
 header .main.row {
   align-items: flex-end;
   padding: 0 0 25px 0;
 }
-/* line 201, less/main.scss */
+/* line 205, less/main.scss */
 header .main.row .slogan {
   text-align: right;
   color: #39ac4f;
@@ -430,12 +435,12 @@ header .main.row .slogan {
   font-size: 1.1em;
   line-height: 1;
 }
-/* line 211, less/main.scss */
+/* line 215, less/main.scss */
 header nav {
   background: #006534;
   border-bottom: 4px solid #006534;
 }
-/* line 216, less/main.scss */
+/* line 220, less/main.scss */
 header nav ul li a {
   color: white !important;
   text-transform: uppercase;
@@ -444,31 +449,31 @@ header nav ul li a {
   padding: 10px 14px;
   border-bottom: 4px solid #006534;
 }
-/* line 226, less/main.scss */
+/* line 230, less/main.scss */
 header nav ul li.active a {
   background: #333333;
 }
-/* line 234, less/main.scss */
+/* line 238, less/main.scss */
 header .top {
   position: relative;
 }
-/* line 236, less/main.scss */
+/* line 240, less/main.scss */
 header .top nav {
   float: right;
   background: #9b9b9b;
   height: 36px;
   border: none !important;
 }
-/* line 242, less/main.scss */
+/* line 246, less/main.scss */
 header .top nav ul {
   position: relative;
   z-index: 100;
 }
-/* line 245, less/main.scss */
+/* line 249, less/main.scss */
 header .top nav ul li {
   margin: 0;
 }
-/* line 247, less/main.scss */
+/* line 251, less/main.scss */
 header .top nav ul li a {
   border: none !important;
   height: 36px;
@@ -479,12 +484,12 @@ header .top nav ul li a {
   font-size: 0.8em;
   line-height: 36px;
 }
-/* line 257, less/main.scss */
+/* line 261, less/main.scss */
 header .top nav ul li.social-before {
   width: 10px;
   content: "";
 }
-/* line 262, less/main.scss */
+/* line 266, less/main.scss */
 header .top nav ul li.social {
   background: #757575;
   -webkit-transform: skewX(-35deg);
@@ -492,41 +497,41 @@ header .top nav ul li.social {
   text-align: center;
   width: 40px;
 }
-/* line 269, less/main.scss */
+/* line 273, less/main.scss */
 header .top nav ul li.social a {
   display: block;
   -webkit-transform: skewX(35deg);
   transform: skewX(35deg);
 }
-/* line 275, less/main.scss */
+/* line 279, less/main.scss */
 header .top nav ul li.social.facebook:hover {
   background: #3b5998;
 }
-/* line 278, less/main.scss */
+/* line 282, less/main.scss */
 header .top nav ul li.social.twitter:hover {
   background: #02d0ff;
 }
-/* line 281, less/main.scss */
+/* line 285, less/main.scss */
 header .top nav ul li.social.googleplus:hover {
   background: #e85050;
 }
-/* line 287, less/main.scss */
+/* line 291, less/main.scss */
 header .top nav ul li.account a {
   padding: 0;
 }
-/* line 290, less/main.scss */
+/* line 294, less/main.scss */
 header .top nav ul li.account.account-logout {
   -webkit-transform: skewX(-30deg);
   transform: skewX(-30deg);
   border-right: 1px solid #c5c5c5;
 }
-/* line 293, less/main.scss */
+/* line 297, less/main.scss */
 header .top nav ul li.account.account-logout a {
   padding: 0 10px;
   -webkit-transform: skewX(30deg);
   transform: skewX(30deg);
 }
-/* line 303, less/main.scss */
+/* line 307, less/main.scss */
 header .top nav ul:before {
   content: "";
   position: absolute;
@@ -537,7 +542,7 @@ header .top nav ul:before {
   border-style: solid;
   border-color: transparent #9b9b9b #9b9b9b transparent;
 }
-/* line 315, less/main.scss */
+/* line 319, less/main.scss */
 header .top nav .helper {
   position: absolute;
   height: 100%;
@@ -546,12 +551,12 @@ header .top nav .helper {
   top: 0;
 }
 
-/* line 326, less/main.scss */
+/* line 330, less/main.scss */
 .content-holder {
   min-height: 600px;
 }
 
-/* line 332, less/main.scss */
+/* line 336, less/main.scss */
 body.page404 .content-holder,
 body.activationpage .content-holder,
 body.resetpassword .content-holder {
@@ -562,13 +567,13 @@ body.resetpassword .content-holder {
   background-size: contain;
 }
 
-/* line 340, less/main.scss */
+/* line 344, less/main.scss */
 section.content-header {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.41);
   padding: 0;
 }
 
-/* line 345, less/main.scss */
+/* line 349, less/main.scss */
 .breadcrumb {
   float: right;
   margin: 0;
@@ -576,12 +581,12 @@ section.content-header {
   background-color: transparent;
 }
 
-/* line 352, less/main.scss */
+/* line 356, less/main.scss */
 .error-page {
   width: 80%;
   margin: 120px auto 0 auto;
 }
-/* line 356, less/main.scss */
+/* line 360, less/main.scss */
 .error-page .headline {
   font-size: 12em;
   line-height: 1.2;
@@ -589,23 +594,23 @@ section.content-header {
   font-weight: 100;
   float: left;
 }
-/* line 364, less/main.scss */
+/* line 368, less/main.scss */
 .error-page > .error-content {
   margin-left: 300px;
 }
-/* line 367, less/main.scss */
+/* line 371, less/main.scss */
 .error-page > .error-content h3 {
   color: #006534;
   font-size: 2.5em;
   font-weight: 100;
 }
 
-/* line 375, less/main.scss */
+/* line 379, less/main.scss */
 input[type=checkbox].ccb {
   display: none;
 }
 
-/* line 379, less/main.scss */
+/* line 383, less/main.scss */
 input[type=checkbox].ccb + label {
   color: black;
   cursor: pointer;
@@ -616,7 +621,7 @@ input[type=checkbox].ccb + label {
   padding-left: 16px;
   position: relative;
 }
-/* line 389, less/main.scss */
+/* line 393, less/main.scss */
 input[type=checkbox].ccb + label:before {
   content: "\f0c8";
   font-family: "FontAwesome";
@@ -633,23 +638,23 @@ input[type=checkbox].ccb + label:before {
   border-radius: 2px;
 }
 
-/* line 406, less/main.scss */
+/* line 410, less/main.scss */
 input[type=checkbox].ccb:checked + label:before {
   content: "\f14a";
   color: #0fcfbc;
 }
 
-/* line 414, less/main.scss */
+/* line 418, less/main.scss */
 .multiselect-list .value-viewer,
 .select-list .value-viewer {
   position: relative;
 }
-/* line 417, less/main.scss */
+/* line 421, less/main.scss */
 .multiselect-list .value-viewer input,
 .select-list .value-viewer input {
   padding-right: 72px !important;
 }
-/* line 420, less/main.scss */
+/* line 424, less/main.scss */
 .multiselect-list .value-viewer .helper,
 .select-list .value-viewer .helper {
   position: absolute;
@@ -665,7 +670,7 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 0 4px 4px 0;
   pointer-events: none;
 }
-/* line 436, less/main.scss */
+/* line 440, less/main.scss */
 .multiselect-list .multi-selector-holder,
 .multiselect-list .single-selector-holder,
 .select-list .multi-selector-holder,
@@ -673,7 +678,7 @@ input[type=checkbox].ccb:checked + label:before {
   position: relative;
   display: none;
 }
-/* line 440, less/main.scss */
+/* line 444, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper,
 .multiselect-list .single-selector-holder .selector-wrapper,
 .select-list .multi-selector-holder .selector-wrapper,
@@ -691,7 +696,7 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-box-shadow: 0 5px 20px -7px black;
   box-shadow: 0 5px 20px -7px black;
 }
-/* line 454, less/main.scss */
+/* line 458, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label,
 .multiselect-list .single-selector-holder .selector-wrapper input[type=checkbox] + label,
 .select-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label,
@@ -703,14 +708,14 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 462, less/main.scss */
+/* line 466, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:hover,
 .multiselect-list .single-selector-holder .selector-wrapper input[type=checkbox] + label:hover,
 .select-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:hover,
 .select-list .single-selector-holder .selector-wrapper input[type=checkbox] + label:hover {
   background: #f1f1f1;
 }
-/* line 465, less/main.scss */
+/* line 469, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:before,
 .multiselect-list .single-selector-holder .selector-wrapper input[type=checkbox] + label:before,
 .select-list .multi-selector-holder .selector-wrapper input[type=checkbox] + label:before,
@@ -723,7 +728,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 475, less/main.scss */
+/* line 479, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label,
 .multiselect-list .single-selector-holder .selector-wrapper input[type=checkbox]:checked + label,
 .select-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label,
@@ -731,7 +736,7 @@ input[type=checkbox].ccb:checked + label:before {
   background: #39ac4f;
   color: white;
 }
-/* line 479, less/main.scss */
+/* line 483, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label:before,
 .multiselect-list .single-selector-holder .selector-wrapper input[type=checkbox]:checked + label:before,
 .select-list .multi-selector-holder .selector-wrapper input[type=checkbox]:checked + label:before,
@@ -739,7 +744,7 @@ input[type=checkbox].ccb:checked + label:before {
   background: transparent;
   color: white;
 }
-/* line 484, less/main.scss */
+/* line 488, less/main.scss */
 .multiselect-list .multi-selector-holder .selector-wrapper .no-input,
 .multiselect-list .single-selector-holder .selector-wrapper .no-input,
 .select-list .multi-selector-holder .selector-wrapper .no-input,
@@ -749,7 +754,7 @@ input[type=checkbox].ccb:checked + label:before {
   color: #a9a9a9;
   font-size: 0.9em;
 }
-/* line 492, less/main.scss */
+/* line 496, less/main.scss */
 .multiselect-list .multi-selector-holder.opened,
 .multiselect-list .single-selector-holder.opened,
 .select-list .multi-selector-holder.opened,
@@ -757,48 +762,48 @@ input[type=checkbox].ccb:checked + label:before {
   display: block;
 }
 
-/* line 498, less/main.scss */
+/* line 502, less/main.scss */
 .single-selector-holder {
   display: block !important;
 }
 
-/* line 504, less/main.scss */
+/* line 508, less/main.scss */
 .select-list .value-viewer input {
   background: #F6F6F6 !important;
   color: #5B5B5B !important;
   cursor: pointer;
 }
-/* line 509, less/main.scss */
+/* line 513, less/main.scss */
 .select-list .value-viewer .helper {
   background: transparent;
   height: 38px !important;
   color: #898989 !important;
   line-height: 38px !important;
 }
-/* line 517, less/main.scss */
+/* line 521, less/main.scss */
 .select-list .single-selector-holder .selector-wrapper {
   padding: 5px !important;
 }
-/* line 520, less/main.scss */
+/* line 524, less/main.scss */
 .select-list .single-selector-holder .selector-wrapper .selector-row {
   padding: 5px 12px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 526, less/main.scss */
+/* line 530, less/main.scss */
 .select-list .single-selector-holder .selector-wrapper .selector-row:hover {
   background: #aaaaaa;
   color: white;
   cursor: pointer;
 }
-/* line 532, less/main.scss */
-.select-list .single-selector-holder .selector-wrapper .selector-row.selected {
+/* line 537, less/main.scss */
+.select-list .single-selector-holder .selector-wrapper .selector-row.selected, .select-list .single-selector-holder .selector-wrapper .selector-row.selected-row {
   background: #39ac4f;
   color: white;
 }
 
-/* line 541, less/main.scss */
+/* line 546, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -806,11 +811,11 @@ input[type=checkbox].ccb:checked + label:before {
   background-repeat: no-repeat;
   background-size: contain;
 }
-/* line 548, less/main.scss */
+/* line 553, less/main.scss */
 .header-searcher-container .home-searcher {
   padding: 40px 0 20px 0;
 }
-/* line 550, less/main.scss */
+/* line 555, less/main.scss */
 .header-searcher-container .home-searcher .input-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -819,11 +824,11 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-/* line 558, less/main.scss */
+/* line 563, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp {
   padding: 10px 8px;
 }
-/* line 561, less/main.scss */
+/* line 566, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input {
   padding: 12px 16px;
   font-size: 1.2em;
@@ -831,11 +836,11 @@ input[type=checkbox].ccb:checked + label:before {
   border: 1px solid #dbdbdb;
   height: 45px;
 }
-/* line 569, less/main.scss */
+/* line 574, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input[readonly] {
   cursor: pointer;
 }
-/* line 574, less/main.scss */
+/* line 579, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
   width: 100%;
   height: 45px;
@@ -844,11 +849,11 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0;
   line-height: 45px;
 }
-/* line 585, less/main.scss */
+/* line 590, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
   position: relative;
 }
-/* line 587, less/main.scss */
+/* line 592, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
   width: 44px;
   height: 55px;
@@ -861,7 +866,7 @@ input[type=checkbox].ccb:checked + label:before {
   pointer-events: none;
   z-index: 1;
 }
-/* line 599, less/main.scss */
+/* line 604, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
   width: 65%;
   position: absolute;
@@ -871,7 +876,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 610, less/main.scss */
+/* line 615, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
   content: "\f107";
   position: absolute;
@@ -885,7 +890,7 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 624, less/main.scss */
+/* line 629, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order select {
   position: relative;
   background: #39ac4f;
@@ -895,47 +900,47 @@ input[type=checkbox].ccb:checked + label:before {
   cursor: pointer;
   -webkit-appearance: none;
 }
-/* line 635, less/main.scss */
+/* line 640, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
   flex-basis: 40%;
   order: 1;
 }
-/* line 639, less/main.scss */
+/* line 644, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
   flex-basis: 40%;
   order: 2;
 }
-/* line 643, less/main.scss */
+/* line 648, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
   flex-basis: 20%;
   order: 3;
 }
-/* line 647, less/main.scss */
+/* line 652, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
   flex-basis: 40%;
   order: 4;
 }
-/* line 651, less/main.scss */
+/* line 656, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
   flex-basis: 20%;
   order: 5;
 }
-/* line 655, less/main.scss */
+/* line 660, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
   flex-basis: 20%;
   order: 6;
 }
-/* line 659, less/main.scss */
+/* line 664, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order {
   flex-basis: 20%;
   order: 7;
 }
-/* line 667, less/main.scss */
+/* line 672, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 672, less/main.scss */
+/* line 677, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -944,25 +949,25 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-/* line 679, less/main.scss */
+/* line 684, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-/* line 683, less/main.scss */
+/* line 688, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-/* line 688, less/main.scss */
+/* line 693, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-/* line 694, less/main.scss */
+/* line 699, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -971,23 +976,23 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-/* line 702, less/main.scss */
+/* line 707, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 706, less/main.scss */
+/* line 711, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 717, less/main.scss */
+/* line 722, less/main.scss */
 .header-searcher-container .home-instruction,
 .header-searcher-container .profil-instruction {
   padding: 0;
   background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-/* line 723, less/main.scss */
+/* line 728, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico,
 .header-searcher-container .profil-instruction .instuction .ico {
   border: 8px solid white;
@@ -997,7 +1002,7 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0 auto 25px auto;
   position: relative;
 }
-/* line 731, less/main.scss */
+/* line 736, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico img,
 .header-searcher-container .profil-instruction .instuction .ico img {
   width: 40%;
@@ -1009,7 +1014,7 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 742, less/main.scss */
+/* line 747, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info,
 .header-searcher-container .profil-instruction .instuction .info {
   display: -webkit-box;
@@ -1020,62 +1025,62 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 1.26em;
   align-items: flex-start;
 }
-/* line 751, less/main.scss */
+/* line 756, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .num,
 .header-searcher-container .profil-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-/* line 756, less/main.scss */
+/* line 761, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .text,
 .header-searcher-container .profil-instruction .instuction .info .text {
   line-height: 1.4;
 }
-/* line 761, less/main.scss */
+/* line 766, less/main.scss */
 .header-searcher-container .home-instruction .instuction .row,
 .header-searcher-container .profil-instruction .instuction .row {
   margin: 0 -25px;
 }
-/* line 765, less/main.scss */
+/* line 770, less/main.scss */
 .header-searcher-container .home-instruction .instuction *[class*=col-md-],
 .header-searcher-container .profil-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-/* line 769, less/main.scss */
+/* line 774, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst,
 .header-searcher-container .profil-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-/* line 774, less/main.scss */
+/* line 779, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu,
 .header-searcher-container .profil-instruction.ugyfelkapu {
   padding: 25px 0;
 }
-/* line 777, less/main.scss */
+/* line 782, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu h1,
 .header-searcher-container .profil-instruction.ugyfelkapu h1 {
   text-transform: uppercase;
   font-size: 1.8em;
 }
-/* line 784, less/main.scss */
+/* line 789, less/main.scss */
 .header-searcher-container .profil-instruction {
   background: rgba(0, 150, 29, 0.46);
 }
-/* line 786, less/main.scss */
+/* line 791, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .text {
   font-size: 0.95em;
   padding-top: 5px;
 }
-/* line 790, less/main.scss */
+/* line 795, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .num {
   font-size: 1.85em;
 }
-/* line 795, less/main.scss */
+/* line 800, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-/* line 798, less/main.scss */
+/* line 803, less/main.scss */
 .header-searcher-container .login-holder .login-container {
   background: #dbdbdb;
   border: 2px solid #c1c1c1;
@@ -1083,31 +1088,31 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 10px;
   margin-top: -110px;
 }
-/* line 805, less/main.scss */
+/* line 810, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-/* line 809, less/main.scss */
+/* line 814, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-/* line 813, less/main.scss */
+/* line 818, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
   color: black;
   font-weight: bold;
 }
-/* line 819, less/main.scss */
+/* line 824, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-/* line 823, less/main.scss */
+/* line 828, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
   padding-left: 36px;
 }
-/* line 828, less/main.scss */
+/* line 833, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder img {
   max-height: 24px;
   height: 24px;
@@ -1118,22 +1123,22 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 841, less/main.scss */
+/* line 846, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo {
   font-size: 0.8em;
 }
-/* line 844, less/main.scss */
+/* line 849, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo label {
   display: initial;
   vertical-align: top;
   cursor: pointer;
 }
-/* line 850, less/main.scss */
+/* line 855, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
   vertical-align: middle;
   height: 14px;
 }
-/* line 854, less/main.scss */
+/* line 859, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
   vertical-align: top;
   margin-top: -8px;
@@ -1141,12 +1146,12 @@ input[type=checkbox].ccb:checked + label:before {
   text-align: right;
   color: black;
 }
-/* line 861, less/main.scss */
+/* line 866, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
   width: 14px;
   height: 14px;
 }
-/* line 866, less/main.scss */
+/* line 871, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
   color: #f44e5e;
   font-size: 14px;
@@ -1156,47 +1161,47 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0;
   height: 14px;
 }
-/* line 876, less/main.scss */
+/* line 881, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
   color: white;
   font-size: 10px;
   height: 10px;
 }
-/* line 882, less/main.scss */
+/* line 887, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
   color: #f44e5e;
 }
-/* line 889, less/main.scss */
+/* line 894, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-/* line 897, less/main.scss */
+/* line 902, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
-/* line 904, less/main.scss */
+/* line 909, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged {
   background: #e8e8e8;
   border: 1px solid #c3c3c3;
   padding: 0;
 }
-/* line 909, less/main.scss */
+/* line 914, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav ul, .header-searcher-container .login-holder .login-container.as-logged nav li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-/* line 915, less/main.scss */
+/* line 920, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li {
   font-size: 1.1em;
   border-bottom: 1px solid #e3e3e3;
 }
-/* line 919, less/main.scss */
+/* line 924, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a {
   padding: 4px 8px;
   background: #f1f1f1;
@@ -1204,20 +1209,20 @@ input[type=checkbox].ccb:checked + label:before {
   color: #999999;
   position: relative;
 }
-/* line 926, less/main.scss */
+/* line 931, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a i {
   color: #39ac4f;
 }
-/* line 930, less/main.scss */
+/* line 935, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover {
   background: #39ac4f;
   color: white;
 }
-/* line 934, less/main.scss */
+/* line 939, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover i {
   color: white;
 }
-/* line 939, less/main.scss */
+/* line 944, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a .badge {
   position: absolute;
   background: #f44e5e;
@@ -1228,79 +1233,79 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 951, less/main.scss */
+/* line 956, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.header {
   padding: 10px 8px;
   text-transform: uppercase;
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 958, less/main.scss */
+/* line 963, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout {
   text-align: center;
   font-size: 1em;
 }
-/* line 962, less/main.scss */
+/* line 967, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a {
   color: #999999;
 }
-/* line 965, less/main.scss */
+/* line 970, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a i {
   color: #999999;
 }
-/* line 970, less/main.scss */
+/* line 975, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover {
   background: #f44e5e;
   color: white;
 }
-/* line 974, less/main.scss */
+/* line 979, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover i {
   color: white;
 }
-/* line 981, less/main.scss */
+/* line 986, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child {
   border-bottom: none;
 }
-/* line 984, less/main.scss */
+/* line 989, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child a {
   border-radius: 0 0 8px 8px;
 }
-/* line 989, less/main.scss */
+/* line 994, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active {
   border-bottom: 1px solid #2c863d;
 }
-/* line 991, less/main.scss */
+/* line 996, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 994, less/main.scss */
+/* line 999, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a i {
   color: white;
 }
-/* line 1001, less/main.scss */
+/* line 1006, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav .ico {
   text-align: center;
   margin: 0 8px 0 4px;
 }
 
-/* line 1011, less/main.scss */
+/* line 1016, less/main.scss */
 .single-page .page-wrapper {
   position: relative;
   background: white;
   padding: 25px;
 }
-/* line 1017, less/main.scss */
+/* line 1022, less/main.scss */
 .single-page h1.title {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 10px 0 30px 0;
 }
-/* line 1023, less/main.scss */
+/* line 1028, less/main.scss */
 .single-page .content-wrapper {
   min-height: 300px !important;
 }
-/* line 1026, less/main.scss */
+/* line 1031, less/main.scss */
 .single-page .page-not-found {
   width: 100%;
   position: absolute;
@@ -1313,25 +1318,25 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1038, less/main.scss */
+/* line 1043, less/main.scss */
 .single-page .page-not-found strong {
   color: black;
 }
-/* line 1042, less/main.scss */
+/* line 1047, less/main.scss */
 .single-page .page-not-found h1 {
   color: #39ac4f;
   margin: 0 0 20px 0;
   font-size: 2.4em;
 }
 
-/* line 1051, less/main.scss */
+/* line 1056, less/main.scss */
 .ugyfelkapu-content-holder .inside {
   background: #ffffff;
   min-height: 500px;
   padding: 0 0 25px 0;
 }
 
-/* line 1058, less/main.scss */
+/* line 1063, less/main.scss */
 .home-instruction.ugyfelkapu .login-holder .login-container {
   margin-top: 0 !important;
   position: absolute;
@@ -1339,31 +1344,31 @@ input[type=checkbox].ccb:checked + label:before {
   z-index: 1000;
 }
 
-/* line 1065, less/main.scss */
+/* line 1070, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 1069, less/main.scss */
+/* line 1074, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 1072, less/main.scss */
+/* line 1077, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-/* line 1077, less/main.scss */
+/* line 1082, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 1085, less/main.scss */
+/* line 1090, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 1088, less/main.scss */
+/* line 1093, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1372,34 +1377,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 1095, less/main.scss */
+/* line 1100, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 1101, less/main.scss */
+/* line 1106, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-/* line 1105, less/main.scss */
+/* line 1110, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 1109, less/main.scss */
+/* line 1114, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 1114, less/main.scss */
+/* line 1119, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 1123, less/main.scss */
+/* line 1128, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -1407,7 +1412,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-/* line 1131, less/main.scss */
+/* line 1136, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -1418,18 +1423,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 1141, less/main.scss */
+/* line 1146, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 1145, less/main.scss */
+/* line 1150, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 1153, less/main.scss */
+/* line 1158, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -1442,30 +1447,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 1166, less/main.scss */
+/* line 1171, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 1171, less/main.scss */
+/* line 1176, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 1176, less/main.scss */
+/* line 1181, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 1185, less/main.scss */
+/* line 1190, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 1187, less/main.scss */
+/* line 1192, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 1193, less/main.scss */
+/* line 1198, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1474,33 +1479,33 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 1201, less/main.scss */
+/* line 1206, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 1205, less/main.scss */
+/* line 1210, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 1214, less/main.scss */
+/* line 1219, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 1221, less/main.scss */
+/* line 1226, less/main.scss */
 footer .top {
   padding-top: 25px;
 }
 
-/* line 1226, less/main.scss */
+/* line 1231, less/main.scss */
 .sharing {
   position: relative;
   margin-top: 40px;
 }
-/* line 1230, less/main.scss */
+/* line 1235, less/main.scss */
 .sharing .title {
   text-transform: uppercase;
   padding: 10px 0 10px 0;
@@ -1509,7 +1514,7 @@ footer .top {
   font-size: 1.2em;
   font-weight: 300;
 }
-/* line 1238, less/main.scss */
+/* line 1243, less/main.scss */
 .sharing .title:before {
   content: "";
   border-top: 1px solid #dedede;
@@ -1518,7 +1523,7 @@ footer .top {
   left: 0;
   top: 0;
 }
-/* line 1247, less/main.scss */
+/* line 1252, less/main.scss */
 .sharing .shares {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1526,19 +1531,19 @@ footer .top {
   flex-wrap: wrap;
   align-items: center;
 }
-/* line 1254, less/main.scss */
+/* line 1259, less/main.scss */
 .sharing .shares > div {
   height: 20px;
   line-height: 20px;
   padding-right: 12px;
 }
-/* line 1260, less/main.scss */
+/* line 1265, less/main.scss */
 .sharing .shares .email {
   background: white;
   border: 1px solid #dcdcdc;
   padding: 3px;
 }
-/* line 1265, less/main.scss */
+/* line 1270, less/main.scss */
 .sharing .shares .email a {
   display: block;
   line-height: 1;
@@ -1547,43 +1552,43 @@ footer .top {
   margin: 0;
   color: #555;
 }
-/* line 1274, less/main.scss */
+/* line 1279, less/main.scss */
 .sharing .shares .email:hover {
   background: #f44e5e;
 }
-/* line 1277, less/main.scss */
+/* line 1282, less/main.scss */
 .sharing .shares .email:hover a {
   color: white;
 }
 
-/* line 1285, less/main.scss */
+/* line 1290, less/main.scss */
 .wbox {
   position: relative;
   background-color: white;
 }
 
-/* line 1290, less/main.scss */
+/* line 1295, less/main.scss */
 .dp {
   padding: 20px;
 }
 
-/* line 1294, less/main.scss */
+/* line 1299, less/main.scss */
 .divider {
   margin: 10px 0;
   height: 1px;
   width: 100%;
   display: block;
 }
-/* line 1299, less/main.scss */
+/* line 1304, less/main.scss */
 .divider.lined {
   background-color: #d7d7d7;
 }
-/* line 1303, less/main.scss */
+/* line 1308, less/main.scss */
 .divider.fat {
   margin: 25px 0;
 }
 
-/* line 1312, less/main.scss */
+/* line 1317, less/main.scss */
 .user-section.user-register section.info, .user-section.user-login section.info, .user-section.user-resetpassword section.info {
   background-color: rgba(245, 245, 245, 0.64);
   background-image: url(/dist/img/worldmap.svg);
@@ -1593,26 +1598,26 @@ footer .top {
   text-align: center;
   padding: 50px 0 70px 0;
 }
-/* line 1321, less/main.scss */
+/* line 1326, less/main.scss */
 .user-section.user-register section.info h1, .user-section.user-login section.info h1, .user-section.user-resetpassword section.info h1 {
   text-transform: uppercase;
   font-weight: bold;
   margin: 0 0 15px 0;
   color: black;
 }
-/* line 1328, less/main.scss */
+/* line 1333, less/main.scss */
 .user-section.user-register section.info h2, .user-section.user-login section.info h2, .user-section.user-resetpassword section.info h2 {
   color: #006534;
   font-weight: 300;
 }
-/* line 1333, less/main.scss */
+/* line 1338, less/main.scss */
 .user-section.user-register section.info .ask-as, .user-section.user-login section.info .ask-as, .user-section.user-resetpassword section.info .ask-as {
   margin-top: 40px;
   font-size: 2em;
   font-weight: bold;
   color: #39ac4f;
 }
-/* line 1342, less/main.scss */
+/* line 1347, less/main.scss */
 .user-section.user-register section.register .tabs,
 .user-section.user-register section.login .tabs, .user-section.user-login section.register .tabs,
 .user-section.user-login section.login .tabs, .user-section.user-resetpassword section.register .tabs,
@@ -1625,7 +1630,7 @@ footer .top {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1351, less/main.scss */
+/* line 1356, less/main.scss */
 .user-section.user-register section.register .tabs ul,
 .user-section.user-register section.login .tabs ul, .user-section.user-login section.register .tabs ul,
 .user-section.user-login section.login .tabs ul, .user-section.user-resetpassword section.register .tabs ul,
@@ -1633,7 +1638,7 @@ footer .top {
   margin: 0;
   padding: 0;
 }
-/* line 1355, less/main.scss */
+/* line 1360, less/main.scss */
 .user-section.user-register section.register .tabs ul li,
 .user-section.user-register section.login .tabs ul li, .user-section.user-login section.register .tabs ul li,
 .user-section.user-login section.login .tabs ul li, .user-section.user-resetpassword section.register .tabs ul li,
@@ -1645,7 +1650,7 @@ footer .top {
   padding: 0 4px;
   text-align: center;
 }
-/* line 1363, less/main.scss */
+/* line 1368, less/main.scss */
 .user-section.user-register section.register .tabs ul li a,
 .user-section.user-register section.login .tabs ul li a, .user-section.user-login section.register .tabs ul li a,
 .user-section.user-login section.login .tabs ul li a, .user-section.user-resetpassword section.register .tabs ul li a,
@@ -1660,7 +1665,7 @@ footer .top {
   display: block;
   font-weight: 300;
 }
-/* line 1376, less/main.scss */
+/* line 1381, less/main.scss */
 .user-section.user-register section.register .tabs ul li.active a,
 .user-section.user-register section.login .tabs ul li.active a, .user-section.user-login section.register .tabs ul li.active a,
 .user-section.user-login section.login .tabs ul li.active a, .user-section.user-resetpassword section.register .tabs ul li.active a,
@@ -1669,7 +1674,7 @@ footer .top {
   background: white;
   font-weight: bold;
 }
-/* line 1383, less/main.scss */
+/* line 1388, less/main.scss */
 .user-section.user-register section.register .tabs ul li.login a,
 .user-section.user-register section.login .tabs ul li.login a, .user-section.user-login section.register .tabs ul li.login a,
 .user-section.user-login section.login .tabs ul li.login a, .user-section.user-resetpassword section.register .tabs ul li.login a,
@@ -1678,7 +1683,7 @@ footer .top {
   color: white;
   text-transform: none;
 }
-/* line 1393, less/main.scss */
+/* line 1398, less/main.scss */
 .user-section.user-register section.register .form,
 .user-section.user-register section.login .form, .user-section.user-login section.register .form,
 .user-section.user-login section.login .form, .user-section.user-resetpassword section.register .form,
@@ -1686,28 +1691,28 @@ footer .top {
   margin: 20px auto;
   width: 70%;
 }
-/* line 1397, less/main.scss */
+/* line 1402, less/main.scss */
 .user-section.user-register section.register .form .submit,
 .user-section.user-register section.login .form .submit, .user-section.user-login section.register .form .submit,
 .user-section.user-login section.login .form .submit, .user-section.user-resetpassword section.register .form .submit,
 .user-section.user-resetpassword section.login .form .submit {
   text-align: right;
 }
-/* line 1401, less/main.scss */
+/* line 1406, less/main.scss */
 .user-section.user-register section.register .form .aszf,
 .user-section.user-register section.login .form .aszf, .user-section.user-login section.register .form .aszf,
 .user-section.user-login section.login .form .aszf, .user-section.user-resetpassword section.register .form .aszf,
 .user-section.user-resetpassword section.login .form .aszf {
   text-align: left;
 }
-/* line 1405, less/main.scss */
+/* line 1410, less/main.scss */
 .user-section.user-register section.register .form label,
 .user-section.user-register section.login .form label, .user-section.user-login section.register .form label,
 .user-section.user-login section.login .form label, .user-section.user-resetpassword section.register .form label,
 .user-section.user-resetpassword section.login .form label {
   font-size: 1em;
 }
-/* line 1409, less/main.scss */
+/* line 1414, less/main.scss */
 .user-section.user-register section.register .form h2,
 .user-section.user-register section.login .form h2, .user-section.user-login section.register .form h2,
 .user-section.user-login section.login .form h2, .user-section.user-resetpassword section.register .form h2,
@@ -1718,72 +1723,72 @@ footer .top {
   text-align: center;
   margin: 0 0 25px 0;
 }
-/* line 1421, less/main.scss */
+/* line 1426, less/main.scss */
 .user-section.user-login section.info {
   background-color: rgba(9, 171, 59, 0.58);
 }
-/* line 1423, less/main.scss */
+/* line 1428, less/main.scss */
 .user-section.user-login section.info h1 {
   color: #0c4629;
   margin: 0;
 }
-/* line 1429, less/main.scss */
+/* line 1434, less/main.scss */
 .user-section.user-login .form {
   width: 100% !important;
   margin: 30px !important;
 }
-/* line 1435, less/main.scss */
+/* line 1440, less/main.scss */
 .user-section.user-login .form .actions a {
   color: black;
 }
-/* line 1439, less/main.scss */
+/* line 1444, less/main.scss */
 .user-section.user-login .form .actions a:hover {
   color: #f44e5e;
 }
-/* line 1442, less/main.scss */
+/* line 1447, less/main.scss */
 .user-section.user-login .form .actions .fa-stack {
   color: #f44e5e;
 }
-/* line 1445, less/main.scss */
+/* line 1450, less/main.scss */
 .user-section.user-login .form .actions .fa-stack i {
   font-size: 22px;
 }
-/* line 1449, less/main.scss */
+/* line 1454, less/main.scss */
 .user-section.user-login .form .actions .fa-stack .fa-stack-1x {
   color: white;
   font-size: 14px;
   line-height: 21px;
 }
-/* line 1457, less/main.scss */
+/* line 1462, less/main.scss */
 .user-section.user-login .form h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 25px 0;
   font-weight: bold;
 }
-/* line 1465, less/main.scss */
+/* line 1470, less/main.scss */
 .user-section.user-login .reg-instruction {
   width: 80%;
   margin: 0 auto;
   text-align: center;
 }
-/* line 1470, less/main.scss */
+/* line 1475, less/main.scss */
 .user-section.user-login .reg-instruction .text {
   line-height: 1.3;
   font-size: 1.2em;
 }
-/* line 1475, less/main.scss */
+/* line 1480, less/main.scss */
 .user-section.user-login .reg-instruction a {
   margin-top: 25px;
 }
-/* line 1481, less/main.scss */
+/* line 1486, less/main.scss */
 .user-section.user-resetpassword {
   min-height: 600px;
   position: relative;
   background: rgba(153, 0, 0, 0.72);
   text-align: center;
 }
-/* line 1487, less/main.scss */
+/* line 1492, less/main.scss */
 .user-section.user-resetpassword section.resetpassword {
   text-align: center;
   width: 50%;
@@ -1794,31 +1799,31 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1490, less/main.scss */
+/* line 1495, less/main.scss */
 .user-section.user-resetpassword section.resetpassword h1 {
   text-transform: uppercase;
   color: white;
   margin: 0 0 50px 0;
   font-weight: 300;
 }
-/* line 1497, less/main.scss */
+/* line 1502, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form {
   background: white;
   padding: 25px;
 }
-/* line 1501, less/main.scss */
+/* line 1506, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form h2 {
   color: black;
   font-weight: bold;
   margin: 0 0 25px 0;
 }
 
-/* line 1519, less/main.scss */
+/* line 1524, less/main.scss */
 .activator-content {
   min-height: 600px;
   position: relative;
 }
-/* line 1523, less/main.scss */
+/* line 1528, less/main.scss */
 .activator-content .pw {
   background: rgba(255, 255, 255, 0.69);
   padding: 25px;
@@ -1829,19 +1834,19 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1532, less/main.scss */
+/* line 1537, less/main.scss */
 .activator-content .pw h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 15px 0;
   font-weight: bold;
 }
-/* line 1538, less/main.scss */
+/* line 1543, less/main.scss */
 .activator-content .pw h1 i {
   font-size: 64px;
   margin-bottom: 10px;
 }
-/* line 1544, less/main.scss */
+/* line 1549, less/main.scss */
 .activator-content .pw .sub {
   font-size: 1.2em;
   color: #444444;
@@ -1852,37 +1857,37 @@ footer .top {
   border-radius: 8px;
 }
 
-/* line 1556, less/main.scss */
+/* line 1561, less/main.scss */
 body.ugyfelkapu-view {
   background-color: #ffffff;
   background-image: none;
 }
-/* line 1560, less/main.scss */
+/* line 1565, less/main.scss */
 body.ugyfelkapu-view .group {
   margin: 25px 0 15px 0;
 }
-/* line 1562, less/main.scss */
+/* line 1567, less/main.scss */
 body.ugyfelkapu-view .group h2 {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 0 0 5px 0;
 }
-/* line 1568, less/main.scss */
+/* line 1573, less/main.scss */
 body.ugyfelkapu-view .group h2 + .subtitle {
   margin: 0 0 20px 0;
   line-height: 1.4;
   color: #888888;
 }
-/* line 1575, less/main.scss */
+/* line 1580, less/main.scss */
 body.ugyfelkapu-view .group .cont label {
   font-size: 1em;
 }
 
-/* line 1584, less/main.scss */
+/* line 1589, less/main.scss */
 .profil-changer-container .group .title {
   position: relative;
 }
-/* line 1586, less/main.scss */
+/* line 1591, less/main.scss */
 .profil-changer-container .group .title h3 {
   position: relative;
   z-index: 100;
@@ -1894,7 +1899,7 @@ body.ugyfelkapu-view .group .cont label {
   margin: 0;
   background: white;
 }
-/* line 1598, less/main.scss */
+/* line 1603, less/main.scss */
 .profil-changer-container .group .title .line {
   z-index: 1;
   height: 1px;
@@ -1907,12 +1912,16 @@ body.ugyfelkapu-view .group .cont label {
   background: #eeeeee;
   position: absolute;
 }
-/* line 1612, less/main.scss */
+/* line 1617, less/main.scss */
 .profil-changer-container .group .input-line {
   margin: 20px -15px;
   align-items: center;
 }
-/* line 1616, less/main.scss */
+/* line 1621, less/main.scss */
+.profil-changer-container .group .input-line.vert-top {
+  align-items: flex-start;
+}
+/* line 1625, less/main.scss */
 .profil-changer-container .group .input-line label {
   font-weight: normal;
   font-size: 1em;
@@ -1921,12 +1930,12 @@ body.ugyfelkapu-view .group .cont label {
   padding-left: 25px;
   margin: 0;
 }
-/* line 1625, less/main.scss */
+/* line 1634, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper {
   padding-right: 75px;
   position: relative;
 }
-/* line 1630, less/main.scss */
+/* line 1638, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper .infotext {
   font-size: 0.84em;
   color: #888888;
@@ -1940,12 +1949,12 @@ body.ugyfelkapu-view .group .cont label {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-/* line 1645, less/main.scss */
+/* line 1653, less/main.scss */
 .profil-changer-container .group .input-line input, .profil-changer-container .group .input-line textarea, .profil-changer-container .group .input-line select, .profil-changer-container .group .input-line .select-list {
   color: #39ac4f;
   position: relative;
 }
-/* line 1649, less/main.scss */
+/* line 1657, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper, .profil-changer-container .group .input-line textarea + .form-helper, .profil-changer-container .group .input-line select + .form-helper, .profil-changer-container .group .input-line .select-list + .form-helper {
   position: absolute;
   right: 25px;
@@ -1955,7 +1964,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 1659, less/main.scss */
+/* line 1667, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper:before, .profil-changer-container .group .input-line textarea + .form-helper:before, .profil-changer-container .group .input-line select + .form-helper:before, .profil-changer-container .group .input-line .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -1970,49 +1979,87 @@ body.ugyfelkapu-view .group .cont label {
   text-align: center;
   content: "";
 }
-/* line 1674, less/main.scss */
+/* line 1682, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.invalid:before, .profil-changer-container .group .input-line textarea + .form-helper.invalid:before, .profil-changer-container .group .input-line select + .form-helper.invalid:before, .profil-changer-container .group .input-line .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1679, less/main.scss */
+/* line 1687, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.valid:before, .profil-changer-container .group .input-line textarea + .form-helper.valid:before, .profil-changer-container .group .input-line select + .form-helper.valid:before, .profil-changer-container .group .input-line .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1685, less/main.scss */
+/* line 1693, less/main.scss */
 .profil-changer-container .group .input-line input.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line select.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1689, less/main.scss */
+/* line 1697, less/main.scss */
 .profil-changer-container .group .input-line input.ng-valid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-valid + .form-helper:before, .profil-changer-container .group .input-line select.ng-valid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-valid + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1697, less/main.scss */
+/* line 1704, less/main.scss */
+.profil-changer-container .group .input-line .profil-selector label {
+  position: relative;
+  padding: 0;
+  float: left;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  cursor: pointer;
+}
+/* line 1713, less/main.scss */
+.profil-changer-container .group .input-line .profil-selector label img {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 1722, less/main.scss */
+.profil-changer-container .group .input-line .profil-selector .infos {
+  float: left;
+  color: #aaaaaa;
+  font-size: 1.2em;
+  line-height: 1.6;
+  padding-left: 20px;
+}
+/* line 1729, less/main.scss */
+.profil-changer-container .group .input-line .profil-selector .infos .selected-info {
+  font-size: 0.9em;
+  line-height: 1.2;
+  color: #39ac4f;
+  margin-top: 15px;
+}
+/* line 1735, less/main.scss */
+.profil-changer-container .group .input-line .profil-selector .infos .selected-info .invalid {
+  color: #f44e5e;
+}
+/* line 1744, less/main.scss */
 .profil-changer-container .buttons {
   border-top: 1px solid #eeeeee;
   padding: 15px 0 0 0;
   margin: 15px 0 0 0;
 }
-/* line 1702, less/main.scss */
+/* line 1749, less/main.scss */
 .profil-changer-container .buttons button {
   margin-right: 10px;
 }
 
-/* line 1709, less/main.scss */
+/* line 1756, less/main.scss */
 .profil-progress-container .wrapper {
   padding: 35px 0 15px 0;
 }
-/* line 1711, less/main.scss */
+/* line 1758, less/main.scss */
 .profil-progress-container .wrapper .line {
   position: relative;
   background: #eaeaea;
   height: 10px;
   width: 100%;
 }
-/* line 1716, less/main.scss */
+/* line 1763, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line {
   background: #39ac4f;
   height: 10px;
@@ -2021,7 +2068,7 @@ body.ugyfelkapu-view .group .cont label {
   transition: all 1s;
   position: relative;
 }
-/* line 1724, less/main.scss */
+/* line 1771, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status {
   position: absolute;
   background: #f44e5e;
@@ -2033,7 +2080,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1735, less/main.scss */
+/* line 1782, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status:after {
   content: "";
   border-color: #f44e5e transparent transparent transparent;
@@ -2047,30 +2094,30 @@ body.ugyfelkapu-view .group .cont label {
   transform: translateX(-50%);
 }
 
-/* line 1753, less/main.scss */
+/* line 1800, less/main.scss */
 .profil-changer-nav {
   background: #f3f3f3;
   border: 1px solid #e1e1e1;
 }
-/* line 1757, less/main.scss */
+/* line 1804, less/main.scss */
 .profil-changer-nav ul, .profil-changer-nav li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 1762, less/main.scss */
+/* line 1809, less/main.scss */
 .profil-changer-nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-/* line 1767, less/main.scss */
+/* line 1814, less/main.scss */
 .profil-changer-nav ul li {
   flex-basis: calc(100%/7);
   border-right: 1px solid #e1e1e1;
   height: 98px;
 }
-/* line 1771, less/main.scss */
+/* line 1818, less/main.scss */
 .profil-changer-nav ul li a {
   display: block;
   font-size: 0.7em;
@@ -2080,7 +2127,7 @@ body.ugyfelkapu-view .group .cont label {
   padding: 10px 8px;
   height: 98px;
 }
-/* line 1780, less/main.scss */
+/* line 1827, less/main.scss */
 .profil-changer-nav ul li a .ico {
   width: 40px;
   height: 40px;
@@ -2088,72 +2135,72 @@ body.ugyfelkapu-view .group .cont label {
   background-size: contain;
   background-position: center;
 }
-/* line 1790, less/main.scss */
+/* line 1837, less/main.scss */
 .profil-changer-nav ul li.ico-user .ico {
   background-image: url("/dist/img/icons/green/user.svg");
 }
-/* line 1796, less/main.scss */
+/* line 1843, less/main.scss */
 .profil-changer-nav ul li.ico-document .ico {
   background-image: url("/dist/img/icons/green/documents.svg");
 }
-/* line 1802, less/main.scss */
+/* line 1849, less/main.scss */
 .profil-changer-nav ul li.ico-mobil .ico {
   background-image: url("/dist/img/icons/green/mobil.svg");
 }
-/* line 1808, less/main.scss */
+/* line 1855, less/main.scss */
 .profil-changer-nav ul li.ico-idcard .ico {
   background-image: url("/dist/img/icons/green/idcard.svg");
 }
-/* line 1814, less/main.scss */
+/* line 1861, less/main.scss */
 .profil-changer-nav ul li.ico-briefcase .ico {
   background-image: url("/dist/img/icons/green/briefcase.svg");
 }
-/* line 1820, less/main.scss */
+/* line 1867, less/main.scss */
 .profil-changer-nav ul li.ico-target .ico {
   background-image: url("/dist/img/icons/green/target.svg");
 }
-/* line 1826, less/main.scss */
+/* line 1873, less/main.scss */
 .profil-changer-nav ul li.ico-download .ico {
   background-image: url("/dist/img/icons/green/download.svg");
 }
-/* line 1832, less/main.scss */
+/* line 1879, less/main.scss */
 .profil-changer-nav ul li:hover a {
   color: #39ac4f;
 }
-/* line 1838, less/main.scss */
+/* line 1885, less/main.scss */
 .profil-changer-nav ul li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 1844, less/main.scss */
+/* line 1891, less/main.scss */
 .profil-changer-nav ul li.active.ico-user .ico {
   background-image: url("/dist/img/icons/white/user.svg");
 }
-/* line 1850, less/main.scss */
+/* line 1897, less/main.scss */
 .profil-changer-nav ul li.active.ico-document .ico {
   background-image: url("/dist/img/icons/white/documents.svg");
 }
-/* line 1856, less/main.scss */
+/* line 1903, less/main.scss */
 .profil-changer-nav ul li.active.ico-mobil .ico {
   background-image: url("/dist/img/icons/white/mobil.svg");
 }
-/* line 1862, less/main.scss */
+/* line 1909, less/main.scss */
 .profil-changer-nav ul li.active.ico-idcard .ico {
   background-image: url("/dist/img/icons/white/idcard.svg");
 }
-/* line 1868, less/main.scss */
+/* line 1915, less/main.scss */
 .profil-changer-nav ul li.active.ico-briefcase .ico {
   background-image: url("/dist/img/icons/white/briefcase.svg");
 }
-/* line 1874, less/main.scss */
+/* line 1921, less/main.scss */
 .profil-changer-nav ul li.active.ico-target .ico {
   background-image: url("/dist/img/icons/white/target.svg");
 }
-/* line 1880, less/main.scss */
+/* line 1927, less/main.scss */
 .profil-changer-nav ul li.active.ico-download .ico {
   background-image: url("/dist/img/icons/white/download.svg");
 }
-/* line 1887, less/main.scss */
+/* line 1934, less/main.scss */
 .profil-changer-nav ul li.last-child {
   border-right: none;
 }

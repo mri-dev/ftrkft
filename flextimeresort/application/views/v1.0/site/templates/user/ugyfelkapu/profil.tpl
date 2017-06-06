@@ -15,7 +15,21 @@
 <div class="profil-changer-container" ng-app="profilModifier" ng-controller="formValidor" ng-init="settings('{$subprofil}')">
   {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
   <div class="buttons" ng-show="dataloaded && cansavenow">
-    <button class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
-    <button class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
+
+    <div ng-show="profilimguploadprogress" class="alert alert-warning">
+      <i class="fa fa-spin fa-spinner"></i> {lang text="Profilkép feltöltése folyamatban..."}
+    </div>
+    <div ng-show="successfullsaved && !saveinprogress" class="alert alert-success">
+      <i class="fa fa-check-circle"></i> {lang text="Sikeresen elmentette a változásokat."}
+    </div>
+    <div ng-show="saveinprogress" class="alert alert-warning">
+      <i class="fa fa-spin fa-spinner"></i> {lang text="Változások mentése folyamatban. Kis türelmét kérjük."}
+    </div>
+    <div ng-show="!dataloaded" class="alert alert-warning">
+      <i class="fa fa-spin fa-spinner"></i> {lang text="Adatok betöltése folyamatban."}
+    </div>
+
+    <button ng-show="!saveinprogress" class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
+    <button ng-show="!saveinprogress" class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
   </div>
 </div>

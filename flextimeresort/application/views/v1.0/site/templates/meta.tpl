@@ -50,7 +50,7 @@
   $(function(){
     var top_nav_position = $('header .top nav').position();
     $('header .top nav .helper').animate({
-      left: top_nav_position.left
+      left: top_nav_position.left + 100
     }, 0);
 
     $(window).resize(function(){

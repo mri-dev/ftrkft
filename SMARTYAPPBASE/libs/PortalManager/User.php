@@ -145,6 +145,22 @@ class User
 		return $this->user['data']['phone'];
 	}
 
+	public function getProfilImg()
+	{
+		return $this->getAccountData('profil_img');
+	}
+
+	public function changeProfilImg($img)
+	{
+		$previous = ltrim($this->getProfilImg(), '/');
+
+		if (!empty($previous) && file_exists($previous)) {
+			unlink($previous);
+		}
+
+		$this->editAccountDetail('profil_img', $img);
+	}
+
 	public function getLastloginTime( $formated = false )
 	{
 		if( $formated ) {
@@ -153,6 +169,25 @@ class User
 			return $this->user['data']['utoljara_belepett'];
 		}
 
+	}
+
+	public function saveProfil( $profils = array(), $details = array() )
+	{
+		if(empty($profils)) return false;
+
+		// profil
+		$this->db->update(
+			\PortalManager\Users::TABLE_NAME,
+			$profils,
+			sprintf("ID = %d", $this->getID())
+		);
+
+		// details
+		foreach ((array)$details as $key => $value) {
+			$this->editAccountDetail($key, $value);
+		}
+
+		return $saved;
 	}
 
 	public function getRegisterTime( $formated = false )
@@ -181,6 +216,34 @@ class User
 		$mail = new Mails( $this, $email_template, $this->getEmail(), $arg );
 
 		$mail->send();
+	}
+
+	private function editAccountDetail( $key, $value )
+	{
+		$account_id = $this->getID();
+
+		if( !$account_id ) return false;
+
+		$check = $this->db->query("SELECT id FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE fiok_id = ".$account_id." and nev = '".$key."';");
+
+		if( $check->rowCount() !== 0 ) {
+			$this->db->update(
+				\PortalManager\Users::TABLE_DETAILS_NAME,
+				array(
+					'ertek' 			=> $value
+				),
+				sprintf( "fiok_id = %d and nev = '%s'", $account_id, $key)
+			);
+		} else {
+			$this->db->insert(
+				\PortalManager\Users::TABLE_DETAILS_NAME,
+				array(
+					'fiok_id' 	=> $account_id,
+					'nev' 			=> $key,
+					'ertek' 		=> $value
+				)
+			);
+		}
 	}
 
 	private function error( $msg )

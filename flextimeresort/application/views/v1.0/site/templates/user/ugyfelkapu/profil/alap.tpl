@@ -91,17 +91,34 @@
       </div>
     </div>
   </div>
-
-  <div class="row input-line">
+  {if true}
+  <div class="row input-line vert-top">
     <div class="col-md-3">
-      <label for="default_birthday">{lang text="Profilkép"}</label>
+      <label for="profil">{lang text="Profilkép"}</label>
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <input type="file" ng-model="profil" value="">
+        <div class="profil-selector">
+          <input type="file" class="hide" id="profil" file-model="profil">
+          <label for="profil" data-toggle="tooltip" title="{lang text='Kattintson a kép kiválasztásához.'}"><img ng-src="[[profilpreview]]" alt="Profil"></label>
+          <div class="infos">
+            {lang text="Elfogadott fájlformátumok"}:<br>
+            jpg, jpeg, png<br>
+            {lang text="Max. fájlméret"}: 2024 KB (2 MB)
+            <div class="selected-info" ng-show="profilselected">
+              {lang text="Kiválasztott kép adatai"}:<br>
+              <div ng-class="selectedprofilimg.size > 2024 ? 'invalid':''">
+                {lang text="Fájlméret"}: <strong>[[selectedprofilimg.size]] KB</strong>
+              </div>
+              <div>
+                {lang text="Fájltípus"}: <strong>[[selectedprofilimg.type]]</strong>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="form-helper"></div>
       </div>
     </div>
   </div>
-
+  {/if}
 </div>

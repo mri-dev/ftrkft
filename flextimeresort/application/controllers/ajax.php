@@ -41,6 +41,57 @@ class ajax extends Controller  {
 					// Alapadatok
 					$data['alap']['name'] = $this->ME->getName();
 					$data['alap']['email'] = $this->ME->getEmail();
+					$data['alap']['profil_kep'] = $this->ME->getProfilImg();
+					$data['alap']['szuletesi_datum'] = $this->ME->getAccountData('szuletesi_datum');
+					$data['alap']['anyanyelv'] = (int)$this->ME->getAccountData('anyanyelv');
+					$data['alap']['nem'] = (int)$this->ME->getAccountData('nem');
+					$data['alap']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
+					$data['alap']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
+				break;
+				case 'uploadProfilImg':
+					if (isset($_FILES['file']) && $_FILES['file']['error'] == 0)
+					{
+						// uploads image in the folder images
+				    $temp = explode(".", $_FILES["file"]["name"]);
+				    $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+				    move_uploaded_file($_FILES['file']['tmp_name'], 'store/images/profils/' . $newfilename);
+
+						// give callback to your angular code with the image src name
+						$data['filename'] = $newfilename;
+						$data['uploaded_path'] = '/store/images/profils/' . $newfilename;
+						$data['error'] = false;
+					} else {
+						$data['error'] = false;
+					}
+
+					$data['FILE'] = $_FILES['file'];
+				break;
+				case 'profilsave':
+					$nextpages = array(
+						'alap' => 'elerhetoseg'
+					);
+					$form = json_decode($params['form'], true);
+					$page = $params['page'];
+
+					$profildata = array();
+					$profildetails = array();
+
+					$profildata['name'] = $form['name'];
+					$profildetails['szuletesi_datum'] = $form['szuletesi_datum'];
+					$profildetails['anyanyelv'] = (int)$form['anyanyelv'];
+					$profildetails['nem'] = (int)$form['nem'];
+					$profildetails['allampolgarsag'] = (int)$form['allampolgarsag'];
+					$profildetails['csaladi_allapot'] = (int)$form['csaladi_allapot'];
+
+					if (isset($form['newprofilimg'])) {
+						$this->ME->changeProfilImg($form['newprofilimg']);
+					}
+
+					$re = $this->ME->saveProfil($profildata, $profildetails);
+
+					$data['form'] = $form;
+					$data['page'] = $page;
+					$data['nextpage'] = $nextpages[$page];
 				break;
 				case 'lists':
 					// Listák
@@ -53,7 +104,7 @@ class ajax extends Controller  {
 						$data[lists][$list] = $ld;
 
 						while ( $terms->walk() ) {
-							$data[terms][$list][] = array(
+							$data[terms][$list][(int)$cat->getID()] = array(
 								'id' => (int)$cat->getID(),
 								'value' => $cat->getName(),
 								'slug' => $cat->getSlug(),
