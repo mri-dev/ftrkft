@@ -58,8 +58,8 @@
   <nav>
     <div class="page-width">
       <ul class="navi pull-left main-nav">
-        <li><a href="#">{lang text="MUNKAVALLALOKNAK"}</a></li>
-        <li class="active"><a href="#">{lang text="MUNKALTATOKNAK"}</a></li>
+        <li><a href="{$settings.allas_search_slug}">{lang text="MUNKAVALLALOKNAK"}</a></li>
+        <li class="active"><a href="{$settings.munkavallalo_search_slug}">{lang text="MUNKALTATOKNAK"}</a></li>
       </ul>
       <ul class="navi pull-right sec-nav">
         {foreach from=$menu_header item=menu}

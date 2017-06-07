@@ -1,10 +1,24 @@
 <?
+use PortalManager\Articles;
 class home extends Controller  {
 	private $user = false;
 	function __construct(){
 		parent::__construct();
 
 		$this->out('homepage', true);
+
+		$articles = new Articles();
+		$arg = array();
+		$arg['limit'] = 3;
+		$articles->getTree( $arg );
+		$this->out('articles_top', $articles);
+
+		$articles = new Articles();
+		$arg = array();
+		$arg['limit'] = 4;
+		$arg['offset'] = 3;
+		$articles->getTree( $arg );
+		$this->out('articles_more', $articles);
 
 		// SEO Információk
 		$SEO = null;

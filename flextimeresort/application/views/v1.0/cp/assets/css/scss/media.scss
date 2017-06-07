@@ -10,6 +10,7 @@ body.admin {
   font-size: 0.7em;
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+  background: #f3f3f3;
 
   &.login-page{
     background: darken($color-grey, 5%);

@@ -49,22 +49,15 @@ class Users
 
 	public $user_datails = array(
 		'default' => array(
-			'telefon' => array(
-				'lang' => 'TELEFON',
+			'szuletesi_datum' => array(
+				'lang' => 'SZULETESI_DATUM',
 				'required' => true
 			)
 		),
 		0 => array(
-			'nick' => array(
-				'lang' => 'TELEFON',
-				'required' => false
-			)
+
 		),
-		10 => array(
-			'ceg' => array(
-				'lang' => 'TELEFON',
-				'required' => false
-			)
+		10 => array(			
 		)
 	);
 

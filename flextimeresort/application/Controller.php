@@ -7,6 +7,7 @@ use PortalManager\Portal;
 use Applications\Captcha;
 use PortalManager\Lang;
 use PortalManager\Menus;
+use PortalManager\CategoryList;
 
 class Controller
 {
@@ -21,7 +22,7 @@ class Controller
 	public $db;
 	public $ME = null;
 
-    function __construct($arg = array()){
+  function __construct($arg = array()){
         Session::init();
         Helper::setMashineID();
         $this->gets = Helper::GET();
@@ -67,14 +68,17 @@ class Controller
 		$this->out('menu_footer_right', $this->menu_load('footer_right'));
 		$this->out('tematic_list', $this->tematikus_lista());
 
+		// Saját user adatok
     $user = $this->USERS->get( self::$user_opt );
-
 		$this->ME = new User(
 			$user['data']['ID'],
 			array(
 				'controller' => $this
 			)
 		);
+
+		// Kategória listák
+		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));
 
 		/**
 		* VARS
@@ -323,6 +327,30 @@ class Controller
 
 		$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
 		return $data;
+	}
+
+	public function tematikus_lista_elemek( $group, $control = false )
+	{
+		$q = "SELECT
+		t.*
+		FROM ".\PortalManager\Categories::DBTERMS." as t
+		WHERE 1=1 and t.groupkey ='{$group}'
+		ORDER BY t.sorrend ASC, t.neve ASC
+		";
+
+		$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
+		$back = array();
+
+		foreach ((array)$data as $d) {
+			switch ($control) {
+				case 'megyelist':
+					$d['count'] = 0;
+				break;
+				default:break;
+			}
+			$back[] = $d;
+		}
+		return $back;
 	}
 
 	public function displayView( $tpl, $has_folder = false){

@@ -164,18 +164,20 @@ class User
 	public function profilPercent()
 	{
 		$dataset = $this->user['data'];
-		$req = array('email', 'name', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'csaladi_allapot', 'nem', 'profil_kep');
+		$req = array('email', 'name', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'csaladi_allapot', 'nem', 'profil_img');
+		$has = array();
 		$current = 0;
 
 		//
 		foreach ($req as $k ) {
 			$d = $dataset[$k];
 			if (isset($d) && !empty($d)) {
-				$current++;
+				$has[] = $k;
 			}
 		}
 
 		$total = count($req);
+		$current = count($has);
 
 		if($current == 0) return 0;
 
