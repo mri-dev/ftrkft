@@ -90,6 +90,7 @@
       <li class="{if $GETS[1] == 'users'}active{/if}"><a href="{$root}users"><i class="fa fa-users"></i> <span class="text">Felhasználók</span></a></li>
       <li class="{if $GETS[1] == 'oldalak'}active{/if}"><a href="{$root}oldalak"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
       <li class="{if $GETS[1] == 'menu'}active{/if}"><a href="{$root}menu"><i class="fa fa-th"></i> <span class="text">Menük</span></a></li>
+      <li class="{if $GETS[1] == 'cikkek'}active{/if}"><a href="{$root}cikkek"><i class="fa fa-book"></i> <span class="text">Cikkek</span></a></li>
       <li class="{if $smarty.get.tag == 'cp/terms'}active{/if}"><a href="{$root}cat/"><i class="fa fa-bars"></i> <span class="text">Tematikus listák</span></a></li>
       {if $smarty.get.tag == 'cp/terms'}
         {foreach from=$tematic_list item=tl}

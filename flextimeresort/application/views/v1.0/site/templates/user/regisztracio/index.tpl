@@ -22,38 +22,39 @@
 					<h2>{lang text="CSATLAKOZAS_MINT"} <strong>{if $as == 'munkavallalo'}{lang text="MUNKAVALLALO"}{elseif $as == 'munkaltato'}{lang text="MUNKALTATO"}{/if}</strong>:</h2>
 					{if $form}
 						{$form->getMsg(1)}
+			      {assign var="formposts" value=$form->getPost()}
 					{/if}
 					<form class="" action="/forms/register" method="post">
 						<input type="hidden" name="return" value="{$smarty.server.REQUEST_URI}">
             <input type="hidden" name="form" value="1">
             <input type="hidden" name="session_path" value="/user/regisztracio">
-            <input type="hidden" name="user_group" value="{$usergroup}">
+            <input type="hidden" name="data[user_group]" value="{$usergroup}">
 						<div class="row col-vertical-middle">
 							<div class="col-md-12 {if $form && $form->hasError(1, 'name')}input-error{/if}">
 								<label for="name">{lang text="NEV_CEGNEV"} *</label>
-								<input type="text" class="form-control" name="name" id="name" value="{if $form}{$form->getPost('name')}{/if}">
+								<input type="text" class="form-control" name="data[name]" id="name" value="{if $form}{$formposts.data.name}{/if}">
 							</div>
 							<div class="divider"></div>
 							<div class="col-md-6 {if $form && $form->hasError(1, 'email')}input-error{/if}">
 								<label for="email">{lang text="EMAIL"} *</label>
-								<input type="text" class="form-control" name="email" id="email" value="{if $form}{$form->getPost('email')}{/if}">
+								<input type="text" class="form-control" name="data[email]" id="email" value="{if $form}{$formposts.data.email}{/if}">
 							</div>
 							<div class="col-md-6 {if $form && $form->hasError(1, 'telefon')}input-error{/if}">
 								<label for="telefon">{lang text="TELEFON"} *</label>
-								<input type="text" class="form-control" name="telefon" id="telefon" value="{if $form}{$form->getPost('telefon')}{/if}">
+								<input type="text" class="form-control" name="data[details][telefon]" id="telefon" value="{if $form}{$formposts.data.details.telefon}{/if}">
 							</div>
 							<div class="divider"></div>
 							<div class="col-md-6 {if $form && $form->hasError(1, 'password')}input-error{/if}">
 								<label for="password">{lang text="JELSZO"} *</label>
-								<input type="password" class="form-control" name="password" id="password" value="">
+								<input type="password" class="form-control" name="data[password]" id="password" value="">
 							</div>
 							<div class="col-md-6 {if $form && $form->hasError(1, 'password2')}input-error{/if}">
 								<label for="password2">{lang text="JELSZO_UJRA"} *</label>
-								<input type="password" class="form-control" name="password2" id="password2" value="">
+								<input type="password" class="form-control" name="data[password2]" id="password2" value="">
 							</div>
 							<div class="divider"></div>
 							<div class="col-md-8 aszf">
-								<input type="checkbox" class="ccb" name="aszf" id="aszf" value="1"> <label for="aszf">{lang text="ASZF_ELFOGADAS"}</label>
+								<input type="checkbox" class="ccb" name="data[aszf]" id="aszf" value="1"> <label for="aszf">{lang text="ASZF_ELFOGADAS"}</label>
 								{if $form && $form->hasError(1, 'aszf')}<div class="error-msg"><i class="fa fa-exclamation-circle"></i> {lang text="FORM_USER_REG_ASZF_CHECK_HIANYZIK"}</div>{/if}
 							</div>
 							<div class="col-md-4 submit">

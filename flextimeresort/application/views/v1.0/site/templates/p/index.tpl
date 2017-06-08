@@ -6,6 +6,7 @@
         <div class="content-wrapper">
           {$page->getHtmlContent()}
         </div>
+        {assign var="seo_desc" value=$articles->getSEODesc()}
         {include file='inc/sharer.tpl'}
       {else}
         <div class="content-wrapper">

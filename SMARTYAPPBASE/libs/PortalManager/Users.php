@@ -57,7 +57,7 @@ class Users
 		0 => array(
 
 		),
-		10 => array(			
+		10 => array(
 		)
 	);
 
@@ -507,7 +507,7 @@ class Users
 			$err_code[] = 'email';
 		}
 
-		if( empty($data['telefon']) ){
+		if( empty($data['details']['telefon']) ){
 			$error = true;
 			$err .= '- ' . $this->controller->lang('FORM_USER_REG_TELEFON_HIANYZIK') . '<br/>';
 			$err_code[] = 'telefon';
@@ -542,6 +542,85 @@ class Users
 			$this->error( $err, $err_code );
 		}
 
+		// Felhasználó használtság ellenőrzése
+		if($this->userExists('email',$data['email'], $user_group )){
+			$this->error( $this->lang['lng_form_login_alredyusedemail']);
+		}
+
+		$data['nev'] 	= strip_tags($data['nev']);
+		$data['email'] 	= strip_tags($data['email']);
+
+		// Felhasználó regisztrálása
+		$this->db->insert(
+			self::TABLE_NAME,
+			array(
+				'email' 		=> trim($data[email]),
+				'name' 			=> trim($data[name]),
+				'password' 		=> \Hash::jelszo($data[password2]),
+				'user_group' 	=> $user_group
+			)
+		);
+
+		// Új regisztrált felhasználó ID-ka
+		$uid = $this->db->lastInsertId();
+		$this->addAccountDetail( $uid, 'telefon', $data['details']['telefon']);
+
+		// Aktiváló e-mail kiküldése
+		$this->sendActivationEmail( $data['email'], $user_group );
+	}
+
+	private function register_munkaado( $data, $user_group  )
+	{
+		$error = false;
+		$err = '';
+		$err_code = array();
+
+		if( empty($data['name']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_NEV_HIANYZIK') . '<br/>';
+			$err_code[] = 'name';
+		}
+
+		if( empty($data['email']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_EMAIL_HIANYZIK') . '<br/>';
+			$err_code[] = 'email';
+		}
+
+		if( empty($data['details']['telefon']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_TELEFON_HIANYZIK') . '<br/>';
+			$err_code[] = 'telefon';
+		}
+
+		if( empty($data['password']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_JELSZO_HIANYZIK') . '<br/>';
+			$err_code[] = 'password';
+		}
+
+		if( empty($data['password2']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_JELSZO_UJRA_HIANYZIK') . '<br/>';
+			$err_code[] = 'password2';
+		}
+
+		if( $data['password'] != $data['password2'] ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_JELSZO_NEMEGYEZIK') . '<br/>';
+			$err_code[] = 'password';
+			$err_code[] = 'password2';
+		}
+
+		if( !isset($data['aszf']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_ASZF_CHECK_HIANYZIK') . '<br/>';
+			$err_code[] = 'aszf';
+		}
+
+		if ($error) {
+			$this->error( $err, $err_code );
+		}
 
 		// Felhasználó használtság ellenőrzése
 		if($this->userExists('email',$data['email'], $user_group )){
@@ -564,123 +643,10 @@ class Users
 
 		// Új regisztrált felhasználó ID-ka
 		$uid = $this->db->lastInsertId();
-		$this->addAccountDetail( $uid, 'telefon', $data['telefon']);
+		$this->addAccountDetail( $uid, 'telefon', $data['details']['telefon']);
 
 		// Aktiváló e-mail kiküldése
 		$this->sendActivationEmail( $data['email'], $user_group );
-	}
-
-	private function register_munkaado( $data, $user_group )
-	{
-
-		if( empty($data['nev']) ){
-			$this->error( $this->lang['lng_form_reg_missingcompany']);
-		}
-		if( empty($data['email']) ){
-			$this->error( $this->lang['lng_form_login_missingemail']);
-		}
-		if( empty($data['contact_name']) ){
-			$this->error( $this->lang['lng_form_reg_missingcontactname']);
-		}
-		if( empty($data['contact_phone']) ){
-			$this->error( $this->lang['lng_form_reg_missingcontactphone']);
-		}
-		if( empty($data['company_adoszam']) ){
-			$this->error( $this->lang['lng_form_reg_company_adoszam']);
-		}
-		if( empty($data['megye']) ){
-			$this->error( $this->lang['lng_form_reg_megye']);
-		}
-		if( empty($data['city']) ){
-			$this->error( $this->lang['lng_form_reg_city']);
-		}
-		if( empty($data['company_hq']) ){
-			$this->error( $this->lang['lng_form_reg_company_hq']);
-		}
-		if( empty($data['employer_aszf']) ){
-			$this->error( $this->lang['lng_form_reg_wantacceptaszf']);
-		}
-		if( empty($data['pw']) || empty($data['pw2'])   ){
-			$this->error( $this->lang['lng_form_reg_missingpasswords']);
-		}
-
-		if( $data['pw'] !== $data['pw2'] ){
-			$this->error( $this->lang['lng_form_login_alredyusedemail']);
-		}
-
-		if( $data['megye'] == \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID ) {
-			if( !isset($data['kerulet']) || empty($data['kerulet']) ) { $this->error( $this->lang['lng_form_missed_kerulet'] ); }
-		}
-
-		// Felhasználó használtság ellenőrzése
-		if($this->userExists('email',$data['email'], $user_group )){
-			$this->error( $this->lang['lng_form_login_alredyusedemail']);
-		}
-
-		$data['nev'] 	= strip_tags($data['nev']);
-		$data['email'] 	= strip_tags($data['email']);
-
-		// Felhasználó regisztrálása
-		$this->db->insert(
-			self::TABLE_NAME,
-			array(
-				'email' 		=> trim($data[email]),
-				'nev' 			=> trim($data[nev]),
-				'jelszo' 		=> \Hash::jelszo($data[pw2]),
-				'user_group' 	=> $user_group
-			)
-		);
-
-		// Új regisztrált felhasználó ID-ka
-		$uid = $this->db->lastInsertId();
-
-		$this->addAccountDetail( $uid, 'contact_name', 		strip_tags($data['contact_name']) );
-		$this->addAccountDetail( $uid, 'contact_phone', 	strip_tags($data['contact_phone']) );
-		$this->addAccountDetail( $uid, 'company_adoszam', 	strip_tags($data['company_adoszam']) );
-		$this->addAccountDetail( $uid, 'company_hq', 		strip_tags($data['company_hq']) );
-
-
-		$city_id = \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID;
-
-		/**
-		 * VÁROS MENTÉSE TERÜLETEK KÖZÉ
-		 * deep = 2
-		 * kivéve, ha Budapest
-		 * */
-		if( $data['megye'] != \PortalManager\Categories::TYPE_TERULETEK_BUDAPEST_ID ) {
-
-			$cat = new Category( \PortalManager\Categories::TYPE_TERULETEK, false, array('db' => $this->db) );
-
-			$cat_neve 	= strip_tags(trim($data['city']));
-			$cat_szulo 	= $data['megye']."_1";
-
-			$check_city = $cat->checkExists( array( 'neve' => $cat_neve, 'szulo_id' => $cat_szulo ) );
-			$city_id 	= $check_city;
-
-			// Város terület beszúrása, ha nem található az adatbázisban
-			if( !$check_city ) {
-				$city_id = $cat->add( array(
-					'neve' 		=> $cat_neve,
-					'szulo_id' 	=> $cat_szulo
-				) );
-			}
-
-		} else {
-			$data['megye'] 	= $city_id;
-			$city_id 		= $data['kerulet'];
-		}
-
-		$this->addAccountDetail( $uid, 'city', 	$city_id );
-		$this->addAccountDetail( $uid, 'megye', $data['megye'] );
-
-
-		// Aktiváló e-mail kiküldése
-		$this->sendActivationEmail( $data['email'], $user_group );
-
-		// Ingyenesen STARTER PACK
-		if( isset($this->settings['ALLOW_STARTER_ADS']) && $this->settings['ALLOW_STARTER_ADS'] == '1' ) {
-			$this->addStarterPackToEmployer( $uid );
-		}
 	}
 
 	private function addAccountDetail( $accountID, $key, $value )

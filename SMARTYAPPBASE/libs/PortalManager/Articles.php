@@ -18,81 +18,128 @@ class Articles extends \Controller
 	private $parent_data = false;
 	private $o = array();
   private $admin = false;
+  private $selected_id = false;
 
-  public function __construct( $arg = array() )
+  public function __construct( $itemid = false, $arg = array() )
   {
     parent::__construct();
 
     $this->admin = (isset($arg['admin']) && $arg['admin'] === true) ? true : false;
-  }
 
-	/**
-	 * Kategória létrehzás
-	 * @param array $data új kategória létrehozásához szükséges adatok
-	 * @return void
-	 */
-	public function add( $data = array() )
-	{
-		$deep = 0;
-		$name 		= ($data['neve']) 		?: false;
-		$sort 		= ($data['sorrend']) 	?: 100;
-		$parent 	= ($data['szulo_id']) 	?: NULL;
-
-		if ($parent) {
-			$xparent 	= explode('_',$parent);
-			$parent 	= (int)$xparent[0];
-			$deep 		= (int)$xparent[1] + 1;
+    if ( $itemid ) {
+			$this->selected_id = $itemid;
 		}
 
-		if ( !$name ) {
-			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );
+    return $this;
+  }
+
+  public function get( $page_id_or_slug )
+	{
+		$data = array();
+		$qry = "
+			SELECT 				*
+			FROM 				".self::DBTABLE."
+		";
+
+		if (is_numeric($page_id_or_slug)) {
+			$qry .= " WHERE ID = ".$page_id_or_slug;
+		}else {
+			$qry .= " WHERE slug = '".$page_id_or_slug."'";
+		}
+
+
+		if ( !$this->admin ) {
+			$qry .= " and active = 1 ";
+		}
+
+		$qry = $this->db->query($qry);
+
+		$this->current_item = $qry->fetch(\PDO::FETCH_ASSOC);
+
+		return $this;
+	}
+
+	public function add( $data = array() )
+	{
+		$title = ($data['title']) ?: false;
+    $seo_keywords = ($data['seo_keywords']) ?: NULL;
+    $seo_desc = ($data['seo_desc']) ?: NULL;
+    $content = ($data['content']) ?: false;
+    $image = ($data['image']) ?: NULL;
+    $publish_after = ($data['publish_after']) ?: date('Y-m-d');
+    $eleres = ($data['slug']) ?: false;
+
+		if ( !$title ) {
+			$this->error( "Kérjük, hogy adja meg a cikk címét!" );
+		}
+
+    if (!$eleres) {
+			$eleres = $this->checkEleres( $title );
+		} else {
+			$eleres = \PortalManager\Formater::makeSafeUrl($eleres,'');
 		}
 
 		$this->db->insert(
-			$this->category_table,
+			self::DBTABLE,
 			array(
-				'neve' 		=> $name,
-				'szulo_id' 	=> $parent,
-				'sorrend' 	=> $sort,
-				'deep' 		=> $deep
+				'title' => $title,
+        'slug' => $slug,
+        'seo_keywords' => $seo_keywords,
+        'seo_desc' => $seo_desc,
+        'content' => $content,
+        'image' => $image,
+        'publish_after' => $publish_after,
+        'slug' => $eleres
 			)
 		);
 	}
 
-	/**
-	 * Kategória szerkesztése
-	 * @param  Category $category PortalManager\Category class
-	 * @param  array    $new_data
-	 * @return void
-	 */
-	public function edit( Category $category, $new_data = array() )
+	public function edit( $data = array() )
 	{
-		$deep 	= 0;
-		$name 	= ($new_data['nev']) ?: false;
-		$sort 	= ($new_data['sorrend']) ?: 0;
-		$parent = ($new_data['szulo_id']) ?: NULL;
+    $id = $this->selected_id;
 
-		if ($parent) {
-			$xparent 	= explode('_',$parent);
-			$parent 	= (int)$xparent[0];
-			$deep 		= (int)$xparent[1] + 1;
+    if(!$id) $this->error( "Hiányzik a cikk ID-ja! Nem végezhető el a módosítás." );
+
+    $title = ($data['title']) ?: false;
+    $seo_keywords = ($data['seo_keywords']) ?: NULL;
+    $seo_desc = ($data['seo_desc']) ?: NULL;
+    $content = ($data['content']) ?: false;
+    $image = ($data['image']) ?: NULL;
+    $publish_after = ($data['publish_after']) ?: date('Y-m-d');
+    $eleres = ($data['slug']) ?: false;
+    $lathato = (isset($data['lathato'])) ? 1 : 0;
+
+		if ( !$title ) {
+			$this->error( "Kérjük, hogy adja meg a cikk címét!" );
 		}
 
-		if ( !$name ) {
-			$this->error( "Kérjük, hogy adja meg a kategória elnevezését!" );
+    if (!$eleres) {
+			$eleres = $this->checkEleres( $title );
+		} else {
+			$eleres = \PortalManager\Formater::makeSafeUrl($eleres,'');
 		}
 
-		$category->edit(array(
-			'neve' 		=> $name,
-			'szulo_id' 	=> $parent,
-			'sorrend' 	=> $sort,
-			'deep' 		=> $deep
-		));
+    $this->db->update(
+      self::DBTABLE,
+      array(
+				'title' => $title,
+        'slug' => $slug,
+        'seo_keywords' => $seo_keywords,
+        'seo_desc' => $seo_desc,
+        'content' => $content,
+        'image' => $image,
+        'publish_after' => $publish_after,
+        'slug' => $eleres,
+        'active' => $lathato,
+			),
+      sprintf("ID = %d", $id)
+    );
+
 	}
 
-	public function delete( Category $category )
+	public function delete()
 	{
-		$category->delete();
+		//$category->delete();
 	}
 
 	public function getTree( $arg = array() )
@@ -105,6 +152,9 @@ class Articles extends \Controller
 			FROM 			".self::DBTABLE."
 			WHERE 		1=1 ";
 
+    if (isset($arg['exc_ids']) && is_array($arg['exc_ids']) && !empty($arg['exc_ids'])) {
+      $qry .= " and ID NOT IN (".implode(",", $arg['exc_ids']).") ";
+    }
 
     if ( !$this->admin ) {
       $qry .= " and active = 1 ";
@@ -113,12 +163,12 @@ class Articles extends \Controller
 
     }
 
-		if( !$this->o['orderby'] ) {
+		if( !$arg['orderby'] ) {
 			$qry .= "
-				ORDER BY publish_after ASC;";
+				ORDER BY publish_after DESC;";
 		} else {
 			$qry .= "
-				ORDER BY 		".$this->o['orderby']." ".$this->o['order'].";";
+				ORDER BY 		".$arg['orderby']." ".$arg['order'].";";
 		}
 
     $qarg = array();
@@ -162,6 +212,36 @@ class Articles extends \Controller
 		return true;
 	}
 
+  private function checkEleres( $text )
+	{
+		$text = Formater::makeSafeUrl($text,'');
+
+		$qry = $this->db->query(sprintf("
+			SELECT 		slug
+			FROM 		".self::DBTABLE."
+			WHERE 		slug = '%s' or
+						slug like '%s-_' or
+						slug like '%s-__'
+			ORDER BY 	slug DESC
+			LIMIT 0,1", trim($text), trim($text), trim($text) ));
+		$last_text = $qry->fetch(\PDO::FETCH_COLUMN);
+
+		if( $qry->rowCount() > 0 ) {
+
+			$last_int = (int)end(explode("-",$last_text));
+
+			if( $last_int != 0 ){
+				$last_text = str_replace('-'.$last_int, '-'.($last_int+1) , $last_text);
+			} else {
+				$last_text .= '-1';
+			}
+		} else {
+			$last_text = $text;
+		}
+
+		return $last_text;
+	}
+
 
 	/*===============================
 	=            GETTERS            =
@@ -169,7 +249,7 @@ class Articles extends \Controller
 
 	public function getID()
 	{
-		return $this->current_item['id'];
+		return $this->current_item['ID'];
 	}
 
 	public function getTitle()
@@ -181,6 +261,52 @@ class Articles extends \Controller
 	{
 		return $this->current_item['seo_desc'];
 	}
+
+  public function getHtmlContent()
+  {
+    return $this->current_item['content'];
+  }
+
+  public function getSlug()
+	{
+		return $this->current_item['slug'];
+	}
+
+  public function getPublishAfter()
+	{
+		return $this->current_item['publish_after'];
+	}
+
+  public function getCreateDate()
+  {
+    return $this->current_item['create_at'];
+  }
+
+  public function getKeywords()
+	{
+		return $this->current_item['seo_keywords'];
+	}
+
+  public function Keywords()
+  {
+    $arr = array();
+
+    $keys = explode(",", $this->getKeywords());
+
+    $arr = $keys;
+
+    return $arr;
+  }
+
+  public function getImage()
+  {
+    return $this->current_item['image'];
+  }
+
+  public function isActive()
+  {
+    return ($this->current_item['active'] == 1) ? true : false;
+  }
 
   public function URL()
   {

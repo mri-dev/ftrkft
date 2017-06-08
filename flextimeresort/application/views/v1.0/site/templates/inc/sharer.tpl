@@ -11,7 +11,7 @@
       <div class="g-plus" data-action="share"></div>
     </div>
     <div class="email" data-toggle="tooltip" title="{lang text='MEGOSZTAS_EMAILBEN'}">
-      <a href="mailto:?subject={$title}&body={$page->getSEODesc()}"><i class="fa fa-envelope"></i> {lang text="EMAIL"}</a>
+      <a href="mailto:?subject={$title}&body={$seo_desc}"><i class="fa fa-envelope"></i> {lang text="EMAIL"}</a>
     </div>
   </div>
 </div>

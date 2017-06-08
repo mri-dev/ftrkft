@@ -6,6 +6,7 @@ use PortalManager\Category;
 use PortalManager\UserList;
 use PortalManager\User;
 use PortalManager\Menus;
+use PortalManager\Articles;
 use PortalManager\Pagination;
 use ExceptionManager\RedirectException;
 use PortalManager\Pages;
@@ -113,6 +114,27 @@ class cp extends Controller {
 		}
 	}
 
+	public function cikkek()
+	{
+		$id = false;
+
+		$ctrl = new Articles(false, array(
+			'admin' => true,
+			''
+		));
+		$ctrl->getTree(array(
+			'orderby' => 'create_at',
+			'order' => 'DESC'
+		));
+
+		$this->out("ctrl", $ctrl);
+
+		if ($this->gets[2] == 'edit' || $this->gets[2] == 'del') {
+			$id = (int)$this->gets[3];
+			$this->out("check", $ctrl->get($id));
+		}
+	}
+
 	public function menu()
 	{
 		$menuid = false;
@@ -140,7 +162,6 @@ class cp extends Controller {
 
 		$this->out("ctrl", $ctrl);
 		$this->out("check", $ctrl->get($id));
-
 	}
 
 	public function employers()

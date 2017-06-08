@@ -33,7 +33,7 @@ RewriteRule ^cp/users(/)?(\d)?(/)?$ index.php?tag=cp/users&page=$2 [NC,QSA,L]
 # Reg
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(regisztracio|belepes)(/)?(.+)?$ index.php?tag=user/$1&as=$3 [NC,QSA,L]
+RewriteRule ^(regisztracio|belepes)(/)?(.+)?(/)?$ index.php?tag=user/$1&as=$3 [NC,QSA,L]
 
 # Aktiválás
 RewriteCond %{REQUEST_FILENAME} !-d

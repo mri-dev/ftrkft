@@ -14,7 +14,10 @@
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="/plugins/fancybox/jquery.fancybox.css"/>
+<link rel="stylesheet" type="text/css" href="/plugins/fancybox/helpers/jquery.fancybox-buttons.css" />
 <link rel="stylesheet" href="{$admin_css}">
+
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 2.2.3 -->
 <script src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -39,6 +42,8 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript" src="/plugins/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript" src="/plugins/fancybox/helpers/jquery.fancybox-buttons.js"></script>
 
 {if !$user}
 <!-- iCheck -->
@@ -54,6 +59,20 @@
             "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Hungarian.json"
         },
         "pageLength": 50
+    });
+
+    $('.iframe-btn').fancybox({
+  		maxWidth	: 800,
+  		maxHeight	: 600,
+  		fitToView	: false,
+  		width		: '70%',
+  		height		: '70%',
+  		autoSize	: false,
+  		closeClick	: false,
+  		openEffect	: 'none',
+  		closeEffect	: 'none',
+  		closeBtn 	: false,
+  		padding		: 0
     });
 
     tinymce.init({

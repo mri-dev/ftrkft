@@ -48,7 +48,7 @@ class user extends Controller{
 			}
 
 			$this->out('hide_home_top', true);
-			$this->out('as', $as);
+			$this->out('as', rtrim($as,"/"));
 			$this->out('usergroup', $usergroup);
 		}
 

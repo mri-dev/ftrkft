@@ -6,6 +6,7 @@ use PortalManager\Admins;
 use PortalManager\Form;
 use PortalManager\Menus;
 use PortalManager\Pages;
+use PortalManager\Articles;
 use PortalManager\Categories;
 use PortalManager\Category;
 use TransactionManager\Barion;
@@ -239,6 +240,44 @@ class forms extends Controller {
 		}
 	}
 
+	public function articles()
+	{
+		$this->hidePatern = true;
+		$return_url = $_POST['return'];
+
+		$id = (isset($_POST['id'])) ? $_POST['id'] : false;
+
+		$ctrl = new Articles($id);
+
+		switch( $_POST['for'] )
+		{
+			case 'add':
+				try {
+					$ctrl->add($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen létrehozta a cikket.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'edit':
+				try {
+					$ctrl->edit($_POST);
+					\PortalManager\Form::formDone( 'Sikeresen módosította a cikk adatait.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+			case 'del':
+				try {
+					$ctrl->delete();
+					\PortalManager\Form::formDone( 'Sikeresen eltávolította a cikket.', false, $return_url );
+				} catch (RedirectException $e) {
+					$e->redirect();
+				}
+			break;
+		}
+	}
+
 	function projects()
 	{
 		$this->hidePatern = true;
@@ -272,7 +311,7 @@ class forms extends Controller {
 		$return_url = $_POST['return'];
 
 		try {
-			$users->add( $_POST );
+			$users->add( $_POST[data] );
 			\PortalManager\Form::formDone( $this->lang('REGISTER_SIKERES_MSG'), false, $return_url );
 		} catch (RedirectException $e) {
 			$e->redirect();
