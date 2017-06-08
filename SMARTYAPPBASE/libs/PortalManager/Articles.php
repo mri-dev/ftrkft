@@ -163,6 +163,19 @@ class Articles extends \Controller
 
     }
 
+    if (isset($arg['search'])) {
+      if(is_array($arg['search'])) {
+        $src_str = '';
+        foreach ((array)$arg['search'] as $src) {
+          $src_str .= "(title LIKE '%".trim($src)."%' or seo_keywords LIKE '%".trim($src)."%' ) or ";
+        }
+        $src_str = rtrim($src_str, ' or ');
+        $qry .= " and ( ".$src_str." ) ";
+      } else {
+        $qry .= " and ( title LIKE '%".trim($arg['search'])."%' or seo_keywords LIKE '%".trim($arg['search'])."%' ) ";
+      }
+    }
+
 		if( !$arg['orderby'] ) {
 			$qry .= "
 				ORDER BY publish_after DESC;";

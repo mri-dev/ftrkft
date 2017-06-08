@@ -2472,3 +2472,85 @@ body.ugyfelkapu-view .group .cont label {
   margin-left: 5px;
   font-weight: bold;
 }
+/* line 2208, less/main.scss */
+.articles.style-list-col1 article {
+  font-size: 1.3em;
+  flex-basis: calc(100%/1);
+  background: #ffffff;
+  margin: 0 0 15px 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #f1f1f1;
+}
+/* line 2218, less/main.scss */
+.articles.style-list-col1 article .img {
+  float: left;
+  width: 120px;
+  height: 120px;
+  margin: 0 25px 0 0;
+}
+/* line 2225, less/main.scss */
+.articles.style-list-col1 article .nav {
+  text-align: right;
+  padding: 5px 0;
+  justify-content: flex-end;
+}
+/* line 2229, less/main.scss */
+.articles.style-list-col1 article .nav a {
+  width: auto;
+  float: right;
+  margin: initial;
+  padding: 8px;
+  line-height: 1;
+}
+
+/* line 2242, less/main.scss */
+.nav-container {
+  text-align: center;
+  width: 100%;
+}
+
+/* line 2247, less/main.scss */
+ul.pagination {
+  font-size: 1em;
+  margin: 10px 0;
+  justify-content: center;
+}
+/* line 2252, less/main.scss */
+ul.pagination li {
+  list-style: none;
+}
+/* line 2254, less/main.scss */
+ul.pagination li a {
+  font-size: 1em;
+  line-height: 1;
+}
+
+/* line 2260, less/main.scss */
+.page-item.active .page-link {
+  background-color: #39ac4f;
+  border-color: #2c863d;
+}
+
+/* line 2265, less/main.scss */
+.article-list {
+  padding: 25px 0;
+}
+/* line 2269, less/main.scss */
+.article-list .list .header {
+  margin: 0 0 25px 0;
+}
+/* line 2271, less/main.scss */
+.article-list .list .header h1 {
+  color: #39ac4f;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* line 2280, less/main.scss */
+.sidebar-search .header {
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+}
