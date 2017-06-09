@@ -34,6 +34,7 @@
 <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script type="text/javascript" src="/dist/js/ang.app.js"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={$settings.GOOGLE_API_KEY}&libraries=places"></script>
 {if !$user}
 <!-- iCheck -->
 <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">

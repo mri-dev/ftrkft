@@ -22,22 +22,7 @@
       </div>
     </div>
     <div class="inp inp-telepules">
-      <div class="multiselect-list">
-        <div class="value-viewer">
-          <input type="text" class="form-control viewer" class="tglwatcher" tglwatcher="telepules_multiselect" placeholder="{lang text='MINDEN_TELEPULES'}" readonly="readonly" value="">
-          <input type="hidden" id="telepules_multiselect_ids" name="c" value="">
-          <div class="helper">
-            <i class="fa fa-angle-down"></i>
-          </div>
-        </div>
-        <div class="multi-selector-holder" id="telepules_multiselect">
-          <div class="selector-wrapper">
-            <div class="no-input">
-              {lang text="NINCS_MULTISELECT_INPUT"}
-            </div>
-          </div>
-        </div>
-      </div>
+      <input type="text" id="search_place" name="c" class="form-control" placeholder="{lang text='MINDEN_TELEPULES'}" value="">
     </div>
     <div class="inp inp-tipus">
       <div class="multiselect-list">
@@ -96,3 +81,16 @@
     </div>
   </div>
 </form>
+<script type="text/javascript">
+{literal}
+$(function(){
+  var input = document.getElementById('search_place');
+  var options = {
+    types: ['(cities)'],
+    componentRestrictions: {country: "hu"}
+  };
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+})
+{/literal}
+
+</script>
