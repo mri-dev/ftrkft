@@ -4,6 +4,7 @@ use PortalManager\Template;
 use PortalManager\Users;
 use PortalManager\User;
 use PortalManager\Portal;
+use PortalManager\Categories;
 use Applications\Captcha;
 use PortalManager\Lang;
 use PortalManager\Menus;
@@ -79,6 +80,22 @@ class Controller
 
 		// Kategória listák
 		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));
+
+		// Kereső kategóriák
+		$cat_kategoria = new Categories(false, array('controller' => $this));
+		$cat_kategoria->getTree('hirdetes_kategoria');
+		$this->out( 'cat_kategoria', $cat_kategoria);
+
+		// Kereső típusok
+		$cat_tipus = new Categories(false, array('controller' => $this));
+		$cat_tipus->getTree('hirdetes_tipusok');
+		$this->out( 'cat_tipus', $cat_tipus);
+
+		// Kereső munkakörök
+		$munkakorok = new Categories(false, array('controller' => $this));
+		$munkakorok->getTree('munkakorok');
+		$this->out( 'munkakorok', $munkakorok);
+
 
 		/**
 		* VARS

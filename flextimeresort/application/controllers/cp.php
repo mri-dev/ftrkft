@@ -91,7 +91,7 @@ class cp extends Controller {
 
 	public function terms()
 	{
-		$categories = new Categories();
+		$categories = new Categories(false, array('controller' => $this ));
 		$this->out('term_list', $categories->getTermList());
 
 		if (empty($_GET['groupkey'])) {

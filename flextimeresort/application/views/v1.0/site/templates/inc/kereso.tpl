@@ -14,9 +14,16 @@
         </div>
         <div class="multi-selector-holder" id="munkakor_multiselect">
           <div class="selector-wrapper">
+            {while $munkakorok->walk()}
+            <div class="selector-row lvl-{$munkakorok->getDeep()}">
+              <input type="checkbox" class="ccb" data-key="munkakor_multiselect" value="{$munkakorok->getID()}" id="munkakor_cb_{$munkakorok->getID()}"> <label for="munkakor_cb_{$munkakorok->getID()}">{$munkakorok->getName()}</label>
+            </div>
+            {/while}
+            {if $munkakorok->Count() == 0}
             <div class="no-input">
               {lang text="NINCS_MULTISELECT_INPUT"}
             </div>
+            {/if}
           </div>
         </div>
       </div>
@@ -35,15 +42,16 @@
         </div>
         <div class="multi-selector-holder" id="tipus_multiselect">
           <div class="selector-wrapper">
-            <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="1" id="cb1"> <label for="cb1">Egy</label>
+            {while $cat_tipus->walk()}
+            <div class="selector-row lvl-{$cat_tipus->getDeep()}">
+              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="{$cat_tipus->getID()}" id="tipus_cb_{$cat_tipus->getID()}"> <label for="kategoria_cb_{$cat_tipus->getID()}">{$cat_tipus->getName()}</label>
             </div>
-            <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="2" id="cb2"> <label for="cb2">Kettő</label>
+            {/while}
+            {if $cat_tipus->Count() == 0}
+            <div class="no-input">
+              {lang text="NINCS_MULTISELECT_INPUT"}
             </div>
-            <div class="selector-row lvl-0">
-              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="3" id="cb3"> <label for="cb3">Három</label>
-            </div>
+            {/if}
           </div>
         </div>
       </div>
@@ -59,9 +67,16 @@
         </div>
         <div class="multi-selector-holder" id="kategoria_multiselect">
           <div class="selector-wrapper">
+            {while $cat_kategoria->walk()}
+            <div class="selector-row lvl-{$cat_kategoria->getDeep()}">
+              <input type="checkbox" class="ccb" data-key="kategoria_multiselect" value="{$cat_kategoria->getID()}" id="kategoria_cb_{$cat_kategoria->getID()}"> <label for="kategoria_cb_{$cat_kategoria->getID()}">{$cat_kategoria->getName()}</label>
+            </div>
+            {/while}
+            {if $cat_kategoria->Count() == 0}
             <div class="no-input">
               {lang text="NINCS_MULTISELECT_INPUT"}
             </div>
+            {/if}
           </div>
         </div>
       </div>
@@ -90,6 +105,11 @@ $(function(){
     componentRestrictions: {country: "hu"}
   };
   autocomplete = new google.maps.places.Autocomplete(input, options);
+
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      var place = autocomplete.getPlace();
+      $('#search_place').val(place.address_components[0].long_name);
+  });
 })
 {/literal}
 

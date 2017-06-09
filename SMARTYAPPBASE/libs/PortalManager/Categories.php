@@ -4,7 +4,7 @@ namespace PortalManager;
 use PortalManager\Category;
 use ExceptionManager\RedirectException;
 
-class Categories extends \Controller
+class Categories
 {
 	const DB_LIST = 'term_list';
 	const DBTERMS = 'terms';
@@ -24,12 +24,21 @@ class Categories extends \Controller
 	private $walk_step = 0;
 	private $parent_data = false;
 	private $o = array();
+	private $controller = null;
 
 	function __construct( $category_table = false, $arg = array() )
 	{
-		parent::__construct();
+		if ( isset($arg['controller']) ) {
+			$this->controller = $arg['controller'];
+			$this->db = $arg['controller']->db;
+			$this->settings = $arg['controller']->settings;
+			$this->smarty = $arg['controller']->smarty;
+		}
+
 		$this->category_table = $category_table;
 		$this->o = $arg;
+
+		return $this;
   }
 
 	public function getTermList()
@@ -252,6 +261,11 @@ class Categories extends \Controller
 		$this->tree = $tree;
 
 		return $this;
+	}
+
+	public function Count()
+	{
+		return $this->tree_items;
 	}
 
 	/**
@@ -595,6 +609,7 @@ class Categories extends \Controller
 		$this->walk_step = 0;
 		$this->parent_data = false;
 		$this->o = null;
+		$this->controller = null;
 	}
 }
 ?>

@@ -97,7 +97,7 @@ class ajax extends Controller  {
 					// Listák
 					$lists = explode(",", $params['lists']);
 					foreach ((array)$lists as $list) {
-						$cat = new Categories();
+						$cat = new Categories(false, array('controller' => $this));
 						$ld = $cat->getList($list);
 						$terms = $cat->getTree($list);
 

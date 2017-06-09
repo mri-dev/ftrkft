@@ -106,7 +106,7 @@ class forms extends Controller {
 
 		$id = (isset($_POST['id'])) ? $_POST['id'] : false;
 
-		$terms = new Categories();
+		$terms = new Categories(false, array('controller' => $this));
 
 		switch( $_POST['for'] )
 		{

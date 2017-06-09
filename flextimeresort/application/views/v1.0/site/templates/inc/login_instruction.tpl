@@ -6,12 +6,12 @@
         <ul class="navi">
           <li>
             <div class="li-wp">
-              <img src="{$smarty.const.IMG}icons/dark/building.svg" class="" alt="{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}"> <a href="#" class="btn btn-default btn-darker">{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}</a>
+              <img src="{$smarty.const.IMG}icons/dark/building.svg" class="" alt="{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}"> <a href="/ugyfelkapu/ajanlat/uj" class="btn btn-default btn-darker">{lang text="AJANLAT_FELTOLTESE_MUNKAADOKNAK"}</a>
             </div>
           </li>
           <li>
             <div class="li-wp">
-              <img src="{$smarty.const.IMG}icons/dark/user.svg" class="" alt="{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}"><a href="#" class="btn btn-success">{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}</a>
+              <img src="{$smarty.const.IMG}icons/dark/user.svg" class="" alt="{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}"><a href="/ugyfelkapu/profil/alap" class="btn btn-success">{lang text="ADATOK_FELTOLTESE_MUNKAVALLOKNAK"}</a>
             </div>
           </li>
         </ul>
