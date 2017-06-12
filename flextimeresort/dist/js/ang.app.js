@@ -241,6 +241,8 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
 {
   $scope.is_msg = false;
   $scope.unreaded_messages = 0;
+  $scope.messages = {};
+  $scope.result = {};
 
   // Init messanger
   $scope.init = function(is_msg){
@@ -258,7 +260,10 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
       }
     }).then(function successCallback(response) {
       var d = response.data;
+      $scope.result = d;
       $scope.unreaded_messages = d.unreaded;
+      $scope.messages = d.messages.list;
+
       console.log(d);
     }, function errorCallback(response) {});
   }

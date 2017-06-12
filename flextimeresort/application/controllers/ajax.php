@@ -114,8 +114,8 @@ class ajax extends Controller  {
 				break;
 				case 'messanger_messages':
 					$uid = (int)$this->ME->getID();
-					$unreaded = 1;
 					$messages = $this->MESSANGER->loadMessages($uid);
+					$unreaded = $messages['unreaded_group'];
 
 					$data['uid'] = $uid;
 					$data['unreaded'] = $unreaded;
