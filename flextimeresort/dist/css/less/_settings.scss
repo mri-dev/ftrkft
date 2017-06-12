@@ -6,3 +6,10 @@ $color-red: #f44e5e;
 $color-blue: #48aff6;
 
 $page-width: 1100px;
+
+@for $i from 0 through 5 {
+  .multi-selector-holder .selector-row.lvl-#{$i} {
+    $width: ($i*15);
+    margin-left: #{$width}px;
+  }
+}

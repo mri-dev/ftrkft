@@ -48,7 +48,7 @@ RewriteRule ^elfelejtett-jelszo(/)?$ index.php?tag=resetpassword [NC,QSA,L]
 # Ügyfélkapu üzenetek
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ugyfelkapu/uzenetek/(inbox|outbox)$ index.php?tag=user/ugyfelkapu&p=uzenetek&sub=$1 [NC,QSA,L]
+RewriteRule ^ugyfelkapu/uzenetek/(inbox|outbox|archiv|msg)(/)?(.+)?$ index.php?tag=user/ugyfelkapu&p=uzenetek&sub=$1&msgid=$3 [NC,QSA,L]
 
 # Ügyfélkapu profil
 RewriteCond %{REQUEST_FILENAME} !-d

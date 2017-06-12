@@ -99,6 +99,12 @@ class user extends Controller{
 						case 'inbox':
 							$subtitle .= ' / '.$this->lang('BEJOVO');
 						break;
+						case 'outbox':
+							$subtitle .= ' / '.$this->lang('Elküldött');
+						break;
+						case 'archiv':
+							$subtitle .= ' / '.$this->lang('Archivált');
+						break;
 					}
 				break;
 			}

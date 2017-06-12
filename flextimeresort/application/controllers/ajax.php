@@ -112,6 +112,15 @@ class ajax extends Controller  {
 						}
 					}
 				break;
+				case 'messanger_messages':
+					$uid = (int)$this->ME->getID();
+					$unreaded = 1;
+					$messages = $this->MESSANGER->loadMessages($uid);
+
+					$data['uid'] = $uid;
+					$data['unreaded'] = $unreaded;
+					$data['messages'] = $messages;
+				break;
 			}
 			echo json_encode( $data );
 		}

@@ -2,7 +2,7 @@
 <!-- Bootstrap 4.0.0 -->
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
@@ -94,7 +94,34 @@
        var e = $(this);
        var key = e.data('key');
 
-       var selected = collect_checkbox(key, false);
+
+       var data_parent = $(this).data('parent');
+       var val = $(this).val();
+       var ch = $(this).is(':checked');
+
+
+       if (!ch) {
+         $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+val+']').parent().removeClass('show');
+       } else {
+         $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+val+']').parent().addClass('show');
+         $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+val+']').prop('checked', false);
+       }
+
+      if (data_parent != '') {
+          var dtparent = $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-id='+data_parent+']');
+          var childchecked = $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+data_parent+']:checked').length;
+
+          if (dtparent.is(':checked')) {
+            dtparent.prop('checked', false);
+          } else {
+            if(childchecked == 0) {
+              console.log(childchecked);
+              $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+data_parent+']').parent().removeClass('show');
+            }
+          }
+      }
+
+      var selected = collect_checkbox(key, false);
 
        $('#'+key+'_ids').val(selected);
      });
@@ -131,8 +158,6 @@
         } else {
           jQuery('input[tglwatcher=\''+key+'\']').val(seln + " db kiválasztva").attr('title', str.join(", "));
         }
-
-        console.log(str);
 
         return arr.join(",");
       }

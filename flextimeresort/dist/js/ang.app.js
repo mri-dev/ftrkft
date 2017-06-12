@@ -1,3 +1,4 @@
+// Ügyfélkapu profil módosító modul
 var pm = angular.module("profilModifier", [], function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
@@ -227,3 +228,38 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     }
   }
  }]);
+
+/**
+* Ügyfélkapu üzenetváltó modul
+**/
+var msg = angular.module("UserMessanger", [], function($interpolateProvider){
+  $interpolateProvider.startSymbol('[[');
+  $interpolateProvider.endSymbol(']]');
+});
+
+msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
+{
+  $scope.is_msg = false;
+  $scope.unreaded_messages = 0;
+
+  // Init messanger
+  $scope.init = function(is_msg){
+    $scope.is_ms = is_msg;
+    $scope.loadMessages();
+  }
+
+  $scope.loadMessages = function(){
+    // Üzenetek betöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_messages'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.unreaded_messages = d.unreaded;
+      console.log(d);
+    }, function errorCallback(response) {});
+  }
+}]);

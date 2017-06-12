@@ -16,7 +16,7 @@
           <div class="selector-wrapper">
             {while $munkakorok->walk()}
             <div class="selector-row lvl-{$munkakorok->getDeep()}">
-              <input type="checkbox" class="ccb" data-key="munkakor_multiselect" value="{$munkakorok->getID()}" id="munkakor_cb_{$munkakorok->getID()}"> <label for="munkakor_cb_{$munkakorok->getID()}">{$munkakorok->getName()}</label>
+              <input type="checkbox" class="ccb" data-lvl="{$munkakorok->getDeep()}" data-id="{$munkakorok->getID()}" data-parent="{$munkakorok->getParentID()}" data-key="munkakor_multiselect" value="{$munkakorok->getID()}" id="munkakor_cb_{$munkakorok->getID()}"> <label for="munkakor_cb_{$munkakorok->getID()}">{$munkakorok->getName()}</label>
             </div>
             {/while}
             {if $munkakorok->Count() == 0}
@@ -44,7 +44,7 @@
           <div class="selector-wrapper">
             {while $cat_tipus->walk()}
             <div class="selector-row lvl-{$cat_tipus->getDeep()}">
-              <input type="checkbox" class="ccb" data-key="tipus_multiselect" value="{$cat_tipus->getID()}" id="tipus_cb_{$cat_tipus->getID()}"> <label for="kategoria_cb_{$cat_tipus->getID()}">{$cat_tipus->getName()}</label>
+              <input type="checkbox" class="ccb" data-lvl="{$cat_tipus->getDeep()}" data-id="{$cat_tipus->getID()}" data-parent="{$cat_tipus->getParentID()}" data-key="tipus_multiselect" value="{$cat_tipus->getID()}" id="tipus_cb_{$cat_tipus->getID()}"> <label for="tipus_cb_{$cat_tipus->getID()}">{$cat_tipus->getName()}</label>
             </div>
             {/while}
             {if $cat_tipus->Count() == 0}
@@ -69,7 +69,7 @@
           <div class="selector-wrapper">
             {while $cat_kategoria->walk()}
             <div class="selector-row lvl-{$cat_kategoria->getDeep()}">
-              <input type="checkbox" class="ccb" data-key="kategoria_multiselect" value="{$cat_kategoria->getID()}" id="kategoria_cb_{$cat_kategoria->getID()}"> <label for="kategoria_cb_{$cat_kategoria->getID()}">{$cat_kategoria->getName()}</label>
+              <input type="checkbox" class="ccb" data-lvl="{$cat_kategoria->getDeep()}" data-id="{$cat_kategoria->getID()}" data-parent="{$cat_kategoria->getParentID()}" data-key="kategoria_multiselect" value="{$cat_kategoria->getID()}" id="kategoria_cb_{$cat_kategoria->getID()}"> <label for="kategoria_cb_{$cat_kategoria->getID()}">{$cat_kategoria->getName()}</label>
             </div>
             {/while}
             {if $cat_kategoria->Count() == 0}

@@ -587,6 +587,21 @@ input[type=checkbox].ccb:checked + label:before {
   }
 }
 
+.multiselect-list{
+  .multi-selector-holder{
+    .selector-wrapper{
+      .selector-row{
+        display: none;
+
+        &.lvl-0,
+        &.show {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
 .header-searcher-container{
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -2281,5 +2296,58 @@ ul.pagination{
     font-size: 1.2em;
     color: black;
     font-weight: bold;
+  }
+}
+
+.messanger{
+  .wrapper {
+    padding: 15px 0 0 0;
+    nav {
+      border-bottom: 1px solid #d7d7d7;
+      ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        margin-bottom: -2px;
+        li {
+          display: inline-block;
+          *display: inline;
+          zoom: 1;
+          vertical-align: middle;
+
+          a {
+            padding: 5px 12px;
+            font-size: 0.8em;
+            display: block;
+            color: #9c9c9c;
+            background: #eaeaea;
+            margin-right: 8px;
+
+            i {
+              font-size: 18px;
+              line-height: 1;
+              margin-right: 5px;
+            }
+
+            .badge {
+              background: $color-red;
+            }
+          }
+
+          &.active {
+            a {
+              background: white;
+              border: 1px solid #d7d7d7;
+              border-bottom: none;
+              color: $color-primary-light;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
   }
 }

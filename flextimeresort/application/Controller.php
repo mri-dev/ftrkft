@@ -4,6 +4,7 @@ use PortalManager\Template;
 use PortalManager\Users;
 use PortalManager\User;
 use PortalManager\Portal;
+use PortalManager\Messanger;
 use PortalManager\Categories;
 use Applications\Captcha;
 use PortalManager\Lang;
@@ -77,6 +78,11 @@ class Controller
 				'controller' => $this
 			)
 		);
+
+		// Messanger
+		$this->MESSANGER = new Messanger(array(
+			'controller' => $this
+		));
 
 		// Kategória listák
 		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));

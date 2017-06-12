@@ -1,4 +1,34 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,400i,500,700&subset=cyrillic-ext");
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-0 {
+  margin-left: 0px;
+}
+
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-1 {
+  margin-left: 15px;
+}
+
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-2 {
+  margin-left: 30px;
+}
+
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-3 {
+  margin-left: 45px;
+}
+
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-4 {
+  margin-left: 60px;
+}
+
+/* line 11, less/_settings.scss */
+.multi-selector-holder .selector-row.lvl-5 {
+  margin-left: 75px;
+}
+
 /* line 6, less/_starter.scss */
 body,
 ul, ol, li, dl, dt, dd,
@@ -850,7 +880,16 @@ input[type=checkbox].ccb:checked + label:before {
   color: white;
 }
 
-/* line 590, less/main.scss */
+/* line 593, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper .selector-row {
+  display: none;
+}
+/* line 597, less/main.scss */
+.multiselect-list .multi-selector-holder .selector-wrapper .selector-row.lvl-0, .multiselect-list .multi-selector-holder .selector-wrapper .selector-row.show {
+  display: block;
+}
+
+/* line 605, less/main.scss */
 .header-searcher-container {
   background-color: #edf5ef;
   background-image: url("/dist/img/worldmap.svg");
@@ -858,11 +897,11 @@ input[type=checkbox].ccb:checked + label:before {
   background-repeat: no-repeat;
   background-size: contain;
 }
-/* line 597, less/main.scss */
+/* line 612, less/main.scss */
 .header-searcher-container .home-searcher {
   padding: 40px 0 20px 0;
 }
-/* line 599, less/main.scss */
+/* line 614, less/main.scss */
 .header-searcher-container .home-searcher .input-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -871,11 +910,11 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -8px;
 }
-/* line 607, less/main.scss */
+/* line 622, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp {
   padding: 10px 8px;
 }
-/* line 610, less/main.scss */
+/* line 625, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input {
   padding: 12px 16px;
   font-size: 1.2em;
@@ -883,11 +922,11 @@ input[type=checkbox].ccb:checked + label:before {
   border: 1px solid #dbdbdb;
   height: 45px;
 }
-/* line 618, less/main.scss */
+/* line 633, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp input[readonly] {
   cursor: pointer;
 }
-/* line 623, less/main.scss */
+/* line 638, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search button {
   width: 100%;
   height: 45px;
@@ -896,11 +935,11 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0;
   line-height: 45px;
 }
-/* line 634, less/main.scss */
+/* line 649, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container {
   position: relative;
 }
-/* line 636, less/main.scss */
+/* line 651, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix {
   width: 44px;
   height: 55px;
@@ -913,7 +952,7 @@ input[type=checkbox].ccb:checked + label:before {
   pointer-events: none;
   z-index: 1;
 }
-/* line 648, less/main.scss */
+/* line 663, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container .ico-prefix img {
   width: 65%;
   position: absolute;
@@ -923,7 +962,7 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 659, less/main.scss */
+/* line 674, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order .order-select-container:after {
   content: "\f107";
   position: absolute;
@@ -937,7 +976,7 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 673, less/main.scss */
+/* line 688, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order select {
   position: relative;
   background: #39ac4f;
@@ -947,47 +986,47 @@ input[type=checkbox].ccb:checked + label:before {
   cursor: pointer;
   -webkit-appearance: none;
 }
-/* line 684, less/main.scss */
+/* line 699, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-keyword {
   flex-basis: 40%;
   order: 1;
 }
-/* line 688, less/main.scss */
+/* line 703, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor {
   flex-basis: 40%;
   order: 2;
 }
-/* line 692, less/main.scss */
+/* line 707, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
   flex-basis: 20%;
   order: 3;
 }
-/* line 696, less/main.scss */
+/* line 711, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-telepules {
   flex-basis: 40%;
   order: 4;
 }
-/* line 700, less/main.scss */
+/* line 715, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-tipus {
   flex-basis: 20%;
   order: 5;
 }
-/* line 704, less/main.scss */
+/* line 719, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria {
   flex-basis: 20%;
   order: 6;
 }
-/* line 708, less/main.scss */
+/* line 723, less/main.scss */
 .header-searcher-container .home-searcher .input-holder .inp.inp-order {
   flex-basis: 20%;
   order: 7;
 }
-/* line 716, less/main.scss */
+/* line 731, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
   background: rgba(0, 0, 0, 0.1);
 }
-/* line 721, less/main.scss */
+/* line 736, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -996,25 +1035,25 @@ input[type=checkbox].ccb:checked + label:before {
   flex-wrap: wrap;
   margin: 0 -5px;
 }
-/* line 728, less/main.scss */
+/* line 743, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li {
   flex-basis: 50%;
   padding: 5px;
 }
-/* line 732, less/main.scss */
+/* line 747, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp {
   background: white;
   border-radius: 5px;
   padding: 15px;
 }
-/* line 737, less/main.scss */
+/* line 752, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li .li-wp > img {
   height: 37px;
   float: left;
   opacity: 0.3;
   filter: alpha(opacity=30);
 }
-/* line 743, less/main.scss */
+/* line 758, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1023,23 +1062,23 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 0.82em;
   letter-spacing: -1px;
 }
-/* line 751, less/main.scss */
+/* line 766, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 755, less/main.scss */
+/* line 770, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 766, less/main.scss */
+/* line 781, less/main.scss */
 .header-searcher-container .home-instruction,
 .header-searcher-container .profil-instruction {
   padding: 0;
   background: rgba(0, 150, 29, 0.68);
   color: white;
 }
-/* line 772, less/main.scss */
+/* line 787, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico,
 .header-searcher-container .profil-instruction .instuction .ico {
   border: 8px solid white;
@@ -1049,7 +1088,7 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0 auto 25px auto;
   position: relative;
 }
-/* line 780, less/main.scss */
+/* line 795, less/main.scss */
 .header-searcher-container .home-instruction .instuction .ico img,
 .header-searcher-container .profil-instruction .instuction .ico img {
   width: 40%;
@@ -1061,7 +1100,7 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 791, less/main.scss */
+/* line 806, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info,
 .header-searcher-container .profil-instruction .instuction .info {
   display: -webkit-box;
@@ -1072,62 +1111,62 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 1.26em;
   align-items: flex-start;
 }
-/* line 800, less/main.scss */
+/* line 815, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .num,
 .header-searcher-container .profil-instruction .instuction .info .num {
   padding-right: 5px;
   font-size: 2.84em;
   line-height: 1;
 }
-/* line 805, less/main.scss */
+/* line 820, less/main.scss */
 .header-searcher-container .home-instruction .instuction .info .text,
 .header-searcher-container .profil-instruction .instuction .info .text {
   line-height: 1.4;
 }
-/* line 810, less/main.scss */
+/* line 825, less/main.scss */
 .header-searcher-container .home-instruction .instuction .row,
 .header-searcher-container .profil-instruction .instuction .row {
   margin: 0 -25px;
 }
-/* line 814, less/main.scss */
+/* line 829, less/main.scss */
 .header-searcher-container .home-instruction .instuction *[class*=col-md-],
 .header-searcher-container .profil-instruction .instuction *[class*=col-md-] {
   padding: 25px;
 }
-/* line 818, less/main.scss */
+/* line 833, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst,
 .header-searcher-container .profil-instruction .instuction .center-inst {
   background: rgba(197, 236, 205, 0.2);
 }
-/* line 823, less/main.scss */
+/* line 838, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu,
 .header-searcher-container .profil-instruction.ugyfelkapu {
   padding: 25px 0;
 }
-/* line 826, less/main.scss */
+/* line 841, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu h1,
 .header-searcher-container .profil-instruction.ugyfelkapu h1 {
   text-transform: uppercase;
   font-size: 1.8em;
 }
-/* line 833, less/main.scss */
+/* line 848, less/main.scss */
 .header-searcher-container .profil-instruction {
   background: rgba(0, 150, 29, 0.46);
 }
-/* line 835, less/main.scss */
+/* line 850, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .text {
   font-size: 0.95em;
   padding-top: 5px;
 }
-/* line 839, less/main.scss */
+/* line 854, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .num {
   font-size: 1.85em;
 }
-/* line 844, less/main.scss */
+/* line 859, less/main.scss */
 .header-searcher-container .login-holder {
   position: relative;
 }
-/* line 847, less/main.scss */
+/* line 862, less/main.scss */
 .header-searcher-container .login-holder .login-container {
   background: #dbdbdb;
   border: 2px solid #c1c1c1;
@@ -1135,31 +1174,31 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 10px;
   margin-top: -110px;
 }
-/* line 854, less/main.scss */
+/* line 869, less/main.scss */
 .header-searcher-container .login-holder .login-container .line {
   margin: 10px 0;
 }
-/* line 858, less/main.scss */
+/* line 873, less/main.scss */
 .header-searcher-container .login-holder .login-container input, .header-searcher-container .login-holder .login-container button {
   border-radius: 4px;
 }
-/* line 862, less/main.scss */
+/* line 877, less/main.scss */
 .header-searcher-container .login-holder .login-container input {
   font-size: 0.85em;
   color: black;
   font-weight: bold;
 }
-/* line 868, less/main.scss */
+/* line 883, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder {
   background: white;
   position: relative;
 }
-/* line 872, less/main.scss */
+/* line 887, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder input {
   border: none;
   padding-left: 36px;
 }
-/* line 877, less/main.scss */
+/* line 892, less/main.scss */
 .header-searcher-container .login-holder .login-container .form-holder img {
   max-height: 24px;
   height: 24px;
@@ -1170,22 +1209,22 @@ input[type=checkbox].ccb:checked + label:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
-/* line 890, less/main.scss */
+/* line 905, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo {
   font-size: 0.8em;
 }
-/* line 893, less/main.scss */
+/* line 908, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo label {
   display: initial;
   vertical-align: top;
   cursor: pointer;
 }
-/* line 899, less/main.scss */
+/* line 914, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] {
   vertical-align: middle;
   height: 14px;
 }
-/* line 903, less/main.scss */
+/* line 918, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a {
   vertical-align: top;
   margin-top: -8px;
@@ -1193,12 +1232,12 @@ input[type=checkbox].ccb:checked + label:before {
   text-align: right;
   color: black;
 }
-/* line 910, less/main.scss */
+/* line 925, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a .fa-stack {
   width: 14px;
   height: 14px;
 }
-/* line 915, less/main.scss */
+/* line 930, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i {
   color: #f44e5e;
   font-size: 14px;
@@ -1208,47 +1247,47 @@ input[type=checkbox].ccb:checked + label:before {
   margin: 0;
   height: 14px;
 }
-/* line 925, less/main.scss */
+/* line 940, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a i[class*=fa-question] {
   color: white;
   font-size: 10px;
   height: 10px;
 }
-/* line 931, less/main.scss */
+/* line 946, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a:hover {
   color: #f44e5e;
 }
-/* line 938, less/main.scss */
+/* line 953, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions .sub button {
   width: 100%;
   text-transform: uppercase;
   background-color: #339946;
   font-size: 1em;
 }
-/* line 946, less/main.scss */
+/* line 961, less/main.scss */
 .header-searcher-container .login-holder .login-container .actions a.btn {
   font-size: 1em;
   text-transform: uppercase;
   width: 100%;
 }
-/* line 953, less/main.scss */
+/* line 968, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged {
   background: #e8e8e8;
   border: 1px solid #c3c3c3;
   padding: 0;
 }
-/* line 958, less/main.scss */
+/* line 973, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav ul, .header-searcher-container .login-holder .login-container.as-logged nav li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-/* line 964, less/main.scss */
+/* line 979, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li {
   font-size: 1.1em;
   border-bottom: 1px solid #e3e3e3;
 }
-/* line 968, less/main.scss */
+/* line 983, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a {
   padding: 4px 8px;
   background: #f1f1f1;
@@ -1256,20 +1295,20 @@ input[type=checkbox].ccb:checked + label:before {
   color: #999999;
   position: relative;
 }
-/* line 975, less/main.scss */
+/* line 990, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a i {
   color: #39ac4f;
 }
-/* line 979, less/main.scss */
+/* line 994, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover {
   background: #39ac4f;
   color: white;
 }
-/* line 983, less/main.scss */
+/* line 998, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a:hover i {
   color: white;
 }
-/* line 988, less/main.scss */
+/* line 1003, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li a .badge {
   position: absolute;
   background: #f44e5e;
@@ -1280,87 +1319,87 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 1000, less/main.scss */
+/* line 1015, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.header {
   padding: 10px 8px;
   text-transform: uppercase;
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 1007, less/main.scss */
+/* line 1022, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout {
   text-align: center;
   font-size: 1em;
 }
-/* line 1011, less/main.scss */
+/* line 1026, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a {
   color: #999999;
 }
-/* line 1014, less/main.scss */
+/* line 1029, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a i {
   color: #999999;
 }
-/* line 1019, less/main.scss */
+/* line 1034, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover {
   background: #f44e5e;
   color: white;
 }
-/* line 1023, less/main.scss */
+/* line 1038, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.logout a:hover i {
   color: white;
 }
-/* line 1030, less/main.scss */
+/* line 1045, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child {
   border-bottom: none;
 }
-/* line 1033, less/main.scss */
+/* line 1048, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li:last-child a {
   border-radius: 0 0 8px 8px;
 }
-/* line 1038, less/main.scss */
+/* line 1053, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active {
   border-bottom: 1px solid #2c863d;
 }
-/* line 1040, less/main.scss */
+/* line 1055, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 1043, less/main.scss */
+/* line 1058, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav li.active a i {
   color: white;
 }
-/* line 1050, less/main.scss */
+/* line 1065, less/main.scss */
 .header-searcher-container .login-holder .login-container.as-logged nav .ico {
   text-align: center;
   margin: 0 8px 0 4px;
 }
 
-/* line 1062, less/main.scss */
+/* line 1077, less/main.scss */
 .single-page p,
 .article-page p {
   font-size: 1.05em;
 }
-/* line 1065, less/main.scss */
+/* line 1080, less/main.scss */
 .single-page .page-wrapper,
 .article-page .page-wrapper {
   position: relative;
   background: white;
   padding: 25px;
 }
-/* line 1071, less/main.scss */
+/* line 1086, less/main.scss */
 .single-page h1.title,
 .article-page h1.title {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 10px 0 30px 0;
 }
-/* line 1077, less/main.scss */
+/* line 1092, less/main.scss */
 .single-page .content-wrapper,
 .article-page .content-wrapper {
   min-height: 300px !important;
 }
-/* line 1080, less/main.scss */
+/* line 1095, less/main.scss */
 .single-page .page-not-found,
 .article-page .page-not-found {
   width: 100%;
@@ -1374,12 +1413,12 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1092, less/main.scss */
+/* line 1107, less/main.scss */
 .single-page .page-not-found strong,
 .article-page .page-not-found strong {
   color: black;
 }
-/* line 1096, less/main.scss */
+/* line 1111, less/main.scss */
 .single-page .page-not-found h1,
 .article-page .page-not-found h1 {
   color: #39ac4f;
@@ -1387,7 +1426,7 @@ input[type=checkbox].ccb:checked + label:before {
   font-size: 2.4em;
 }
 
-/* line 1106, less/main.scss */
+/* line 1121, less/main.scss */
 .article-page .keywords a {
   background: #f1f1f1;
   padding: 3px 5px;
@@ -1397,41 +1436,41 @@ input[type=checkbox].ccb:checked + label:before {
   color: #757575;
   border-radius: 2px;
 }
-/* line 1115, less/main.scss */
+/* line 1130, less/main.scss */
 .article-page .keywords a:hover {
   background: #39ac4f;
   color: white;
 }
-/* line 1122, less/main.scss */
+/* line 1137, less/main.scss */
 .article-page .more-articles {
   margin: 25px 0 0 0;
 }
-/* line 1124, less/main.scss */
+/* line 1139, less/main.scss */
 .article-page .more-articles .header {
   text-align: center;
 }
-/* line 1127, less/main.scss */
+/* line 1142, less/main.scss */
 .article-page .more-articles .header h2 {
   margin: 0 0 15px 0;
   color: black;
   font-weight: bold;
   line-height: 1.3;
 }
-/* line 1135, less/main.scss */
+/* line 1150, less/main.scss */
 .article-page .time {
   margin-top: 25px;
   color: #888888;
   font-size: 0.9em;
 }
 
-/* line 1143, less/main.scss */
+/* line 1158, less/main.scss */
 .ugyfelkapu-content-holder .inside {
   background: #ffffff;
   min-height: 500px;
   padding: 0 0 25px 0;
 }
 
-/* line 1150, less/main.scss */
+/* line 1165, less/main.scss */
 .home-instruction.ugyfelkapu .login-holder .login-container {
   margin-top: 0 !important;
   position: absolute;
@@ -1439,31 +1478,31 @@ input[type=checkbox].ccb:checked + label:before {
   z-index: 1000;
 }
 
-/* line 1157, less/main.scss */
+/* line 1172, less/main.scss */
 footer {
   background: #353535;
   border-top: 20px solid #52c668;
 }
-/* line 1161, less/main.scss */
+/* line 1176, less/main.scss */
 footer .row {
   align-items: flex-end;
 }
-/* line 1164, less/main.scss */
+/* line 1179, less/main.scss */
 footer .row .slogan {
   color: #39ac4f;
   text-align: right;
   font-size: 1.4em;
 }
-/* line 1169, less/main.scss */
+/* line 1184, less/main.scss */
 footer .row .slogan h4 {
   margin: 0;
   line-height: 1;
 }
-/* line 1177, less/main.scss */
+/* line 1192, less/main.scss */
 footer .menu .row {
   align-items: flex-start;
 }
-/* line 1180, less/main.scss */
+/* line 1195, less/main.scss */
 footer .menu nav {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1472,34 +1511,34 @@ footer .menu nav {
   width: 100%;
   flex-wrap: wrap;
 }
-/* line 1187, less/main.scss */
+/* line 1202, less/main.scss */
 footer .menu nav ul {
   flex-basis: calc(100%/3);
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 1193, less/main.scss */
+/* line 1208, less/main.scss */
 footer .menu nav ul li {
   list-style: none;
   color: #8e8e8e;
   font-size: 1.1em;
 }
-/* line 1197, less/main.scss */
+/* line 1212, less/main.scss */
 footer .menu nav ul li a {
   color: #898989;
   display: block;
 }
-/* line 1201, less/main.scss */
+/* line 1216, less/main.scss */
 footer .menu nav ul li a:hover {
   color: #39ac4f;
 }
-/* line 1206, less/main.scss */
+/* line 1221, less/main.scss */
 footer .menu nav ul li.header {
   font-size: 1.2em;
   color: #a2a2a2;
 }
-/* line 1215, less/main.scss */
+/* line 1230, less/main.scss */
 footer .copyright {
   background: #4e4e4e;
   padding: 15px 0;
@@ -1507,7 +1546,7 @@ footer .copyright {
   margin-top: 25px;
   font-size: 0.95em;
 }
-/* line 1223, less/main.scss */
+/* line 1238, less/main.scss */
 footer .contacts {
   background: #585858;
   padding: 15px;
@@ -1518,18 +1557,18 @@ footer .contacts {
   font-size: 1.1em;
   line-height: 2.2;
 }
-/* line 1233, less/main.scss */
+/* line 1248, less/main.scss */
 footer .contacts a, footer .contacts a:hover {
   color: white;
 }
-/* line 1237, less/main.scss */
+/* line 1252, less/main.scss */
 footer .contacts h4 {
   margin-bottom: 8px;
   text-transform: none;
   font-size: 1.25em;
   line-height: 1;
 }
-/* line 1245, less/main.scss */
+/* line 1260, less/main.scss */
 footer .contacts .navi li a {
   color: white;
   font-size: 14px;
@@ -1542,30 +1581,30 @@ footer .contacts .navi li a {
   border-radius: 24px;
   text-align: center;
 }
-/* line 1258, less/main.scss */
+/* line 1273, less/main.scss */
 footer .contacts .navi li.social.facebook a {
   background: #3b5998;
 }
-/* line 1263, less/main.scss */
+/* line 1278, less/main.scss */
 footer .contacts .navi li.social.googleplus a {
   background: #e85050;
 }
-/* line 1268, less/main.scss */
+/* line 1283, less/main.scss */
 footer .contacts .navi li.social.twitter a {
   background: #02d0ff;
 }
-/* line 1277, less/main.scss */
+/* line 1292, less/main.scss */
 footer .buttons ul li {
   padding-right: 15px;
 }
-/* line 1279, less/main.scss */
+/* line 1294, less/main.scss */
 footer .buttons ul li > img {
   height: 37px;
   float: left;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 1285, less/main.scss */
+/* line 1300, less/main.scss */
 footer .buttons ul li a {
   margin-left: 48px;
   text-transform: uppercase;
@@ -1574,33 +1613,33 @@ footer .buttons ul li a {
   font-size: 0.9em;
   letter-spacing: -1px;
 }
-/* line 1293, less/main.scss */
+/* line 1308, less/main.scss */
 footer .buttons ul li a.btn-darker {
   background-color: #757575;
   border-color: #818181;
 }
-/* line 1297, less/main.scss */
+/* line 1312, less/main.scss */
 footer .buttons ul li a.btn-darker:hover {
   background-color: #686868;
 }
-/* line 1306, less/main.scss */
+/* line 1321, less/main.scss */
 footer .divider {
   margin: 15px 0;
   height: 1px;
   background: #4e4e4e;
   width: 100%;
 }
-/* line 1313, less/main.scss */
+/* line 1328, less/main.scss */
 footer .top {
   padding-top: 25px;
 }
 
-/* line 1318, less/main.scss */
+/* line 1333, less/main.scss */
 .sharing {
   position: relative;
   margin-top: 40px;
 }
-/* line 1322, less/main.scss */
+/* line 1337, less/main.scss */
 .sharing .title {
   text-transform: uppercase;
   padding: 10px 0 10px 0;
@@ -1609,7 +1648,7 @@ footer .top {
   font-size: 1.2em;
   font-weight: 300;
 }
-/* line 1330, less/main.scss */
+/* line 1345, less/main.scss */
 .sharing .title:before {
   content: "";
   border-top: 1px solid #dedede;
@@ -1618,7 +1657,7 @@ footer .top {
   left: 0;
   top: 0;
 }
-/* line 1339, less/main.scss */
+/* line 1354, less/main.scss */
 .sharing .shares {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1626,19 +1665,19 @@ footer .top {
   flex-wrap: wrap;
   align-items: center;
 }
-/* line 1346, less/main.scss */
+/* line 1361, less/main.scss */
 .sharing .shares > div {
   height: 20px;
   line-height: 20px;
   padding-right: 12px;
 }
-/* line 1352, less/main.scss */
+/* line 1367, less/main.scss */
 .sharing .shares .email {
   background: white;
   border: 1px solid #dcdcdc;
   padding: 3px;
 }
-/* line 1357, less/main.scss */
+/* line 1372, less/main.scss */
 .sharing .shares .email a {
   display: block;
   line-height: 1;
@@ -1647,43 +1686,43 @@ footer .top {
   margin: 0;
   color: #555;
 }
-/* line 1366, less/main.scss */
+/* line 1381, less/main.scss */
 .sharing .shares .email:hover {
   background: #f44e5e;
 }
-/* line 1369, less/main.scss */
+/* line 1384, less/main.scss */
 .sharing .shares .email:hover a {
   color: white;
 }
 
-/* line 1377, less/main.scss */
+/* line 1392, less/main.scss */
 .wbox {
   position: relative;
   background-color: white;
 }
 
-/* line 1382, less/main.scss */
+/* line 1397, less/main.scss */
 .dp {
   padding: 20px;
 }
 
-/* line 1386, less/main.scss */
+/* line 1401, less/main.scss */
 .divider {
   margin: 10px 0;
   height: 1px;
   width: 100%;
   display: block;
 }
-/* line 1391, less/main.scss */
+/* line 1406, less/main.scss */
 .divider.lined {
   background-color: #d7d7d7;
 }
-/* line 1395, less/main.scss */
+/* line 1410, less/main.scss */
 .divider.fat {
   margin: 25px 0;
 }
 
-/* line 1404, less/main.scss */
+/* line 1419, less/main.scss */
 .user-section.user-register section.info, .user-section.user-login section.info, .user-section.user-resetpassword section.info {
   background-color: rgba(245, 245, 245, 0.64);
   background-image: url(/dist/img/worldmap.svg);
@@ -1693,26 +1732,26 @@ footer .top {
   text-align: center;
   padding: 50px 0 70px 0;
 }
-/* line 1413, less/main.scss */
+/* line 1428, less/main.scss */
 .user-section.user-register section.info h1, .user-section.user-login section.info h1, .user-section.user-resetpassword section.info h1 {
   text-transform: uppercase;
   font-weight: bold;
   margin: 0 0 15px 0;
   color: black;
 }
-/* line 1420, less/main.scss */
+/* line 1435, less/main.scss */
 .user-section.user-register section.info h2, .user-section.user-login section.info h2, .user-section.user-resetpassword section.info h2 {
   color: #006534;
   font-weight: 300;
 }
-/* line 1425, less/main.scss */
+/* line 1440, less/main.scss */
 .user-section.user-register section.info .ask-as, .user-section.user-login section.info .ask-as, .user-section.user-resetpassword section.info .ask-as {
   margin-top: 40px;
   font-size: 2em;
   font-weight: bold;
   color: #39ac4f;
 }
-/* line 1434, less/main.scss */
+/* line 1449, less/main.scss */
 .user-section.user-register section.register .tabs,
 .user-section.user-register section.login .tabs, .user-section.user-login section.register .tabs,
 .user-section.user-login section.login .tabs, .user-section.user-resetpassword section.register .tabs,
@@ -1725,7 +1764,7 @@ footer .top {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1443, less/main.scss */
+/* line 1458, less/main.scss */
 .user-section.user-register section.register .tabs ul,
 .user-section.user-register section.login .tabs ul, .user-section.user-login section.register .tabs ul,
 .user-section.user-login section.login .tabs ul, .user-section.user-resetpassword section.register .tabs ul,
@@ -1733,7 +1772,7 @@ footer .top {
   margin: 0;
   padding: 0;
 }
-/* line 1447, less/main.scss */
+/* line 1462, less/main.scss */
 .user-section.user-register section.register .tabs ul li,
 .user-section.user-register section.login .tabs ul li, .user-section.user-login section.register .tabs ul li,
 .user-section.user-login section.login .tabs ul li, .user-section.user-resetpassword section.register .tabs ul li,
@@ -1745,7 +1784,7 @@ footer .top {
   padding: 0 4px;
   text-align: center;
 }
-/* line 1455, less/main.scss */
+/* line 1470, less/main.scss */
 .user-section.user-register section.register .tabs ul li a,
 .user-section.user-register section.login .tabs ul li a, .user-section.user-login section.register .tabs ul li a,
 .user-section.user-login section.login .tabs ul li a, .user-section.user-resetpassword section.register .tabs ul li a,
@@ -1760,7 +1799,7 @@ footer .top {
   display: block;
   font-weight: 300;
 }
-/* line 1468, less/main.scss */
+/* line 1483, less/main.scss */
 .user-section.user-register section.register .tabs ul li.active a,
 .user-section.user-register section.login .tabs ul li.active a, .user-section.user-login section.register .tabs ul li.active a,
 .user-section.user-login section.login .tabs ul li.active a, .user-section.user-resetpassword section.register .tabs ul li.active a,
@@ -1769,7 +1808,7 @@ footer .top {
   background: white;
   font-weight: bold;
 }
-/* line 1475, less/main.scss */
+/* line 1490, less/main.scss */
 .user-section.user-register section.register .tabs ul li.login a,
 .user-section.user-register section.login .tabs ul li.login a, .user-section.user-login section.register .tabs ul li.login a,
 .user-section.user-login section.login .tabs ul li.login a, .user-section.user-resetpassword section.register .tabs ul li.login a,
@@ -1778,7 +1817,7 @@ footer .top {
   color: white;
   text-transform: none;
 }
-/* line 1485, less/main.scss */
+/* line 1500, less/main.scss */
 .user-section.user-register section.register .form,
 .user-section.user-register section.login .form, .user-section.user-login section.register .form,
 .user-section.user-login section.login .form, .user-section.user-resetpassword section.register .form,
@@ -1786,28 +1825,28 @@ footer .top {
   margin: 20px auto;
   width: 70%;
 }
-/* line 1489, less/main.scss */
+/* line 1504, less/main.scss */
 .user-section.user-register section.register .form .submit,
 .user-section.user-register section.login .form .submit, .user-section.user-login section.register .form .submit,
 .user-section.user-login section.login .form .submit, .user-section.user-resetpassword section.register .form .submit,
 .user-section.user-resetpassword section.login .form .submit {
   text-align: right;
 }
-/* line 1493, less/main.scss */
+/* line 1508, less/main.scss */
 .user-section.user-register section.register .form .aszf,
 .user-section.user-register section.login .form .aszf, .user-section.user-login section.register .form .aszf,
 .user-section.user-login section.login .form .aszf, .user-section.user-resetpassword section.register .form .aszf,
 .user-section.user-resetpassword section.login .form .aszf {
   text-align: left;
 }
-/* line 1497, less/main.scss */
+/* line 1512, less/main.scss */
 .user-section.user-register section.register .form label,
 .user-section.user-register section.login .form label, .user-section.user-login section.register .form label,
 .user-section.user-login section.login .form label, .user-section.user-resetpassword section.register .form label,
 .user-section.user-resetpassword section.login .form label {
   font-size: 1em;
 }
-/* line 1501, less/main.scss */
+/* line 1516, less/main.scss */
 .user-section.user-register section.register .form h2,
 .user-section.user-register section.login .form h2, .user-section.user-login section.register .form h2,
 .user-section.user-login section.login .form h2, .user-section.user-resetpassword section.register .form h2,
@@ -1818,72 +1857,72 @@ footer .top {
   text-align: center;
   margin: 0 0 25px 0;
 }
-/* line 1513, less/main.scss */
+/* line 1528, less/main.scss */
 .user-section.user-login section.info {
   background-color: rgba(9, 171, 59, 0.58);
 }
-/* line 1515, less/main.scss */
+/* line 1530, less/main.scss */
 .user-section.user-login section.info h1 {
   color: #0c4629;
   margin: 0;
 }
-/* line 1521, less/main.scss */
+/* line 1536, less/main.scss */
 .user-section.user-login .form {
   width: 100% !important;
   margin: 30px !important;
 }
-/* line 1527, less/main.scss */
+/* line 1542, less/main.scss */
 .user-section.user-login .form .actions a {
   color: black;
 }
-/* line 1531, less/main.scss */
+/* line 1546, less/main.scss */
 .user-section.user-login .form .actions a:hover {
   color: #f44e5e;
 }
-/* line 1534, less/main.scss */
+/* line 1549, less/main.scss */
 .user-section.user-login .form .actions .fa-stack {
   color: #f44e5e;
 }
-/* line 1537, less/main.scss */
+/* line 1552, less/main.scss */
 .user-section.user-login .form .actions .fa-stack i {
   font-size: 22px;
 }
-/* line 1541, less/main.scss */
+/* line 1556, less/main.scss */
 .user-section.user-login .form .actions .fa-stack .fa-stack-1x {
   color: white;
   font-size: 14px;
   line-height: 21px;
 }
-/* line 1549, less/main.scss */
+/* line 1564, less/main.scss */
 .user-section.user-login .form h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 25px 0;
   font-weight: bold;
 }
-/* line 1557, less/main.scss */
+/* line 1572, less/main.scss */
 .user-section.user-login .reg-instruction {
   width: 80%;
   margin: 0 auto;
   text-align: center;
 }
-/* line 1562, less/main.scss */
+/* line 1577, less/main.scss */
 .user-section.user-login .reg-instruction .text {
   line-height: 1.3;
   font-size: 1.2em;
 }
-/* line 1567, less/main.scss */
+/* line 1582, less/main.scss */
 .user-section.user-login .reg-instruction a {
   margin-top: 25px;
 }
-/* line 1573, less/main.scss */
+/* line 1588, less/main.scss */
 .user-section.user-resetpassword {
   min-height: 600px;
   position: relative;
   background: rgba(153, 0, 0, 0.72);
   text-align: center;
 }
-/* line 1579, less/main.scss */
+/* line 1594, less/main.scss */
 .user-section.user-resetpassword section.resetpassword {
   text-align: center;
   width: 50%;
@@ -1894,31 +1933,31 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1582, less/main.scss */
+/* line 1597, less/main.scss */
 .user-section.user-resetpassword section.resetpassword h1 {
   text-transform: uppercase;
   color: white;
   margin: 0 0 50px 0;
   font-weight: 300;
 }
-/* line 1589, less/main.scss */
+/* line 1604, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form {
   background: white;
   padding: 25px;
 }
-/* line 1593, less/main.scss */
+/* line 1608, less/main.scss */
 .user-section.user-resetpassword section.resetpassword .form h2 {
   color: black;
   font-weight: bold;
   margin: 0 0 25px 0;
 }
 
-/* line 1611, less/main.scss */
+/* line 1626, less/main.scss */
 .activator-content {
   min-height: 600px;
   position: relative;
 }
-/* line 1615, less/main.scss */
+/* line 1630, less/main.scss */
 .activator-content .pw {
   background: rgba(255, 255, 255, 0.69);
   padding: 25px;
@@ -1929,19 +1968,19 @@ footer .top {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1624, less/main.scss */
+/* line 1639, less/main.scss */
 .activator-content .pw h1 {
   text-transform: uppercase;
   color: #39ac4f;
   margin: 0 0 15px 0;
   font-weight: bold;
 }
-/* line 1630, less/main.scss */
+/* line 1645, less/main.scss */
 .activator-content .pw h1 i {
   font-size: 64px;
   margin-bottom: 10px;
 }
-/* line 1636, less/main.scss */
+/* line 1651, less/main.scss */
 .activator-content .pw .sub {
   font-size: 1.2em;
   color: #444444;
@@ -1952,37 +1991,37 @@ footer .top {
   border-radius: 8px;
 }
 
-/* line 1648, less/main.scss */
+/* line 1663, less/main.scss */
 body.ugyfelkapu-view {
   background-color: #ffffff;
   background-image: none;
 }
-/* line 1652, less/main.scss */
+/* line 1667, less/main.scss */
 body.ugyfelkapu-view .group {
   margin: 25px 0 15px 0;
 }
-/* line 1654, less/main.scss */
+/* line 1669, less/main.scss */
 body.ugyfelkapu-view .group h2 {
   color: #39ac4f;
   text-transform: uppercase;
   margin: 0 0 5px 0;
 }
-/* line 1660, less/main.scss */
+/* line 1675, less/main.scss */
 body.ugyfelkapu-view .group h2 + .subtitle {
   margin: 0 0 20px 0;
   line-height: 1.4;
   color: #888888;
 }
-/* line 1667, less/main.scss */
+/* line 1682, less/main.scss */
 body.ugyfelkapu-view .group .cont label {
   font-size: 1em;
 }
 
-/* line 1676, less/main.scss */
+/* line 1691, less/main.scss */
 .profil-changer-container .group .title {
   position: relative;
 }
-/* line 1678, less/main.scss */
+/* line 1693, less/main.scss */
 .profil-changer-container .group .title h3 {
   position: relative;
   z-index: 100;
@@ -1994,7 +2033,7 @@ body.ugyfelkapu-view .group .cont label {
   margin: 0;
   background: white;
 }
-/* line 1690, less/main.scss */
+/* line 1705, less/main.scss */
 .profil-changer-container .group .title .line {
   z-index: 1;
   height: 1px;
@@ -2007,16 +2046,16 @@ body.ugyfelkapu-view .group .cont label {
   background: #eeeeee;
   position: absolute;
 }
-/* line 1704, less/main.scss */
+/* line 1719, less/main.scss */
 .profil-changer-container .group .input-line {
   margin: 20px -15px;
   align-items: center;
 }
-/* line 1708, less/main.scss */
+/* line 1723, less/main.scss */
 .profil-changer-container .group .input-line.vert-top {
   align-items: flex-start;
 }
-/* line 1712, less/main.scss */
+/* line 1727, less/main.scss */
 .profil-changer-container .group .input-line label {
   font-weight: normal;
   font-size: 1em;
@@ -2025,12 +2064,12 @@ body.ugyfelkapu-view .group .cont label {
   padding-left: 25px;
   margin: 0;
 }
-/* line 1721, less/main.scss */
+/* line 1736, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper {
   padding-right: 75px;
   position: relative;
 }
-/* line 1725, less/main.scss */
+/* line 1740, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper .infotext {
   font-size: 0.84em;
   color: #888888;
@@ -2044,12 +2083,12 @@ body.ugyfelkapu-view .group .cont label {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-/* line 1740, less/main.scss */
+/* line 1755, less/main.scss */
 .profil-changer-container .group .input-line input, .profil-changer-container .group .input-line textarea, .profil-changer-container .group .input-line select, .profil-changer-container .group .input-line .select-list {
   color: #39ac4f;
   position: relative;
 }
-/* line 1744, less/main.scss */
+/* line 1759, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper, .profil-changer-container .group .input-line textarea + .form-helper, .profil-changer-container .group .input-line select + .form-helper, .profil-changer-container .group .input-line .select-list + .form-helper {
   position: absolute;
   right: 25px;
@@ -2059,7 +2098,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 1754, less/main.scss */
+/* line 1769, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper:before, .profil-changer-container .group .input-line textarea + .form-helper:before, .profil-changer-container .group .input-line select + .form-helper:before, .profil-changer-container .group .input-line .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -2074,27 +2113,27 @@ body.ugyfelkapu-view .group .cont label {
   text-align: center;
   content: "";
 }
-/* line 1769, less/main.scss */
+/* line 1784, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.invalid:before, .profil-changer-container .group .input-line textarea + .form-helper.invalid:before, .profil-changer-container .group .input-line select + .form-helper.invalid:before, .profil-changer-container .group .input-line .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1774, less/main.scss */
+/* line 1789, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.valid:before, .profil-changer-container .group .input-line textarea + .form-helper.valid:before, .profil-changer-container .group .input-line select + .form-helper.valid:before, .profil-changer-container .group .input-line .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1780, less/main.scss */
+/* line 1795, less/main.scss */
 .profil-changer-container .group .input-line input.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line select.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1784, less/main.scss */
+/* line 1799, less/main.scss */
 .profil-changer-container .group .input-line input.ng-valid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-valid + .form-helper:before, .profil-changer-container .group .input-line select.ng-valid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-valid + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1791, less/main.scss */
+/* line 1806, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector label {
   position: relative;
   padding: 0;
@@ -2104,7 +2143,7 @@ body.ugyfelkapu-view .group .cont label {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 1800, less/main.scss */
+/* line 1815, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector label img {
   width: 100%;
   position: absolute;
@@ -2113,7 +2152,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1809, less/main.scss */
+/* line 1824, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos {
   float: left;
   color: #aaaaaa;
@@ -2121,29 +2160,29 @@ body.ugyfelkapu-view .group .cont label {
   line-height: 1.6;
   padding-left: 20px;
 }
-/* line 1816, less/main.scss */
+/* line 1831, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos .selected-info {
   font-size: 0.9em;
   line-height: 1.2;
   color: #39ac4f;
   margin-top: 15px;
 }
-/* line 1822, less/main.scss */
+/* line 1837, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos .selected-info .invalid {
   color: #f44e5e;
 }
-/* line 1831, less/main.scss */
+/* line 1846, less/main.scss */
 .profil-changer-container .buttons {
   border-top: 1px solid #eeeeee;
   padding: 15px 0 0 0;
   margin: 15px 0 0 0;
 }
-/* line 1836, less/main.scss */
+/* line 1851, less/main.scss */
 .profil-changer-container .buttons button {
   margin-right: 10px;
 }
 
-/* line 1842, less/main.scss */
+/* line 1857, less/main.scss */
 .megye-list {
   border: 1px solid #39ac4f;
   background: white;
@@ -2152,7 +2191,7 @@ body.ugyfelkapu-view .group .cont label {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 1850, less/main.scss */
+/* line 1865, less/main.scss */
 .megye-list .head {
   font-size: 1.3em;
   text-align: center;
@@ -2164,20 +2203,20 @@ body.ugyfelkapu-view .group .cont label {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 1862, less/main.scss */
+/* line 1877, less/main.scss */
 .megye-list .fakemap {
   text-align: center;
 }
-/* line 1864, less/main.scss */
+/* line 1879, less/main.scss */
 .megye-list .fakemap img {
   max-width: 80%;
   margin: 10px auto;
 }
-/* line 1870, less/main.scss */
+/* line 1885, less/main.scss */
 .megye-list .cont {
   padding: 5px 10px;
 }
-/* line 1874, less/main.scss */
+/* line 1889, less/main.scss */
 .megye-list .cont .list > div a {
   display: block;
   position: relative;
@@ -2185,11 +2224,11 @@ body.ugyfelkapu-view .group .cont label {
   color: #444444;
   line-height: 1.5;
 }
-/* line 1881, less/main.scss */
+/* line 1896, less/main.scss */
 .megye-list .cont .list > div a:hover {
   color: #39ac4f;
 }
-/* line 1885, less/main.scss */
+/* line 1900, less/main.scss */
 .megye-list .cont .list > div a .count {
   position: absolute;
   -webkit-transform: translateY(-50%);
@@ -2207,18 +2246,18 @@ body.ugyfelkapu-view .group .cont label {
   font-size: 0.9em;
 }
 
-/* line 1908, less/main.scss */
+/* line 1923, less/main.scss */
 .profil-progress-container .wrapper {
   padding: 35px 0 15px 0;
 }
-/* line 1910, less/main.scss */
+/* line 1925, less/main.scss */
 .profil-progress-container .wrapper .line {
   position: relative;
   background: #eaeaea;
   height: 10px;
   width: 100%;
 }
-/* line 1915, less/main.scss */
+/* line 1930, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line {
   background: #39ac4f;
   height: 10px;
@@ -2227,7 +2266,7 @@ body.ugyfelkapu-view .group .cont label {
   transition: all 1s;
   position: relative;
 }
-/* line 1923, less/main.scss */
+/* line 1938, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status {
   position: absolute;
   background: #f44e5e;
@@ -2239,7 +2278,7 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1934, less/main.scss */
+/* line 1949, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status:after {
   content: "";
   border-color: #f44e5e transparent transparent transparent;
@@ -2253,30 +2292,30 @@ body.ugyfelkapu-view .group .cont label {
   transform: translateX(-50%);
 }
 
-/* line 1952, less/main.scss */
+/* line 1967, less/main.scss */
 .profil-changer-nav {
   background: #f3f3f3;
   border: 1px solid #e1e1e1;
 }
-/* line 1956, less/main.scss */
+/* line 1971, less/main.scss */
 .profil-changer-nav ul, .profil-changer-nav li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 1961, less/main.scss */
+/* line 1976, less/main.scss */
 .profil-changer-nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-/* line 1966, less/main.scss */
+/* line 1981, less/main.scss */
 .profil-changer-nav ul li {
   flex-basis: calc(100%/7);
   border-right: 1px solid #e1e1e1;
   height: 98px;
 }
-/* line 1970, less/main.scss */
+/* line 1985, less/main.scss */
 .profil-changer-nav ul li a {
   display: block;
   font-size: 0.7em;
@@ -2286,7 +2325,7 @@ body.ugyfelkapu-view .group .cont label {
   padding: 10px 8px;
   height: 98px;
 }
-/* line 1979, less/main.scss */
+/* line 1994, less/main.scss */
 .profil-changer-nav ul li a .ico {
   width: 40px;
   height: 40px;
@@ -2294,77 +2333,77 @@ body.ugyfelkapu-view .group .cont label {
   background-size: contain;
   background-position: center;
 }
-/* line 1989, less/main.scss */
+/* line 2004, less/main.scss */
 .profil-changer-nav ul li.ico-user .ico {
   background-image: url("/dist/img/icons/green/user.svg");
 }
-/* line 1995, less/main.scss */
+/* line 2010, less/main.scss */
 .profil-changer-nav ul li.ico-document .ico {
   background-image: url("/dist/img/icons/green/documents.svg");
 }
-/* line 2001, less/main.scss */
+/* line 2016, less/main.scss */
 .profil-changer-nav ul li.ico-mobil .ico {
   background-image: url("/dist/img/icons/green/mobil.svg");
 }
-/* line 2007, less/main.scss */
+/* line 2022, less/main.scss */
 .profil-changer-nav ul li.ico-idcard .ico {
   background-image: url("/dist/img/icons/green/idcard.svg");
 }
-/* line 2013, less/main.scss */
+/* line 2028, less/main.scss */
 .profil-changer-nav ul li.ico-briefcase .ico {
   background-image: url("/dist/img/icons/green/briefcase.svg");
 }
-/* line 2019, less/main.scss */
+/* line 2034, less/main.scss */
 .profil-changer-nav ul li.ico-target .ico {
   background-image: url("/dist/img/icons/green/target.svg");
 }
-/* line 2025, less/main.scss */
+/* line 2040, less/main.scss */
 .profil-changer-nav ul li.ico-download .ico {
   background-image: url("/dist/img/icons/green/download.svg");
 }
-/* line 2031, less/main.scss */
+/* line 2046, less/main.scss */
 .profil-changer-nav ul li:hover a {
   color: #39ac4f;
 }
-/* line 2037, less/main.scss */
+/* line 2052, less/main.scss */
 .profil-changer-nav ul li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 2043, less/main.scss */
+/* line 2058, less/main.scss */
 .profil-changer-nav ul li.active.ico-user .ico {
   background-image: url("/dist/img/icons/white/user.svg");
 }
-/* line 2049, less/main.scss */
+/* line 2064, less/main.scss */
 .profil-changer-nav ul li.active.ico-document .ico {
   background-image: url("/dist/img/icons/white/documents.svg");
 }
-/* line 2055, less/main.scss */
+/* line 2070, less/main.scss */
 .profil-changer-nav ul li.active.ico-mobil .ico {
   background-image: url("/dist/img/icons/white/mobil.svg");
 }
-/* line 2061, less/main.scss */
+/* line 2076, less/main.scss */
 .profil-changer-nav ul li.active.ico-idcard .ico {
   background-image: url("/dist/img/icons/white/idcard.svg");
 }
-/* line 2067, less/main.scss */
+/* line 2082, less/main.scss */
 .profil-changer-nav ul li.active.ico-briefcase .ico {
   background-image: url("/dist/img/icons/white/briefcase.svg");
 }
-/* line 2073, less/main.scss */
+/* line 2088, less/main.scss */
 .profil-changer-nav ul li.active.ico-target .ico {
   background-image: url("/dist/img/icons/white/target.svg");
 }
-/* line 2079, less/main.scss */
+/* line 2094, less/main.scss */
 .profil-changer-nav ul li.active.ico-download .ico {
   background-image: url("/dist/img/icons/white/download.svg");
 }
-/* line 2086, less/main.scss */
+/* line 2101, less/main.scss */
 .profil-changer-nav ul li.last-child {
   border-right: none;
 }
 
-/* line 2091, less/main.scss */
+/* line 2106, less/main.scss */
 .articles {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2372,16 +2411,16 @@ body.ugyfelkapu-view .group .cont label {
   flex-wrap: wrap;
   margin: -10px;
 }
-/* line 2098, less/main.scss */
+/* line 2113, less/main.scss */
 .articles article {
   flex-basis: calc(100%/2);
   padding: 10px;
 }
-/* line 2102, less/main.scss */
+/* line 2117, less/main.scss */
 .articles article .wrapper {
   overflow: hidden;
 }
-/* line 2106, less/main.scss */
+/* line 2121, less/main.scss */
 .articles article .img {
   height: 185px;
   background: #f1f1f1;
@@ -2389,7 +2428,7 @@ body.ugyfelkapu-view .group .cont label {
   margin-bottom: 10px;
   overflow: hidden;
 }
-/* line 2113, less/main.scss */
+/* line 2128, less/main.scss */
 .articles article .img img {
   height: 110%;
   max-height: 110%;
@@ -2401,34 +2440,34 @@ body.ugyfelkapu-view .group .cont label {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 2126, less/main.scss */
+/* line 2141, less/main.scss */
 .articles article .title {
   padding: 0 5px;
 }
-/* line 2128, less/main.scss */
+/* line 2143, less/main.scss */
 .articles article .title h3 {
   margin: 0 0 8px 0;
   line-height: 1.3;
 }
-/* line 2131, less/main.scss */
+/* line 2146, less/main.scss */
 .articles article .title h3 a {
   font-size: 1em;
   font-weight: normal;
   color: #39ac4f;
 }
-/* line 2139, less/main.scss */
+/* line 2154, less/main.scss */
 .articles article .desc {
   line-height: 1.3;
   color: #5b5b5b;
   font-weight: 300;
   padding: 0 5px;
 }
-/* line 2146, less/main.scss */
+/* line 2161, less/main.scss */
 .articles article .nav {
   text-align: center;
   padding: 0 5px;
 }
-/* line 2150, less/main.scss */
+/* line 2165, less/main.scss */
 .articles article .nav a {
   background: #c5c6c6;
   color: white;
@@ -2440,39 +2479,39 @@ body.ugyfelkapu-view .group .cont label {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2162, less/main.scss */
+/* line 2177, less/main.scss */
 .articles article .nav a:hover {
   background: #39ac4f;
 }
-/* line 2170, less/main.scss */
+/* line 2185, less/main.scss */
 .articles.style-box-col3 article {
   flex-basis: calc(100%/3);
 }
-/* line 2173, less/main.scss */
+/* line 2188, less/main.scss */
 .articles.style-box-col3 article .wrapper {
   border: 1px solid #e6e6e6;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2183, less/main.scss */
+/* line 2198, less/main.scss */
 .articles.style-box-col4 article {
   flex-basis: calc(100%/4);
 }
-/* line 2186, less/main.scss */
+/* line 2201, less/main.scss */
 .articles.style-box-col4 article .wrapper {
   border: 1px solid #e6e6e6;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2198, less/main.scss */
+/* line 2213, less/main.scss */
 .articles.style-clear-col2 article .desc a.read {
   color: #39ac4f;
   margin-left: 5px;
   font-weight: bold;
 }
-/* line 2208, less/main.scss */
+/* line 2223, less/main.scss */
 .articles.style-list-col1 article {
   font-size: 1.3em;
   flex-basis: calc(100%/1);
@@ -2483,20 +2522,20 @@ body.ugyfelkapu-view .group .cont label {
   border-radius: 4px;
   border: 1px solid #f1f1f1;
 }
-/* line 2218, less/main.scss */
+/* line 2233, less/main.scss */
 .articles.style-list-col1 article .img {
   float: left;
   width: 120px;
   height: 120px;
   margin: 0 25px 0 0;
 }
-/* line 2225, less/main.scss */
+/* line 2240, less/main.scss */
 .articles.style-list-col1 article .nav {
   text-align: right;
   padding: 5px 0;
   justify-content: flex-end;
 }
-/* line 2229, less/main.scss */
+/* line 2244, less/main.scss */
 .articles.style-list-col1 article .nav a {
   width: auto;
   float: right;
@@ -2505,52 +2544,105 @@ body.ugyfelkapu-view .group .cont label {
   line-height: 1;
 }
 
-/* line 2242, less/main.scss */
+/* line 2257, less/main.scss */
 .nav-container {
   text-align: center;
   width: 100%;
 }
 
-/* line 2247, less/main.scss */
+/* line 2262, less/main.scss */
 ul.pagination {
   font-size: 1em;
   margin: 10px 0;
   justify-content: center;
 }
-/* line 2252, less/main.scss */
+/* line 2267, less/main.scss */
 ul.pagination li {
   list-style: none;
 }
-/* line 2254, less/main.scss */
+/* line 2269, less/main.scss */
 ul.pagination li a {
   font-size: 1em;
   line-height: 1;
 }
 
-/* line 2260, less/main.scss */
+/* line 2275, less/main.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 2265, less/main.scss */
+/* line 2280, less/main.scss */
 .article-list {
   padding: 25px 0;
 }
-/* line 2269, less/main.scss */
+/* line 2284, less/main.scss */
 .article-list .list .header {
   margin: 0 0 25px 0;
 }
-/* line 2271, less/main.scss */
+/* line 2286, less/main.scss */
 .article-list .list .header h1 {
   color: #39ac4f;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-/* line 2280, less/main.scss */
+/* line 2295, less/main.scss */
 .sidebar-search .header {
   font-size: 1.2em;
   color: black;
+  font-weight: bold;
+}
+
+/* line 2303, less/main.scss */
+.messanger .wrapper {
+  padding: 15px 0 0 0;
+}
+/* line 2305, less/main.scss */
+.messanger .wrapper nav {
+  border-bottom: 1px solid #d7d7d7;
+}
+/* line 2307, less/main.scss */
+.messanger .wrapper nav ul, .messanger .wrapper nav li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* line 2313, less/main.scss */
+.messanger .wrapper nav ul {
+  margin-bottom: -2px;
+}
+/* line 2315, less/main.scss */
+.messanger .wrapper nav ul li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 2321, less/main.scss */
+.messanger .wrapper nav ul li a {
+  padding: 5px 12px;
+  font-size: 0.8em;
+  display: block;
+  color: #9c9c9c;
+  background: #eaeaea;
+  margin-right: 8px;
+}
+/* line 2329, less/main.scss */
+.messanger .wrapper nav ul li a i {
+  font-size: 18px;
+  line-height: 1;
+  margin-right: 5px;
+}
+/* line 2335, less/main.scss */
+.messanger .wrapper nav ul li a .badge {
+  background: #f44e5e;
+}
+/* line 2341, less/main.scss */
+.messanger .wrapper nav ul li.active a {
+  background: white;
+  border: 1px solid #d7d7d7;
+  border-bottom: none;
+  color: #39ac4f;
   font-weight: bold;
 }
