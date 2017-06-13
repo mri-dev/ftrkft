@@ -113,13 +113,82 @@ class ajax extends Controller  {
 					}
 				break;
 				case 'messanger_messages':
+					$arg = array();
+					$group = $params['by'];
 					$uid = (int)$this->ME->getID();
-					$messages = $this->MESSANGER->loadMessages($uid);
+
+					switch ($group) {
+						case 'inbox': case 'msg':
+							$arg['controll_by'] = $group;
+						break;
+						case 'outbox':
+							$arg['controll_by'] = $group;
+						break;
+						case 'archiv':
+							$arg['show_archiv'] = true;
+						break;
+					}
+
+					$messages = $this->MESSANGER->loadMessages($uid, $arg);
 					$unreaded = $messages['unreaded_group'];
 
 					$data['uid'] = $uid;
 					$data['unreaded'] = $unreaded;
 					$data['messages'] = $messages;
+				break;
+				case 'messanger_messagesession_edit':
+					$err = false;
+
+					if (!$err && empty($params['value'])) {
+						$msg = 'Kérjük, hogy adja meg a megjegyzését.';
+						$err = true;
+					}
+
+					if( !$err ) {
+						$messages = $this->MESSANGER->editMessageData($params['session'], $params['what'], $params['value']);
+						$data['success'] = true;
+					} else {
+						$data['success'] = false;
+						$data['msg'] = $msg;
+					}
+
+					$data['session'] = $params['session'];
+					$data['value'] = $params['value'];
+					$data['key'] = $params['what'];
+
+				break;
+				case 'messanger_message_send':
+					$err = false;
+
+					if (!$err && empty($params['msg'])) {
+						$msg = $this->lang('Kérjük, hogy írja be üzenetének tartalmát.');
+						$err = true;
+					}
+
+					if( !$err ) {
+						$isadmin = ((int)$params['admin'] == 0) ? false : true;
+						try {
+							$message_id = $this->MESSANGER->addMessage($params['session'], (int)$params['from'], (int)$params['to'], $params['msg'], $isadmin);
+							$data['success'] = true;
+							$data['created_msg_id'] = $message_id;
+						} catch (Exception $e) {
+							$data['success'] = false;
+							$data['msg'] = $e->getMessage();
+						}
+					} else {
+						$data['success'] = false;
+						$data['msg'] = $msg;
+					}
+
+					$data['session'] = $params['session'];
+					$data['from_id'] = (int)$params['from'];
+					$data['to_id'] = (int)$params['to'];
+					$data['admin'] = (int)$params['admin'];
+					$data['message'] = $params['msg'];
+				break;
+				case 'messanger_message_viewed':
+					$session = $params['session'];
+					$this->MESSANGER->setReadedMessage($params['by'], $session);
 				break;
 			}
 			echo json_encode( $data );

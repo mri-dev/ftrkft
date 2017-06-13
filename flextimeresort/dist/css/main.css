@@ -2647,14 +2647,229 @@ ul.pagination li a {
   font-weight: bold;
 }
 /* line 2353, less/main.scss */
+.messanger .wrapper .messanger-reader .header {
+  padding: 20px 0;
+}
+/* line 2356, less/main.scss */
+.messanger .wrapper .messanger-reader .header h2 {
+  font-weight: bold;
+  color: black;
+}
+/* line 2362, less/main.scss */
+.messanger .wrapper .messanger-reader .header .from .name {
+  font-weight: bold;
+  color: #39ac4f;
+}
+/* line 2367, less/main.scss */
+.messanger .wrapper .messanger-reader .header .from .time {
+  color: #999999;
+  margin-left: 10px;
+}
+/* line 2374, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice input[type=text] {
+  font-size: 0.9em;
+}
+/* line 2377, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice .writen {
+  color: #4e4e4e;
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.4;
+  font-weight: 300;
+  margin-top: 4px;
+}
+/* line 2385, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice .writen .edit-notice {
+  margin-left: 5px;
+  cursor: pointer;
+}
+/* line 2388, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice .writen .edit-notice i {
+  color: #333333;
+}
+/* line 2394, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice .newnotice a {
+  font-size: 0.8em;
+  color: #8e8e8e;
+  font-style: italic;
+  text-decoration: underline;
+}
+/* line 2402, less/main.scss */
+.messanger .wrapper .messanger-reader .header .notice .newnotice-error {
+  color: #f44e5e;
+  font-size: 0.8em;
+}
+/* line 2409, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator {
+  border: 2px solid #e2e2e2;
+  margin: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+/* line 2415, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator textarea {
+  border: none;
+  font-size: 1.1em;
+  line-height: 1.5;
+  padding: 10px;
+  color: black;
+}
+/* line 2423, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator .conv-footer {
+  background: #f1f1f1;
+  text-align: right;
+}
+/* line 2426, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator .conv-footer .text, .messanger .wrapper .messanger-reader .conversation-creator .conv-footer button {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  vertical-align: middle;
+}
+/* line 2433, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator .conv-footer button {
+  border-radius: 0 0 5px 0;
+  margin-left: 10px;
+}
+/* line 2438, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator .conv-footer .text {
+  font-size: 0.9em;
+  color: #888888;
+}
+/* line 2444, less/main.scss */
+.messanger .wrapper .messanger-reader .conversation-creator-errmsg {
+  color: #f44e5e;
+  font-size: 1.1em;
+  line-height: 1.3;
+  margin: 10px 0;
+  text-align: center;
+}
+/* line 2452, less/main.scss */
+.messanger .wrapper .messanger-reader .closed-msg {
+  text-align: center;
+  margin: 20px 0;
+  border: 5px solid #f3e64d;
+  border-left: none;
+  border-right: none;
+  background: #fffbcc;
+  padding: 20px;
+  color: #969261;
+}
+/* line 2462, less/main.scss */
+.messanger .wrapper .messanger-reader .closed-msg i {
+  color: black;
+  font-size: 64px;
+}
+/* line 2467, less/main.scss */
+.messanger .wrapper .messanger-reader .closed-msg h3 {
+  text-transform: none;
+  color: black;
+  font-size: 1.8em;
+  margin: 0 0 5px 0;
+}
+/* line 2474, less/main.scss */
+.messanger .wrapper .messanger-reader .closed-msg .time {
+  font-size: 0.9em;
+}
+/* line 2478, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations {
+  margin-top: 25px;
+  overflow: auto;
+  max-height: 2000px;
+}
+/* line 2482, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversations-header {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+/* line 2487, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation {
+  padding-left: 30px;
+  margin: 10px 0;
+}
+/* line 2491, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation .bubble {
+  border: 1px solid #e4e4e4;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+}
+/* line 2497, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation .bubble .text {
+  line-height: 1.5;
+  font-size: 1.1em;
+  color: #656565;
+}
+/* line 2504, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation .from {
+  margin-top: 4px;
+  font-size: 0.8em;
+}
+/* line 2508, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation .from .unreaded {
+  background: #f44e5e;
+  color: white;
+  border-radius: 10px;
+  line-height: 1;
+  font-size: 0.8em;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+/* line 2518, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation .from .timestamp {
+  color: #999;
+  margin-left: 5px;
+}
+/* line 2524, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation.from-me {
+  padding-left: 0;
+  padding-right: 30px;
+}
+/* line 2528, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation.from-me .from {
+  padding-left: 10px;
+  float: left;
+}
+/* line 2534, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation.from-sender .bubble {
+  background: #39ac4f;
+  border: 1px solid #2c863d;
+}
+/* line 2537, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation.from-sender .bubble .text {
+  color: white;
+}
+/* line 2541, less/main.scss */
+.messanger .wrapper .messanger-reader .conversations .conversation.from-sender .from {
+  padding-right: 10px;
+  float: right;
+}
+/* line 2550, less/main.scss */
+.messanger .wrapper .message-list .no-messages {
+  text-align: center;
+  padding: 50px 0;
+}
+/* line 2553, less/main.scss */
+.messanger .wrapper .message-list .no-messages h3 {
+  text-transform: none;
+  font-size: 1.8em;
+  color: black;
+}
+/* line 2558, less/main.scss */
+.messanger .wrapper .message-list .no-messages i {
+  font-size: 64px;
+}
+/* line 2562, less/main.scss */
 .messanger .wrapper .message-list .message-session {
   border: 1px solid #eaeaea;
   background: #f8f8f8;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   margin: 10px 0;
   position: relative;
+  border-radius: 4px;
 }
-/* line 2360, less/main.scss */
+/* line 2569, less/main.scss */
 .messanger .wrapper .message-list .message-session .unread {
   background: #f44e5e;
   color: white;
@@ -2671,33 +2886,48 @@ ul.pagination li a {
   font-size: 0.8em;
   transform: translate(-50%, -50%);
 }
-/* line 2377, less/main.scss */
+/* line 2586, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head {
   position: relative;
 }
-/* line 2380, less/main.scss */
+/* line 2589, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from {
-  font-size: 0.95em;
-  color: #555555;
+  font-size: 1em;
+  color: #828282;
   line-height: 1;
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
 }
-/* line 2386, less/main.scss */
+/* line 2595, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from strong {
   color: black;
 }
-/* line 2391, less/main.scss */
+/* line 2600, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject {
   font-size: 1.35em;
   color: #333333;
   font-weight: bold;
   line-height: 1;
 }
-/* line 2397, less/main.scss */
+/* line 2606, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .subject .locked {
+  color: #f44e5e;
+}
+/* line 2610, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .subject a {
+  color: #333333;
+}
+/* line 2613, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .subject a:hover {
+  color: #39ac4f;
+}
+/* line 2618, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label {
   position: absolute;
-  right: 0;
+  right: -8px;
   bottom: 0;
+}
+/* line 2623, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .subject .unread-label a {
   background: #cecece;
   padding: 5px 10px;
   color: #ffffff;
@@ -2705,7 +2935,46 @@ ul.pagination li a {
   font-weight: 300;
   border-radius: 20px;
 }
-/* line 2410, less/main.scss */
+/* line 2631, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .subject .unread-label a:hover {
+  background: #f44e5e;
+  color: white;
+}
+/* line 2640, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice input[type=text] {
+  font-size: 0.9em;
+}
+/* line 2643, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice .writen {
+  color: #4e4e4e;
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1.4;
+  font-weight: 300;
+  margin-top: 4px;
+}
+/* line 2651, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice {
+  margin-left: 5px;
+  cursor: pointer;
+}
+/* line 2654, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice i {
+  color: #333333;
+}
+/* line 2660, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice .newnotice a {
+  font-size: 0.8em;
+  color: #8e8e8e;
+  font-style: italic;
+  text-decoration: underline;
+}
+/* line 2668, less/main.scss */
+.messanger .wrapper .message-list .message-session .group-head .notice .newnotice-error {
+  color: #f44e5e;
+  font-size: 0.8em;
+}
+/* line 2675, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .session-start {
   position: absolute;
   right: 0;
@@ -2714,12 +2983,63 @@ ul.pagination li a {
   font-size: 0.8em;
   color: #bfbfbf;
 }
-/* line 2420, less/main.scss */
+/* line 2685, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded {
   border-left: 5px solid #f44e5e;
 }
-/* line 2424, less/main.scss */
+/* line 2689, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded .group-head .subject .lab {
   background: #f44e5e;
   color: white;
+}
+
+/* line 2701, less/main.scss */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* line 2705, less/main.scss */
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+/* line 2709, less/main.scss */
+::-webkit-scrollbar-thumb {
+  background: #39ac4f;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+/* line 2714, less/main.scss */
+::-webkit-scrollbar-thumb:hover {
+  background: #39ac4f;
+}
+
+/* line 2717, less/main.scss */
+::-webkit-scrollbar-thumb:active {
+  background: #2c863d;
+}
+
+/* line 2720, less/main.scss */
+::-webkit-scrollbar-track {
+  background: #eaeaea;
+  border: 0px none #ffffff;
+  border-radius: 10px;
+}
+
+/* line 2725, less/main.scss */
+::-webkit-scrollbar-track:hover {
+  background: #eaeaea;
+}
+
+/* line 2728, less/main.scss */
+::-webkit-scrollbar-track:active {
+  background: #eaeaea;
+}
+
+/* line 2731, less/main.scss */
+::-webkit-scrollbar-corner {
+  background: transparent;
 }

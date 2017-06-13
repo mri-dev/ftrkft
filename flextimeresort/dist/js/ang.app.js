@@ -240,23 +240,117 @@ var msg = angular.module("UserMessanger", [], function($interpolateProvider){
 msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
 {
   $scope.is_msg = false;
-  $scope.unreaded_messages = 0;
+  $scope.unreaded_messages = {
+    inbox: 0,
+    outbox: 0
+  };
   $scope.messages = {};
   $scope.result = {};
+  $scope.newnoticemsg = {};
+  $scope.msgtgl = {};
+  $scope.newmsg_left_length = 1000;
+  $scope.newmsg = null;
+  $scope.newmsg_focused = false;
+  $scope.newmsg_send_progress = false;
+  $scope.newmsgerrmsg=false;
 
   // Init messanger
-  $scope.init = function(is_msg){
-    $scope.is_ms = is_msg;
+  $scope.init = function(group, is_msg, uid, session){
+    $scope.is_msg = is_msg;
+    $scope.loadMessages(group);
+
+    if (is_msg) {
+      $scope.MessageSessionActions(session);
+    }
+
+  }
+
+  $scope.MessageSessionActions = function(session){
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_message_viewed',
+        session: session,
+        by: 'user_readed_at'
+      }
+    }).then(
+      function successCallback(response) {},
+      function errorCallback(response) {});
+  }
+
+  $scope.saveMsgSessionData = function(session, record, value){
+    $scope.newnoticemsg[session] = false;
+
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_messagesession_edit',
+        session: session,
+        what: record,
+        value: value
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+
+      if (d.success) {
+        $scope.msgtgl[session] = false;
+      } else {
+        $scope.newnoticemsg[d.session] = d.msg;
+      }
+    }, function errorCallback(response) {});
+  }
+
+  $scope.sendMessage = function(session, from_id, to_id, admin){
+    console.log($scope.newmsg);
+    if($scope.is_msg) {
+      if(!$scope.newmsg_send_progress) {
+        $scope.newmsg_send_progress = true;
+        $scope.newmsgerrmsg = false;
+        // Üzenetek küldése
+        $http({
+          method: 'POST',
+          url: '/ajax/data',
+          params: {
+            type: 'messanger_message_send',
+            session: session,
+            msg: $scope.newmsg,
+            from: from_id,
+            to: to_id,
+            admin: admin
+          }
+        }).then(function successCallback(response) {
+          var d = response.data;
+          $scope.newmsg_send_progress = false;
+
+          if (d.success) {
+            $scope.syncMessages();
+            $scope.newmsg = null;
+            $scope.newmsg_focused=true;
+          } else {
+            $scope.newmsgerrmsg = d.msg;
+          }
+
+          console.log(d);
+        }, function errorCallback(response) {});
+      }
+    }
+  }
+
+  $scope.syncMessages = function(){
     $scope.loadMessages();
   }
 
-  $scope.loadMessages = function(){
+  $scope.loadMessages = function(type){
+    console.log(type);
     // Üzenetek betöltése
     $http({
       method: 'POST',
       url: '/ajax/data',
       params: {
-        type: 'messanger_messages'
+        type: 'messanger_messages',
+        by: type
       }
     }).then(function successCallback(response) {
       var d = response.data;
@@ -268,3 +362,20 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
     }, function errorCallback(response) {});
   }
 }]);
+
+msg.directive('focusMe', function($timeout) {
+  return {
+    scope: { trigger: '=focusMe' },
+    link: function(scope, element) {
+      scope.$watch('trigger', function(value) {
+        if(value === true) {
+          //console.log('trigger',value);
+          //$timeout(function() {
+            element[0].focus();
+            scope.trigger = false;
+          //});
+        }
+      });
+    }
+  };
+});

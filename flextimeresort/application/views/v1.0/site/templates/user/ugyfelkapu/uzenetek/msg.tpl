@@ -1,1 +1,59 @@
-MSG
+<div class="messanger-reader">
+  <div class="header">
+    <h2>[[messages['{$msgsession}'].subject]]</h2>
+    <div class="from">
+      <span class="name">[[messages['{$msgsession}'].from.name]]</span>
+      <span class="time" data-toggle="tooltip" title="{lang text='A beszélgetés kezdete'}" data-placement="bottom">[[messages['{$msgsession}'].created_at]]</span>
+    </div>
+    <div class="notice">
+      <div class="writen" ng-show="(messages['{$msgsession}'].notice_by_user)?true:false">
+        &mdash; [[messages['{$msgsession}'].notice_by_user]] <span ng-click="(msgtgl['{$msgsession}']) ? msgtgl['{$msgsession}']=false : msgtgl['{$msgsession}']=true" class="edit-notice" data-toggle="tooltip" title="{lang text='Megjegyzés módosítása'}"><i class="fa fa-pencil"></i></span>
+      </div>
+      <div class="newnotice" ng-show="(!messages['{$msgsession}'].notice_by_user)?true:false">
+        <a href="javascript:void(0);" ng-click="(msgtgl['{$msgsession}']) ? msgtgl['{$msgsession}']=false : msgtgl['{$msgsession}']=true"><i class="fa fa-sticky-note-o"></i> {lang text="Saját megjegyzés írása ehhez az üzenetváltáshoz..."}</a>
+      </div>
+      <div ng-show="msgtgl['{$msgsession}']">
+        <div class="input-group">
+          <input type="text" ng-model="newnotice" ng-value="messages['{$msgsession}'].notice_by_user" ng-change="messages['{$msgsession}'].notice_by_user = newnotice" class="form-control" placeholder="{lang text='Megjegyzés...'}">
+          <span class="input-group-btn"><button ng-click="saveMsgSessionData('{$msgsession}', 'notice_by_user', newnotice)" class="btn btn-primary"><i class="fa fa-save"></i></button></span>
+        </div>
+        <div class="newnotice-error" ng-show="(newnoticemsg['{$msgsession}'])?true:false">
+          [[newnoticemsg['{$msgsession}'] ]]
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="conversation-creator" ng-hide="messages['{$msgsession}'].closed">
+    <textarea focus-me="newmsg_focused" ng-model="newmsg" maxlength="1000" ng-change="newmsg_left_length = 1000-newmsg.length" class="form-control" placeholder="{lang text='Új üzenet írása...'}"></textarea>
+    <div class="conv-footer">
+      <div class="text">[[newmsg_left_length]] karakter maradt</div>
+      <button class="btn btn-success" ng-click="sendMessage('{$msgsession}', {$me->getID()}, messages['{$msgsession}'].from.ID, 0)"><span ng-show="!newmsg_send_progress">{lang text="Küldés"} <i class="fa fa-arrow-circle-right"></i></span><span ng-show="newmsg_send_progress">{lang text="Küldés folyamatban..."} <i class="fa fa-spin fa-spinner"></i></span></button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="closed-msg" ng-show="messages['{$msgsession}'].closed">
+    <i class="fa fa-lock"></i>
+    <h3>{lang text="Lezárt üzenet"}</h3>
+    <div class="">{lang text="Lezárt üzenet text"}</div>
+    <div class="time">[[messages['{$msgsession}'].closed_at]]</div>
+  </div>
+  <div class="conversation-creator-errmsg" ng-show="(newmsgerrmsg)?true:false">
+    [[newmsgerrmsg]]
+  </div>
+  <div class="conversations">
+    <div class="conversations-header">
+      [[messages['{$msgsession}'].msg.length]] {lang text='db'} {lang text="üzenet"}
+    </div>
+    <div class="conversation" ng-class="(conv.from_id == {$me->getID()} )?'from-me':'from-sender'" ng-repeat="conv in messages['{$msgsession}'].msg">
+      <div class="bubble">
+        <div class="text">
+          [[conv.msg]]
+        </div>
+      </div>
+      <div class="from">
+        <span class="unreaded" ng-show="(conv.unreaded) ? true : false">{lang text="Új üzenet"}</span> <strong>[[conv.from.name]]</strong> <span class="timestamp">[[conv.send_at]]</span>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

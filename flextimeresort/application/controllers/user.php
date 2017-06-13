@@ -105,6 +105,10 @@ class user extends Controller{
 						case 'archiv':
 							$subtitle .= ' / '.$this->lang('Archivált');
 						break;
+						case 'msg':
+							$subtitle .= ' / '.$this->lang('Üzenet olvasása');
+							$this->out('msgsession', $_GET['msgid']);
+						break;
 					}
 				break;
 			}
