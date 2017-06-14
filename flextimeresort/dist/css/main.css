@@ -3065,6 +3065,28 @@ ul.pagination li a {
 }
 
 /* line 2774, less/main.scss */
+.more-allas {
+  text-align: center;
+  margin: 20px 0;
+}
+/* line 2777, less/main.scss */
+.more-allas a {
+  margin: 0 auto;
+  padding: 9px 15px;
+  line-height: 1;
+  background: #a8a8a8;
+  color: white;
+  font-size: 1em;
+  border-radius: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+/* line 2788, less/main.scss */
+.more-allas a:hover {
+  background: #39ac4f;
+}
+
+/* line 2794, less/main.scss */
 .allasok {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3072,37 +3094,96 @@ ul.pagination li a {
   flex-wrap: wrap;
   margin: 0 -10px;
 }
-/* line 2781, less/main.scss */
+/* line 2801, less/main.scss */
 .allasok .allas {
   flex-basis: 100%;
 }
-/* line 2784, less/main.scss */
+/* line 2804, less/main.scss */
 .allasok .allas > .wrapper {
   padding: 10px;
 }
-/* line 2787, less/main.scss */
+/* line 2807, less/main.scss */
 .allasok .allas > .wrapper .inside {
   background: #ffffff;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
   overflow: hidden;
 }
-/* line 2793, less/main.scss */
+/* line 2813, less/main.scss */
 .allasok .allas > .wrapper .inside .body {
   padding: 10px;
 }
-/* line 2795, less/main.scss */
+/* line 2815, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+/* line 2822, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top .type, .allasok .allas > .wrapper .inside .body .top .kat {
+  flex-basis: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+}
+/* line 2829, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top .type .ico, .allasok .allas > .wrapper .inside .body .top .kat .ico {
+  flex-basis: 20px;
+  position: relative;
+}
+/* line 2832, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top .type .ico img, .allasok .allas > .wrapper .inside .body .top .kat .ico img {
+  width: 20px;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+/* line 2839, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top .type .text, .allasok .allas > .wrapper .inside .body .top .kat .text {
+  padding-left: 8px;
+  color: black;
+  font-size: 1.1em;
+  line-height: 1.2;
+  padding-right: 5px;
+}
+/* line 2849, less/main.scss */
+.allasok .allas > .wrapper .inside .body .top .type .text {
+  color: #39ac4f;
+}
+/* line 2854, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc {
   line-height: 1.2;
   font-size: 1em;
   font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: flex-start;
 }
-/* line 2802, less/main.scss */
+/* line 2863, less/main.scss */
+.allasok .allas > .wrapper .inside .body .desc .ico {
+  flex-basis: 20px;
+  position: relative;
+}
+/* line 2866, less/main.scss */
+.allasok .allas > .wrapper .inside .body .desc .ico img {
+  width: 20px;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+/* line 2873, less/main.scss */
+.allasok .allas > .wrapper .inside .body .desc .text {
+  padding-left: 8px;
+  color: #444444;
+}
+/* line 2880, less/main.scss */
 .allasok .allas > .wrapper .inside .footer {
   background: #555555;
   color: white;
 }
-/* line 2805, less/main.scss */
+/* line 2883, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3110,14 +3191,14 @@ ul.pagination li a {
   align-items: center;
   justify-content: center;
 }
-/* line 2812, less/main.scss */
+/* line 2890, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div {
   padding: 0 10px;
   flex-basis: 40%;
   height: 40px;
   line-height: 40px;
 }
-/* line 2819, less/main.scss */
+/* line 2897, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico {
   height: 100%;
   position: relative;
@@ -3125,17 +3206,17 @@ ul.pagination li a {
   width: 20px;
   margin-right: 8px;
 }
-/* line 2825, less/main.scss */
+/* line 2903, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico img {
   max-width: 20px;
   margin-top: -4px;
 }
-/* line 2832, less/main.scss */
+/* line 2910, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button {
   padding: 0;
   flex-basis: 20%;
 }
-/* line 2835, less/main.scss */
+/* line 2913, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a {
   position: relative;
   background: #39ac4f;
@@ -3145,70 +3226,71 @@ ul.pagination li a {
   font-size: 1.1em;
   text-align: center;
 }
-/* line 2845, less/main.scss */
+/* line 2923, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a:before {
   content: "";
   position: absolute;
   border-style: solid;
   border-width: 12px;
-  border-color: transparent transparent transparent #39ac4f;
+  border-color: transparent #39ac4f transparent transparent;
   top: 50%;
-  left: -12px;
+  left: -24px;
+  pointer-events: none;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 2865, less/main.scss */
+/* line 2944, less/main.scss */
 .allasok.style-new-home .allas {
   flex-basis: calc(100%/2);
 }
 
-/* line 2871, less/main.scss */
+/* line 2950, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 2875, less/main.scss */
+/* line 2954, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 2879, less/main.scss */
+/* line 2958, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 2884, less/main.scss */
+/* line 2963, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 2887, less/main.scss */
+/* line 2966, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 2890, less/main.scss */
+/* line 2969, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 2895, less/main.scss */
+/* line 2974, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 2898, less/main.scss */
+/* line 2977, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 2901, less/main.scss */
+/* line 2980, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

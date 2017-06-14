@@ -9,6 +9,9 @@
         <div class="allasok style-new-home">
           {include file='inc/allasok.tpl'}
         </div>
+        <div class="more-allas">
+          <a href="{$settings.allas_search_slug}">{lang text="További állások keresése"} <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
 
         <div class="headerline">
           <h2>{lang text="Aktuális"}</h2>

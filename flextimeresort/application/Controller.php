@@ -368,7 +368,8 @@ class Controller
 		foreach ((array)$data as $d) {
 			switch ($control) {
 				case 'megyelist':
-					$d['count'] = 0;
+					$count = $this->db->query("SELECT count(ID) FROM ".\FlexTimeResort\Allasok::DBTABLE." WHERE megye_id = {$d[id]} and active = 1 and publish_after < now()")->fetchColumn();
+					$d['count'] = $count;
 				break;
 				default:break;
 			}

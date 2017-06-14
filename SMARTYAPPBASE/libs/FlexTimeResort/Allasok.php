@@ -37,9 +37,14 @@ class Allasok
 		$tree = array();
 
 		$qry = "
-			SELECT 			a.*
-			FROM 			".self::DBTABLE." as a
-			WHERE 		1=1";
+			SELECT
+        a.*,
+        u.name as oauthor_name,
+        u.email as oauthor_email,
+        (SELECT ertek FROM accounts_details WHERE fiok_id = a.author_id and nev = 'telefon') as oauthor_phone
+			FROM ".self::DBTABLE." as a
+      LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
+			WHERE 1=1";
 
 		if( !$this->o['orderby'] ) {
 			$qry .= "
@@ -108,11 +113,41 @@ class Allasok
     return date('Y. m. d.', strtotime($this->current_category['publish_after']));
   }
 
+  public function getCity()
+  {
+    return $this->current_category['city'];
+  }
+
+  public function getAuthorData( $key = 'name')
+  {
+    switch ($key) {
+      case 'name':
+        $alt = $this->current_category['author_name'];
+        if (is_null($alt)) {
+          return $this->current_category['oauthor_name'];
+        } else return $alt;
+      break;
+      case 'email':
+        $alt = $this->current_category['author_email'];
+        if (is_null($alt)) {
+          return $this->current_category['oauthor_email'];
+        } else return $alt;
+      break;
+      case 'phone':
+        $alt = $this->current_category['author_phone'];
+        if (is_null($alt)) {
+          return $this->current_category['oauthor_phone'];
+        } else return $alt;
+      break;
+    }
+  }
 
   public function getURL()
   {
     $SEO = '';
-    return $this->settings['allas_page_slug'] . $SEO . '-'.$this->getID();
+    $SEO .= \Helper::makeSafeURL($this->getCity(),'');
+    $SEO .= '/'.\Helper::makeSafeURL($this->getAuthorData('name'),'');
+    return $this->settings['allas_page_slug'] . $SEO . '_'.$this->getID();
   }
 
   private function kill( $msg = '' )
