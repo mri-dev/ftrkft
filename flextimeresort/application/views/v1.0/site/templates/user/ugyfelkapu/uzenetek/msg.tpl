@@ -1,5 +1,8 @@
 <div class="messanger-reader">
   <div class="header">
+    <div class="archiving" ng-show="(messages['{$msgsession}'].archived_by_user == 0)?true:false" ng-click="archiveMessageSession('{$msgsession}', 0)">
+      <i class="fa fa-archive"></i> {lang text="Archiválás"}
+    </div>
     <h2>[[messages['{$msgsession}'].subject]]</h2>
     <div class="from">
       <span class="name">[[messages['{$msgsession}'].from.name]]</span>
@@ -30,6 +33,11 @@
       <button class="btn btn-success" ng-click="sendMessage('{$msgsession}', {$me->getID()}, messages['{$msgsession}'].from.ID, 0)"><span ng-show="!newmsg_send_progress">{lang text="Küldés"} <i class="fa fa-arrow-circle-right"></i></span><span ng-show="newmsg_send_progress">{lang text="Küldés folyamatban..."} <i class="fa fa-spin fa-spinner"></i></span></button>
     </div>
     <div class="clearfix"></div>
+  </div>
+  <div class="archived-msg" ng-show="(messages['{$msgsession}'].archived_by_user == 1)?true:false">
+    <i class="fa fa-archive"></i>
+    <h3>{lang text="Archivált üzenetváltás"}</h3>
+    <div class="">{lang text="Archivált üzenetváltás text"}</div>
   </div>
   <div class="closed-msg" ng-show="messages['{$msgsession}'].closed">
     <i class="fa fa-lock"></i>

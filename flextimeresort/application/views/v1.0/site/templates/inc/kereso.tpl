@@ -1,4 +1,4 @@
-<form class="" id="searcher" action="{$smarty.const.PATH_SEARCH}" method="get">
+<form class="" id="searcher" action="{$settings.allas_search_slug}" method="get">
   <div class="input-holder">
     <div class="inp inp-keyword">
       <input type="text" name="s" class="form-control" placeholder="{lang text='KULCSSZO_SZERINT'}" value="">

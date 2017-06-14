@@ -159,6 +159,22 @@ body:not(.admin) aside {
     -webkit-transform:translateY(-50%);
           transform:translateY(-50%);
   }
+
+  &.center-mode {
+    h2 {
+      padding: 0 20px;
+      left: 50%;
+      -webkit-transform:translate(-50%, -50%);
+            transform:translate(-50%, -50%);
+    }
+  }
+
+  &.bold{
+    h2 {
+      font-weight: bold;
+      color: $color-red;
+    }
+  }
 }
 
 ul.navi {
@@ -2352,6 +2368,36 @@ ul.pagination{
     .messanger-reader{
       .header {
         padding: 20px 0;
+        position: relative;
+
+        .archiving,
+        .archived{
+          position: absolute;
+          right: 0;
+          top: 20px;
+          border: 1px solid $color-red;
+          padding: 5px 8px;
+          color: $color-red;
+          cursor: pointer;
+          padding: 5px;
+          line-height: 1;
+          border-radius: 20px;
+          font-size: 0.8em;
+
+          &:hover{
+            background: $color-red;
+            color: white;
+          }
+        }
+
+        .archived{
+          border: none;
+          cursor: auto;
+          &:hover {
+            background: transparent;
+            color: $color-red;
+          }
+        }
 
         h2 {
           font-weight: bold;
@@ -2475,6 +2521,33 @@ ul.pagination{
           font-size: 0.9em;
         }
       }
+      .archived-msg{
+        text-align: center;
+        margin: 20px 0;
+        border: 5px solid #d86565;
+        border-left: none;
+        border-right: none;
+        background: #b93939;
+        padding: 20px;
+        color: #ffbfbf;
+
+        i {
+          color: white;
+          font-size: 64px;
+        }
+
+        h3 {
+          text-transform: none;
+          color: white;
+          font-size: 1.8em;
+          margin: 0 0 5px 0;
+        }
+
+        .time {
+          font-size: 0.9em;
+        }
+      }
+
       .conversations{
         margin-top: 25px;
         overflow: auto;
@@ -2694,6 +2767,103 @@ ul.pagination{
           }
         }
       }
+    }
+  }
+}
+
+.allasok{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+
+  .allas{
+    flex-basis: 100%;
+
+    & > .wrapper {
+      padding: 10px;
+
+      .inside {
+        background: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .body {
+          padding: 10px;
+          .desc {
+            line-height: 1.2;
+            font-size: 1em;
+            font-weight: 300;
+          }
+        }
+
+        .footer {
+          background: #555555;
+          color: white;
+          .footer-holder {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & > div {
+              padding: 0 10px;
+              flex-basis: 40%;
+              height: 40px;
+              line-height: 40px;
+
+
+              .ico{
+                height: 100%;
+                position: relative;
+                float: left;
+                width: 20px;
+                margin-right: 8px;
+                img {
+                  max-width: 20px;
+                  margin-top: -4px;
+                }
+              }
+            }
+
+            & > .button{
+              padding: 0;
+              flex-basis: 20%;
+              a{
+                position: relative;
+                background: $color-primary-light;
+                color: white;
+                display: block;
+                text-transform: uppercase;
+                font-size: 1.1em;
+                text-align: center;
+
+
+                &:before {
+                  content: "";
+                  position: absolute;
+                  border-style: solid;
+                  border-width: 12px;
+                  border-color: transparent transparent transparent $color-primary-light;
+
+                  top: 50%;
+                  left: -12px;
+                  -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.style-new-home{
+    .allas{
+      flex-basis: calc(100%/2);
     }
   }
 }

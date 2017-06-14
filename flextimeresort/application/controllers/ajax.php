@@ -118,7 +118,10 @@ class ajax extends Controller  {
 					$uid = (int)$this->ME->getID();
 
 					switch ($group) {
-						case 'inbox': case 'msg':
+						case 'msg':
+							$arg['controll_by'] = 'msg';
+						break;
+						case 'inbox':
 							$arg['controll_by'] = $group;
 						break;
 						case 'outbox':

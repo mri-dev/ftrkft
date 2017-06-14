@@ -24,6 +24,50 @@ class Messanger
 		return $this;
   }
 
+  public function readInfos( $uid = false )
+  {
+    $datas = array();
+    $outbox_unreaded = 0;
+    $inbox_unreaded = 0;
+
+    if (!$uid) {
+      return false;
+    }
+
+    $qry = "SELECT
+      ms.start_by,
+      ms.start_by_id,
+      m.user_readed_at,
+      m.admin_readed_at,
+      m.user_from_id,
+      m.user_to_id
+    FROM ".self::DBTABLE_MESSAGES." as m
+    LEFT OUTER JOIN ".self::DBTABLE." as ms ON ms.sessionid = m.sessionid
+    WHERE 1=1";
+
+    $qry .= " and (m.user_from_id = {$uid} or m.user_to_id = {$uid}) ";
+
+    $arg = array();
+    $arg['multi'] = true;
+    extract($this->db->q($qry, $arg));
+
+    foreach ((array)$data as $d)
+    {
+      if($uid == $d['user_to_id'] && $d['start_by_id'] == $uid && is_null($d['user_readed_at'])){
+          $outbox_unreaded++;
+      }
+      if($uid == $d['user_to_id'] && $d['start_by_id'] != $uid && is_null($d['user_readed_at'])){
+          $inbox_unreaded++;
+      }
+    }
+
+    $datas['inbox_unreaded'] = $inbox_unreaded;
+    $datas['outbox_unreaded'] = $outbox_unreaded;
+    $datas['total_unreaded'] = $inbox_unreaded + $outbox_unreaded;
+
+    return $datas;
+  }
+
   public function loadMessages( $uid, $arg = array() )
   {
     $datas = array();
@@ -48,6 +92,8 @@ class Messanger
       ms.closed_at,
       ms.closed,
       ms.start_by_id,
+      ms.archived_by_user,
+      ms.archived_by_admin,
       IF(m.from_admin, from_admin.name, from_user.name) as from_name,
       IF(ms.start_by = 'user', sess_user.name, sess_admin.name) as session_starter_name,
       IF(ms.start_by = 'user', 'outbox', 'inbox') as controll_for
@@ -69,12 +115,18 @@ class Messanger
       $qry .= " and (ms.start_by = '".$cby[$arg['controll_by']]."')";
     }
 
-    if (isset($arg['show_archiv']) && $arg['show_archiv'] == true) {
-      $qry .= " and ms.archived_by_user = 1 ";
-    } else {
-      $qry .= " and ms.archived_by_user = 0 ";
+    if (isset($arg['controll_by']) && $arg['controll_by'] == 'msg') {
+
     }
 
+    if ($arg['controll_by'] != 'msg') {
+      if (isset($arg['show_archiv']) && $arg['show_archiv'] == true) {
+        $qry .= " and ms.archived_by_user = 1 ";
+      } else {
+        $qry .= " and ms.archived_by_user = 0 ";
+      }
+    }
+    
     if ($this->admin) {
       //$qry .= " ORDER BY m.";
     } else {
@@ -96,6 +148,8 @@ class Messanger
         $datas['list'][$d['sessionid']]['closed_at'] = $d['closed_at'];
         $datas['list'][$d['sessionid']]['closed'] = ($d['closed'] == 1) ? true : false;
         $datas['list'][$d['sessionid']]['controll_for'] = $d['controll_for'];
+        $datas['list'][$d['sessionid']]['archived_by_user'] = (int)$d['archived_by_user'];
+        $datas['list'][$d['sessionid']]['archived_by_admin'] = (int)$d['archived_by_admin'];
 
         $datas['list'][$d['sessionid']]['from'] = array(
           'name' => $d['session_starter_name'],
@@ -165,10 +219,12 @@ class Messanger
 
   public function setReadedMessage($by, $session)
   {
+    $aby = ($by == 'user_readed_at') ? 'user_alerted' : 'admin_alerted';
     $this->db->update(
       self::DBTABLE_MESSAGES,
       array(
-        $by => NOW
+        $by => NOW,
+        $aby => 1
       ),
       sprintf($by." IS NULL and sessionid = '%s'", $session)
     );

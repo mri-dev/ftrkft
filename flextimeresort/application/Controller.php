@@ -83,6 +83,7 @@ class Controller
 		$this->MESSANGER = new Messanger(array(
 			'controller' => $this
 		));
+		$this->out( 'messangerinfo', $this->MESSANGER->readInfos($this->ME->getID()));
 
 		// Kategória listák
 		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));

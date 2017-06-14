@@ -2,6 +2,14 @@
   <div class="page-width">
     <div class="row">
       <div class="col-md-9">
+        <div class="headerline center-mode bold">
+          <h2>{lang text="Legújabb álláshirdetések"}</h2>
+          <div class="line"></div>
+        </div>
+        <div class="allasok style-new-home">
+          {include file='inc/allasok.tpl'}
+        </div>
+
         <div class="headerline">
           <h2>{lang text="Aktuális"}</h2>
           <div class="line"></div>

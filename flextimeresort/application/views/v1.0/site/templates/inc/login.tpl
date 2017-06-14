@@ -9,7 +9,9 @@
       {if $me && $me->isMunkaado()}
       <li><a href="/ugyfelkapu/uj_allashirdetes"><span class="ico"><i class="fa fa-plus"></i></span> {lang text="UJ_ALLASHIRDETES_FELTOLTESE"}</a></li>
       {/if}
-      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'uzenetek'}active{/if}"><a href="/ugyfelkapu/uzenetek/inbox"><span class="ico"><i class="fa fa-envelope-square"></i></span> {lang text="UZENETEK_BEERKEZETT"} <span class="badge">0</span></a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'uzenetek'}active{/if}"><a href="/ugyfelkapu/uzenetek/inbox"><span class="ico"><i class="fa fa-envelope-square"></i></span> {lang text="UZENETEK_BEERKEZETT"} {if $messangerinfo.total_unreaded != 0}
+        <span class="badge">{$messangerinfo.total_unreaded}</span>
+      {/if}</a></li>
       <li class="logout"><a href="/ugyfelkapu/?logout=1">{lang text="KIJELENTKEZES"} <i class="fa fa-sign-out"></i></a></li>
     </ul>
   </nav>

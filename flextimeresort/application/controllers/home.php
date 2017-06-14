@@ -1,5 +1,7 @@
 <?
 use PortalManager\Articles;
+use FlexTimeResort\Allasok;
+
 class home extends Controller  {
 	private $user = false;
 	function __construct(){
@@ -19,6 +21,14 @@ class home extends Controller  {
 		$arg['offset'] = 3;
 		$articles->getTree( $arg );
 		$this->out('articles_more', $articles);
+
+		$allasok = new Allasok(array(
+			'controller' => $this
+		));
+		$arg = array();
+		$arg['limit'] = 10;
+		$allasok->getTree($arg);
+		$this->out('allasok', $allasok);
 
 		// SEO Információk
 		$SEO = null;

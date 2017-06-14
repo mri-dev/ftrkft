@@ -279,6 +279,14 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
       function errorCallback(response) {});
   }
 
+  $scope.archiveMessageSession = function(session, admin){
+    if (admin) {
+      $scope.saveMsgSessionData(session, 'archived_by_admin', 1);
+    } else {
+      $scope.saveMsgSessionData(session, 'archived_by_user', 1);
+    }
+  }
+
   $scope.saveMsgSessionData = function(session, record, value){
     $scope.newnoticemsg[session] = false;
 
