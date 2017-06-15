@@ -111,6 +111,25 @@ class user extends Controller{
 						break;
 					}
 				break;
+				case 'hirdetesek':
+					$subtitle = $this->lang('Hirdetések');
+
+					if (!$this->ME->isMunkaado()) {
+						\Helper::reload('/ugyfelkapu');
+					}
+
+				break;
+				case 'uj-hirdetesek':
+					$subtitle = $this->lang('Új hirdetés létrehozása');
+
+					$formdesign = new FormDesigns();
+					$this->out('formdesigns', $formdesign);
+					
+					if (!$this->ME->isMunkaado()) {
+						\Helper::reload('/ugyfelkapu');
+					}
+
+				break;
 			}
 			$this->out('subpage', $p);
 			$this->out('hide_home_top', true);

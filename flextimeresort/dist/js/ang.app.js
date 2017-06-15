@@ -387,3 +387,109 @@ msg.directive('focusMe', function($timeout) {
     }
   };
 });
+
+/**
+* Hirdetés létrehozó
+**/
+var ads = angular.module("Ads", [], function($interpolateProvider){
+  $interpolateProvider.startSymbol('[[');
+  $interpolateProvider.endSymbol(']]');
+});
+
+ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
+{
+  $scope.settings = {};
+  $scope.terms = {};
+  $scope.listtgl = {};
+  $scope.allas = {};
+  $scope.selectedlist = {};
+  $scope.userdata = {};
+  $scope.term_list = {};
+  $scope.tematics = [];
+
+  $scope.cansavenow = true;
+  $scope.saveinprogress = false;
+  $scope.successfullsaved = false;
+  $scope.dataloaded = false;
+
+  $scope.short_desc_length = 150;
+  $scope.keywords_length = 100;
+
+  $scope.init = function(admin, authorid)
+  {
+    $scope.settings.admin = (admin == 0) ? false : true;
+
+    $scope.allas.author_id = authorid;
+    $scope.allas.created_by_admin = admin;
+
+    // Felhasználó adatok
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'user',
+        id: authorid
+      }
+    }).then(function successCallback(response) {
+      $scope.userdata = response.data;
+      console.log(response.data);
+    }, function errorCallback(response) {});
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'lists'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.term_list = d.lists;
+      angular.forEach(d.lists, function(v, k){
+        $scope.terms[v.termkey] = d.terms[v.termkey];
+      });
+      $scope.dataloaded = true;
+      console.log($scope.term_list);
+    }, function errorCallback(response) {});
+  }
+
+  $scope.loadTematicItems = function(index, termkey){
+    console.log(index+" "+termkey);
+  }
+
+  $scope.newTematicListParameter = function(){
+    $scope.tematics.push({
+      value: null
+    });
+  }
+
+  $scope.tglList = function(l)
+  {
+    angular.forEach($scope.fromgroup, function(v, k){
+      angular.forEach(v, function(v2, k2){
+        if(  v2 != l) {
+          $scope.listtgl[v2] = false;
+        }
+      });
+    });
+
+    if ($scope.listtgl[l]) {
+      $scope.listtgl[l] = false;
+    } else {
+      $scope.listtgl[l] = true;
+    }
+  }
+
+  $scope.selectListValue = function(key, id, text) {
+    $scope.selectedlist[key] = {
+      id: id,
+      text: text
+    };
+    $scope.allas[key] = id;
+    $scope.listtgl[key] = false;
+  }
+
+  $scope.create = function(){
+    console.log($scope.allas);
+  }
+}]);

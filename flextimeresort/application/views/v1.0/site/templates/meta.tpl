@@ -30,6 +30,7 @@
 <script src="/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- iCheck -->
 <script src="/plugins/iCheck/icheck.min.js"></script>
+<script src="/plugins/tinymce/tinymce.min.js"></script>
 <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -71,6 +72,36 @@
       if (!$(event.target).closest('.toggler-opener').length) {
         $('.toggler-opener').removeClass('opened toggler-opener');
         $('*[tglwatcher].toggled').removeClass('toggled');
+      }
+    });
+
+    tinymce.init({
+      selector: "textarea.editor",
+      editor_deselector : 'no-editor',
+      theme: "modern",
+		  language: "hu_HU",
+      image_advtab: true ,
+		  theme_advanced_resizing : true,
+      plugins: [
+		         "advlist autolink link image lists charmap print preview hr anchor pagebreak autoresize",
+		         "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+		         "table contextmenu directionality emoticons paste textcolor fullscreen code"
+		   ],
+		  toolbar1: "undo redo | bold italic underline | fontselect fontsizeselect forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+		  toolbar2: " | link unlink anchor | image media |  print preview code ",
+      init_instance_callback: function (editor) {
+        editor.on('Change', function (e) {
+          var content = e.level.content;
+          var id = e.target.id;
+          var scope = angular.element($('#'+id)).scope();
+          if (scope) {
+            var ang_model = $('#'+id).data('angmodel');
+            var ang_obj = $('#'+id).data('angobj');
+            if (ang_model && ang_obj) {
+              scope[ang_obj][ang_model] = content;
+            }
+          }
+        });
       }
     });
 

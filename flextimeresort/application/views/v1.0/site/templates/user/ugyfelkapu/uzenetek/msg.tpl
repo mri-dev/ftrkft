@@ -29,7 +29,7 @@
   <div class="conversation-creator" ng-hide="messages['{$msgsession}'].closed">
     <textarea focus-me="newmsg_focused" ng-model="newmsg" maxlength="1000" ng-change="newmsg_left_length = 1000-newmsg.length" class="form-control" placeholder="{lang text='Új üzenet írása...'}"></textarea>
     <div class="conv-footer">
-      <div class="text">[[newmsg_left_length]] karakter maradt</div>
+      <div class="text">[[newmsg_left_length]] {lang text="karakter maradt"}</div>
       <button class="btn btn-success" ng-click="sendMessage('{$msgsession}', {$me->getID()}, messages['{$msgsession}'].from.ID, 0)"><span ng-show="!newmsg_send_progress">{lang text="Küldés"} <i class="fa fa-arrow-circle-right"></i></span><span ng-show="newmsg_send_progress">{lang text="Küldés folyamatban..."} <i class="fa fa-spin fa-spinner"></i></span></button>
     </div>
     <div class="clearfix"></div>

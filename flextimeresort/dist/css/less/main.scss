@@ -402,7 +402,7 @@ body.resetpassword .content-holder{
 }
 
 section.content-header{
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.41);
   padding: 0;
 }
 
@@ -580,6 +580,8 @@ input[type=checkbox].ccb:checked + label:before {
   .single-selector-holder{
     .selector-wrapper{
       padding: 5px !important;
+      max-height: 200px;
+      overflow-x: auto;
 
       .selector-row{
         padding: 5px 12px;
@@ -2172,6 +2174,8 @@ body.ugyfelkapu-view{
       color: #5b5b5b;
       font-weight: 300;
       padding: 0 5px;
+      height: 80px;
+      overflow: hidden;
     }
 
     .nav {
@@ -2873,6 +2877,8 @@ ul.pagination{
             .text {
               padding-left: 8px;
               color: #444444;
+              height: 50px;
+              overflow: hidden;
             }
           }
         }
@@ -2943,6 +2949,86 @@ ul.pagination{
   &.style-new-home{
     .allas{
       flex-basis: calc(100%/2);
+    }
+  }
+}
+
+.advertise-creator{
+  padding: 20px 0;
+
+  h3 {
+    color: $color-primary-light;
+    margin: 10px 0 5px 0;
+  }
+
+  .row {
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    label {
+      font-size: 1em;
+    }
+
+    .infotext{
+      font-size: 0.9em;
+      color: #888888;
+      line-height: 1.2;
+      margin: 5px 0 10px 0;
+    }
+
+    .input-wrapper{
+      padding-right: 50px;
+      position: relative;
+
+      input, textarea, select, .select-list {
+        color: $color-primary-light;
+        position: relative;
+
+        & + .form-helper {
+          position: absolute;
+          right: 15px;
+          width: 28px;
+          height: 28px;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+          &:before {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            line-height: 1;
+            font-size: 24px;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+            font-family: 'FontAwesome';
+            text-align: center;
+            content: "";
+          }
+
+          &.invalid:before {
+            content: "\f056";
+            color: $color-red;
+          }
+
+          &.valid:before {
+            content: "\f058";
+            color: $color-primary-light;
+          }
+        }
+
+        &.ng-invalid + .form-helper:before{
+            content: "\f056";
+            color: $color-red;
+        }
+        &.ng-valid.ng-touched + .form-helper:before{
+            content: "\f058";
+            color: $color-primary-light;
+        }
+      }
+
     }
   }
 }

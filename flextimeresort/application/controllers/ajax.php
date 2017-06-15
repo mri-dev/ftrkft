@@ -48,6 +48,12 @@ class ajax extends Controller  {
 					$data['alap']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
 					$data['alap']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
 				break;
+				case 'user':
+					$user = new User($params['id'], array(
+						'controller' => $this
+					));
+					$data = $user->user;
+				break;
 				case 'uploadProfilImg':
 					if (isset($_FILES['file']) && $_FILES['file']['error'] == 0)
 					{
@@ -95,22 +101,46 @@ class ajax extends Controller  {
 				break;
 				case 'lists':
 					// Listák
-					$lists = explode(",", $params['lists']);
-					foreach ((array)$lists as $list) {
+					if(isset($params['lists'])){
+						$lists = explode(",", $params['lists']);
+						foreach ((array)$lists as $list) {
+							$cat = new Categories(false, array('controller' => $this));
+							$ld = $cat->getList($list);
+							$terms = $cat->getTree($list);
+
+							$data[lists][$list] = $ld;
+
+							while ( $terms->walk() ) {
+								$data[terms][$list][(int)$cat->getID()] = array(
+									'id' => (int)$cat->getID(),
+									'value' => $cat->getName(),
+									'slug' => $cat->getSlug(),
+								);
+							}
+						}
+					} else {
 						$cat = new Categories(false, array('controller' => $this));
-						$ld = $cat->getList($list);
-						$terms = $cat->getTree($list);
+						$termlist = $cat->getTermList();
+						$terms = array();
+						foreach ((array)$termlist as $t) {
+							$list = $t[termkey];
 
-						$data[lists][$list] = $ld;
+							$cat = new Categories(false, array('controller' => $this));
+							$ld = $cat->getList($list);
+							$terms = $cat->getTree($list);
 
-						while ( $terms->walk() ) {
-							$data[terms][$list][(int)$cat->getID()] = array(
-								'id' => (int)$cat->getID(),
-								'value' => $cat->getName(),
-								'slug' => $cat->getSlug(),
-							);
+							$data[lists][$list] = $ld;
+
+							while ( $terms->walk() ) {
+								$data[terms][$list][(int)$cat->getID()] = array(
+									'id' => (int)$cat->getID(),
+									'value' => $cat->getName(),
+									'slug' => $cat->getSlug(),
+								);
+							}
 						}
 					}
+
 				break;
 				case 'messanger_messages':
 					$arg = array();

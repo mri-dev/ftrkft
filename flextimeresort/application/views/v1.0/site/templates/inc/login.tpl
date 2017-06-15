@@ -7,7 +7,7 @@
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'beallitasok'}active{/if}"><a href="/ugyfelkapu/beallitasok"><span class="ico"><i class="fa fa-gear"></i></span> {lang text="BEALLITASOK"}</a></li>
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>
       {if $me && $me->isMunkaado()}
-      <li><a href="/ugyfelkapu/uj_allashirdetes"><span class="ico"><i class="fa fa-plus"></i></span> {lang text="UJ_ALLASHIRDETES_FELTOLTESE"}</a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'hirdetesek'}active{/if}"><a href="/ugyfelkapu/hirdetesek"><span class="ico"><i class="fa fa-file-text"></i></span> {lang text="Hirdetések"}</a></li>
       {/if}
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'uzenetek'}active{/if}"><a href="/ugyfelkapu/uzenetek/inbox"><span class="ico"><i class="fa fa-envelope-square"></i></span> {lang text="UZENETEK_BEERKEZETT"} {if $messangerinfo.total_unreaded != 0}
         <span class="badge">{$messangerinfo.total_unreaded}</span>
