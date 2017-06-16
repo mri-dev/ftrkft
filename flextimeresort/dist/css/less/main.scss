@@ -584,7 +584,7 @@ input[type=checkbox].ccb:checked + label:before {
       overflow-x: auto;
 
       .selector-row{
-        padding: 5px 12px;
+        padding: 2px 10px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
@@ -599,6 +599,7 @@ input[type=checkbox].ccb:checked + label:before {
         &.selected-row{
           background: $color-primary-light;
           color: white;
+          margin: 4px 0;
         }
       }
     }
@@ -2953,7 +2954,7 @@ ul.pagination{
   }
 }
 
-.advertise-creator{
+.advertise-creator {
   padding: 20px 0;
 
   h3 {
@@ -3029,6 +3030,45 @@ ul.pagination{
         }
       }
 
+    }
+  }
+
+  .tematic-list-params{
+    .listgroup {
+      background: #efefef;
+      border: 1px solid #e3e3e3;
+      margin: 10px 0;
+      border-radius: 4px;
+      padding: 5px 10px;
+
+      input, select{
+        color: $color-primary-light;
+        font-weight: bold;
+      }
+
+      .param-remover{
+        background: $color-red;
+        color: white;
+        cursor: pointer;
+        border-radius: 20px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        margin: 0 auto;
+      }
+
+      .param-index{
+        background: $color-primary-light;
+        color: white;
+        border-radius: 32px;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        margin: 0 auto;
+        font-size: 20px;
+      }
     }
   }
 }

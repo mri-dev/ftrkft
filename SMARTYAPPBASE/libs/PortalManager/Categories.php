@@ -41,13 +41,18 @@ class Categories
 		return $this;
   }
 
-	public function getTermList()
+	public function getTermList($arg = array())
 	{
 		$q = "SELECT
 		cl.*
 		FROM ".self::DB_LIST." as cl
-		ORDER BY cl.neve ASC
-		";
+		WHERE 1=1 ";
+
+		if (isset($arg['listforads']) && $arg['listforads'] == '1') {
+			$q .= " and cl.parameter_select_for_ads = 1 ";
+		}
+
+		$q .= " ORDER BY cl.neve ASC";
 
 		$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
 

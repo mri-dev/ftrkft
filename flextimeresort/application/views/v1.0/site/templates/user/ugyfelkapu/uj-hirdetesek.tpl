@@ -99,18 +99,46 @@
       <div class="listgroup" ng-repeat="(index, list) in tematics">
         <div class="row">
           <div class="col-md-1">
-            [[index+1]]
+            <div class="param-index">
+              [[index+1]]
+            </div>
           </div>
-          <div class="col-md-11">
+          <div class="col-md-4">
             <select ng-model="tematics[index].value" class="form-control">
               <option value="[[termkey]]" ng-repeat="(termkey, term) in term_list">[[term.neve]]</option>
             </select>
-             [[list]]
-             <div class="value-selection" ng-show="tematics[index].value">
-               <div class="" ng-repeat="tval in terms[tematics[index].value]">
-                 [[tval]]
-               </div>
-             </div>
+            <div class="infotext" ng-show="!tematics[index].value">
+              {lang text="Válasszon egy paraméter listát."}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" class="form-control" ng-model="tematics[index].title" placeholder="{lang text='Paraméter fejléc'}">
+            <div class="infotext">
+              {lang text="Pl.: Szükséges nyelvismeret"}
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="param-remover" title="{lang text='Paraméter lista eltávolítása'}" ng-click="removeParamList(index)">
+              <i class="fa fa-times"></i>
+            </div>
+          </div>
+          <div class="col-md-10 offset-md-1">
+            <div class="value-selection" ng-show="tematics[index].value">
+              <div class="select-list">
+                <div class="value-viewer">
+                  <input type="text" class="form-control viewer" ng-click="(tematics[index].listToggled) ? tematics[index].listToggled=false:tematics[index].listToggled=true" ng-value="tematics[index].selectedNames.join(', ')" placeholder="{lang text='Kérjük, válasszon!'}" readonly="readonly">
+                  <input type="hidden" id="[[termkey]]_select_id">
+                  <div class="helper">
+                    <i class="fa fa-angle-down"></i>
+                  </div>
+                </div>
+                <div class="single-selector-holder" ng-show="(tematics[index].listToggled) ? true : false">
+                  <div class="selector-wrapper">
+                    <div ng-class="'selector-row '+(tematics[index].selectedValues.indexOf(item.id) != -1 ? 'selected' : '')" ng-click="tematicsValueset(index, item.id, item.value)" ng-repeat="item in terms[tematics[index].value]">[[item.value]]</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

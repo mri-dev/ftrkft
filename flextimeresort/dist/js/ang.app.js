@@ -440,7 +440,10 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
       method: 'POST',
       url: '/ajax/data',
       params: {
-        type: 'lists'
+        type: 'lists',
+        filters: {
+          listforads: 1
+        }
       }
     }).then(function successCallback(response) {
       var d = response.data;
@@ -449,17 +452,39 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
         $scope.terms[v.termkey] = d.terms[v.termkey];
       });
       $scope.dataloaded = true;
-      console.log($scope.term_list);
+      console.log(d);
     }, function errorCallback(response) {});
   }
 
-  $scope.loadTematicItems = function(index, termkey){
+  /*$scope.loadTematicItems = function(index, termkey){
     console.log(index+" "+termkey);
+  }*/
+
+  $scope.removeParamList = function(index){
+    $scope.tematics.splice(index, 1);
+  }
+
+  $scope.tematicsValueset = function(index, id, name) {
+    var arr = $scope.tematics[index].selectedValues;
+    var arrName = $scope.tematics[index].selectedNames;
+
+    if (arr.indexOf(id) == -1) {
+      arr.push(id);
+      arrName.push(name);
+    } else {
+      var dix = arr.indexOf(id);
+      arr.splice(dix, 1);
+      arrName.splice(dix, 1);
+    }
   }
 
   $scope.newTematicListParameter = function(){
     $scope.tematics.push({
-      value: null
+      title: null,
+      value: null,
+      listToggled: false,
+      selectedValues: [],
+      selectedNames: []
     });
   }
 

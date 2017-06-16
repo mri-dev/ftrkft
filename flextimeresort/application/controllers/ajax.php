@@ -119,8 +119,9 @@ class ajax extends Controller  {
 							}
 						}
 					} else {
+						$filters = (array)json_decode($params['filters'], true);						
 						$cat = new Categories(false, array('controller' => $this));
-						$termlist = $cat->getTermList();
+						$termlist = $cat->getTermList($filters);
 						$terms = array();
 						foreach ((array)$termlist as $t) {
 							$list = $t[termkey];
