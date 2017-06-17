@@ -5,6 +5,7 @@ use PortalManager\Ad;
 use PortalManager\AdServices;
 use PortalManager\Services;
 use PortalManager\Admins;
+use FlexTimeResort\Allasok;
 
 class ajax extends Controller  {
 		private $root = 'index';
@@ -107,9 +108,7 @@ class ajax extends Controller  {
 							$cat = new Categories(false, array('controller' => $this));
 							$ld = $cat->getList($list);
 							$terms = $cat->getTree($list);
-
 							$data[lists][$list] = $ld;
-
 							while ( $terms->walk() ) {
 								$data[terms][$list][(int)$cat->getID()] = array(
 									'id' => (int)$cat->getID(),
@@ -119,19 +118,16 @@ class ajax extends Controller  {
 							}
 						}
 					} else {
-						$filters = (array)json_decode($params['filters'], true);						
+						$filters = (array)json_decode($params['filters'], true);
 						$cat = new Categories(false, array('controller' => $this));
 						$termlist = $cat->getTermList($filters);
 						$terms = array();
 						foreach ((array)$termlist as $t) {
 							$list = $t[termkey];
-
 							$cat = new Categories(false, array('controller' => $this));
 							$ld = $cat->getList($list);
 							$terms = $cat->getTree($list);
-
 							$data[lists][$list] = $ld;
-
 							while ( $terms->walk() ) {
 								$data[terms][$list][(int)$cat->getID()] = array(
 									'id' => (int)$cat->getID(),
@@ -142,6 +138,35 @@ class ajax extends Controller  {
 						}
 					}
 
+				break;
+				case 'adslist':
+					$author = $params['author'];
+					$success = true;
+					$errmsg = false;
+					$datas = array();
+					$arg = array();
+
+					if ($author == 'me') {
+						$arg['author_id'] = $this->ME->getID();
+					} else if(!empty($author)) {
+						$arg['author_id'] = (int)$author;
+					}
+
+					$allasok = new Allasok(array(
+						'controller' => $this
+					));
+					$allasok->getTree($arg);
+
+					if ($allasok->Count() != 0) {
+						while ($allasok->walk()) {
+							$datas[] = $allasok->get();
+						}
+					}
+					$data['qry_arg'] = $arg;
+					$data['params'] = $params;
+					$data['data'] = $datas;
+					$data['success'] = $success;
+					$data['msg'] = $errmsg;
 				break;
 				case 'messanger_messages':
 					$arg = array();

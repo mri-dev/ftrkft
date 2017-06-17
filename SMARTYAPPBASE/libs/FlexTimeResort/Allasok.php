@@ -46,6 +46,14 @@ class Allasok
       LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
 			WHERE 1=1";
 
+    if (isset($arg['author_id'])) {
+      $qry .= " and a.author_id = ".(int)$arg['author_id'];
+    }
+
+    if (isset($arg['active_in']) && is_array($arg['active_in'])) {
+      $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
+    }
+
 		if( !$this->o['orderby'] ) {
 			$qry .= "
 				ORDER BY 		a.publish_after DESC;";
@@ -61,6 +69,13 @@ class Allasok
 
 		foreach ( $top_cat_data as $top_cat ) {
 			$this->tree_items++;
+      $top_cat['metas'] = $this->loadMetas($top_cat['ID']);
+
+      if($top_cat['metas'])
+      foreach ($top_cat['metas'] as $meta) {
+        $top_cat[$meta['kulcs']] = $meta['value'];
+      }
+
 			$this->tree_steped_item[] = $top_cat;
 			$tree[] = $top_cat;
 		}
@@ -69,6 +84,19 @@ class Allasok
 
 		return $this;
 	}
+
+  private function loadMetas( $adid )
+  {
+    $metas = array();
+
+    $datas = $this->db->query("SELECT ID, kulcs, value, is_term_list FROM allasok_meta WHERE allas_id = '{$adid}'")->fetchAll(\PDO::FETCH_ASSOC);
+
+    foreach ((array)$datas as $d) {
+      $metas[$d['ID']] = $d;
+    }
+
+    return $metas;
+  }
 
   public function Count()
 	{
@@ -94,14 +122,51 @@ class Allasok
 		return true;
 	}
 
+  private function getTermName($id = false)
+  {
+    if (!$id) {
+      return null;
+    }
+    $value = $this->db->query("SELECT neve FROM terms WHERE id = {$id}")->fetchColumn();
+
+    return $value;
+  }
+
+  private function prepareOutput()
+  {
+
+    $this->current_category['tipus_name'] = $this->getTermName($this->getTypeID());
+    $this->current_category['cat_name'] = $this->getTermName($this->getCatID());
+  }
+
   /*===============================
 	=            GETTERS            =
 	===============================*/
+
+  public function get( $key = false )
+	{
+    if ($key) {
+      return $this->current_category[$key];
+    } else {
+      $this->prepareOutput();
+      return $this->current_category;
+    }
+	}
 
 	public function getID()
 	{
 		return $this->current_category['ID'];
 	}
+
+  public function getTypeID()
+  {
+    return $this->current_category['hirdetes_tipusok'];
+  }
+
+  public function getCatID()
+  {
+    return $this->current_category['hirdetes_kategoria'];
+  }
 
   public function shortDesc()
   {

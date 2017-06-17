@@ -47,7 +47,7 @@
           <div class="form-helper"></div>
         </div>
         <div class="infotext">
-          [[short_desc_length]] {lang text="karakter maradt"}
+          <span ng-class="(short_desc_length<20 && short_desc_length != 0)?'text-color-orange':( (short_desc_length == 0)?'text-color-red':'' )">[[short_desc_length]] {lang text="karakter maradt"}</span> &mdash; {lang text="Az itt leírt szöveg jelenik meg a listázásnál, mint ismertető szöveg."}
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
           <div class="form-helper"></div>
         </div>
         <div class="infotext">
-          [[keywords_length]] {lang text="karakter maradt"}
+          <span ng-class="(keywords_length<20 && keywords_length != 0)?'text-color-orange':( (keywords_length == 0)?'text-color-red':'' )">[[keywords_length]] {lang text="karakter maradt"}</span>
         </div>
       </div>
     </div>
@@ -105,7 +105,7 @@
           </div>
           <div class="col-md-4">
             <select ng-model="tematics[index].value" class="form-control">
-              <option value="[[termkey]]" ng-repeat="(termkey, term) in term_list">[[term.neve]]</option>
+              <option value="[[termkey]]" ng-repeat="(termkey, term) in term_list" ng-if="term.parameter_select_for_ads=='1'">[[term.neve]]</option>
             </select>
             <div class="infotext" ng-show="!tematics[index].value">
               {lang text="Válasszon egy paraméter listát."}
@@ -126,7 +126,7 @@
             <div class="value-selection" ng-show="tematics[index].value">
               <div class="select-list">
                 <div class="value-viewer">
-                  <input type="text" class="form-control viewer" ng-click="(tematics[index].listToggled) ? tematics[index].listToggled=false:tematics[index].listToggled=true" ng-value="tematics[index].selectedNames.join(', ')" placeholder="{lang text='Kérjük, válasszon!'}" readonly="readonly">
+                  <input type="text" class="form-control viewer" ng-click="(tematics[index].listToggled) ? tematics[index].listToggled=false:tematics[index].listToggled=true" ng-value="tematics[index].selectedNames.join(', ')" placeholder="{lang text='Kérjük, válasszon!'}" readonly="readonly" data-listindex="[[index]]">
                   <input type="hidden" id="[[termkey]]_select_id">
                   <div class="helper">
                     <i class="fa fa-angle-down"></i>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="single-selector-holder" ng-show="(tematics[index].listToggled) ? true : false">
                   <div class="selector-wrapper">
-                    <div ng-class="'selector-row '+(tematics[index].selectedValues.indexOf(item.id) != -1 ? 'selected' : '')" ng-click="tematicsValueset(index, item.id, item.value)" ng-repeat="item in terms[tematics[index].value]">[[item.value]]</div>
+                    <div ng-class="'selector-row '+(tematics[index].selectedValues.indexOf(item.id) != -1 ? 'selected' : '')" ng-click="tematicsValueset(index, item.id, item.value)" data-listindex="[[index]]" ng-repeat="item in terms[tematics[index].value]">[[item.value]]</div>
                   </div>
                 </div>
               </div>
@@ -216,6 +216,21 @@ $(function(){
       scope.$apply(function(){
         scope.allas.city = place.address_components[0].long_name;
       });
+  });
+
+  $('body').click(function(e){
+    if($(e.target).hasClass('viewer') || $(e.target).hasClass('selector-row')){
+
+    } else {
+      var scope = angular.element($('.advertise-creator')).scope();
+      if (scope.tematics) {
+        $.each(scope.tematics, function(i,e){
+          scope.$apply(function(){
+            scope.tematics[i].listToggled = false;
+          });
+        });
+      }
+    }
   });
 })
 {/literal}

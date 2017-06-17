@@ -37,6 +37,13 @@ body{
   background: #ffa8a8;
 }
 
+.text-color-orange{
+  color: orange;
+}
+.text-color-red{
+  color: $color-red;
+}
+
 .error-msg{
   color: $color-red;
   font-style: italic;
@@ -1702,6 +1709,10 @@ body.ugyfelkapu-view{
         font-size: 1em;
       }
     }
+  }
+
+  .allas-list{
+    padding: 25px 0;
   }
 }
 

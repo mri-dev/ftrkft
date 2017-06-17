@@ -440,10 +440,7 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
       method: 'POST',
       url: '/ajax/data',
       params: {
-        type: 'lists',
-        filters: {
-          listforads: 1
-        }
+        type: 'lists'
       }
     }).then(function successCallback(response) {
       var d = response.data;
@@ -516,5 +513,42 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
 
   $scope.create = function(){
     console.log($scope.allas);
+    console.log($scope.tematics);
+  }
+}]);
+
+ads.controller("Listing", ['$scope', '$http', function($scope, $http){
+  $scope.allasok = {};
+  $scope.allas_db = 0;
+  $scope.loaded = false;
+  $scope.error = false;
+
+  $scope.init = function(){
+    $scope.loadData();
+  }
+
+  $scope.loadData = function(){
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'adslist',
+        author: 'me'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.loaded = true;
+
+      if (d.success) {
+        $scope.allas_db = d.data.length;
+        $scope.allasok = d.data;
+      } else {
+        $scope.error = d.msg;
+      }
+      $scope.allasok
+      console.log(d);
+    }, function errorCallback(response) {});
   }
 }]);
