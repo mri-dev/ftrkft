@@ -190,13 +190,20 @@
     </div>
 
     <div class="buttons" ng-show="cansavenow">
-      <div ng-show="successfullsaved && !saveinprogress" class="alert alert-success">
+      <div ng-show="(settings.edit_ad_id != 0 && !editing_data_loaded)?true:false" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Ajánlat adatainak betöltése folyamatban."}
+      </div>
+      <div ng-show="creator_saved && !creator_in_progress" class="alert alert-success">
+        <i class="fa fa-check-circle"></i> {lang text="Sikeresen módosította az adatokat."}
+      </div>
+      <div ng-show="creator_created && !creator_in_progress" class="alert alert-success">
         <i class="fa fa-check-circle"></i> {lang text="Sikeresen létrehozta a hirdetést."}
       </div>
-      <div ng-show="saveinprogress" class="alert alert-warning">
-        <i class="fa fa-spin fa-spinner"></i> {lang text="Létrehozás folyamatban. Kis türelmét kérjük."}
+      <div ng-show="creator_in_progress" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Művelet végrehajtása folyamatban. Kis türelmét kérjük."}
       </div>
-      <button ng-show="!saveinprogress" class="btn btn-danger" ng-click="create()">{lang text="Hirdetés létrehozása"}</button>
+      <button ng-show="(!creator_in_progress && !creator_created) && settings.edit_ad_id == 0" class="btn btn-danger" ng-click="create()">{lang text="Hirdetés létrehozása"} <i class="fa fa-plus-circle"></i></button>
+      <button ng-show="(!creator_in_progress && !creator_created) && settings.edit_ad_id != 0" class="btn btn-success" ng-click="create()">{lang text="Hirdetés adatok mentése"} <i class="fa fa-save"></i></button>
     </div>
   </div>
 </div>

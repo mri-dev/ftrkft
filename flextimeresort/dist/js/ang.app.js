@@ -414,6 +414,9 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
   $scope.successfullsaved = false;
   $scope.dataloaded = false;
   $scope.editing_data_loaded = false;
+  $scope.creator_in_progress = false;
+  $scope.creator_saved = false;
+  $scope.creator_created = false;
 
   $scope.short_desc_length = 150;
   $scope.keywords_length = 100;
@@ -566,8 +569,29 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
   }
 
   $scope.create = function(){
+    $scope.creator_in_progress = true;
     console.log($scope.allas);
     console.log($scope.tematics);
+
+    // Adatok mentése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'adscreator'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.creator_in_progress = false;
+
+      if ($scope.settings.edit_ad_id == 0) {
+        $scope.creator_created = true;
+      } else {
+        $scope.creator_saved = true;
+      }
+
+      console.log(d);
+    }, function errorCallback(response) {});
   }
 }]);
 
