@@ -19,6 +19,7 @@ class Allasok
 	private $tree_steped_item = false;
 	private $tree_items = 0;
 	private $walk_step = 0;
+  private $edit_id = false;
 
   public function __construct($arg = array())
   {
@@ -30,6 +31,15 @@ class Allasok
 		}
 
 		return $this;
+  }
+
+  public function load( $id, $arg = array() )
+  {
+    $this->edit_id = $id;
+
+    $this->getTree( $arg )->walk();
+
+    return $this;
   }
 
   public function getTree( $arg = array() )
@@ -45,6 +55,10 @@ class Allasok
 			FROM ".self::DBTABLE." as a
       LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
 			WHERE 1=1";
+
+    if ( $this->edit_id !== false ) {
+        $qry .= " and a.ID = ".$this->edit_id;
+    }
 
     if (isset($arg['author_id'])) {
       $qry .= " and a.author_id = ".(int)$arg['author_id'];
@@ -134,9 +148,9 @@ class Allasok
 
   private function prepareOutput()
   {
-
     $this->current_category['tipus_name'] = $this->getTermName($this->getTypeID());
     $this->current_category['cat_name'] = $this->getTermName($this->getCatID());
+    $this->current_category['megye_name'] = $this->getTermName($this->getMegyeID());
   }
 
   /*===============================
@@ -161,6 +175,11 @@ class Allasok
   public function getTypeID()
   {
     return $this->current_category['hirdetes_tipusok'];
+  }
+
+  public function getMegyeID()
+  {
+    return $this->current_category['megye_id'];
   }
 
   public function getCatID()

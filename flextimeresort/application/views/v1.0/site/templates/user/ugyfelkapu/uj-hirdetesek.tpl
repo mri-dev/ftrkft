@@ -1,8 +1,11 @@
-<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, {$me->getID()})">
+<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, {$me->getID()}, {$smarty.get.modid|intval})">
   <div ng-show="!dataloaded" class="alert alert-warning">
     <i class="fa fa-spin fa-spinner"></i> {lang text="Szükséges modulok betöltése folyamatban."}
   </div>
-  <div ng-show="dataloaded">
+  <div ng-show="(settings.edit_ad_id != 0 && !editing_data_loaded)?true:false" class="alert alert-warning">
+    <i class="fa fa-spin fa-spinner"></i> {lang text="Ajánlat adatainak betöltése folyamatban."}
+  </div>
+  <div ng-show="( (settings.edit_ad_id == 0 && dataloaded) || (dataloaded && settings.edit_ad_id != 0 && editing_data_loaded))?true:false">
     <h3>{lang text="Hirdetés alapadatok"}</h3>
 
     <div class="row">
@@ -72,7 +75,7 @@
           {lang text="Hozáférés nélküli, publikus leírás_TEXT"}
         </div>
         <div class="input-wrapper">
-          <textarea id="allas_pre_content" data-angmodel="pre_content" data-angobj="allas" reuired="required" ng-model="allas.pre_content" class="form-control editor"></textarea>
+          <textarea ui-tinymce="tinymceOptions" id="allas_pre_content" reuired="required" ng-model="allas.pre_content"></textarea>
           <div class="form-helper"></div>
         </div>
       </div>
@@ -85,7 +88,7 @@
           {lang text="Részletes leírás - hozzáféréssel rendelkezőknek_TEXT"}
         </div>
         <div class="input-wrapper">
-          <textarea id="allas_content" data-angmodel="content" data-angobj="allas" maxlength="150" reuired="required" ng-model="allas.content" class="form-control editor"></textarea>
+          <textarea ui-tinymce="tinymceOptions" id="allas_content" reuired="required" ng-model="allas.content"></textarea>
           <div class="form-helper"></div>
         </div>
       </div>

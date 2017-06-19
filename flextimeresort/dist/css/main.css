@@ -3437,12 +3437,12 @@ ul.pagination li a {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 3136, less/main.scss */
-.advertise-creator .row .input-wrapper input.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-touched + .form-helper:before {
+/* line 3137, less/main.scss */
+.advertise-creator .row .input-wrapper input.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper input.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-not-empty + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 3146, less/main.scss */
+/* line 3147, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup {
   background: #efefef;
   border: 1px solid #e3e3e3;
@@ -3450,12 +3450,12 @@ ul.pagination li a {
   border-radius: 4px;
   padding: 5px 10px;
 }
-/* line 3153, less/main.scss */
+/* line 3154, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup input, .advertise-creator .tematic-list-params .listgroup select {
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 3158, less/main.scss */
+/* line 3159, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-remover {
   background: #f44e5e;
   color: white;
@@ -3467,7 +3467,7 @@ ul.pagination li a {
   line-height: 20px;
   margin: 0 auto;
 }
-/* line 3170, less/main.scss */
+/* line 3171, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-index {
   background: #39ac4f;
   color: white;
@@ -3480,53 +3480,53 @@ ul.pagination li a {
   font-size: 20px;
 }
 
-/* line 3185, less/main.scss */
+/* line 3186, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 3189, less/main.scss */
+/* line 3190, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 3193, less/main.scss */
+/* line 3194, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 3198, less/main.scss */
+/* line 3199, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 3201, less/main.scss */
+/* line 3202, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 3204, less/main.scss */
+/* line 3205, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 3209, less/main.scss */
+/* line 3210, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 3212, less/main.scss */
+/* line 3213, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 3215, less/main.scss */
+/* line 3216, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

@@ -391,36 +391,55 @@ msg.directive('focusMe', function($timeout) {
 /**
 * Hirdetés létrehozó
 **/
-var ads = angular.module("Ads", [], function($interpolateProvider){
+var ads = angular.module("Ads", ['ui.tinymce'], function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });
 
-ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
+ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $http, $timeout)
 {
   $scope.settings = {};
   $scope.terms = {};
   $scope.listtgl = {};
   $scope.allas = {};
+  $scope.loaded_allas = {};
   $scope.selectedlist = {};
   $scope.userdata = {};
   $scope.term_list = {};
   $scope.tematics = [];
+  $scope.form = {};
 
   $scope.cansavenow = true;
   $scope.saveinprogress = false;
   $scope.successfullsaved = false;
   $scope.dataloaded = false;
+  $scope.editing_data_loaded = false;
 
   $scope.short_desc_length = 150;
   $scope.keywords_length = 100;
 
-  $scope.init = function(admin, authorid)
+  $scope.tinymceOptions = {
+    skin: 'clear',
+    language: "hu_HU",
+    element_format : 'html',
+    theme_advanced_resizing : true,
+    entity_encoding : "raw",
+    plugins: [
+     "advlist autolink link lists charmap preview hr anchor pagebreak autoresize",
+     "searchreplace wordcount visualblocks visualchars insertdatetime nonbreaking",
+     "table contextmenu directionality emoticons paste textcolor fullscreen code"
+    ],
+    toolbar1: "undo redo | bold italic underline | fontselect fontsizeselect forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect | link unlink anchor|preview code",
+  };
+
+
+  $scope.init = function(admin, authorid, edit_ad_id)
   {
     $scope.settings.admin = (admin == 0) ? false : true;
 
     $scope.allas.author_id = authorid;
     $scope.allas.created_by_admin = admin;
+    $scope.settings.edit_ad_id = edit_ad_id;
 
     // Felhasználó adatok
     $http({
@@ -432,7 +451,7 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
       }
     }).then(function successCallback(response) {
       $scope.userdata = response.data;
-      console.log(response.data);
+      //console.log(response.data);
     }, function errorCallback(response) {});
 
     // Lista letöltése
@@ -449,8 +468,43 @@ ads.controller( "Creator", ['$scope', '$http', function($scope, $http)
         $scope.terms[v.termkey] = d.terms[v.termkey];
       });
       $scope.dataloaded = true;
-      console.log(d);
+      //console.log(d);
     }, function errorCallback(response) {});
+
+    if ($scope.settings.edit_ad_id != 0) {
+      // Ajánlat adatok betöltése
+      $http({
+        method: 'POST',
+        url: '/ajax/data',
+        params: {
+          type: 'getad',
+          userid: 'me',
+          adid: $scope.settings.edit_ad_id
+        }
+      }).then(function successCallback(response) {
+        var d = response.data;
+        if (d.success) {
+          $scope.loaded_allas = d.data;
+          $scope.prepareEditAdToView();
+        }
+        console.log(d);
+      }, function errorCallback(response) {});
+    }
+  }
+
+  $scope.prepareEditAdToView = function(){
+    $scope.selectListValue('hirdetes_tipus', parseInt($scope.loaded_allas.hirdetes_tipusok), $scope.loaded_allas.tipus_name);
+    $scope.selectListValue('hirdetes_kategoria', parseInt($scope.loaded_allas.hirdetes_kategoria), $scope.loaded_allas.cat_name);
+    $scope.selectListValue('megye_id', parseInt($scope.loaded_allas.megye_id), $scope.loaded_allas.megye_name);
+    $scope.allas.pre_content = $scope.loaded_allas.pre_content;
+    $scope.allas.content = $scope.loaded_allas.content;
+    $scope.allas.city = $scope.loaded_allas.city;
+    $scope.allas.short_desc = $scope.loaded_allas.short_desc;
+    $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
+    $scope.allas.keywords = $scope.loaded_allas.keywords;
+    $scope.keywords_length = 100 - $scope.loaded_allas.keywords.length;
+
+    $scope.editing_data_loaded = true;
   }
 
   /*$scope.loadTematicItems = function(index, termkey){

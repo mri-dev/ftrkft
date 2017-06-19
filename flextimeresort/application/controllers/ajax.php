@@ -139,6 +139,24 @@ class ajax extends Controller  {
 					}
 
 				break;
+				case 'getad':
+					$user = $params['userid'];
+					$success = true;
+					$errmsg = false;
+					$datas = array();
+					$arg = array();
+
+					$allasok = new Allasok(array(
+						'controller' => $this
+					));
+
+					$datas = $allasok->load((int)$params['adid'])->get();
+
+					$data['params'] = $params;
+					$data['data'] = $datas;
+					$data['success'] = $success;
+					$data['msg'] = $errmsg;
+				break;
 				case 'adslist':
 					$author = $params['author'];
 					$success = true;

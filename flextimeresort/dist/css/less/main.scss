@@ -3133,7 +3133,8 @@ ul.pagination{
             content: "\f056";
             color: $color-red;
         }
-        &.ng-valid.ng-touched + .form-helper:before{
+        &.ng-valid.ng-touched + .form-helper:before,
+        &.ng-valid.ng-not-empty + .form-helper:before{
             content: "\f058";
             color: $color-primary-light;
         }
