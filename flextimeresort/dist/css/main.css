@@ -2045,12 +2045,109 @@ body.ugyfelkapu-view .group .cont label {
 body.ugyfelkapu-view .allas-list {
   padding: 25px 0;
 }
+/* line 1717, less/main.scss */
+body.ugyfelkapu-view .allas-list .header {
+  margin: 0 -10px 15px -10px;
+}
+/* line 1720, less/main.scss */
+body.ugyfelkapu-view .allas-list .header h2 {
+  font-weight: bold;
+  color: black;
+  font-size: 1.8em;
+}
+/* line 1728, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas {
+  background: #f6f6f6;
+  padding: 4px 10px;
+  border: 1px solid #eaeaea;
+  margin: 5px 0;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+/* line 1737, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+/* line 1741, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow > span {
+  margin-right: 15px;
+}
+/* line 1745, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .type {
+  font-weight: bold;
+  color: #39ac4f;
+}
+/* line 1749, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .cat {
+  font-weight: bold;
+  color: #39ac4f;
+}
+/* line 1754, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .city {
+  color: #f44e5e;
+}
+/* line 1757, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .edit {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+/* line 1762, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .edit a {
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+  color: #cecece;
+}
+/* line 1770, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .datarow .edit a:hover {
+  background: #39ac4f;
+  color: white;
+}
+/* line 1778, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .shortdesc {
+  font-size: 1.25em;
+  font-weight: 300;
+  line-height: 1.4;
+  color: #333333;
+}
+/* line 1785, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .afterinfo {
+  margin-top: 5px;
+  font-size: 0.8em;
+}
+/* line 1789, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .afterinfo > span {
+  margin-right: 10px;
+}
+/* line 1793, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .afterinfo .time {
+  color: #adadad;
+}
+/* line 1799, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .status .status-aktiv {
+  background: #39ac4f;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+/* line 1805, less/main.scss */
+body.ugyfelkapu-view .allas-list .allasok .allas .status .status-inaktiv {
+  background: orange;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
 
-/* line 1721, less/main.scss */
+/* line 1819, less/main.scss */
 .profil-changer-container .group .title {
   position: relative;
 }
-/* line 1723, less/main.scss */
+/* line 1821, less/main.scss */
 .profil-changer-container .group .title h3 {
   position: relative;
   z-index: 100;
@@ -2062,7 +2159,7 @@ body.ugyfelkapu-view .allas-list {
   margin: 0;
   background: white;
 }
-/* line 1735, less/main.scss */
+/* line 1833, less/main.scss */
 .profil-changer-container .group .title .line {
   z-index: 1;
   height: 1px;
@@ -2075,16 +2172,16 @@ body.ugyfelkapu-view .allas-list {
   background: #eeeeee;
   position: absolute;
 }
-/* line 1749, less/main.scss */
+/* line 1847, less/main.scss */
 .profil-changer-container .group .input-line {
   margin: 20px -15px;
   align-items: center;
 }
-/* line 1753, less/main.scss */
+/* line 1851, less/main.scss */
 .profil-changer-container .group .input-line.vert-top {
   align-items: flex-start;
 }
-/* line 1757, less/main.scss */
+/* line 1855, less/main.scss */
 .profil-changer-container .group .input-line label {
   font-weight: normal;
   font-size: 1em;
@@ -2093,12 +2190,12 @@ body.ugyfelkapu-view .allas-list {
   padding-left: 25px;
   margin: 0;
 }
-/* line 1766, less/main.scss */
+/* line 1864, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper {
   padding-right: 75px;
   position: relative;
 }
-/* line 1770, less/main.scss */
+/* line 1868, less/main.scss */
 .profil-changer-container .group .input-line .input-wrapper .infotext {
   font-size: 0.84em;
   color: #888888;
@@ -2112,12 +2209,12 @@ body.ugyfelkapu-view .allas-list {
   opacity: 0;
   filter: alpha(opacity=0);
 }
-/* line 1785, less/main.scss */
+/* line 1883, less/main.scss */
 .profil-changer-container .group .input-line input, .profil-changer-container .group .input-line textarea, .profil-changer-container .group .input-line select, .profil-changer-container .group .input-line .select-list {
   color: #39ac4f;
   position: relative;
 }
-/* line 1789, less/main.scss */
+/* line 1887, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper, .profil-changer-container .group .input-line textarea + .form-helper, .profil-changer-container .group .input-line select + .form-helper, .profil-changer-container .group .input-line .select-list + .form-helper {
   position: absolute;
   right: 25px;
@@ -2127,7 +2224,7 @@ body.ugyfelkapu-view .allas-list {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 1799, less/main.scss */
+/* line 1897, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper:before, .profil-changer-container .group .input-line textarea + .form-helper:before, .profil-changer-container .group .input-line select + .form-helper:before, .profil-changer-container .group .input-line .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -2142,27 +2239,27 @@ body.ugyfelkapu-view .allas-list {
   text-align: center;
   content: "";
 }
-/* line 1814, less/main.scss */
+/* line 1912, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.invalid:before, .profil-changer-container .group .input-line textarea + .form-helper.invalid:before, .profil-changer-container .group .input-line select + .form-helper.invalid:before, .profil-changer-container .group .input-line .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1819, less/main.scss */
+/* line 1917, less/main.scss */
 .profil-changer-container .group .input-line input + .form-helper.valid:before, .profil-changer-container .group .input-line textarea + .form-helper.valid:before, .profil-changer-container .group .input-line select + .form-helper.valid:before, .profil-changer-container .group .input-line .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1825, less/main.scss */
+/* line 1923, less/main.scss */
 .profil-changer-container .group .input-line input.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line select.ng-invalid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 1829, less/main.scss */
+/* line 1927, less/main.scss */
 .profil-changer-container .group .input-line input.ng-valid + .form-helper:before, .profil-changer-container .group .input-line textarea.ng-valid + .form-helper:before, .profil-changer-container .group .input-line select.ng-valid + .form-helper:before, .profil-changer-container .group .input-line .select-list.ng-valid + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 1836, less/main.scss */
+/* line 1934, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector label {
   position: relative;
   padding: 0;
@@ -2172,7 +2269,7 @@ body.ugyfelkapu-view .allas-list {
   overflow: hidden;
   cursor: pointer;
 }
-/* line 1845, less/main.scss */
+/* line 1943, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector label img {
   width: 100%;
   position: absolute;
@@ -2181,7 +2278,7 @@ body.ugyfelkapu-view .allas-list {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 1854, less/main.scss */
+/* line 1952, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos {
   float: left;
   color: #aaaaaa;
@@ -2189,29 +2286,29 @@ body.ugyfelkapu-view .allas-list {
   line-height: 1.6;
   padding-left: 20px;
 }
-/* line 1861, less/main.scss */
+/* line 1959, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos .selected-info {
   font-size: 0.9em;
   line-height: 1.2;
   color: #39ac4f;
   margin-top: 15px;
 }
-/* line 1867, less/main.scss */
+/* line 1965, less/main.scss */
 .profil-changer-container .group .input-line .profil-selector .infos .selected-info .invalid {
   color: #f44e5e;
 }
-/* line 1876, less/main.scss */
+/* line 1974, less/main.scss */
 .profil-changer-container .buttons {
   border-top: 1px solid #eeeeee;
   padding: 15px 0 0 0;
   margin: 15px 0 0 0;
 }
-/* line 1881, less/main.scss */
+/* line 1979, less/main.scss */
 .profil-changer-container .buttons button {
   margin-right: 10px;
 }
 
-/* line 1887, less/main.scss */
+/* line 1985, less/main.scss */
 .megye-list {
   border: 1px solid #39ac4f;
   background: white;
@@ -2220,7 +2317,7 @@ body.ugyfelkapu-view .allas-list {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
-/* line 1895, less/main.scss */
+/* line 1993, less/main.scss */
 .megye-list .head {
   font-size: 1.3em;
   text-align: center;
@@ -2232,20 +2329,20 @@ body.ugyfelkapu-view .allas-list {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 1907, less/main.scss */
+/* line 2005, less/main.scss */
 .megye-list .fakemap {
   text-align: center;
 }
-/* line 1909, less/main.scss */
+/* line 2007, less/main.scss */
 .megye-list .fakemap img {
   max-width: 80%;
   margin: 10px auto;
 }
-/* line 1915, less/main.scss */
+/* line 2013, less/main.scss */
 .megye-list .cont {
   padding: 5px 10px;
 }
-/* line 1919, less/main.scss */
+/* line 2017, less/main.scss */
 .megye-list .cont .list > div a {
   display: block;
   position: relative;
@@ -2253,11 +2350,11 @@ body.ugyfelkapu-view .allas-list {
   color: #444444;
   line-height: 1.5;
 }
-/* line 1926, less/main.scss */
+/* line 2024, less/main.scss */
 .megye-list .cont .list > div a:hover {
   color: #39ac4f;
 }
-/* line 1930, less/main.scss */
+/* line 2028, less/main.scss */
 .megye-list .cont .list > div a .count {
   position: absolute;
   -webkit-transform: translateY(-50%);
@@ -2275,18 +2372,18 @@ body.ugyfelkapu-view .allas-list {
   font-size: 0.9em;
 }
 
-/* line 1953, less/main.scss */
+/* line 2051, less/main.scss */
 .profil-progress-container .wrapper {
   padding: 35px 0 15px 0;
 }
-/* line 1955, less/main.scss */
+/* line 2053, less/main.scss */
 .profil-progress-container .wrapper .line {
   position: relative;
   background: #eaeaea;
   height: 10px;
   width: 100%;
 }
-/* line 1960, less/main.scss */
+/* line 2058, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line {
   background: #39ac4f;
   height: 10px;
@@ -2295,7 +2392,7 @@ body.ugyfelkapu-view .allas-list {
   transition: all 1s;
   position: relative;
 }
-/* line 1968, less/main.scss */
+/* line 2066, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status {
   position: absolute;
   background: #f44e5e;
@@ -2307,7 +2404,7 @@ body.ugyfelkapu-view .allas-list {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 1979, less/main.scss */
+/* line 2077, less/main.scss */
 .profil-progress-container .wrapper .line .progress-line .status:after {
   content: "";
   border-color: #f44e5e transparent transparent transparent;
@@ -2321,30 +2418,30 @@ body.ugyfelkapu-view .allas-list {
   transform: translateX(-50%);
 }
 
-/* line 1997, less/main.scss */
+/* line 2095, less/main.scss */
 .profil-changer-nav {
   background: #f3f3f3;
   border: 1px solid #e1e1e1;
 }
-/* line 2001, less/main.scss */
+/* line 2099, less/main.scss */
 .profil-changer-nav ul, .profil-changer-nav li {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 2006, less/main.scss */
+/* line 2104, less/main.scss */
 .profil-changer-nav ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-/* line 2011, less/main.scss */
+/* line 2109, less/main.scss */
 .profil-changer-nav ul li {
   flex-basis: calc(100%/7);
   border-right: 1px solid #e1e1e1;
   height: 98px;
 }
-/* line 2015, less/main.scss */
+/* line 2113, less/main.scss */
 .profil-changer-nav ul li a {
   display: block;
   font-size: 0.7em;
@@ -2354,7 +2451,7 @@ body.ugyfelkapu-view .allas-list {
   padding: 10px 8px;
   height: 98px;
 }
-/* line 2024, less/main.scss */
+/* line 2122, less/main.scss */
 .profil-changer-nav ul li a .ico {
   width: 40px;
   height: 40px;
@@ -2362,77 +2459,77 @@ body.ugyfelkapu-view .allas-list {
   background-size: contain;
   background-position: center;
 }
-/* line 2034, less/main.scss */
+/* line 2132, less/main.scss */
 .profil-changer-nav ul li.ico-user .ico {
   background-image: url("/dist/img/icons/green/user.svg");
 }
-/* line 2040, less/main.scss */
+/* line 2138, less/main.scss */
 .profil-changer-nav ul li.ico-document .ico {
   background-image: url("/dist/img/icons/green/documents.svg");
 }
-/* line 2046, less/main.scss */
+/* line 2144, less/main.scss */
 .profil-changer-nav ul li.ico-mobil .ico {
   background-image: url("/dist/img/icons/green/mobil.svg");
 }
-/* line 2052, less/main.scss */
+/* line 2150, less/main.scss */
 .profil-changer-nav ul li.ico-idcard .ico {
   background-image: url("/dist/img/icons/green/idcard.svg");
 }
-/* line 2058, less/main.scss */
+/* line 2156, less/main.scss */
 .profil-changer-nav ul li.ico-briefcase .ico {
   background-image: url("/dist/img/icons/green/briefcase.svg");
 }
-/* line 2064, less/main.scss */
+/* line 2162, less/main.scss */
 .profil-changer-nav ul li.ico-target .ico {
   background-image: url("/dist/img/icons/green/target.svg");
 }
-/* line 2070, less/main.scss */
+/* line 2168, less/main.scss */
 .profil-changer-nav ul li.ico-download .ico {
   background-image: url("/dist/img/icons/green/download.svg");
 }
-/* line 2076, less/main.scss */
+/* line 2174, less/main.scss */
 .profil-changer-nav ul li:hover a {
   color: #39ac4f;
 }
-/* line 2082, less/main.scss */
+/* line 2180, less/main.scss */
 .profil-changer-nav ul li.active a {
   background: #39ac4f;
   color: white;
 }
-/* line 2088, less/main.scss */
+/* line 2186, less/main.scss */
 .profil-changer-nav ul li.active.ico-user .ico {
   background-image: url("/dist/img/icons/white/user.svg");
 }
-/* line 2094, less/main.scss */
+/* line 2192, less/main.scss */
 .profil-changer-nav ul li.active.ico-document .ico {
   background-image: url("/dist/img/icons/white/documents.svg");
 }
-/* line 2100, less/main.scss */
+/* line 2198, less/main.scss */
 .profil-changer-nav ul li.active.ico-mobil .ico {
   background-image: url("/dist/img/icons/white/mobil.svg");
 }
-/* line 2106, less/main.scss */
+/* line 2204, less/main.scss */
 .profil-changer-nav ul li.active.ico-idcard .ico {
   background-image: url("/dist/img/icons/white/idcard.svg");
 }
-/* line 2112, less/main.scss */
+/* line 2210, less/main.scss */
 .profil-changer-nav ul li.active.ico-briefcase .ico {
   background-image: url("/dist/img/icons/white/briefcase.svg");
 }
-/* line 2118, less/main.scss */
+/* line 2216, less/main.scss */
 .profil-changer-nav ul li.active.ico-target .ico {
   background-image: url("/dist/img/icons/white/target.svg");
 }
-/* line 2124, less/main.scss */
+/* line 2222, less/main.scss */
 .profil-changer-nav ul li.active.ico-download .ico {
   background-image: url("/dist/img/icons/white/download.svg");
 }
-/* line 2131, less/main.scss */
+/* line 2229, less/main.scss */
 .profil-changer-nav ul li.last-child {
   border-right: none;
 }
 
-/* line 2136, less/main.scss */
+/* line 2234, less/main.scss */
 .articles {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2440,16 +2537,16 @@ body.ugyfelkapu-view .allas-list {
   flex-wrap: wrap;
   margin: -10px;
 }
-/* line 2143, less/main.scss */
+/* line 2241, less/main.scss */
 .articles article {
   flex-basis: calc(100%/2);
   padding: 10px;
 }
-/* line 2147, less/main.scss */
+/* line 2245, less/main.scss */
 .articles article .wrapper {
   overflow: hidden;
 }
-/* line 2151, less/main.scss */
+/* line 2249, less/main.scss */
 .articles article .img {
   height: 185px;
   background: #f1f1f1;
@@ -2457,7 +2554,7 @@ body.ugyfelkapu-view .allas-list {
   margin-bottom: 10px;
   overflow: hidden;
 }
-/* line 2158, less/main.scss */
+/* line 2256, less/main.scss */
 .articles article .img img {
   height: 110%;
   max-height: 110%;
@@ -2469,22 +2566,22 @@ body.ugyfelkapu-view .allas-list {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 2171, less/main.scss */
+/* line 2269, less/main.scss */
 .articles article .title {
   padding: 0 5px;
 }
-/* line 2173, less/main.scss */
+/* line 2271, less/main.scss */
 .articles article .title h3 {
   margin: 0 0 8px 0;
   line-height: 1.3;
 }
-/* line 2176, less/main.scss */
+/* line 2274, less/main.scss */
 .articles article .title h3 a {
   font-size: 1em;
   font-weight: normal;
   color: #39ac4f;
 }
-/* line 2184, less/main.scss */
+/* line 2282, less/main.scss */
 .articles article .desc {
   line-height: 1.3;
   color: #5b5b5b;
@@ -2493,12 +2590,12 @@ body.ugyfelkapu-view .allas-list {
   height: 80px;
   overflow: hidden;
 }
-/* line 2193, less/main.scss */
+/* line 2291, less/main.scss */
 .articles article .nav {
   text-align: center;
   padding: 0 5px;
 }
-/* line 2197, less/main.scss */
+/* line 2295, less/main.scss */
 .articles article .nav a {
   background: #c5c6c6;
   color: white;
@@ -2510,39 +2607,39 @@ body.ugyfelkapu-view .allas-list {
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2209, less/main.scss */
+/* line 2307, less/main.scss */
 .articles article .nav a:hover {
   background: #39ac4f;
 }
-/* line 2217, less/main.scss */
+/* line 2315, less/main.scss */
 .articles.style-box-col3 article {
   flex-basis: calc(100%/3);
 }
-/* line 2220, less/main.scss */
+/* line 2318, less/main.scss */
 .articles.style-box-col3 article .wrapper {
   border: 1px solid #e6e6e6;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2230, less/main.scss */
+/* line 2328, less/main.scss */
 .articles.style-box-col4 article {
   flex-basis: calc(100%/4);
 }
-/* line 2233, less/main.scss */
+/* line 2331, less/main.scss */
 .articles.style-box-col4 article .wrapper {
   border: 1px solid #e6e6e6;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
 }
-/* line 2245, less/main.scss */
+/* line 2343, less/main.scss */
 .articles.style-clear-col2 article .desc a.read {
   color: #39ac4f;
   margin-left: 5px;
   font-weight: bold;
 }
-/* line 2255, less/main.scss */
+/* line 2353, less/main.scss */
 .articles.style-list-col1 article {
   font-size: 1.3em;
   flex-basis: calc(100%/1);
@@ -2553,20 +2650,20 @@ body.ugyfelkapu-view .allas-list {
   border-radius: 4px;
   border: 1px solid #f1f1f1;
 }
-/* line 2265, less/main.scss */
+/* line 2363, less/main.scss */
 .articles.style-list-col1 article .img {
   float: left;
   width: 120px;
   height: 120px;
   margin: 0 25px 0 0;
 }
-/* line 2272, less/main.scss */
+/* line 2370, less/main.scss */
 .articles.style-list-col1 article .nav {
   text-align: right;
   padding: 5px 0;
   justify-content: flex-end;
 }
-/* line 2276, less/main.scss */
+/* line 2374, less/main.scss */
 .articles.style-list-col1 article .nav a {
   width: auto;
   float: right;
@@ -2575,82 +2672,82 @@ body.ugyfelkapu-view .allas-list {
   line-height: 1;
 }
 
-/* line 2289, less/main.scss */
+/* line 2387, less/main.scss */
 .nav-container {
   text-align: center;
   width: 100%;
 }
 
-/* line 2294, less/main.scss */
+/* line 2392, less/main.scss */
 ul.pagination {
   font-size: 1em;
   margin: 10px 0;
   justify-content: center;
 }
-/* line 2299, less/main.scss */
+/* line 2397, less/main.scss */
 ul.pagination li {
   list-style: none;
 }
-/* line 2301, less/main.scss */
+/* line 2399, less/main.scss */
 ul.pagination li a {
   font-size: 1em;
   line-height: 1;
 }
 
-/* line 2307, less/main.scss */
+/* line 2405, less/main.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 2312, less/main.scss */
+/* line 2410, less/main.scss */
 .article-list {
   padding: 25px 0;
 }
-/* line 2316, less/main.scss */
+/* line 2414, less/main.scss */
 .article-list .list .header {
   margin: 0 0 25px 0;
 }
-/* line 2318, less/main.scss */
+/* line 2416, less/main.scss */
 .article-list .list .header h1 {
   color: #39ac4f;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-/* line 2327, less/main.scss */
+/* line 2425, less/main.scss */
 .sidebar-search .header {
   font-size: 1.2em;
   color: black;
   font-weight: bold;
 }
 
-/* line 2335, less/main.scss */
+/* line 2433, less/main.scss */
 .messanger .wrapper {
   padding: 15px 0 0 0;
 }
-/* line 2337, less/main.scss */
+/* line 2435, less/main.scss */
 .messanger .wrapper nav {
   border-bottom: 1px solid #d7d7d7;
 }
-/* line 2339, less/main.scss */
+/* line 2437, less/main.scss */
 .messanger .wrapper nav ul, .messanger .wrapper nav li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 2345, less/main.scss */
+/* line 2443, less/main.scss */
 .messanger .wrapper nav ul {
   margin-bottom: -2px;
 }
-/* line 2347, less/main.scss */
+/* line 2445, less/main.scss */
 .messanger .wrapper nav ul li {
   display: inline-block;
   *display: inline;
   zoom: 1;
   vertical-align: middle;
 }
-/* line 2353, less/main.scss */
+/* line 2451, less/main.scss */
 .messanger .wrapper nav ul li a {
   padding: 5px 12px;
   font-size: 0.8em;
@@ -2659,17 +2756,17 @@ ul.pagination li a {
   background: #eaeaea;
   margin-right: 8px;
 }
-/* line 2361, less/main.scss */
+/* line 2459, less/main.scss */
 .messanger .wrapper nav ul li a i {
   font-size: 18px;
   line-height: 1;
   margin-right: 5px;
 }
-/* line 2367, less/main.scss */
+/* line 2465, less/main.scss */
 .messanger .wrapper nav ul li a .badge {
   background: #f44e5e;
 }
-/* line 2373, less/main.scss */
+/* line 2471, less/main.scss */
 .messanger .wrapper nav ul li.active a {
   background: white;
   border: 1px solid #d7d7d7;
@@ -2677,12 +2774,12 @@ ul.pagination li a {
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 2385, less/main.scss */
+/* line 2483, less/main.scss */
 .messanger .wrapper .messanger-reader .header {
   padding: 20px 0;
   position: relative;
 }
-/* line 2390, less/main.scss */
+/* line 2488, less/main.scss */
 .messanger .wrapper .messanger-reader .header .archiving,
 .messanger .wrapper .messanger-reader .header .archived {
   position: absolute;
@@ -2697,42 +2794,42 @@ ul.pagination li a {
   border-radius: 20px;
   font-size: 0.8em;
 }
-/* line 2403, less/main.scss */
+/* line 2501, less/main.scss */
 .messanger .wrapper .messanger-reader .header .archiving:hover,
 .messanger .wrapper .messanger-reader .header .archived:hover {
   background: #f44e5e;
   color: white;
 }
-/* line 2409, less/main.scss */
+/* line 2507, less/main.scss */
 .messanger .wrapper .messanger-reader .header .archived {
   border: none;
   cursor: auto;
 }
-/* line 2412, less/main.scss */
+/* line 2510, less/main.scss */
 .messanger .wrapper .messanger-reader .header .archived:hover {
   background: transparent;
   color: #f44e5e;
 }
-/* line 2418, less/main.scss */
+/* line 2516, less/main.scss */
 .messanger .wrapper .messanger-reader .header h2 {
   font-weight: bold;
   color: black;
 }
-/* line 2424, less/main.scss */
+/* line 2522, less/main.scss */
 .messanger .wrapper .messanger-reader .header .from .name {
   font-weight: bold;
   color: #39ac4f;
 }
-/* line 2429, less/main.scss */
+/* line 2527, less/main.scss */
 .messanger .wrapper .messanger-reader .header .from .time {
   color: #999999;
   margin-left: 10px;
 }
-/* line 2436, less/main.scss */
+/* line 2534, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice input[type=text] {
   font-size: 0.9em;
 }
-/* line 2439, less/main.scss */
+/* line 2537, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice .writen {
   color: #4e4e4e;
   font-style: italic;
@@ -2741,35 +2838,35 @@ ul.pagination li a {
   font-weight: 300;
   margin-top: 4px;
 }
-/* line 2447, less/main.scss */
+/* line 2545, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice .writen .edit-notice {
   margin-left: 5px;
   cursor: pointer;
 }
-/* line 2450, less/main.scss */
+/* line 2548, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice .writen .edit-notice i {
   color: #333333;
 }
-/* line 2456, less/main.scss */
+/* line 2554, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice .newnotice a {
   font-size: 0.8em;
   color: #8e8e8e;
   font-style: italic;
   text-decoration: underline;
 }
-/* line 2464, less/main.scss */
+/* line 2562, less/main.scss */
 .messanger .wrapper .messanger-reader .header .notice .newnotice-error {
   color: #f44e5e;
   font-size: 0.8em;
 }
-/* line 2471, less/main.scss */
+/* line 2569, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator {
   border: 2px solid #e2e2e2;
   margin: 10px 0;
   border-radius: 5px;
   overflow: hidden;
 }
-/* line 2477, less/main.scss */
+/* line 2575, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator textarea {
   border: none;
   font-size: 1.1em;
@@ -2777,29 +2874,29 @@ ul.pagination li a {
   padding: 10px;
   color: black;
 }
-/* line 2485, less/main.scss */
+/* line 2583, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator .conv-footer {
   background: #f1f1f1;
   text-align: right;
 }
-/* line 2488, less/main.scss */
+/* line 2586, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator .conv-footer .text, .messanger .wrapper .messanger-reader .conversation-creator .conv-footer button {
   display: inline-block;
   *display: inline;
   zoom: 1;
   vertical-align: middle;
 }
-/* line 2495, less/main.scss */
+/* line 2593, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator .conv-footer button {
   border-radius: 0 0 5px 0;
   margin-left: 10px;
 }
-/* line 2500, less/main.scss */
+/* line 2598, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator .conv-footer .text {
   font-size: 0.9em;
   color: #888888;
 }
-/* line 2506, less/main.scss */
+/* line 2604, less/main.scss */
 .messanger .wrapper .messanger-reader .conversation-creator-errmsg {
   color: #f44e5e;
   font-size: 1.1em;
@@ -2807,7 +2904,7 @@ ul.pagination li a {
   margin: 10px 0;
   text-align: center;
 }
-/* line 2514, less/main.scss */
+/* line 2612, less/main.scss */
 .messanger .wrapper .messanger-reader .closed-msg {
   text-align: center;
   margin: 20px 0;
@@ -2818,23 +2915,23 @@ ul.pagination li a {
   padding: 20px;
   color: #969261;
 }
-/* line 2524, less/main.scss */
+/* line 2622, less/main.scss */
 .messanger .wrapper .messanger-reader .closed-msg i {
   color: black;
   font-size: 64px;
 }
-/* line 2529, less/main.scss */
+/* line 2627, less/main.scss */
 .messanger .wrapper .messanger-reader .closed-msg h3 {
   text-transform: none;
   color: black;
   font-size: 1.8em;
   margin: 0 0 5px 0;
 }
-/* line 2536, less/main.scss */
+/* line 2634, less/main.scss */
 .messanger .wrapper .messanger-reader .closed-msg .time {
   font-size: 0.9em;
 }
-/* line 2540, less/main.scss */
+/* line 2638, less/main.scss */
 .messanger .wrapper .messanger-reader .archived-msg {
   text-align: center;
   margin: 20px 0;
@@ -2845,58 +2942,58 @@ ul.pagination li a {
   padding: 20px;
   color: #ffbfbf;
 }
-/* line 2550, less/main.scss */
+/* line 2648, less/main.scss */
 .messanger .wrapper .messanger-reader .archived-msg i {
   color: white;
   font-size: 64px;
 }
-/* line 2555, less/main.scss */
+/* line 2653, less/main.scss */
 .messanger .wrapper .messanger-reader .archived-msg h3 {
   text-transform: none;
   color: white;
   font-size: 1.8em;
   margin: 0 0 5px 0;
 }
-/* line 2562, less/main.scss */
+/* line 2660, less/main.scss */
 .messanger .wrapper .messanger-reader .archived-msg .time {
   font-size: 0.9em;
 }
-/* line 2567, less/main.scss */
+/* line 2665, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations {
   margin-top: 25px;
   overflow: auto;
   max-height: 2000px;
 }
-/* line 2571, less/main.scss */
+/* line 2669, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversations-header {
   text-align: center;
   color: black;
   font-weight: bold;
 }
-/* line 2576, less/main.scss */
+/* line 2674, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation {
   padding-left: 30px;
   margin: 10px 0;
 }
-/* line 2580, less/main.scss */
+/* line 2678, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation .bubble {
   border: 1px solid #e4e4e4;
   background: #f9f9f9;
   padding: 15px;
   border-radius: 10px;
 }
-/* line 2586, less/main.scss */
+/* line 2684, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation .bubble .text {
   line-height: 1.5;
   font-size: 1.1em;
   color: #656565;
 }
-/* line 2593, less/main.scss */
+/* line 2691, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation .from {
   margin-top: 4px;
   font-size: 0.8em;
 }
-/* line 2597, less/main.scss */
+/* line 2695, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation .from .unreaded {
   background: #f44e5e;
   color: white;
@@ -2906,51 +3003,51 @@ ul.pagination li a {
   padding: 5px 10px;
   text-transform: uppercase;
 }
-/* line 2607, less/main.scss */
+/* line 2705, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation .from .timestamp {
   color: #999;
   margin-left: 5px;
 }
-/* line 2613, less/main.scss */
+/* line 2711, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation.from-me {
   padding-left: 0;
   padding-right: 30px;
 }
-/* line 2617, less/main.scss */
+/* line 2715, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation.from-me .from {
   padding-left: 10px;
   float: left;
 }
-/* line 2623, less/main.scss */
+/* line 2721, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation.from-sender .bubble {
   background: #39ac4f;
   border: 1px solid #2c863d;
 }
-/* line 2626, less/main.scss */
+/* line 2724, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation.from-sender .bubble .text {
   color: white;
 }
-/* line 2630, less/main.scss */
+/* line 2728, less/main.scss */
 .messanger .wrapper .messanger-reader .conversations .conversation.from-sender .from {
   padding-right: 10px;
   float: right;
 }
-/* line 2639, less/main.scss */
+/* line 2737, less/main.scss */
 .messanger .wrapper .message-list .no-messages {
   text-align: center;
   padding: 50px 0;
 }
-/* line 2642, less/main.scss */
+/* line 2740, less/main.scss */
 .messanger .wrapper .message-list .no-messages h3 {
   text-transform: none;
   font-size: 1.8em;
   color: black;
 }
-/* line 2647, less/main.scss */
+/* line 2745, less/main.scss */
 .messanger .wrapper .message-list .no-messages i {
   font-size: 64px;
 }
-/* line 2651, less/main.scss */
+/* line 2749, less/main.scss */
 .messanger .wrapper .message-list .message-session {
   border: 1px solid #eaeaea;
   background: #f8f8f8;
@@ -2959,7 +3056,7 @@ ul.pagination li a {
   position: relative;
   border-radius: 4px;
 }
-/* line 2658, less/main.scss */
+/* line 2756, less/main.scss */
 .messanger .wrapper .message-list .message-session .unread {
   background: #f44e5e;
   color: white;
@@ -2976,47 +3073,47 @@ ul.pagination li a {
   font-size: 0.8em;
   transform: translate(-50%, -50%);
 }
-/* line 2675, less/main.scss */
+/* line 2773, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head {
   position: relative;
 }
-/* line 2678, less/main.scss */
+/* line 2776, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from {
   font-size: 1em;
   color: #828282;
   line-height: 1;
   margin: 0 0 8px 0;
 }
-/* line 2684, less/main.scss */
+/* line 2782, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from strong {
   color: black;
 }
-/* line 2689, less/main.scss */
+/* line 2787, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject {
   font-size: 1.35em;
   color: #333333;
   font-weight: bold;
   line-height: 1;
 }
-/* line 2695, less/main.scss */
+/* line 2793, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .locked {
   color: #f44e5e;
 }
-/* line 2699, less/main.scss */
+/* line 2797, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject a {
   color: #333333;
 }
-/* line 2702, less/main.scss */
+/* line 2800, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject a:hover {
   color: #39ac4f;
 }
-/* line 2707, less/main.scss */
+/* line 2805, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label {
   position: absolute;
   right: -8px;
   bottom: 0;
 }
-/* line 2712, less/main.scss */
+/* line 2810, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label a {
   background: #cecece;
   padding: 5px 10px;
@@ -3025,16 +3122,16 @@ ul.pagination li a {
   font-weight: 300;
   border-radius: 20px;
 }
-/* line 2720, less/main.scss */
+/* line 2818, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label a:hover {
   background: #f44e5e;
   color: white;
 }
-/* line 2729, less/main.scss */
+/* line 2827, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice input[type=text] {
   font-size: 0.9em;
 }
-/* line 2732, less/main.scss */
+/* line 2830, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen {
   color: #4e4e4e;
   font-style: italic;
@@ -3043,28 +3140,28 @@ ul.pagination li a {
   font-weight: 300;
   margin-top: 4px;
 }
-/* line 2740, less/main.scss */
+/* line 2838, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice {
   margin-left: 5px;
   cursor: pointer;
 }
-/* line 2743, less/main.scss */
+/* line 2841, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice i {
   color: #333333;
 }
-/* line 2749, less/main.scss */
+/* line 2847, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .newnotice a {
   font-size: 0.8em;
   color: #8e8e8e;
   font-style: italic;
   text-decoration: underline;
 }
-/* line 2757, less/main.scss */
+/* line 2855, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .newnotice-error {
   color: #f44e5e;
   font-size: 0.8em;
 }
-/* line 2764, less/main.scss */
+/* line 2862, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .session-start {
   position: absolute;
   right: 0;
@@ -3073,22 +3170,22 @@ ul.pagination li a {
   font-size: 0.8em;
   color: #bfbfbf;
 }
-/* line 2774, less/main.scss */
+/* line 2872, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded {
   border-left: 5px solid #f44e5e;
 }
-/* line 2778, less/main.scss */
+/* line 2876, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded .group-head .subject .lab {
   background: #f44e5e;
   color: white;
 }
 
-/* line 2790, less/main.scss */
+/* line 2888, less/main.scss */
 .more-allas {
   text-align: center;
   margin: 20px 0;
 }
-/* line 2793, less/main.scss */
+/* line 2891, less/main.scss */
 .more-allas a {
   margin: 0 auto;
   padding: 9px 15px;
@@ -3100,12 +3197,12 @@ ul.pagination li a {
   font-weight: 300;
   text-transform: uppercase;
 }
-/* line 2804, less/main.scss */
+/* line 2902, less/main.scss */
 .more-allas a:hover {
   background: #39ac4f;
 }
 
-/* line 2810, less/main.scss */
+/* line 2908, less/main.scss */
 .allasok {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3113,26 +3210,26 @@ ul.pagination li a {
   flex-wrap: wrap;
   margin: 0 -10px;
 }
-/* line 2817, less/main.scss */
+/* line 2915, less/main.scss */
 .allasok .allas {
   flex-basis: 100%;
 }
-/* line 2820, less/main.scss */
+/* line 2918, less/main.scss */
 .allasok .allas > .wrapper {
   padding: 10px;
 }
-/* line 2823, less/main.scss */
+/* line 2921, less/main.scss */
 .allasok .allas > .wrapper .inside {
   background: #ffffff;
   border: 1px solid #e6e6e6;
   border-radius: 5px;
   overflow: hidden;
 }
-/* line 2829, less/main.scss */
+/* line 2927, less/main.scss */
 .allasok .allas > .wrapper .inside .body {
   padding: 10px;
 }
-/* line 2831, less/main.scss */
+/* line 2929, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3140,7 +3237,7 @@ ul.pagination li a {
   align-items: flex-start;
   margin-bottom: 10px;
 }
-/* line 2838, less/main.scss */
+/* line 2936, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type, .allasok .allas > .wrapper .inside .body .top .kat {
   flex-basis: 50%;
   display: -webkit-box;
@@ -3148,18 +3245,18 @@ ul.pagination li a {
   display: flex;
   align-items: center;
 }
-/* line 2845, less/main.scss */
+/* line 2943, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .ico, .allasok .allas > .wrapper .inside .body .top .kat .ico {
   flex-basis: 20px;
   position: relative;
 }
-/* line 2848, less/main.scss */
+/* line 2946, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .ico img, .allasok .allas > .wrapper .inside .body .top .kat .ico img {
   width: 20px;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 2855, less/main.scss */
+/* line 2953, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .text, .allasok .allas > .wrapper .inside .body .top .kat .text {
   padding-left: 8px;
   color: black;
@@ -3167,11 +3264,11 @@ ul.pagination li a {
   line-height: 1.2;
   padding-right: 5px;
 }
-/* line 2865, less/main.scss */
+/* line 2963, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .text {
   color: #39ac4f;
 }
-/* line 2870, less/main.scss */
+/* line 2968, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc {
   line-height: 1.2;
   font-size: 1em;
@@ -3181,30 +3278,30 @@ ul.pagination li a {
   display: flex;
   align-items: flex-start;
 }
-/* line 2879, less/main.scss */
+/* line 2977, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .ico {
   flex-basis: 20px;
   position: relative;
 }
-/* line 2882, less/main.scss */
+/* line 2980, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .ico img {
   width: 20px;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 2889, less/main.scss */
+/* line 2987, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .text {
   padding-left: 8px;
   color: #444444;
   height: 50px;
   overflow: hidden;
 }
-/* line 2898, less/main.scss */
+/* line 2996, less/main.scss */
 .allasok .allas > .wrapper .inside .footer {
   background: #555555;
   color: white;
 }
-/* line 2901, less/main.scss */
+/* line 2999, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3212,14 +3309,14 @@ ul.pagination li a {
   align-items: center;
   justify-content: center;
 }
-/* line 2908, less/main.scss */
+/* line 3006, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div {
   padding: 0 10px;
   flex-basis: 40%;
   height: 40px;
   line-height: 40px;
 }
-/* line 2915, less/main.scss */
+/* line 3013, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico {
   height: 100%;
   position: relative;
@@ -3227,17 +3324,17 @@ ul.pagination li a {
   width: 20px;
   margin-right: 8px;
 }
-/* line 2921, less/main.scss */
+/* line 3019, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico img {
   max-width: 20px;
   margin-top: -4px;
 }
-/* line 2928, less/main.scss */
+/* line 3026, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button {
   padding: 0;
   flex-basis: 20%;
 }
-/* line 2931, less/main.scss */
+/* line 3029, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a {
   position: relative;
   background: #39ac4f;
@@ -3247,7 +3344,7 @@ ul.pagination li a {
   font-size: 1.1em;
   text-align: center;
 }
-/* line 2941, less/main.scss */
+/* line 3039, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a:before {
   content: "";
   position: absolute;
@@ -3260,47 +3357,47 @@ ul.pagination li a {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 2962, less/main.scss */
+/* line 3060, less/main.scss */
 .allasok.style-new-home .allas {
   flex-basis: calc(100%/2);
 }
 
-/* line 2968, less/main.scss */
+/* line 3066, less/main.scss */
 .advertise-creator {
   padding: 20px 0;
 }
-/* line 2971, less/main.scss */
+/* line 3069, less/main.scss */
 .advertise-creator h3 {
   color: #39ac4f;
   margin: 10px 0 5px 0;
 }
-/* line 2976, less/main.scss */
+/* line 3074, less/main.scss */
 .advertise-creator .row {
   margin-bottom: 20px;
   margin-top: 10px;
 }
-/* line 2980, less/main.scss */
+/* line 3078, less/main.scss */
 .advertise-creator .row label {
   font-size: 1em;
 }
-/* line 2984, less/main.scss */
+/* line 3082, less/main.scss */
 .advertise-creator .row .infotext {
   font-size: 0.9em;
   color: #888888;
   line-height: 1.2;
   margin: 5px 0 10px 0;
 }
-/* line 2991, less/main.scss */
+/* line 3089, less/main.scss */
 .advertise-creator .row .input-wrapper {
   padding-right: 50px;
   position: relative;
 }
-/* line 2995, less/main.scss */
+/* line 3093, less/main.scss */
 .advertise-creator .row .input-wrapper input, .advertise-creator .row .input-wrapper textarea, .advertise-creator .row .input-wrapper select, .advertise-creator .row .input-wrapper .select-list {
   color: #39ac4f;
   position: relative;
 }
-/* line 2999, less/main.scss */
+/* line 3097, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper, .advertise-creator .row .input-wrapper textarea + .form-helper, .advertise-creator .row .input-wrapper select + .form-helper, .advertise-creator .row .input-wrapper .select-list + .form-helper {
   position: absolute;
   right: 15px;
@@ -3310,7 +3407,7 @@ ul.pagination li a {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 3008, less/main.scss */
+/* line 3106, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper:before, .advertise-creator .row .input-wrapper textarea + .form-helper:before, .advertise-creator .row .input-wrapper select + .form-helper:before, .advertise-creator .row .input-wrapper .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -3325,27 +3422,27 @@ ul.pagination li a {
   text-align: center;
   content: "";
 }
-/* line 3023, less/main.scss */
+/* line 3121, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper.invalid:before, .advertise-creator .row .input-wrapper textarea + .form-helper.invalid:before, .advertise-creator .row .input-wrapper select + .form-helper.invalid:before, .advertise-creator .row .input-wrapper .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 3028, less/main.scss */
+/* line 3126, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper.valid:before, .advertise-creator .row .input-wrapper textarea + .form-helper.valid:before, .advertise-creator .row .input-wrapper select + .form-helper.valid:before, .advertise-creator .row .input-wrapper .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 3034, less/main.scss */
+/* line 3132, less/main.scss */
 .advertise-creator .row .input-wrapper input.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 3038, less/main.scss */
+/* line 3136, less/main.scss */
 .advertise-creator .row .input-wrapper input.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-touched + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 3048, less/main.scss */
+/* line 3146, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup {
   background: #efefef;
   border: 1px solid #e3e3e3;
@@ -3353,12 +3450,12 @@ ul.pagination li a {
   border-radius: 4px;
   padding: 5px 10px;
 }
-/* line 3055, less/main.scss */
+/* line 3153, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup input, .advertise-creator .tematic-list-params .listgroup select {
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 3060, less/main.scss */
+/* line 3158, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-remover {
   background: #f44e5e;
   color: white;
@@ -3370,7 +3467,7 @@ ul.pagination li a {
   line-height: 20px;
   margin: 0 auto;
 }
-/* line 3072, less/main.scss */
+/* line 3170, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-index {
   background: #39ac4f;
   color: white;
@@ -3383,53 +3480,53 @@ ul.pagination li a {
   font-size: 20px;
 }
 
-/* line 3087, less/main.scss */
+/* line 3185, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 3091, less/main.scss */
+/* line 3189, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 3095, less/main.scss */
+/* line 3193, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 3100, less/main.scss */
+/* line 3198, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 3103, less/main.scss */
+/* line 3201, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 3106, less/main.scss */
+/* line 3204, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 3111, less/main.scss */
+/* line 3209, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 3114, less/main.scss */
+/* line 3212, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 3117, less/main.scss */
+/* line 3215, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

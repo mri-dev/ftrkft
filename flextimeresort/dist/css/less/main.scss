@@ -1713,6 +1713,104 @@ body.ugyfelkapu-view{
 
   .allas-list{
     padding: 25px 0;
+
+    .header {
+      margin: 0 -10px 15px -10px;
+
+      h2 {
+        font-weight: bold;
+        color: black;
+        font-size: 1.8em;
+      }
+    }
+
+    .allasok {
+      .allas {
+        background: #f6f6f6;
+        padding: 4px 10px;
+        border: 1px solid #eaeaea;
+        margin: 5px 0;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+
+        .datarow{
+          font-size: 1.2em;
+          margin-bottom: 5px;
+
+          & > span {
+            margin-right: 15px;
+          }
+
+          .type{
+            font-weight: bold;
+            color: $color-primary-light;
+          }
+          .cat {
+            font-weight: bold;
+            color: $color-primary-light;
+          }
+
+          .city{
+            color: $color-red;
+          }
+          .edit{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+
+            a{
+              font-size: 12px;
+              line-height: 1;
+              padding: 5px;
+              border-radius: 5px;
+              display: block;
+              color: #cecece;
+
+              &:hover{
+                background: $color-primary-light;
+                color: white;
+              }
+            }
+          }
+        }
+
+        .shortdesc{
+          font-size: 1.25em;
+          font-weight: 300;
+          line-height: 1.4;
+          color: #333333;
+        }
+
+        .afterinfo{
+          margin-top: 5px;
+          font-size: 0.8em;
+
+          & > span {
+            margin-right: 10px;
+          }
+
+          .time {
+            color: #adadad;
+          }
+        }
+
+        .status {
+          .status-aktiv{
+             background: $color-primary-light;
+             color: white;
+             padding: 2px 5px;
+             border-radius: 3px;
+          }
+          .status-inaktiv{
+             background: orange;
+             color: white;
+             padding: 2px 5px;
+             border-radius: 3px;
+          }
+        }
+      }
+    }
   }
 }
 

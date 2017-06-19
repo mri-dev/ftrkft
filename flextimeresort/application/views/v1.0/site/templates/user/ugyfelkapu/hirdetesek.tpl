@@ -15,16 +15,24 @@
     </div>
     <div class="allasok">
       <div class="allas" ng-repeat="allas in allasok">
-        <div class="edit">
-          <a href="/ugyfelkapu/hirdetesek/mod/[[allas.ID]]" data-toggle="tooltip" title="{lang text='Hirdetés szerkesztése'}"><i class="fa fa-pencil"></i></a>
-        </div>
         <div class="datarow">
-          <span class="type" data-toggle="tooltip" title="{lang text='Hirdetés típusa'}">[[allas.tipus_name]]</span>
-          <span class="cat" data-toggle="tooltip" title="{lang text='Hirdetés kategóriája'}">[[allas.cat_name]]</span>
-          <span class="city">[[allas.city]]</span>
+          <span class="type" ng-show="allas.tipus_name" data-toggle="tooltip" title="{lang text='Hirdetés típusa'}"><i class="fa fa-database"></i>  [[allas.tipus_name]]</span>
+          <span class="cat" ng-show="allas.cat_name" data-toggle="tooltip" title="{lang text='Hirdetés kategóriája'}"><i class="fa fa-user"></i> [[allas.cat_name]]</span>
+          <span class="city"><i class="fa fa-map-marker"></i> [[allas.city]]</span>
+          <div class="edit">
+            <a href="/ugyfelkapu/hirdetesek/mod/[[allas.ID]]" data-toggle="tooltip" title="{lang text='Hirdetés szerkesztése'}"><i class="fa fa-pencil"></i></a>
+          </div>
+          <div class="clearfix"></div>
         </div>
         <div class="shortdesc">
           [[allas.short_desc]]
+        </div>
+        <div class="afterinfo">
+          <span class="status">
+            <span class="status-aktiv" ng-show="(allas.active == '1')?true:false"><i class="fa fa-eye"></i> {lang text="Aktív"}</span>
+            <span class="status-inaktiv" ng-show="(allas.active == '0')?true:false"><i class="fa fa-eye-slash"></i> {lang text="Inaktív"}</span>
+          </span>
+          <span class="time" data-toggle="tooltip" title="{lang text='Hirdetés közzététel ideje'}"><i class="fa fa-clock-o"></i> [[allas.publish_after]]</span>
         </div>
       </div>
     </div>
