@@ -417,6 +417,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
   $scope.creator_in_progress = false;
   $scope.creator_saved = false;
   $scope.creator_created = false;
+  $scope.creator_error_msg = false;
 
   $scope.short_desc_length = 150;
   $scope.keywords_length = 100;
@@ -496,7 +497,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
   }
 
   $scope.prepareEditAdToView = function(){
-    $scope.selectListValue('hirdetes_tipus', parseInt($scope.loaded_allas.hirdetes_tipusok), $scope.loaded_allas.tipus_name);
+    $scope.selectListValue('hirdetes_tipus', parseInt($scope.loaded_allas.hirdetes_tipus), $scope.loaded_allas.tipus_name);
     $scope.selectListValue('hirdetes_kategoria', parseInt($scope.loaded_allas.hirdetes_kategoria), $scope.loaded_allas.cat_name);
     $scope.selectListValue('megye_id', parseInt($scope.loaded_allas.megye_id), $scope.loaded_allas.megye_name);
     $scope.allas.pre_content = $scope.loaded_allas.pre_content;
@@ -506,6 +507,31 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
     $scope.allas.keywords = $scope.loaded_allas.keywords;
     $scope.keywords_length = 100 - $scope.loaded_allas.keywords.length;
+    $scope.allas.author_name = $scope.loaded_allas.author_name;
+    $scope.allas.author_phone = $scope.loaded_allas.author_phone;
+    $scope.allas.author_email = $scope.loaded_allas.author_email;
+
+    // Tematikus lista
+    angular.forEach($scope.loaded_allas.term_list, function(v,k){
+      // v.term_ids
+      var selectedValues = [];
+      angular.forEach(v.term_ids, function(k){
+        selectedValues.push(k);
+      });
+      // v.value_texts
+      var selectedNames = [];
+      angular.forEach(v.value_texts, function(k){
+        selectedNames.push(k);
+      });
+
+      $scope.tematics.push({
+        title: v.title,
+        value: v.slug,
+        listToggled: false,
+        selectedValues: selectedValues,
+        selectedNames: selectedNames
+      });
+    });
 
     $scope.editing_data_loaded = true;
   }
@@ -570,24 +596,33 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
 
   $scope.create = function(){
     $scope.creator_in_progress = true;
+    $scope.allas.tematic_list = $scope.tematics;
+
     console.log($scope.allas);
     console.log($scope.tematics);
 
-    // Adatok mentése
+    // Adatok mentése, látrehozása
     $http({
       method: 'POST',
       url: '/ajax/data',
       params: {
-        type: 'adscreator'
+        type: 'adscreator',
+        data: $scope.allas,
+        id: $scope.settings.edit_ad_id,
+        by: 'me'
       }
     }).then(function successCallback(response) {
       var d = response.data;
       $scope.creator_in_progress = false;
 
-      if ($scope.settings.edit_ad_id == 0) {
-        $scope.creator_created = true;
+      if(d.success) {
+        if ($scope.settings.edit_ad_id == 0) {
+          $scope.creator_created = true;
+        } else {
+          $scope.creator_saved = true;
+        }
       } else {
-        $scope.creator_saved = true;
+        $scope.creator_error_msg = d.msg;
       }
 
       console.log(d);

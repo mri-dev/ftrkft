@@ -32,6 +32,16 @@ body{
   cursor: pointer;
 }
 
+.alert{
+  line-height: 1.4;
+  font-size: 1.1em;
+  i{
+    margin-right: 10px;
+    margin-bottom: 4px;
+    font-size: 22px;
+  }
+}
+
 .alert.alert-error {
   color: #A53734;
   background: #ffa8a8;
@@ -409,7 +419,7 @@ body.resetpassword .content-holder{
 }
 
 section.content-header{
-  background-color: rgba(255, 255, 255, 0.41);
+  background-color: rgba(255, 255, 255, 0.4);
   padding: 0;
 }
 

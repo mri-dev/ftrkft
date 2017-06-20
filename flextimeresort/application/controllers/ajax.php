@@ -158,15 +158,37 @@ class ajax extends Controller  {
 					$data['msg'] = $errmsg;
 				break;
 				case 'adscreator':
+					$id = ((int)$params['id'] == 0) ? false : (int)$params['id'];
 					$user = $params['userid'];
+					$by = $params['by'];
 					$success = true;
 					$errmsg = false;
-					$datas = array();
+					$datas = json_decode($params['data'], true);
 					$arg = array();
+
+					if ($by == 'me') {
+						$userid = $this->ME->getID();
+					} else if(!empty($by)) {
+						$userid = (int)$by;
+					}
 
 					$allasok = new Allasok(array(
 						'controller' => $this
 					));
+
+					// Adatok ellenőrzése mentés esetén
+					if ($id) {
+						$allas_adat = $allasok->load($id)->get();
+						$allas_author_id = (int)$allas_adat['author_id'];
+						if($by == 'me' && $allas_author_id != $userid){
+							$success = false;
+							$errmsg = $this->lang('Ön nem jogosult a hirdetés módosítására.');
+						}
+					}
+
+					if ($success) {
+						$allasok->creator($id, $datas);
+					}
 
 					$data['params'] = $params;
 					$data['data'] = $datas;

@@ -7,6 +7,8 @@ class Allasok
 {
   const DBTABLE = 'allasok';
   const DB_META = 'allasok_meta';
+  const DB_TERM_RELATIONS = 'allasok_x_terms';
+  const DB_TERM_RELATIONS_ITEM = 'allasok_x_terms_item';
 
   public $db = null;
   private $controller = null;
@@ -40,6 +42,114 @@ class Allasok
     $this->getTree( $arg )->walk();
 
     return $this;
+  }
+
+  public function creator( $id = false, $data = array() )
+  {
+    if ( !$id ) {
+      // Létrehozás
+
+    } else {
+      // Update
+      $updates = array();
+      $metas = array();
+
+      $updates['keywords'] = $data['keywords'];
+      $updates['megye_id'] = (int)$data['megye_id'];
+      $updates['city'] = $data['city'];
+      $updates['pre_content'] = $data['pre_content'];
+      $updates['content'] = $data['content'];
+      $updates['author_name'] = (isset($data['author_name']) && !empty($data['author_name'])) ? $data['author_name']:null;
+      $updates['author_phone'] = (isset($data['author_phone']) && !empty($data['author_phone'])) ? $data['author_phone']:null;
+      $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
+      $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
+
+      // Metas
+      $metas['hirdetes_kategoria'] = array(
+        'value' => (int)$data['hirdetes_kategoria'],
+        'is_term_list' => 0
+      );
+      $metas['hirdetes_tipus'] = array(
+        'value' => (int)$data['hirdetes_tipus'],
+        'is_term_list' => 0
+      );
+
+      if(!empty($updates)){
+        $this->db->update(
+          self::DBTABLE,
+          $updates,
+          sprintf("ID = %d", $id)
+        );
+      }
+
+      $this->rebuildMetas($id, $metas);
+      $this->rebuildTermRelations($id, $data['tematic_list']);
+    }
+  }
+
+  public function rebuildTermRelations( $id, $terms = array() )
+  {
+    $insert = array();
+
+    if (!empty($terms)) {
+      $this->db->query("DELETE FROM ".self::DB_TERM_RELATIONS." WHERE allas_id = {$id};");
+      $this->db->query("DELETE FROM ".self::DB_TERM_RELATIONS_ITEM." WHERE allas_id = {$id};");
+    }
+
+    $gindex = 0;
+    foreach ((array)$terms as $term) {
+      $term_id = $this->db->query("SELECT ID FROM ".\PortalManager\Categories::DB_LIST." WHERE termkey = '{$term[value]}'")->fetchColumn();
+
+      $last_insert_xtermid = $this->db->insert(
+        self::DB_TERM_RELATIONS,
+        array(
+          'allas_id' => $id,
+          'term_id' => $term_id,
+          'title' => ($term['title']) ? $term['title'] : null,
+          'sortindex' => $gindex
+        )
+      );
+
+      $title = ($term['title']) ? $term['title'] : null;
+
+      $index = 0;
+      foreach ((array)$term['selectedValues'] as $seli) {
+        $insert[] = array($last_insert_xtermid, (int)$seli, $id, $index);
+        $index++;
+      }
+      $gindex++;
+    }
+
+    if(!empty($insert)) {
+      $this->db->multi_insert(
+        self::DB_TERM_RELATIONS_ITEM,
+        array('allas_x_term_id', 'term_id', 'allas_id', 'sortindex'),
+        $insert,
+        array('debug' => false)
+      );
+    }
+  }
+
+  private function rebuildMetas($id, $metas = array())
+  {
+    $insert = array();
+
+    if (!empty($metas)) {
+      $this->db->query("DELETE FROM ".self::DB_META." WHERE allas_id = {$id};");
+    }
+
+    foreach ((array)$metas as $kulcs => $meta) {
+      $insert[] = array($kulcs, $meta['value'], $meta['is_term_list'], $id);
+    }
+
+    if(!empty($insert)) {
+      $this->db->multi_insert(
+        self::DB_META,
+        array('kulcs', 'value', 'is_term_list', 'allas_id'),
+        $insert,
+        array('debug' => false)
+      );
+    }
   }
 
   public function getTree( $arg = array() )
@@ -84,6 +194,7 @@ class Allasok
 		foreach ( $top_cat_data as $top_cat ) {
 			$this->tree_items++;
       $top_cat['metas'] = $this->loadMetas($top_cat['ID']);
+      $top_cat['term_list'] = $this->loadTermList($top_cat['ID']);
 
       if($top_cat['metas'])
       foreach ($top_cat['metas'] as $meta) {
@@ -98,6 +209,43 @@ class Allasok
 
 		return $this;
 	}
+
+  private function loadTermList( $adid )
+  {
+    $data = array();
+
+    $terms = $this->db->query("
+    SELECT
+      tr.title,
+      tr.term_id,
+      t.term_id as value_id,
+      term.neve as value_name,
+      term.langkey as value_langkey_name,
+      term.groupkey as slug
+    FROM ".self::DB_TERM_RELATIONS_ITEM." as t
+    LEFT OUTER JOIN ".self::DB_TERM_RELATIONS." as tr ON tr.ID = t.allas_x_term_id
+    LEFT OUTER JOIN ".\PortalManager\Categories::DBTERMS." as term ON term.id = t.term_id
+    WHERE 1=1 and
+    t.allas_id = {$adid}
+    ORDER BY tr.sortindex ASC, t.sortindex ASC
+    ")->fetchAll(\PDO::FETCH_ASSOC);
+
+    foreach ($terms as $term) {
+      $tid = (int)$term['term_id'];
+
+      $data[$tid]['value_texts'][] = $term['value_name'];
+      $data[$tid]['term_ids'][] = (int)$term['value_id'];
+      $data[$tid]['ID'] = $tid;
+      $data[$tid]['title'] = $term['title'];
+      $data[$tid]['slug'] = $term['slug'];
+      $data[$tid]['data'][] = array(
+        'ID' => (int)$term['value_id'],
+        'name' => $term['value_name']
+      );
+    }
+
+    return $data;
+  }
 
   private function loadMetas( $adid )
   {
@@ -174,7 +322,7 @@ class Allasok
 
   public function getTypeID()
   {
-    return $this->current_category['hirdetes_tipusok'];
+    return $this->current_category['hirdetes_tipus'];
   }
 
   public function getMegyeID()
