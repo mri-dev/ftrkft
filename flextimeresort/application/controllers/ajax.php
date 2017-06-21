@@ -147,7 +147,8 @@ class ajax extends Controller  {
 					$arg = array();
 
 					$allasok = new Allasok(array(
-						'controller' => $this
+						'controller' => $this,
+						'admin' => true
 					));
 
 					$datas = $allasok->load((int)$params['adid'])->get();
@@ -173,7 +174,8 @@ class ajax extends Controller  {
 					}
 
 					$allasok = new Allasok(array(
-						'controller' => $this
+						'controller' => $this,
+						'admin' => true
 					));
 
 					// Adatok ellenőrzése mentés esetén
@@ -209,7 +211,8 @@ class ajax extends Controller  {
 					}
 
 					$allasok = new Allasok(array(
-						'controller' => $this
+						'controller' => $this,
+						'admin' => true
 					));
 					$allasok->getTree($arg);
 

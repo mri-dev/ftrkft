@@ -10,7 +10,7 @@
                 <img src="{$smarty.const.IMG}icons/dark/user_u_box.svg" alt="{lang text='Álláshirdetés típusa'}">
               </div>
               <div class="text">
-                Teljes munkaidős munka
+                {$allasok->get('tipus_name')}
               </div>
               <div class="clearfix"></div>
             </div>
@@ -19,7 +19,7 @@
                 <img src="{$smarty.const.IMG}icons/dark/user.svg" alt="{lang text='Álláshirdetés kategória'}">
               </div>
               <div class="text">
-                25 év alattiaknak
+                {$allasok->get('cat_name')}
               </div>
               <div class="clearfix"></div>
             </div>
@@ -46,7 +46,7 @@
               <div class="ico">
                 <img src="{$smarty.const.IMG}icons/white/marker.svg" alt="{lang text='Munkavégzés helye'}">
               </div>
-              {$allasok->getCity()}
+              <span class="city">{$allasok->getCity()}</span>
             </div>
             <div class="button">
               <a href="{$allasok->getURL()}">{lang text="Érdekel"}</a>

@@ -682,7 +682,7 @@ input[type=checkbox].ccb:checked + label:before {
         }
 
         &.inp-order{
-          .order-select-container{
+          .order-select-container {
             position: relative;
             .ico-prefix{
               width: 44px;
@@ -2399,7 +2399,7 @@ body.ugyfelkapu-view{
   width: 100%;
 }
 
-ul.pagination{
+ul.pagination {
   font-size: 1em;
   margin: 10px 0;
   justify-content: center;
@@ -2409,6 +2409,44 @@ ul.pagination{
     a{
       font-size: 1em;
       line-height: 1;
+    }
+  }
+
+  &.circle_rounded {
+    li {
+      padding: 5px;
+
+      a {
+        border-radius: 30px !important;
+        background: #e1e1e1;
+        color: black;
+        line-height: 1;
+        border: none;
+        font-size: 0.8em;
+      }
+
+      &.fake-item{
+        a {
+          background: transparent;
+        }
+      }
+
+      &.item-first,
+      &.item-last,
+      &.item-next,
+      &.item-prev {
+        a{
+          background: #f1f1f1;
+          color: #888;
+        }
+      }
+
+      &.active {
+        a {
+          background: $color-red;
+          color: white;
+        }
+      }
     }
   }
 }
@@ -3015,22 +3053,29 @@ ul.pagination{
 
             & > div {
               padding: 0 10px;
-              flex-basis: 40%;
               height: 40px;
               line-height: 40px;
-
+              font-size: 1em;
 
               .ico{
                 height: 100%;
                 position: relative;
                 float: left;
                 width: 20px;
-                margin-right: 8px;
+                margin-right: 5px;
                 img {
-                  max-width: 20px;
+                  max-width: 16px;
                   margin-top: -4px;
                 }
               }
+            }
+
+            & > .published{
+              flex-basis: 30%;
+            }
+
+            & > .where{
+              flex-basis: 50%;
             }
 
             & > .button{
@@ -3190,6 +3235,82 @@ ul.pagination{
         font-size: 20px;
       }
     }
+  }
+}
+
+.allasok-view{
+  .header{
+    padding: 15px 0;
+    background: $color-primary-light;
+    color: white;
+
+    h1 {
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+
+  .allasok-list-top{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0 5px 0;
+    align-items: center;
+
+    .pages-info {
+      flex-basis: 75%;
+      font-size: 1.2em;
+      color: black;
+
+      .current {
+        font-weight: bold;
+      }
+    }
+    .order {
+      flex-basis: 25%;
+      text-align: right;
+
+      label, select {
+        font-size: 0.85em;
+      }
+
+      select {
+        padding: 5px;
+        height: 32px;
+      }
+    }
+  }
+}
+
+.order-select {
+  position: relative;
+  border: 2px solid #eaeaea;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #ffffff;
+
+  select {
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+  }
+
+  &:after{
+    content:"\f107";
+    position: absolute;
+    font-family: 'FontAwesome';
+    background: #f1f1f1;
+    right: 0;
+    top: 50%;
+    z-index: 2;
+    font-size: 20px;
+    color: black;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    pointer-events: none;
+    padding: 0 8px;
+    height: 32px;
   }
 }
 

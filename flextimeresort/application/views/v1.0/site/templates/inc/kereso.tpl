@@ -1,7 +1,7 @@
 <form class="" id="searcher" action="{$settings.allas_search_slug}" method="get">
   <div class="input-holder">
     <div class="inp inp-keyword">
-      <input type="text" name="s" class="form-control" placeholder="{lang text='KULCSSZO_SZERINT'}" value="">
+      <input type="text" name="s" class="form-control" placeholder="{lang text='KULCSSZO_SZERINT'}" value="{$smarty.get.s}">
     </div>
     <div class="inp inp-munkakor">
       <div class="multiselect-list">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="inp inp-telepules">
-      <input type="text" id="search_place" name="c" class="form-control" placeholder="{lang text='MINDEN_TELEPULES'}" value="">
+      <input type="text" id="search_place" name="c" class="form-control" placeholder="{lang text='MINDEN_TELEPULES'}" value="{$smarty.get.c}">
     </div>
     <div class="inp inp-tipus">
       <div class="multiselect-list">

@@ -504,9 +504,13 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.content = $scope.loaded_allas.content;
     $scope.allas.city = $scope.loaded_allas.city;
     $scope.allas.short_desc = $scope.loaded_allas.short_desc;
-    $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
+    if ($scope.loaded_allas.short_desc) {
+      $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
+    }
     $scope.allas.keywords = $scope.loaded_allas.keywords;
-    $scope.keywords_length = 100 - $scope.loaded_allas.keywords.length;
+    if ($scope.loaded_allas.keywords) {
+      $scope.keywords_length = 100 - $scope.loaded_allas.keywords.length;
+    }
     $scope.allas.author_name = $scope.loaded_allas.author_name;
     $scope.allas.author_phone = $scope.loaded_allas.author_phone;
     $scope.allas.author_email = $scope.loaded_allas.author_email;

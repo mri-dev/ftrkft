@@ -16,6 +16,9 @@ class Allasok
   private $settings = array();
   private $admin = false;
 
+	public $current_page = 1;
+  public $total_items = 0;
+  public $total_pages = 1;
   public $tree = false;
 	private $current_category = false;
 	private $tree_steped_item = false;
@@ -31,6 +34,10 @@ class Allasok
 			$this->settings = $arg['controller']->settings;
 			$this->smarty = $arg['controller']->smarty;
 		}
+
+    if(isset($arg['admin']) && $arg['admin'] === true ){
+      $this->admin = true;
+    }
 
 		return $this;
   }
@@ -155,9 +162,10 @@ class Allasok
   public function getTree( $arg = array() )
 	{
 		$tree = array();
+    $filters = $arg['filters'];
 
 		$qry = "
-			SELECT
+			SELECT SQL_CALC_FOUND_ROWS
         a.*,
         u.name as oauthor_name,
         u.email as oauthor_email,
@@ -165,6 +173,10 @@ class Allasok
 			FROM ".self::DBTABLE." as a
       LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
 			WHERE 1=1";
+
+    if ( !$this->admin ) {
+        $qry .= " and a.active = 1";
+    }
 
     if ( $this->edit_id !== false ) {
         $qry .= " and a.ID = ".$this->edit_id;
@@ -178,16 +190,74 @@ class Allasok
       $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
     }
 
+    // Filterek
+    if (isset($filters) && !empty($filters)) {
+      // Város
+      if ($filters['city']) {
+        $city = \Helper::makeSafeURL(trim($filters['city']));
+        $qry .= " and a.city_slug = '$city'";
+      }
+
+      // Megye
+      if ($filters['megye']) {
+        if (is_array($filters['megye'])) {
+          $megye = $filters['megye'];
+          $qry .= " and a.megye_id IN (".implode(",", $megye).")";
+        } else {
+          $megye = $filters['megye'];
+          $qry .= " and a.megye_id = $megye";
+        }
+
+      }
+
+      // Keresés
+      if ($filters['search']) {
+        $keywords = explode(" ", trim($filters['search']));
+        $search_qry = '';
+
+        foreach ((array)$keywords as $key) {
+          $key = trim($key);
+          $search_qry .= "(a.keywords LIKE '%".$key."%' or a.short_desc LIKE '%".$key."%') or ";
+        }
+
+        $search_qry = rtrim($search_qry, ' or ');
+
+        $qry .= ' and ('.$search_qry.')';
+      }
+
+      // Meták
+      if (isset($filters['meta'])) {
+        foreach ((array)$filters['meta'] as $key => $value) {
+          if (is_array($value)) {
+            $qry .= " and (SELECT value FROM ".self::DB_META." WHERE allas_id = a.ID and kulcs = '{$key}') IN(".implode(",", $value).")";
+          } else {
+            $qry .= " and (SELECT value FROM ".self::DB_META." WHERE allas_id = a.ID and kulcs = '{$key}') IN(".(int)$value.")";
+          }
+        }
+      }
+    }
+
+    if (isset($arg['active_in']) && is_array($arg['active_in'])) {
+      $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
+    }
+
 		if( !$this->o['orderby'] ) {
-			$qry .= "
-				ORDER BY 		a.publish_after DESC;";
+			$qry .= " ORDER BY a.publish_after DESC";
 		} else {
-			$qry .= "
-				ORDER BY 		a.".$this->o['orderby']." ".$this->o['order'].";";
+			$qry .= " ORDER BY a.".$this->o['orderby']." ".$this->o['order'];
 		}
+
+    // Limit
+		$limit = $this->getLimit($arg);
+		$qry .= " LIMIT ".$limit[0].", ".$limit[1];
+
+    //echo $qry;
 
 		$top_cat_qry 	= $this->db->query($qry);
 		$top_cat_data 	= $top_cat_qry->fetchAll(\PDO::FETCH_ASSOC);
+
+    $this->total_items 	= $this->db->query("SELECT FOUND_ROWS();")->fetchColumn();
+		$this->total_pages 	= ceil( $this->total_items / $limit[1] );
 
 		if( $top_cat_qry->rowCount() == 0 ) return $this;
 
@@ -201,6 +271,10 @@ class Allasok
         $top_cat[$meta['kulcs']] = $meta['value'];
       }
 
+      $top_cat['tipus_name'] = $this->getTermName($top_cat['hirdetes_tipus']);
+      $top_cat['cat_name'] = $this->getTermName($top_cat['hirdetes_kategoria']);
+      $top_cat['megye_name'] = $this->getTermName($top_cat['megye_id']);
+
 			$this->tree_steped_item[] = $top_cat;
 			$tree[] = $top_cat;
 		}
@@ -208,6 +282,31 @@ class Allasok
 		$this->tree = $tree;
 
 		return $this;
+	}
+
+  private function getLimit( $arg = array() )
+	{
+		$limit = array( 0, 25 );
+
+		if( isset($arg['limit']) ) {
+			$limit[1] = $arg['limit'];
+		}
+
+		$page = $arg['page'];
+
+		if( isset($page) && $page > 0 ) {
+
+		} else {
+			$page = 1;
+		}
+
+		$limit[0] = $limit[1] * $page - $limit[1];
+
+		$this->limit[0] = $limit[0] + 1;
+		$this->limit[1] = $limit[0] + $limit[1];
+		$this->current_page = $page;
+
+		return $limit;
 	}
 
   private function loadTermList( $adid )
@@ -294,7 +393,7 @@ class Allasok
     return $value;
   }
 
-  private function prepareOutput()
+  public function prepareOutput()
   {
     $this->current_category['tipus_name'] = $this->getTermName($this->getTypeID());
     $this->current_category['cat_name'] = $this->getTermName($this->getCatID());
@@ -343,6 +442,11 @@ class Allasok
   public function getPublishDate()
   {
     return date('Y. m. d.', strtotime($this->current_category['publish_after']));
+  }
+
+  public function getMegye()
+  {
+    return $this->current_category['megye_name'];
   }
 
   public function getCity()
