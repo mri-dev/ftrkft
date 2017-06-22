@@ -126,11 +126,9 @@
        var e = $(this);
        var key = e.data('key');
 
-
        var data_parent = $(this).data('parent');
        var val = $(this).val();
        var ch = $(this).is(':checked');
-
 
        if (!ch) {
          $('.multiselect-list input[type=checkbox][data-key=\''+key+'\'][data-parent='+val+']').parent().removeClass('show');
@@ -170,28 +168,28 @@
        progressBindChange(e, perc);
      }
 
-     function collect_checkbox(key, loader)
-      {
-        var arr = [];
-        var str = [];
-        var seln = 0;
-
-        jQuery('#'+key+' input[type=checkbox]').each(function(e,i)
-        {
-          if(jQuery(this).is(':checked') && !jQuery(this).is(':disabled')){
-            seln++;
-            arr.push(jQuery(this).val());
-            str.push(jQuery(this).next('label').text());
-          }
-        });
-
-        if(seln <= 3 ){
-          jQuery('input[tglwatcher=\''+key+'\']').val(str.join(", ")).attr('title', str.join(", "));
-        } else {
-          jQuery('input[tglwatcher=\''+key+'\']').val(seln + " db kiválasztva").attr('title', str.join(", "));
-        }
-
-        return arr.join(",");
-      }
   })
+  function collect_checkbox(key, loader)
+   {
+     var arr = [];
+     var str = [];
+     var seln = 0;
+
+     jQuery('#'+key+' input[type=checkbox]').each(function(e,i)
+     {
+       if(jQuery(this).is(':checked') && !jQuery(this).is(':disabled')){
+         seln++;
+         arr.push(jQuery(this).val());
+         str.push(jQuery(this).next('label').text());
+       }
+     });
+
+     if(seln <= 3 ){
+       jQuery('input[tglwatcher=\''+key+'\']').val(str.join(", ")).attr('title', str.join(", "));
+     } else {
+       jQuery('input[tglwatcher=\''+key+'\']').val(seln + " db kiválasztva").attr('title', str.join(", "));
+     }
+
+     return arr.join(",");
+   }
 </script>

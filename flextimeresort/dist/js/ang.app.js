@@ -504,6 +504,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.content = $scope.loaded_allas.content;
     $scope.allas.city = $scope.loaded_allas.city;
     $scope.allas.short_desc = $scope.loaded_allas.short_desc;
+    $scope.allas.active = ($scope.loaded_allas.active == '1') ? true : false;
     if ($scope.loaded_allas.short_desc) {
       $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
     }

@@ -70,6 +70,7 @@ class Allasok
       $updates['author_phone'] = (isset($data['author_phone']) && !empty($data['author_phone'])) ? $data['author_phone']:null;
       $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
+      $updates['active'] = ($data['active']) ? 1 : 0;
 
       // Metas
       $metas['hirdetes_kategoria'] = array(
@@ -228,6 +229,7 @@ class Allasok
       // Meták
       if (isset($filters['meta'])) {
         foreach ((array)$filters['meta'] as $key => $value) {
+          if(!$value) continue;
           if (is_array($value)) {
             $qry .= " and (SELECT value FROM ".self::DB_META." WHERE allas_id = a.ID and kulcs = '{$key}') IN(".implode(",", $value).")";
           } else {

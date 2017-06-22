@@ -6,6 +6,16 @@
     <i class="fa fa-spin fa-spinner"></i> {lang text="Ajánlat adatainak betöltése folyamatban."}
   </div>
   <div ng-show="( (settings.edit_ad_id == 0 && dataloaded) || (dataloaded && settings.edit_ad_id != 0 && editing_data_loaded))?true:false">
+
+    <div ng-show="(settings.edit_ad_id != 0)">
+      <h3>{lang text="Művelet végrehajtások"}</h3>
+      <div class="row">
+        <div class="col-md-4">
+          <input type="checkbox" ng-model="allas.active" ng-checked="allas.active" class="ccb" id="aktiv"><label for="aktiv">{lang text="Aktív"}</label>
+        </div>
+      </div>
+    </div>
+
     <h3>{lang text="Hirdetés alapadatok"}</h3>
 
     <div class="row">

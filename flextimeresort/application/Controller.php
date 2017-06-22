@@ -25,9 +25,9 @@ class Controller
 	public $ME = null;
 
   function __construct($arg = array()){
-        Session::init();
-        Helper::setMashineID();
-        $this->gets = Helper::GET();
+    Session::init();
+    Helper::setMashineID();
+    $this->gets = Helper::GET();
 
 		if ( $arg['root'] ) { $this->subfolder = $arg['root'].'/'; }
 
@@ -92,16 +92,19 @@ class Controller
 		$cat_kategoria = new Categories(false, array('controller' => $this));
 		$cat_kategoria->getTree('hirdetes_kategoria');
 		$this->out( 'cat_kategoria', $cat_kategoria);
+		$this->out( 'selected_kategoria', ($_GET['k'] == '') ? array() : explode(",", $_GET['k']));
 
 		// Kereső típusok
 		$cat_tipus = new Categories(false, array('controller' => $this));
 		$cat_tipus->getTree('hirdetes_tipusok');
 		$this->out( 'cat_tipus', $cat_tipus);
+		$this->out( 'selected_tipus', ($_GET['t'] == '') ? array() : explode(",", $_GET['t']));
 
 		// Kereső munkakörök
 		$munkakorok = new Categories(false, array('controller' => $this));
 		$munkakorok->getTree('munkakorok');
 		$this->out( 'munkakorok', $munkakorok);
+		$this->out( 'selected_munkakor', ($_GET['mk'] == '') ? array() : explode(",", $_GET['mk']));
 
 
 		/**
