@@ -82,6 +82,15 @@ class Allasok
         'is_term_list' => 0
       );
 
+      if (count($data['munkakorok']['ids']) != 0) {
+        foreach ((array)$data['munkakorok']['ids'] as $mid) {
+          $metas['munkakorok'][] = array(
+            'value' => (int)$mid,
+            'is_term_list' => 0
+          );
+        }
+      }
+
       if(!empty($updates)){
         $this->db->update(
           self::DBTABLE,
@@ -147,7 +156,13 @@ class Allasok
     }
 
     foreach ((array)$metas as $kulcs => $meta) {
-      $insert[] = array($kulcs, $meta['value'], $meta['is_term_list'], $id);
+      if (is_array($meta[0])) {
+        foreach ((array)$meta as $m) {
+          $insert[] = array($kulcs, $m['value'], $m['is_term_list'], $id);
+        }
+      } else {
+        $insert[] = array($kulcs, $meta['value'], $meta['is_term_list'], $id);
+      }
     }
 
     if(!empty($insert)) {

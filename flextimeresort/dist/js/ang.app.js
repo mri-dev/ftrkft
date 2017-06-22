@@ -497,9 +497,9 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
   }
 
   $scope.prepareEditAdToView = function(){
-    $scope.selectListValue('hirdetes_tipus', parseInt($scope.loaded_allas.hirdetes_tipus), $scope.loaded_allas.tipus_name);
-    $scope.selectListValue('hirdetes_kategoria', parseInt($scope.loaded_allas.hirdetes_kategoria), $scope.loaded_allas.cat_name);
-    $scope.selectListValue('megye_id', parseInt($scope.loaded_allas.megye_id), $scope.loaded_allas.megye_name);
+    $scope.selectListValue('hirdetes_tipus', parseInt($scope.loaded_allas.hirdetes_tipus, false), $scope.loaded_allas.tipus_name);
+    $scope.selectListValue('hirdetes_kategoria', parseInt($scope.loaded_allas.hirdetes_kategoria, false), $scope.loaded_allas.cat_name);
+    $scope.selectListValue('megye_id', parseInt($scope.loaded_allas.megye_id, false), $scope.loaded_allas.megye_name);
     $scope.allas.pre_content = $scope.loaded_allas.pre_content;
     $scope.allas.content = $scope.loaded_allas.content;
     $scope.allas.city = $scope.loaded_allas.city;
@@ -536,6 +536,8 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         selectedValues: selectedValues,
         selectedNames: selectedNames
       });
+
+      console.log($scope.selectedlist);
     });
 
     $scope.editing_data_loaded = true;
@@ -590,23 +592,41 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     }
   }
 
-  $scope.selectListValue = function(key, id, text) {
-    $scope.selectedlist[key] = {
-      id: id,
-      text: text
-    };
-    $scope.allas[key] = id;
-    $scope.listtgl[key] = false;
+  $scope.selectListValue = function(key, id, text, multi) {
+    if (multi == false || typeof multi == 'undefined') {
+      $scope.selectedlist[key] = {
+        id: id,
+        text: text
+      };
+      $scope.allas[key] = id;
+      $scope.listtgl[key] = false;
+    } else {
+      if (typeof $scope.selectedlist[key] === 'undefined') {
+        $scope.selectedlist[key] = {};
+        $scope.selectedlist[key].ids = [];
+        $scope.selectedlist[key].texts = [];
+      }
+
+      if ($scope.selectedlist[key].ids.indexOf(id) == -1) {
+        $scope.selectedlist[key].ids.push(id);
+        $scope.selectedlist[key].texts.push(text);
+      }else{
+        var ix = $scope.selectedlist[key].ids.indexOf(id);
+        $scope.selectedlist[key].ids.splice(ix, 1);
+        $scope.selectedlist[key].texts.splice(ix, 1);
+      }
+    }
   }
 
   $scope.create = function(){
     $scope.creator_in_progress = true;
     $scope.allas.tematic_list = $scope.tematics;
+    $scope.allas.munkakorok = $scope.selectedlist.munkakorok;
 
     console.log($scope.allas);
-    console.log($scope.tematics);
 
     // Adatok mentése, látrehozása
+    /* */
     $http({
       method: 'POST',
       url: '/ajax/data',
@@ -632,6 +652,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
 
       console.log(d);
     }, function errorCallback(response) {});
+    /* */
   }
 }]);
 

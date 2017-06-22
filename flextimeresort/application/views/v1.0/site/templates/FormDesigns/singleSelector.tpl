@@ -8,7 +8,7 @@
   </div>
   <div class="single-selector-holder" ng-show="listtgl.{$key}">
     <div class="selector-wrapper">
-      <div ng-class="'selector-row '+(selectedlist.{$key}.id == item.id ? 'selected' : '')" ng-repeat="item in terms.{$list}" ng-click="selectListValue('{$key}', item.id, item.value)" data-selectkey="{$key}" ng-select="38" data-id="[[item.id]]">[[item.value]]</div>
+      <div ng-class="'selector-row '+(selectedlist.{$key}.id == item.id ? 'selected' : '')" ng-repeat="item in terms.{$list}" ng-click="selectListValue('{$key}', item.id, item.value, false)" data-selectkey="{$key}" ng-select="38" data-id="[[item.id]]">[[item.value]]</div>
     </div>
   </div>
 </div>

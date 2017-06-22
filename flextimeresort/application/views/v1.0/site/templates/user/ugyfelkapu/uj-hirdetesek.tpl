@@ -54,6 +54,16 @@
 
     <div class="row">
       <div class="col-md-12">
+        <label for="allas_megye">{lang text="Munkakörök"} *</label>
+        <div class="input-wrapper">
+          {$formdesigns->multiSelector('munkakorok', 'munkakor')}
+          <div class="form-helper"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
         <label for="allas_short_desc">{lang text="Rövid ismertető"} *</label>
         <div class="input-wrapper">
           <textarea id="allas_short_desc" maxlength="150" required="required" ng-model="allas.short_desc" ng-change="short_desc_length = 150-allas.short_desc.length" class="form-control"></textarea>
