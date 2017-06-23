@@ -114,6 +114,7 @@ class ajax extends Controller  {
 									'id' => (int)$cat->getID(),
 									'value' => $cat->getName(),
 									'slug' => $cat->getSlug(),
+									'deep' => (int)$cat->getDeep()
 								);
 							}
 						}
@@ -133,6 +134,7 @@ class ajax extends Controller  {
 									'id' => (int)$cat->getID(),
 									'value' => $cat->getName(),
 									'slug' => $cat->getSlug(),
+									'deep' => (int)$cat->getDeep()
 								);
 							}
 						}
@@ -189,9 +191,13 @@ class ajax extends Controller  {
 					}
 
 					if ($success) {
-						$allasok->creator($id, $datas);
+						$datas['author_id'] = $userid;
+						$creator_item_id = $allasok->creator($id, $datas);
 					}
-
+					$data['creating'] = ($id) ? false : true;
+					if (!$id) {
+						$data['created_item'] = $creator_item_id;
+					}
 					$data['params'] = $params;
 					$data['data'] = $datas;
 					$data['success'] = $success;

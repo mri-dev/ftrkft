@@ -71,7 +71,6 @@ class user extends Controller{
 			}
 
 			$subtitle = '';
-
 			$p = rtrim($_GET['p'], "/");
 
 			switch ($p) {
@@ -113,18 +112,20 @@ class user extends Controller{
 				break;
 				case 'hirdetesek':
 					$subtitle = $this->lang('Hirdetések');
-
 					if (!$this->ME->isMunkaado()) {
 						\Helper::reload('/ugyfelkapu');
 					}
-
 				break;
 				case 'uj-hirdetesek':
-					$subtitle = $this->lang('Új hirdetés létrehozása');
+					if (!empty($_GET['modid'])) {
+						$subtitle = $this->lang('Hirdetés szerkesztése');
+					} else {
+						$subtitle = $this->lang('Új hirdetés létrehozása');
+					}
 
 					$formdesign = new FormDesigns();
 					$this->out('formdesigns', $formdesign);
-					
+
 					if (!$this->ME->isMunkaado()) {
 						\Helper::reload('/ugyfelkapu');
 					}

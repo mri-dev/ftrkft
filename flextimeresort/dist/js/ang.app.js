@@ -148,8 +148,6 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   }, function errorCallback(response) {});
 
   $scope.save = function(next){
-    console.log($scope.step);
-    console.log($scope.form);
     $scope.saveinprogress = true;
 
     if ($scope.fileinput) {
@@ -179,7 +177,6 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         $scope.successfullsaved = true;
 
         var d = response.data;
-        console.log(d);
         if(next) {
           document.location = '/ugyfelkapu/profil/'+d.nextpage;
         } else {
@@ -351,7 +348,6 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
   }
 
   $scope.loadMessages = function(type){
-    console.log(type);
     // Üzenetek betöltése
     $http({
       method: 'POST',
@@ -472,7 +468,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         $scope.terms[v.termkey] = d.terms[v.termkey];
       });
       $scope.dataloaded = true;
-      //console.log(d);
+      console.log($scope.terms.munkakorok);
     }, function errorCallback(response) {});
 
     if ($scope.settings.edit_ad_id != 0) {
@@ -487,11 +483,11 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         }
       }).then(function successCallback(response) {
         var d = response.data;
+        console.log(d);
         if (d.success) {
           $scope.loaded_allas = d.data;
           $scope.prepareEditAdToView();
         }
-        console.log(d);
       }, function errorCallback(response) {});
     }
   }
@@ -515,6 +511,12 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.author_name = $scope.loaded_allas.author_name;
     $scope.allas.author_phone = $scope.loaded_allas.author_phone;
     $scope.allas.author_email = $scope.loaded_allas.author_email;
+    if($scope.loaded_allas.munkakorok){
+      $scope.allas.munkakorok = $scope.loaded_allas.munkakorok;
+      angular.forEach($scope.allas.munkakorok, function(v,k){
+        $scope.selectListValue('munkakorok', v.value, v.value_text, true);
+      });
+    }
 
     // Tematikus lista
     angular.forEach($scope.loaded_allas.term_list, function(v,k){
@@ -537,7 +539,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         selectedNames: selectedNames
       });
 
-      console.log($scope.selectedlist);
     });
 
     $scope.editing_data_loaded = true;
@@ -640,9 +641,16 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
       var d = response.data;
       $scope.creator_in_progress = false;
 
+      console.log(d);
+
       if(d.success) {
         if ($scope.settings.edit_ad_id == 0) {
           $scope.creator_created = true;
+          if(d.creating && d.created_item){
+            $timeout(function(){
+              document.location.href='/ugyfelkapu/hirdetesek/mod/'+d.created_item+'?justcreated=1';
+            }, 10000);
+          }
         } else {
           $scope.creator_saved = true;
         }
@@ -650,7 +658,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         $scope.creator_error_msg = d.msg;
       }
 
-      console.log(d);
     }, function errorCallback(response) {});
     /* */
   }
@@ -667,7 +674,6 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
   }
 
   $scope.loadData = function(){
-
     // Lista letöltése
     $http({
       method: 'POST',
@@ -686,8 +692,6 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
       } else {
         $scope.error = d.msg;
       }
-      $scope.allasok
-      console.log(d);
     }, function errorCallback(response) {});
   }
 }]);

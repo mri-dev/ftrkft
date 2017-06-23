@@ -56,6 +56,52 @@ class Allasok
     if ( !$id ) {
       // Létrehozás
 
+      $updates = array();
+      $metas = array();
+
+      $updates['author_id'] = $data['author_id'];
+      $updates['publish_after'] = (!isset($data['publish_now']) || $data['publish_now']) ? NOW : $data['publish_after'];
+
+      $updates['keywords'] = $data['keywords'];
+      $updates['megye_id'] = (int)$data['megye_id'];
+      $updates['city'] = $data['city'];
+      $updates['short_desc'] = strip_tags($data['short_desc']);
+      $updates['pre_content'] = $data['pre_content'];
+      $updates['content'] = $data['content'];
+      $updates['author_name'] = (isset($data['author_name']) && !empty($data['author_name'])) ? $data['author_name']:null;
+      $updates['author_phone'] = (isset($data['author_phone']) && !empty($data['author_phone'])) ? $data['author_phone']:null;
+      $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
+      $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
+      $updates['active'] = ($data['active']) ? 1 : 0;
+
+      // Metas
+      $metas['hirdetes_kategoria'] = array(
+        'value' => (int)$data['hirdetes_kategoria'],
+        'is_term_list' => 0
+      );
+      $metas['hirdetes_tipus'] = array(
+        'value' => (int)$data['hirdetes_tipus'],
+        'is_term_list' => 0
+      );
+
+      if (count($data['munkakorok']['ids']) != 0) {
+        foreach ((array)$data['munkakorok']['ids'] as $mid) {
+          $metas['munkakorok'][] = array(
+            'value' => (int)$mid,
+            'is_term_list' => 0
+          );
+        }
+      }
+
+      if(!empty($updates)){
+        $id = $this->db->insert(
+          self::DBTABLE,
+          $updates
+        );
+      }
+
+      $this->rebuildMetas($id, $metas);
+      $this->rebuildTermRelations($id, $data['tematic_list']);
     } else {
       // Update
       $updates = array();
@@ -64,6 +110,7 @@ class Allasok
       $updates['keywords'] = $data['keywords'];
       $updates['megye_id'] = (int)$data['megye_id'];
       $updates['city'] = $data['city'];
+      $updates['short_desc'] = strip_tags($data['short_desc']);
       $updates['pre_content'] = $data['pre_content'];
       $updates['content'] = $data['content'];
       $updates['author_name'] = (isset($data['author_name']) && !empty($data['author_name'])) ? $data['author_name']:null;
@@ -102,6 +149,8 @@ class Allasok
       $this->rebuildMetas($id, $metas);
       $this->rebuildTermRelations($id, $data['tematic_list']);
     }
+
+    return $id;
   }
 
   public function rebuildTermRelations( $id, $terms = array() )
@@ -285,7 +334,16 @@ class Allasok
 
       if($top_cat['metas'])
       foreach ($top_cat['metas'] as $meta) {
-        $top_cat[$meta['kulcs']] = $meta['value'];
+        if($meta['kulcs'] == 'munkakorok') {
+          $top_cat['munkakorok'][(int)$meta['ID']] = array(
+            'ID' => (int)$meta['ID'],
+            'is_term_list' => (int)$meta['is_term_list'],
+            'value' => (int)$meta['value'],
+            'value_text' => $meta['value_text'],
+          );
+        }else{
+          $top_cat[$meta['kulcs']] = $meta['value'];
+        }
       }
 
       $top_cat['tipus_name'] = $this->getTermName($top_cat['hirdetes_tipus']);
@@ -367,10 +425,20 @@ class Allasok
   {
     $metas = array();
 
-    $datas = $this->db->query("SELECT ID, kulcs, value, is_term_list FROM allasok_meta WHERE allas_id = '{$adid}'")->fetchAll(\PDO::FETCH_ASSOC);
+    $datas = $this->db->query("SELECT
+      m.ID, m.kulcs, m.value, m.is_term_list, t.neve as value_text
+    FROM ".self::DB_META." as m
+    LEFT OUTER JOIN ".\PortalManager\Categories::DBTERMS." as t ON t.ID = m.value
+    WHERE m.allas_id = '{$adid}'")->fetchAll(\PDO::FETCH_ASSOC);
 
     foreach ((array)$datas as $d) {
-      $metas[$d['ID']] = $d;
+      $metas[$d['ID']] = array_map(function($d){
+        $d = trim($d);
+        if(is_numeric($d)) {
+          $d = (int)$d;
+        }
+        return $d;
+      },$d);
     }
 
     return $metas;
@@ -454,6 +522,11 @@ class Allasok
   public function shortDesc()
   {
     return $this->current_category['short_desc'];
+  }
+
+  public function getPreContent()
+  {
+    return $this->current_category['pre_content'];
   }
 
   public function getPublishDate()

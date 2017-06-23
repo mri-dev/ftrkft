@@ -5,9 +5,9 @@
       <i class="fa fa-angle-down"></i>
     </div>
   </div>
-  <div class="single-selector-holder" ng-show="listtgl.{$key}">
+  <div class="single-selector-holder multicheck" ng-show="listtgl.{$key}">
     <div class="selector-wrapper">
-      <div ng-class="'selector-row '+(selectedlist.{$key}.ids && selectedlist.{$key}.ids.indexOf(item.id) != -1 ? 'selected' : '')" ng-click="selectListValue('{$key}', item.id, item.value, true)" data-listindex="[[index]]" ng-repeat="item in terms.{$key}">[[item.value]]</div>
+      <div ng-class="'selector-row deep'+item.deep+' '+(selectedlist.{$key}.ids && selectedlist.{$key}.ids.indexOf(item.id) != -1 ? 'selected' : '')" ng-click="selectListValue('{$key}', item.id, item.value, true)" data-listindex="[[index]]" ng-repeat="item in terms.{$key}">[[item.value]]</div>
     </div>
   </div>
 </div>

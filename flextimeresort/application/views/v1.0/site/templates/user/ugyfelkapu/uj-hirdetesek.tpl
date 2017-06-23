@@ -1,4 +1,6 @@
 <div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, {$me->getID()}, {$smarty.get.modid|intval})">
+  <a class="btn btn-sm btn-default" href="/ugyfelkapu/hirdetesek/"><i class="fa fa-angle-left"></i> {lang text="vissza a hirdetésekhez"}</a>
+  <br><br>
   <div ng-show="!dataloaded" class="alert alert-warning">
     <i class="fa fa-spin fa-spinner"></i> {lang text="Szükséges modulok betöltése folyamatban."}
   </div>
@@ -6,7 +8,12 @@
     <i class="fa fa-spin fa-spinner"></i> {lang text="Ajánlat adatainak betöltése folyamatban."}
   </div>
   <div ng-show="( (settings.edit_ad_id == 0 && dataloaded) || (dataloaded && settings.edit_ad_id != 0 && editing_data_loaded))?true:false">
-
+    {if $smarty.get.justcreated == '1'}
+      <div class="alert alert-success align-center big-fa">
+        <i class="fa fa-check-circle"></i>
+        {lang text="sikeres létrehozás justcreated msg"}
+      </div>
+    {/if}
     <div ng-show="(settings.edit_ad_id != 0)">
       <h3>{lang text="Művelet végrehajtások"}</h3>
       <div class="row">
