@@ -395,10 +395,13 @@ class Allasok
       t.term_id as value_id,
       term.neve as value_name,
       term.langkey as value_langkey_name,
-      term.groupkey as slug
+      term.groupkey as slug,
+      tl.neve as termlist_name,
+      tl.langkey as termlist_langkey_name
     FROM ".self::DB_TERM_RELATIONS_ITEM." as t
     LEFT OUTER JOIN ".self::DB_TERM_RELATIONS." as tr ON tr.ID = t.allas_x_term_id
     LEFT OUTER JOIN ".\PortalManager\Categories::DBTERMS." as term ON term.id = t.term_id
+    LEFT OUTER JOIN ".\PortalManager\Categories::DB_LIST." as tl ON tl.termkey = term.groupkey
     WHERE 1=1 and
     t.allas_id = {$adid}
     ORDER BY tr.sortindex ASC, t.sortindex ASC
@@ -410,7 +413,7 @@ class Allasok
       $data[$tid]['value_texts'][] = $term['value_name'];
       $data[$tid]['term_ids'][] = (int)$term['value_id'];
       $data[$tid]['ID'] = $tid;
-      $data[$tid]['title'] = $term['title'];
+      $data[$tid]['title'] = (!empty($term['title'])) ? $term['title'] : $term['termlist_name'];
       $data[$tid]['slug'] = $term['slug'];
       $data[$tid]['data'][] = array(
         'ID' => (int)$term['value_id'],
@@ -498,6 +501,25 @@ class Allasok
       return $this->current_category;
     }
 	}
+
+  public function getMetas($by = false, $byval = false)
+  {
+    $metas = $this->current_category[metas];
+    $re = array();
+
+    if( $by === false ) return $metas;
+
+    foreach ((array)$metas as $key => $value) {
+      if($value[$by] != $byval ) continue;
+      $re[$key] = $value;
+    }
+    return $re;
+  }
+
+  public function getTerms()
+  {
+    return $this->current_category['term_list'];
+  }
 
   public function getKeywords( $arrayed = true )
   {

@@ -30,23 +30,39 @@
           </div>
         </div>
         <div class="e">
-          <div class="title">{lang text="Megye"}</div>
+          <div class="title">{lang text="Munkakörök"}</div>
           <div class="val">
-            {$allas->getMegye()}
+            <div class="term-value">
+              {foreach from=$allas->getMetas('kulcs', 'munkakorok') item=munkakor}
+              <a href="{$settings.allas_search_slug}?mk={$munkakor.value}">{$munkakor.value_text}</a>
+              {/foreach}
+            </div>
           </div>
         </div>
+        {foreach from=$allas->getTerms() item=term}
+        <div class="e term">
+          <div class="title">{$term.title}</div>
+          <div class="val">
+            {foreach from=$term.data item=td}
+            <div><span>{$td.name}</span></div>
+            {/foreach}
+          </div>
+        </div>
+        {/foreach}
         <div class="e">
           <div class="title">{lang text="Kulcsszavak"}</div>
           <div class="val">
-            {foreach from=$allas->getKeywords() item=keyword}
-            <a href="#">{$keyword}</a>
-            {/foreach}
+            <div class="keywords">
+              {foreach from=$allas->getKeywords() item=keyword}
+              <a href="{$settings.allas_search_slug}?s={$keyword}">{$keyword}</a>
+              {/foreach}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  {if !$access_granted}
+  {if !$access_granted && (($me && $me->logged() && $me->isUser()) || !$me->logged())}
   <div class="accept-for-ad">
     <div class="page-width">
       <div class="view-design-fullcontent">
@@ -62,7 +78,11 @@
             {lang text="További információkat szeretnék_MSG"}
           </div>
           <div class="request-access">
-            <button class="btn btn-danger" type="button">{lang text="További információkat szeretnék"} <i class="fa fa-arrow-circle-right"></i></button>
+            {if $me->logged()}
+              <button class="btn btn-danger" type="button">{lang text="További információkat szeretnék"}. {lang text="Jelentkezés"}! <i class="fa fa-arrow-circle-right"></i></button>
+            {else}
+              <a href="/belepes?re={$smarty.server.REQUEST_URI}" class="btn btn-danger">{lang text="Bejelentkezés fiókjába"} <i class="fa fa-sign-in"></i></a>
+            {/if}
           </div>
         </div>
       </div>

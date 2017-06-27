@@ -5,6 +5,7 @@ class allas extends Controller{
 	function __construct(){
 		parent::__construct();
 
+		$id = (int)end(explode("_", end($this->gets)));
     $this->out('hide_home_instruction', true);
     $this->out('hide_login_instruction', true);
 
@@ -12,7 +13,7 @@ class allas extends Controller{
 			'controller' => $this
 		));
 
-    $this->out( 'allas', $allasok->load(4) );
+    $this->out( 'allas', $allasok->load($id) );
 
 		// SEO Információk
 		$SEO = null;
