@@ -479,7 +479,7 @@ ul.navi > li ul.submenu {
   display: none;
   z-index: 9999;
   position: absolute;
-  background: rgba(15, 15, 15, 0.9);
+  background: #0f0f0f;
   border-top: 4px solid #006534;
   top: 54px;
   left: 50%;
@@ -509,7 +509,7 @@ ul.navi > li ul.submenu:before {
   top: -20px;
   border-width: 10px;
   border-style: solid;
-  border-color: transparent transparent rgba(15, 15, 15, 0.89) transparent;
+  border-color: transparent transparent #0f0f0f transparent;
   left: 50%;
   pointer-events: none;
   -webkit-transform: translateX(-50%);
@@ -694,7 +694,7 @@ body.resetpassword .content-holder {
 
 /* line 437, less/main.scss */
 section.content-header {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0);
   padding: 0;
 }
 
@@ -1104,7 +1104,7 @@ input[type=checkbox].ccb:checked + label:before {
 /* line 814, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0);
 }
 /* line 819, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
@@ -1155,7 +1155,7 @@ input[type=checkbox].ccb:checked + label:before {
 .header-searcher-container .home-instruction,
 .header-searcher-container .profil-instruction {
   padding: 0;
-  background: rgba(0, 150, 29, 0.68);
+  background: rgba(0, 150, 29, 0);
   color: white;
 }
 /* line 870, less/main.scss */
@@ -1216,7 +1216,7 @@ input[type=checkbox].ccb:checked + label:before {
 /* line 916, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst,
 .header-searcher-container .profil-instruction .instuction .center-inst {
-  background: rgba(197, 236, 205, 0.2);
+  background: #c5eccd;
 }
 /* line 921, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu,
@@ -1231,7 +1231,7 @@ input[type=checkbox].ccb:checked + label:before {
 }
 /* line 931, less/main.scss */
 .header-searcher-container .profil-instruction {
-  background: rgba(0, 150, 29, 0.46);
+  background: rgba(0, 150, 29, 0);
 }
 /* line 933, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .text {
@@ -1804,7 +1804,7 @@ footer .top {
 
 /* line 1502, less/main.scss */
 .user-section.user-register section.info, .user-section.user-login section.info, .user-section.user-resetpassword section.info {
-  background-color: rgba(245, 245, 245, 0.64);
+  background-color: rgba(245, 245, 245, 0);
   background-image: url(/dist/img/worldmap.svg);
   background-position: center top;
   background-repeat: no-repeat;
@@ -1939,7 +1939,7 @@ footer .top {
 }
 /* line 1611, less/main.scss */
 .user-section.user-login section.info {
-  background-color: rgba(9, 171, 59, 0.58);
+  background-color: rgba(9, 171, 59, 0);
 }
 /* line 1613, less/main.scss */
 .user-section.user-login section.info h1 {
@@ -1999,7 +1999,7 @@ footer .top {
 .user-section.user-resetpassword {
   min-height: 600px;
   position: relative;
-  background: rgba(153, 0, 0, 0.72);
+  background: rgba(153, 0, 0, 0);
   text-align: center;
 }
 /* line 1677, less/main.scss */
@@ -2039,7 +2039,7 @@ footer .top {
 }
 /* line 1713, less/main.scss */
 .activator-content .pw {
-  background: rgba(255, 255, 255, 0.69);
+  background: white;
   padding: 25px;
   width: 50%;
   position: absolute;
@@ -3710,7 +3710,7 @@ ul.pagination.circle_rounded li.active a {
   height: 130px;
   position: relative;
 }
-/* line 3420, less/main.scss */
+/* line 3421, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text .view-design-fullcontent .text {
   position: absolute;
   top: 50%;
@@ -3720,21 +3720,89 @@ ul.pagination.circle_rounded li.active a {
   font-size: 1.1em;
   color: black;
 }
-/* line 3428, less/main.scss */
+/* line 3429, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text .view-design-fullcontent .text h4 {
   color: #f44e5e;
 }
-/* line 3435, less/main.scss */
+/* line 3436, less/main.scss */
 .allas-view .allas-wrapper .info-side {
   flex-basis: 25%;
 }
 /* line 3439, less/main.scss */
+.allas-view .allas-wrapper .info-side .e {
+  margin-bottom: 20px;
+  text-align: right;
+}
+/* line 3443, less/main.scss */
+.allas-view .allas-wrapper .info-side .e .title {
+  font-size: 0.9em;
+  line-height: 1;
+  color: #aaaaaa;
+  margin-bottom: 5px;
+}
+/* line 3449, less/main.scss */
+.allas-view .allas-wrapper .info-side .e .val {
+  font-weight: bold;
+  color: black;
+  line-height: 1.3;
+}
+/* line 3457, less/main.scss */
 .allas-view .accept-for-ad {
   background-color: #39ac4f;
   padding: 25px 0;
+  position: relative;
+}
+/* line 3462, less/main.scss */
+.allas-view .accept-for-ad .ico {
+  position: absolute;
+  left: 50%;
+  top: -35px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 70px;
+  background: #5b5b5b;
+  border-radius: 80px;
+  border: 5px solid #f9f9f9;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+/* line 3476, less/main.scss */
+.allas-view .accept-for-ad .ico i {
+  font-size: 37px;
+  color: #757575;
+  line-height: 70px;
+  padding: 0;
+  margin: 0;
+}
+/* line 3485, less/main.scss */
+.allas-view .accept-for-ad .text {
+  text-align: center;
+  padding: 40px 0 20px 0;
+  color: #d3f7da;
+  font-size: 1.2em;
+}
+/* line 3491, less/main.scss */
+.allas-view .accept-for-ad .text .infotext {
+  font-size: 0.7em;
+  color: #99dfa6;
+}
+/* line 3496, less/main.scss */
+.allas-view .accept-for-ad .text h4 {
+  color: white;
+  font-size: 1.9em;
+}
+/* line 3502, less/main.scss */
+.allas-view .accept-for-ad .request-access {
+  margin-top: 25px;
+}
+/* line 3505, less/main.scss */
+.allas-view .accept-for-ad .request-access button {
+  background: #f44e5e;
+  text-transform: uppercase;
 }
 
-/* line 3445, less/main.scss */
+/* line 3513, less/main.scss */
 .order-select {
   position: relative;
   border: 2px solid #eaeaea;
@@ -3742,13 +3810,13 @@ ul.pagination.circle_rounded li.active a {
   overflow: hidden;
   background: #ffffff;
 }
-/* line 3452, less/main.scss */
+/* line 3520, less/main.scss */
 .order-select select {
   -webkit-appearance: none;
   background: transparent;
   border: none;
 }
-/* line 3458, less/main.scss */
+/* line 3526, less/main.scss */
 .order-select:after {
   content: "\f107";
   position: absolute;
@@ -3766,53 +3834,53 @@ ul.pagination.circle_rounded li.active a {
   height: 32px;
 }
 
-/* line 3476, less/main.scss */
+/* line 3544, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 3480, less/main.scss */
+/* line 3548, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 3484, less/main.scss */
+/* line 3552, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 3489, less/main.scss */
+/* line 3557, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 3492, less/main.scss */
+/* line 3560, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 3495, less/main.scss */
+/* line 3563, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 3500, less/main.scss */
+/* line 3568, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 3503, less/main.scss */
+/* line 3571, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 3506, less/main.scss */
+/* line 3574, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

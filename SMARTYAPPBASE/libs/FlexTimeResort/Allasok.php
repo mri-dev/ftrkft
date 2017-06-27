@@ -499,6 +499,21 @@ class Allasok
     }
 	}
 
+  public function getKeywords( $arrayed = true )
+  {
+    if ($arrayed) {
+      $arr = array();
+      $keys = explode(",", $this->get('keywords'));
+      foreach ((array)$keys as $key) {
+        $arr[] = trim($key);
+      }
+
+      return $arr;
+    } else {
+      return $this->get('keywords');
+    }
+  }
+
 	public function getID()
 	{
 		return $this->current_category['ID'];
