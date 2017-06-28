@@ -160,6 +160,38 @@ class ajax extends Controller  {
 					$data['success'] = $success;
 					$data['msg'] = $errmsg;
 				break;
+				case 'adsrequest':
+					$id = ((int)$params['id'] == 0) ? false : (int)$params['id'];
+					$success = true;
+					$errmsg = false;
+					$datas = json_decode($params['data'], true);
+					$arg = array();
+
+					$userid = $this->ME->getID();
+
+					$allasok = new Allasok(array(
+						'controller' => $this,
+						'admin' => true
+					));
+
+					$request = $allasok->requestAd($userid, $id);
+
+					if ($request === false) {
+						$success = false;
+						$errmsg = $this->lang('Hiányzó felhasználó ID, vagy ajánlat ID. Jelentkezzen be újra.');
+					} else if($request === true) {
+						$success = false;
+						$errmsg = $this->lang('Ön már korábban leadta jelentkezését.');
+					} else {
+						$success = true;
+						$data['hashkey'] = $request;
+					}
+
+					$data['params'] = $params;
+					$data['data'] = $datas;
+					$data['success'] = $success;
+					$data['msg'] = $errmsg;
+				break;
 				case 'adscreator':
 					$id = ((int)$params['id'] == 0) ? false : (int)$params['id'];
 					$user = $params['userid'];

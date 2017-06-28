@@ -14,6 +14,14 @@ class allas extends Controller{
 		));
 
     $this->out( 'allas', $allasok->load($id) );
+		$allasok->logVisit($this->ME->getID());
+		$request = $allasok->checkRequestAd($this->ME->getID(), $id);
+		$request_data = $allasok->getRequest($request);
+		$access_granted = ($request_data['accepted'] == 1) ? true : false;
+
+		$this->out( 'requested_ad', $request );
+		$this->out( 'requested_data', $request_data );
+		$this->out( 'access_granted', $access_granted );
 
 		// SEO Információk
 		$SEO = null;

@@ -392,6 +392,35 @@ var ads = angular.module("Ads", ['ui.tinymce'], function($interpolateProvider){
   $interpolateProvider.endSymbol(']]');
 });
 
+ads.controller( "Request", ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
+  $scope.inprogress = false;
+  $scope.not_requested = true;
+
+  $scope.requestAd = function(adid){
+    $scope.inprogress = true;
+    // Felhasználó adatok
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'adsrequest',
+        id: adid
+      }
+    }).then(function successCallback(response) {
+      console.log(response.data);
+      var d = response.data;
+      $scope.inprogress = false;
+      $scope.not_requested = false;
+
+      if (d.success) {
+        $timeout(function(){
+          window.location.reload(true);
+        }, 3000);
+      }
+    }, function errorCallback(response) {});
+  }
+}]);
+
 ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $http, $timeout)
 {
   $scope.settings = {};

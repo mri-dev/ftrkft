@@ -2,6 +2,7 @@
 namespace FlexTimeResort;
 
 use ExceptionManager\RedirectException;
+use PortalManager\User;
 
 class Allasok
 {
@@ -9,13 +10,15 @@ class Allasok
   const DB_META = 'allasok_meta';
   const DB_TERM_RELATIONS = 'allasok_x_terms';
   const DB_TERM_RELATIONS_ITEM = 'allasok_x_terms_item';
+  const DB_REQUEST_X = 'user_accept_x_allasok';
+  const DB_LOG_VIEW = 'user_allasok_view';
 
   public $db = null;
-  private $controller = null;
-  private $smarty = null;
-  private $settings = array();
+  public $controller = null;
+  public $smarty = null;
   private $admin = false;
 
+  public $settings = array();
 	public $current_page = 1;
   public $total_items = 0;
   public $total_pages = 1;
@@ -153,6 +156,73 @@ class Allasok
     return $id;
   }
 
+  public function checkRequestAd($uid, $adid)
+  {
+    $adid = (int)$adid;
+    $uid = (int)$uid;
+
+    if ($uid == 0 || $adid == 0) {
+      return false;
+    }
+
+    $check = $this->db->query("SELECT hashkey FROM ".self::DB_REQUEST_X." WHERE allas_id = {$adid} and user_id = {$uid}")->fetchColumn();
+
+    return (!empty($check)) ? $check : false;
+  }
+
+  public function getRequest($hashkey)
+  {
+    $request = $this->db->query("SELECT
+      r.*,
+      a.name as admin_name
+    FROM ".self::DB_REQUEST_X." as r
+    LEFT OUTER JOIN admin as a ON a.ID = r.admin_accept_id
+    WHERE r.hashkey = '{$hashkey}'
+    ")->fetch(\PDO::FETCH_ASSOC);
+
+    return $request;
+  }
+
+  public function requestAd($uid, $adid)
+  {
+    $adid = (int)$adid;
+    $uid = (int)$uid;
+
+    if ($uid == 0 || $adid == 0) {
+      return false;
+    }
+
+    $check = $this->checkRequestAd( $uid, $adid );
+
+    if( !$check ){
+      $hashkey = uniqid();
+      $this->db->insert(
+          self::DB_REQUEST_X,
+          array(
+            'hashkey' => $hashkey,
+            'user_id' => $uid,
+            'allas_id' => $adid,
+          )
+      );
+
+      return $hashkey;
+    } else {
+      return true;
+    }
+  }
+
+  public function logVisit($uid = false)
+  {
+    $this->db->insert(
+        self::DB_LOG_VIEW,
+        array(
+          'ip' => $_SERVER['REMOTE_ADDR'],
+          'user_id' => ($uid) ? $uid : NULL,
+          'allas_id' => $this->getID()
+        )
+    );
+  }
+
   public function rebuildTermRelations( $id, $terms = array() )
   {
     $insert = array();
@@ -255,6 +325,21 @@ class Allasok
       $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
     }
 
+    if(isset($arg['show_history'])){
+      $idset_orderby = array();
+      if($arg['show_history'] === true) {
+        $history_row = 'ip';
+        $hval = $_SERVER['REMOTE_ADDR'];
+      } else if(is_numeric($arg['show_history'])) {
+        $history_row = 'user_id';
+        $hval = (int)$arg['show_history'];
+      }
+
+      $idset_orderby = $this->getVisitedIDS($history_row, $hval);
+
+      $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+    }
+
     // Filterek
     if (isset($filters) && !empty($filters)) {
       // Város
@@ -308,7 +393,12 @@ class Allasok
     }
 
 		if( !$this->o['orderby'] ) {
-			$qry .= " ORDER BY a.publish_after DESC";
+      if ($idset_orderby) {
+        $qry .= " ORDER BY FIELD(a.ID, ".implode(",", (array)$idset_orderby).")";
+      } else {
+        $qry .= " ORDER BY a.publish_after DESC";
+      }
+
 		} else {
 			$qry .= " ORDER BY a.".$this->o['orderby']." ".$this->o['order'];
 		}
@@ -358,6 +448,27 @@ class Allasok
 
 		return $this;
 	}
+
+  public function getVisitedIDS($by = 'ID', $val = 0, $limit = 10)
+  {
+    $ids = array();
+
+    $set = $this->db->query("
+    SELECT
+      v.allas_id
+    FROM ".self::DB_LOG_VIEW." as v
+    WHERE v.{$by} = '{$val}'
+    ORDER BY v.visit_at DESC")->fetchAll(\PDO::FETCH_ASSOC);
+
+    foreach ((array)$set as $s) {
+      if(count($ids) >= $limit) continue;
+      if(!in_array((int)$s['allas_id'], $ids)){
+        $ids[] = (int)$s['allas_id'];
+      }
+    }
+
+    return $ids;
+  }
 
   private function getLimit( $arg = array() )
 	{
@@ -566,6 +677,11 @@ class Allasok
     return $this->current_category['pre_content'];
   }
 
+  public function getContent()
+  {
+    return $this->current_category['content'];
+  }
+
   public function getPublishDate()
   {
     return date('Y. m. d.', strtotime($this->current_category['publish_after']));
@@ -601,6 +717,10 @@ class Allasok
         if (is_null($alt)) {
           return $this->current_category['oauthor_phone'];
         } else return $alt;
+      break;
+      case 'author':
+        $obj = new User($this->get('author_id'), array('controller' => $this));
+        return $obj;
       break;
     }
   }

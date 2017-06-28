@@ -21,7 +21,11 @@
         {include file='inc/allasok_list_bottom.tpl'}
       </div>
       <div class="col-md-3">
-
+        <div class="sidebar">
+          <div class="allasok style-history">
+            {include file='inc/allasok_history.tpl'}
+          </div>
+        </div>
       </div>
     </div>
   </div>

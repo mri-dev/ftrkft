@@ -18,13 +18,13 @@ class User
 	public $user = false;
 
 	function __construct( $user_id, $arg = array() ){
-		$this->id 			= $user_id;
+		$this->id = $user_id;
 
 		if(isset($arg['controller'])) {
 			$this->controller = $arg['controller'];
-			$this->db 			= $this->controller->db;
-			$this->settings 	= $this->controller->settings;
-			$this->smarty 		= $this->controller->smarty;
+			$this->db = $this->controller->db;
+			$this->settings = $this->controller->settings;
+			$this->smarty = $this->controller->smarty;
 		}
 
 		$this->user = $this->get();

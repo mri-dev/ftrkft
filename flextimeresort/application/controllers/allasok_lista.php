@@ -55,6 +55,16 @@ class allasok_lista extends Controller  {
 			'after' => '?'.http_build_query($get)
 		)))->render());
 
+		// Látogatott hirdetések
+		$latogatottak = new Allasok(array(
+			'controller' => $this
+		));
+		$latogatottak->getTree(array(
+			'show_history' => ($this->ME->getID()) ? $this->ME->getID() : true,
+			'limit' => 10
+		));
+		$this->out( 'history', $latogatottak );
+
 		// SEO Információk
 		$SEO = null;
 		// Site info
