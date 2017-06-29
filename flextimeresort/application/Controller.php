@@ -10,6 +10,7 @@ use Applications\Captcha;
 use PortalManager\Lang;
 use PortalManager\Menus;
 use PortalManager\CategoryList;
+use AlertsManager\Alerts;
 
 class Controller
 {
@@ -105,6 +106,11 @@ class Controller
 		$munkakorok->getTree('munkakorok');
 		$this->out( 'munkakorok', $munkakorok);
 		$this->out( 'selected_munkakor', ($_GET['mk'] == '') ? array() : explode(",", $_GET['mk']));
+
+		// Alerts
+		$this->ALERTS = new Alerts(array(
+			'controller' => $this
+		));
 
 
 		/**

@@ -3,6 +3,7 @@ use PortalManager\Form;
 use PortalManager\Categories;
 use PortalManager\Ad;
 use DesignCreator\FormDesigns;
+use FlexTimeResort\Allasok;
 
 class user extends Controller{
 		private $temp = '';
@@ -74,6 +75,23 @@ class user extends Controller{
 			$p = rtrim($_GET['p'], "/");
 
 			switch ($p) {
+				case 'apps':
+					$subtitle = $this->lang('Jelentkezéseim');
+
+					if ($this->ME->isMunkaado()) {
+						\Helper::reload('/ugyfelkapu');
+					}
+
+					// Jelentkezett hirdetések
+					$alalsok = new Allasok(array(
+						'controller' => $this
+					));
+					$alalsok->getTree(array(
+						'show_requests' => (int)$this->ME->getID()
+					));
+					$this->out( 'allasok', $alalsok );
+
+				break;
 				case 'beallitasok':
 					$subtitle = $this->lang('BEALLITASOK');
 				break;

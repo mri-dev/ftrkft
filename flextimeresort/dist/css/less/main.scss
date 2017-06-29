@@ -165,7 +165,7 @@ a:hover {
 }
 
 body:not(.admin) aside {
-  margin-top: -150px;
+  margin-top: -138px;
 
   .facebook-box{
     margin-top: 15px;
@@ -1256,6 +1256,10 @@ input[type=checkbox].ccb:checked + label:before {
     background: #ffffff;
     min-height: 500px;
     padding: 0 0 25px 0;
+  }
+
+  .requested-ads{
+    padding-top: 20px;
   }
 }
 
@@ -3032,6 +3036,9 @@ ul.pagination {
         border: 1px solid #e6e6e6;
         border-radius: 5px;
         overflow: hidden;
+        min-height: initial !important;
+        height: auto !important;
+        padding: 0 !important;
 
         .body {
           padding: 10px;
@@ -3099,6 +3106,26 @@ ul.pagination {
               height: 50px;
               overflow: hidden;
             }
+          }
+        }
+
+        .request-body{
+          background: #fcfcd7;
+          border-top: 1px solid #efefb0;
+          padding: 5px;
+          font-size: 0.9em;
+          color: black;
+          font-weight: 300;
+          text-align: center;
+
+          .status {
+            font-size: 1.2em;
+          }
+
+          &.accepted{
+            background: #bce3c4;
+            color: #43634a;
+            border-top: 1px solid #9ed7aa;
           }
         }
 

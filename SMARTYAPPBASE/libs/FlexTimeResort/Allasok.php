@@ -170,6 +170,20 @@ class Allasok
     return (!empty($check)) ? $check : false;
   }
 
+  public function getRequestHashkey($uid, $adid)
+  {
+    $adid = (int)$adid;
+    $uid = (int)$uid;
+
+    $data = $this->db->query("SELECT
+      r.hashkey
+    FROM ".self::DB_REQUEST_X." as r
+    WHERE r.user_id = '{$uid}' and r.allas_id = {$adid}
+    ")->fetchColumn();
+
+    return $data;
+  }
+
   public function getRequest($hashkey)
   {
     $request = $this->db->query("SELECT
@@ -340,6 +354,17 @@ class Allasok
       $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
     }
 
+    if(isset($arg['show_requests'])){
+      $idset_orderby = array();
+
+      $history_row = 'user_id';
+      $hval = (int)$arg['show_requests'];
+
+      $idset_orderby = $this->getRequestsIDS($history_row, $hval);
+
+      $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+    }
+
     // Filterek
     if (isset($filters) && !empty($filters)) {
       // Város
@@ -462,6 +487,26 @@ class Allasok
 
     foreach ((array)$set as $s) {
       if(count($ids) >= $limit) continue;
+      if(!in_array((int)$s['allas_id'], $ids)){
+        $ids[] = (int)$s['allas_id'];
+      }
+    }
+
+    return $ids;
+  }
+
+  public function getRequestsIDS($by = 'user_id', $val = 0)
+  {
+    $ids = array();
+
+    $set = $this->db->query("
+    SELECT
+      v.allas_id
+    FROM ".self::DB_REQUEST_X." as v
+    WHERE v.{$by} = '{$val}'
+    ORDER BY v.request_at DESC")->fetchAll(\PDO::FETCH_ASSOC);
+
+    foreach ((array)$set as $s) {
       if(!in_array((int)$s['allas_id'], $ids)){
         $ids[] = (int)$s['allas_id'];
       }
