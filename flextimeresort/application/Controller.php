@@ -29,6 +29,7 @@ class Controller
     Session::init();
     Helper::setMashineID();
     $this->gets = Helper::GET();
+		$total_notify = 0;
 
 		if ( $arg['root'] ) { $this->subfolder = $arg['root'].'/'; }
 
@@ -84,7 +85,9 @@ class Controller
 		$this->MESSANGER = new Messanger(array(
 			'controller' => $this
 		));
-		$this->out( 'messangerinfo', $this->MESSANGER->readInfos($this->ME->getID()));
+		$messangerinfo = $this->MESSANGER->readInfos($this->ME->getID());
+		$this->out( 'messangerinfo', $messangerinfo);
+		$total_notify += $total_unreaded;
 
 		// Kategória listák
 		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));
@@ -111,7 +114,10 @@ class Controller
 		$this->ALERTS = new Alerts(array(
 			'controller' => $this
 		));
-
+		$unwatched_alerts = $this->ALERTS->getUnwatchedNum((int)$this->ME->getID());
+		$this->out('unwatched_alerts', $unwatched_alerts);
+		$total_notify += $unwatched_alerts;
+		$this->out( 'total_notify', $total_notify);
 
 		/**
 		* VARS

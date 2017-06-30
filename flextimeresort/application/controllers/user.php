@@ -74,7 +74,19 @@ class user extends Controller{
 			$subtitle = '';
 			$p = rtrim($_GET['p'], "/");
 
+
 			switch ($p) {
+				default:
+					$subtitle = $this->lang('Értesítő központ');
+
+					$arg = array();
+					$arg['userid'] = $this->ME->getID();
+
+					$alerts = $this->ALERTS->getTree($arg);
+					$this->out('alerts', $alerts);
+
+					$this->ALERTS->setWatchedAllUnwatched((int)$this->ME->getID());
+				break;
 				case 'apps':
 					$subtitle = $this->lang('Jelentkezéseim');
 
@@ -147,7 +159,6 @@ class user extends Controller{
 					if (!$this->ME->isMunkaado()) {
 						\Helper::reload('/ugyfelkapu');
 					}
-
 				break;
 			}
 			$this->out('subpage', $p);

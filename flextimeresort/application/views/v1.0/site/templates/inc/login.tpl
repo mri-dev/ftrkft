@@ -2,8 +2,10 @@
   {if $me && $me->logged()}
   <nav>
     <ul>
-      <li class="header"><span class="ico"><i class="fa fa-gears"></i></span> {lang text="SAJAT_PROFIL"}</li>      
-      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == ''}active{/if}"><a href="/ugyfelkapu/"><span class="ico"><i class="fa fa-commenting-o"></i></span> {lang text="ERTESITO_KOSZPONT"}</a></li>
+      <li class="header"><span class="ico"><i class="fa fa-gears"></i></span> {lang text="SAJAT_PROFIL"}</li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == ''}active{/if}"><a href="/ugyfelkapu/"><span class="ico"><i class="fa fa-commenting-o"></i></span> {lang text="ERTESITO_KOSZPONT"} {if $unwatched_alerts && $unwatched_alerts != 0}
+        <span class="badge">{$unwatched_alerts}</span>
+      {/if}</a></li>
       {if $me && $me->isUser()}
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'apps'}active{/if}"><a href="/ugyfelkapu/apps"><span class="ico"><i class="fa fa-handshake-o"></i></span> {lang text="Jelentkezéseim"}</a></li>
       {/if}
