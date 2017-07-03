@@ -6,6 +6,7 @@ use FlexTimeResort\Allasok;
 class Alerts
 {
 	const DB_TABLE = 'alerts';
+	const DB_GROUP = 'alerts_groups';
 	const DAYS_BEFORE_ARCHIVE = 30;
 
 	public $db = null;
@@ -31,6 +32,29 @@ class Alerts
 			$this->settings = $arg['controller']->settings;
 			$this->smarty = $arg['controller']->smarty;
 		}
+	}
+
+	public function add( $uid = false, $groupkey, $itemid = false, $vars = array() )
+	{
+		if (!$uid) {
+			return false;
+		}
+
+		$groups = $this->getGroups();
+
+		if ( array_key_exists($groupkey, $groups) ) {
+			$this->db->insert(
+				self::DB_TABLE,
+				array(
+					'groupkey' => $groupkey,
+					'user_id' => $uid,
+					'itemid' => (int)$itemid,
+					'vars' => (empty($vars)) ? NULL : json_encode($vars)
+				)
+			);
+
+			return (int)$this->db->lastInsertId();
+		} else return false;
 	}
 
 	public function Count()
@@ -73,6 +97,19 @@ class Alerts
 		);
 	}
 
+	protected function getGroups()
+	{
+		$groups = array();
+
+		$data = $this->db->query("SELECT * FROM ".self::DB_GROUP)->fetchAll(\PDO::FETCH_ASSOC);
+
+		foreach ((array)$data as $d) {
+			$groups[$d['groupkey']] = $d;
+		}
+
+		return $groups;
+	}
+
 	public function getTree( $arg = array() )
 	{
 		$tree = array();
@@ -80,8 +117,10 @@ class Alerts
 
 		$qry = "
 			SELECT SQL_CALC_FOUND_ROWS
-        a.*
+        a.*,
+				g.faico as fa_ico
 			FROM ".self::DB_TABLE." as a
+			LEFT OUTER JOIN ".self::DB_GROUP." as g ON g.groupkey = a.groupkey
 			WHERE 1=1";
 
 		$qry .= " and (a.watched = 0 || (a.watched = 1 && DATEDIFF(now(), a.alertdate) < ".self::DAYS_BEFORE_ARCHIVE.")) ";

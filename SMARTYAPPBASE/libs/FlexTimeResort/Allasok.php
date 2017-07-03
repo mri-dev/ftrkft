@@ -3,6 +3,7 @@ namespace FlexTimeResort;
 
 use ExceptionManager\RedirectException;
 use PortalManager\User;
+use AlertsManager\Alerts;
 
 class Allasok
 {
@@ -101,6 +102,14 @@ class Allasok
           self::DBTABLE,
           $updates
         );
+
+        if (true) {
+          (new Alerts(array('controller' => $this->controller)))->add(
+            $updates['author_id'],
+            'allas_letrehozas_sikeres',
+            $id
+          );
+        }
       }
 
       $this->rebuildMetas($id, $metas);
@@ -610,195 +619,3 @@ class Allasok
 
   public function walk()
 	{
-		if( !$this->tree_steped_item ) return false;
-
-		$this->current_category = $this->tree_steped_item[$this->walk_step];
-
-		$this->walk_step++;
-
-		if ( $this->walk_step > $this->tree_items ) {
-			// Reset Walk
-			$this->walk_step = 0;
-			$this->current_category = false;
-
-			return false;
-		}
-
-		return true;
-	}
-
-  private function getTermName($id = false)
-  {
-    if (!$id) {
-      return null;
-    }
-    $value = $this->db->query("SELECT neve FROM terms WHERE id = {$id}")->fetchColumn();
-
-    return $value;
-  }
-
-  public function prepareOutput()
-  {
-    $this->current_category['tipus_name'] = $this->getTermName($this->getTypeID());
-    $this->current_category['cat_name'] = $this->getTermName($this->getCatID());
-    $this->current_category['megye_name'] = $this->getTermName($this->getMegyeID());
-  }
-
-  /*===============================
-	=            GETTERS            =
-	===============================*/
-
-  public function get( $key = false )
-	{
-    if ($key) {
-      return $this->current_category[$key];
-    } else {
-      $this->prepareOutput();
-      return $this->current_category;
-    }
-	}
-
-  public function getMetas($by = false, $byval = false)
-  {
-    $metas = $this->current_category[metas];
-    $re = array();
-
-    if( $by === false ) return $metas;
-
-    foreach ((array)$metas as $key => $value) {
-      if($value[$by] != $byval ) continue;
-      $re[$key] = $value;
-    }
-    return $re;
-  }
-
-  public function getTerms()
-  {
-    return $this->current_category['term_list'];
-  }
-
-  public function getKeywords( $arrayed = true )
-  {
-    if ($arrayed) {
-      $arr = array();
-      $keys = explode(",", $this->get('keywords'));
-      foreach ((array)$keys as $key) {
-        $arr[] = trim($key);
-      }
-
-      return $arr;
-    } else {
-      return $this->get('keywords');
-    }
-  }
-
-	public function getID()
-	{
-		return $this->current_category['ID'];
-	}
-
-  public function getTypeID()
-  {
-    return $this->current_category['hirdetes_tipus'];
-  }
-
-  public function getMegyeID()
-  {
-    return $this->current_category['megye_id'];
-  }
-
-  public function getCatID()
-  {
-    return $this->current_category['hirdetes_kategoria'];
-  }
-
-  public function shortDesc()
-  {
-    return $this->current_category['short_desc'];
-  }
-
-  public function getPreContent()
-  {
-    return $this->current_category['pre_content'];
-  }
-
-  public function getContent()
-  {
-    return $this->current_category['content'];
-  }
-
-  public function getPublishDate()
-  {
-    return date('Y. m. d.', strtotime($this->current_category['publish_after']));
-  }
-
-  public function getMegye()
-  {
-    return $this->current_category['megye_name'];
-  }
-
-  public function getCity()
-  {
-    return $this->current_category['city'];
-  }
-
-  public function getAuthorData( $key = 'name')
-  {
-    switch ($key) {
-      case 'name':
-        $alt = $this->current_category['author_name'];
-        if (is_null($alt)) {
-          return $this->current_category['oauthor_name'];
-        } else return $alt;
-      break;
-      case 'email':
-        $alt = $this->current_category['author_email'];
-        if (is_null($alt)) {
-          return $this->current_category['oauthor_email'];
-        } else return $alt;
-      break;
-      case 'phone':
-        $alt = $this->current_category['author_phone'];
-        if (is_null($alt)) {
-          return $this->current_category['oauthor_phone'];
-        } else return $alt;
-      break;
-      case 'author':
-        $obj = new User($this->get('author_id'), array('controller' => $this));
-        return $obj;
-      break;
-    }
-  }
-
-  public function getURL()
-  {
-    $SEO = '';
-    $SEO .= \Helper::makeSafeURL($this->getCity(),'');
-    $SEO .= '/'.\Helper::makeSafeURL($this->getAuthorData('name'),'');
-    return $this->settings['allas_page_slug'] . $SEO . '_'.$this->getID();
-  }
-
-  private function kill( $msg = '' )
-	{
-		throw new \Exception( $msg . ' ('.__FILE__.')' );
-	}
-
-	private function error( $msg )
-	{
-		throw new RedirectException( $msg, $_POST['form'], $_POST['return'], $_POST['session_path'] );
-	}
-
-  public function __destruct()
-	{
-		$this->db = null;
-		$this->smarty = false;
-		$this->settings = null;
-		$this->controller = null;
-
-    $this->tree = false;
-		$this->tree_steped_item = false;
-		$this->tree_items = 0;
-		$this->walk_step = 0;
-	}
-}
-?>
