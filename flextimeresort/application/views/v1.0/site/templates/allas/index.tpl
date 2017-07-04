@@ -15,6 +15,9 @@
   <div class="page-width">
     <div class="allas-wrapper">
       <div class="content-side">
+        {if $me->logged() && $me->getID() == $allas->getAuthorData('ID')}
+          <h3>{lang text="Ez az Ön álláshirdetése"}:</h3>  
+        {/if}
         {if $access_granted}
         <div class="content-text">
           {$allas->getContent()}
@@ -86,78 +89,79 @@
       </div>
     </div>
   </div>
-
-  {if !$access_granted && (($me && $me->logged() && $me->isUser()) || !$me->logged())}
-  <div class="modal fade" id="accept-for-ad" tabindex="-1" role="dialog" aria-labelledby="accept-for-ad-label" aria-hidden="true">
-    <div class="modal-dialog" role="document" ng-app="Ads" ng-controller="Request">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="accept-for-ad-label">{lang text="Jelentkezés megerősítése"}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          {lang text="A jelentkezés leadásával beérkezik hozzánk egy igény, melyet feldolgozva felvesszük Önnel a kapcsolatot."}
-          <br><br>
-          <div ng-show="inprogress">
-            <div class="alert alert-warning align-center">
-              <i class="fa fa-spin fa-spinner"></i> {lang text="Jelentkezés folyamatban..."}
+  {if $me->logged() && $me->getID() != $allas->getAuthorData('ID')}
+    {if !$access_granted && (($me && $me->logged() && $me->isUser()) || !$me->logged())}
+    <div class="modal fade" id="accept-for-ad" tabindex="-1" role="dialog" aria-labelledby="accept-for-ad-label" aria-hidden="true">
+      <div class="modal-dialog" role="document" ng-app="Ads" ng-controller="Request">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="accept-for-ad-label">{lang text="Jelentkezés megerősítése"}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {lang text="A jelentkezés leadásával beérkezik hozzánk egy igény, melyet feldolgozva felvesszük Önnel a kapcsolatot."}
+            <br><br>
+            <div ng-show="inprogress">
+              <div class="alert alert-warning align-center">
+                <i class="fa fa-spin fa-spinner"></i> {lang text="Jelentkezés folyamatban..."}
+              </div>
+            </div>
+            <div ng-show="!not_requested">
+              <div class="alert alert-success align-center">
+                <i class="fa fa-check-circle"></i> {lang text="Jelentkezését sikeresen leadta, hamarosan frissül az oldal."}
+              </div>
             </div>
           </div>
-          <div ng-show="!not_requested">
-            <div class="alert alert-success align-center">
-              <i class="fa fa-check-circle"></i> {lang text="Jelentkezését sikeresen leadta, hamarosan frissül az oldal."}
-            </div>
+          <div class="modal-footer" ng-show="!inprogress && not_requested">
+            <button type="button" ng-show="!inprogress && not_requested" class="btn btn-secondary" data-dismiss="modal">{lang text="Bezárás"}</button>
+            <button type="button" ng-show="!inprogress && not_requested" ng-click="requestAd({$allas->getID()})" class="btn btn-danger">{lang text="Jelentkezés az ajánlatra"}</button>
           </div>
-        </div>
-        <div class="modal-footer" ng-show="!inprogress && not_requested">
-          <button type="button" ng-show="!inprogress && not_requested" class="btn btn-secondary" data-dismiss="modal">{lang text="Bezárás"}</button>
-          <button type="button" ng-show="!inprogress && not_requested" ng-click="requestAd({$allas->getID()})" class="btn btn-danger">{lang text="Jelentkezés az ajánlatra"}</button>
         </div>
       </div>
     </div>
-  </div>
-  <div class="accept-for-ad">
-    <div class="page-width">
-      <div class="view-design-fullcontent">
-        <div class="ico">
-          <i class="fa fa-lock"></i>
-        </div>
-        <div class="text">
-          <div class="">
-            <h4>{lang text="ALLAS_ADATLAP_TOVABBI_ADATOK_TITLE"}</h4>
+    <div class="accept-for-ad">
+      <div class="page-width">
+        <div class="view-design-fullcontent">
+          <div class="ico">
+            <i class="fa fa-lock"></i>
           </div>
-          {lang text="ALLAS_ADATLAP_TOVABBI_ADATOK_MSG"}
-          <div class="infotext">
-            {lang text="További információkat szeretnék_MSG"}
-          </div>
-          {if !$requested_ad}
-          <div class="request-access">
-            {if $me->logged()}
-              <button data-toggle="modal" data-target="#accept-for-ad" class="btn btn-danger" type="button">{lang text="További információkat szeretnék"}. {lang text="Jelentkezés"}! <i class="fa fa-arrow-circle-right"></i></button>
+          <div class="text">
+            <div class="">
+              <h4>{lang text="ALLAS_ADATLAP_TOVABBI_ADATOK_TITLE"}</h4>
+            </div>
+            {lang text="ALLAS_ADATLAP_TOVABBI_ADATOK_MSG"}
+            <div class="infotext">
+              {lang text="További információkat szeretnék_MSG"}
+            </div>
+            {if !$requested_ad}
+            <div class="request-access">
+              {if $me->logged()}
+                <button data-toggle="modal" data-target="#accept-for-ad" class="btn btn-danger" type="button">{lang text="További információkat szeretnék"}. {lang text="Jelentkezés"}! <i class="fa fa-arrow-circle-right"></i></button>
+              {else}
+                <a href="/belepes?re={$smarty.server.REQUEST_URI}" class="btn btn-danger">{lang text="Bejelentkezés fiókjába"} <i class="fa fa-sign-in"></i></a>
+              {/if}
+            </div>
             {else}
-              <a href="/belepes?re={$smarty.server.REQUEST_URI}" class="btn btn-danger">{lang text="Bejelentkezés fiókjába"} <i class="fa fa-sign-in"></i></a>
+              <div class="request-started">
+                <i class="fa fa-check-circle"></i>
+                {lang text="Ön jelentkezett erre a hirdetésre"}!
+              </div>
             {/if}
           </div>
-          {else}
-            <div class="request-started">
-              <i class="fa fa-check-circle"></i>
-              {lang text="Ön jelentkezett erre a hirdetésre"}!
-            </div>
-          {/if}
         </div>
       </div>
     </div>
-  </div>
-  {else}
-    <div class="access-granted">
-      <div class="page-width">
-        <div class="title">
-          <i class="fa fa-check-circle"></i> {lang text='Hozzáférés engedélyezve'}
+    {else}
+      <div class="access-granted">
+        <div class="page-width">
+          <div class="title">
+            <i class="fa fa-check-circle"></i> {lang text='Hozzáférés engedélyezve'}
+          </div>
+          {lang text='Hozzáférés engedélyezve_TEXT' date=$requested_data.accepted_at admin=$requested_data.admin_name}
         </div>
-        {lang text='Hozzáférés engedélyezve_TEXT' date=$requested_data.accepted_at admin=$requested_data.admin_name}
       </div>
-    </div>
+    {/if}
   {/if}
 </div>

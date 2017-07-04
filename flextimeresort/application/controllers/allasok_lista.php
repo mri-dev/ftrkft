@@ -9,6 +9,10 @@ class allasok_lista extends Controller  {
 
     $this->out('hide_home_instruction', true);
 
+		if ( $this->ME->logged() && $this->ME->isMunkaado() ) {
+			Helper::reload($this->settings['page_url'].$this->settings['munkavallalo_search_slug']);
+		}
+
 		$allasok = new Allasok(array(
 			'controller' => $this
 		));

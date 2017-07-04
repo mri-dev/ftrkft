@@ -247,6 +247,7 @@ class Alerts
 			// Hirdetés gomb
 			case 'allas_jelentkezes_sikeres':
 			case 'allas_jelentkezes_hozzaferes_engedelyezes':
+			case 'allas_letrehozas_sikeres':
 				if($itemid != 0){
 					$allas = (new Allasok(array('controller' => $this->controller)))->load($itemid);
 					$button = array(

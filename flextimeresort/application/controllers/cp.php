@@ -11,6 +11,7 @@ use PortalManager\Pagination;
 use ExceptionManager\RedirectException;
 use PortalManager\Pages;
 use MailManager\Mailer;
+use DesignCreator\FormDesigns;
 
 class cp extends Controller {
 	private $admin;
@@ -85,6 +86,18 @@ class cp extends Controller {
 				} catch (RedirectException $e) {
 					$e->redirect();
 				}
+			break;
+		}
+	}
+
+	public function ads()
+	{
+		switch ( $this->gets[2] ) {
+			case 'editor':
+				$this->temp = '/'.$this->gets[2];
+
+				$formdesign = new FormDesigns();
+				$this->out('formdesigns', $formdesign);
 			break;
 		}
 	}

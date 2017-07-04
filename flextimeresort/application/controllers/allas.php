@@ -14,6 +14,12 @@ class allas extends Controller{
 		));
 
     $this->out( 'allas', $allasok->load($id) );
+
+		if ( $this->ME->logged() && $this->ME->isMunkaado() && $this->ME->getID() != $allasok->getAuthorData('ID') ) {
+			Helper::reload($this->settings['page_url'].$this->settings['munkavallalo_search_slug']);
+		}
+
+
 		$allasok->logVisit($this->ME->getID());
 		$request = $allasok->checkRequestAd($this->ME->getID(), $id);
 		$request_data = $allasok->getRequest($request);

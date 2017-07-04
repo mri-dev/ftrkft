@@ -3,6 +3,7 @@ namespace FlexTimeResort;
 
 use ExceptionManager\RedirectException;
 use PortalManager\User;
+use AlertsManager\Alerts;
 
 class Allasok
 {
@@ -28,7 +29,7 @@ class Allasok
 	private $tree_items = 0;
 	private $walk_step = 0;
   private $edit_id = false;
-  
+
   public function __construct($arg = array())
   {
     if ( isset($arg['controller']) ) {
@@ -89,6 +90,14 @@ class Allasok
           self::DBTABLE,
           $updates
         );
+
+        if (true) {
+          (new Alerts(array('controller' => $this->controller)))->add(
+            $updates['author_id'],
+            'allas_letrehozas_sikeres',
+            $id
+          );
+        }
       }
       $this->rebuildMetas($id, $metas);
       $this->rebuildTermRelations($id, $data['tematic_list']);
@@ -628,6 +637,10 @@ class Allasok
         if (is_null($alt)) {
           return $this->current_category['oauthor_phone'];
         } else return $alt;
+      break;
+      case 'ID':
+        $alt = $this->current_category['author_id'];
+        return $alt;
       break;
       case 'author':
         $obj = new User($this->get('author_id'), array('controller' => $this));

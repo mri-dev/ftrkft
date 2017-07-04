@@ -87,6 +87,10 @@
   <section class="menu">
     <ul>
       <li class="basehead">Navigáció</li>
+      <li class="{if $GETS[1] == 'ads'}active{/if}"><a href="{$root}ads"><i class="fa fa-file-text"></i> <span class="text">Állásajánlatok</span></a></li>
+      {if $GETS[1] == 'ads'}
+        <li class="sub {if $GETS[1] == 'users'}active{/if}"><a href="{$root}ads/editor"><i class="fa fa-plus-circle"></i> <span class="text">Új hirdetés</span></a></li>
+      {/if}
       <li class="{if $GETS[1] == 'users'}active{/if}"><a href="{$root}users"><i class="fa fa-users"></i> <span class="text">Felhasználók</span></a></li>
       <li class="{if $GETS[1] == 'oldalak'}active{/if}"><a href="{$root}oldalak"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>
       <li class="{if $GETS[1] == 'menu'}active{/if}"><a href="{$root}menu"><i class="fa fa-th"></i> <span class="text">Menük</span></a></li>
