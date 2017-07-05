@@ -44,6 +44,10 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript" src="/plugins/fancybox/jquery.fancybox.js"></script>
 <script type="text/javascript" src="/plugins/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/plugins/angular-ui-tinymce/dist/tinymce.min.js"></script>
+<script type="text/javascript" src="/dist/js/ang.app.js"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={$settings.GOOGLE_API_KEY}&libraries=places"></script>
 
 {if !$user}
 <!-- iCheck -->

@@ -1,8 +1,5 @@
 <h1><a class="backurl" href="{$root}ads"><i class="fa fa-long-arrow-left"></i></a> Hirdetés létrehozása</h1>
-
-<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, {$me->getID()}, {$smarty.get.modid|intval})">
-  <a class="btn btn-sm btn-default" href="/ugyfelkapu/hirdetesek/"><i class="fa fa-angle-left"></i> {lang text="vissza a hirdetésekhez"}</a>
-  <br><br>
+<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, 0, {$smarty.get.modid|intval})">
   <div ng-show="!dataloaded" class="alert alert-warning">
     <i class="fa fa-spin fa-spinner"></i> {lang text="Szükséges modulok betöltése folyamatban."}
   </div>
