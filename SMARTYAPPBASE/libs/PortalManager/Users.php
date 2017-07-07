@@ -1140,6 +1140,7 @@ class Users
 				}
 			}
 		}
+
 		$q .= "
 		ORDER BY f.register_date DESC
 		";

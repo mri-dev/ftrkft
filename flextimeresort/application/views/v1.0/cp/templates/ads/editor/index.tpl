@@ -1,5 +1,5 @@
-<h1><a class="backurl" href="{$root}ads"><i class="fa fa-long-arrow-left"></i></a> Hirdetés létrehozása</h1>
-<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(0, 0, {$smarty.get.modid|intval})">
+<h1><a class="backurl" href="{$root}ads"><i class="fa fa-long-arrow-left"></i></a> {if $modid == 0}Hirdetés létrehozása{else}Hirdetés szerkesztése{/if}</h1>
+<div class="advertise-creator" ng-app="Ads" ng-controller="Creator" ng-init="init(1, {$admin->getID()}, {$modid|intval})">
   <div ng-show="!dataloaded" class="alert alert-warning">
     <i class="fa fa-spin fa-spinner"></i> {lang text="Szükséges modulok betöltése folyamatban."}
   </div>

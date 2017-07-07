@@ -16,7 +16,7 @@
     <div class="allas-wrapper">
       <div class="content-side">
         {if $me->logged() && $me->getID() == $allas->getAuthorData('ID')}
-          <h3>{lang text="Ez az Ön álláshirdetése"}:</h3>  
+          <h3>{lang text="Ez az Ön álláshirdetése"}:</h3>
         {/if}
         {if $access_granted}
         <div class="content-text">
@@ -24,6 +24,7 @@
         </div>
         {if $requested_data.show_author_info == 1}
           {assign var="author_obj" value=$allas->getAuthorData('author')}
+          {if !is_null($author_obj->getID())}
           <div class="author">
             <div class="img">
               <div class="imgwrapper">
@@ -42,6 +43,7 @@
               </div>
             </div>
           </div>
+          {/if}
         {/if}
         {else}
         <div class="content-text">
@@ -89,7 +91,7 @@
       </div>
     </div>
   </div>
-  {if $me->logged() && $me->getID() != $allas->getAuthorData('ID')}
+  {if $me->getID() != $allas->getAuthorData('ID')}
     {if !$access_granted && (($me && $me->logged() && $me->isUser()) || !$me->logged())}
     <div class="modal fade" id="accept-for-ad" tabindex="-1" role="dialog" aria-labelledby="accept-for-ad-label" aria-hidden="true">
       <div class="modal-dialog" role="document" ng-app="Ads" ng-controller="Request">

@@ -142,6 +142,8 @@ class Controller
     }
 
   	if(!$arg[hidePatern]){ $this->hidePatern = false; }
+
+		return $this;
   }
 
 	function language_translator($params, &$smarty){

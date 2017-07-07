@@ -193,6 +193,7 @@ class ajax extends Controller  {
 					$data['msg'] = $errmsg;
 				break;
 				case 'adscreator':
+					$admin = ($params['admin'] == 1) ? true : false;
 					$id = ((int)$params['id'] == 0) ? false : (int)$params['id'];
 					$user = $params['userid'];
 					$by = $params['by'];

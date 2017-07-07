@@ -664,7 +664,8 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         type: 'adscreator',
         data: $scope.allas,
         id: $scope.settings.edit_ad_id,
-        by: 'me'
+        admin: $scope.settings.admin,
+        by: ($scope.settings.admin) ? $scope.allas.author_id : 'me'
       }
     }).then(function successCallback(response) {
       var d = response.data;
@@ -677,7 +678,11 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
           $scope.creator_created = true;
           if(d.creating && d.created_item){
             $timeout(function(){
-              document.location.href='/ugyfelkapu/hirdetesek/mod/'+d.created_item+'?justcreated=1';
+              if ($scope.settings.admin) {
+                document.location.href='/cp/ads/editor/'+d.created_item+'?justcreated=1';
+              } else {
+                document.location.href='/ugyfelkapu/hirdetesek/mod/'+d.created_item+'?justcreated=1';
+              }
             }, 10000);
           }
         } else {

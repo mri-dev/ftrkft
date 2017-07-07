@@ -312,6 +312,20 @@ body.admin {
       box-shadow: 6px 6px 20px -10px #959595;
       @include border-radius(3px);
 
+      .remove-filter{
+        border: 1px solid lighten($color-red, 30%);
+        padding: 6px;
+        font-size: 0.8em;
+        line-height: 1;
+        @include border-radius(20px);
+        color: lighten($color-red, 10%);
+        text-decoration: none;
+        &:hover{
+          background: $color-red;
+          color: white;
+        }
+      }
+
       h3 {
         font-size: 1.7em;
         color: $color-primary-light;

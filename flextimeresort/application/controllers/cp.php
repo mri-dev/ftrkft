@@ -12,12 +12,14 @@ use ExceptionManager\RedirectException;
 use PortalManager\Pages;
 use MailManager\Mailer;
 use DesignCreator\FormDesigns;
+use FlexTimeResort\Allasok;
 
 class cp extends Controller {
 	private $admin;
 	private $temp = '';
+	public $ctrl = false;
 	function __construct(){
-		parent::__construct( array(
+		$this->ctrl = parent::__construct( array(
 			'root' => 'cp'
 		) );
 		parent::$pageTitle = 'ADMIN';
@@ -96,10 +98,57 @@ class cp extends Controller {
 			case 'editor':
 				$this->temp = '/'.$this->gets[2];
 
+				$this->out( 'modid', (int)$this->gets[3]);
 				$formdesign = new FormDesigns();
 				$this->out('formdesigns', $formdesign);
 			break;
+			default:
+				$allasok = new Allasok(array(
+					'controller' => $this->ctrl
+				));
+				$filtered = false;
+				$arg = array();
+				$filters = array();
+				if(!empty($_GET['ID'])) {
+					$filters['ID'] = $_GET['ID'];
+				}
+				if(!empty($_GET['s'])) {
+					$filters['search'] = $_GET['s'];
+				}
+
+				if(!empty($_GET['meta']['cat_type'])) {
+					$filters['meta']['hirdetes_tipus'] = (int)$_GET['meta']['cat_type'];
+				}
+
+				if(!empty($_GET['meta']['cat_kategoria'])) {
+					$filters['meta']['hirdetes_kategoria'] = (int)$_GET['meta']['cat_kategoria'];
+				}
+
+				$filtered = (count($filters) > 0) ? true : false;
+
+ 				$arg['limit'] = 20;
+				$arg['filters'] = $filters;
+				$arg['page'] = ($this->gets[2] != '') ? (int)$this->gets[2] : 1;
+
+				$allasok->getTree($arg);
+
+				$this->out( 'pagination', (new Pagination(array(
+					'max' => $allasok->total_pages,
+					'current' => $allasok->current_page,
+					'root' => '/'.$this->subfolder . 'ads',
+					'after' => '?'.http_build_query($filters),
+					'lang' => $this->LANGUAGES->texts
+				)))->render());
+
+				$this->out( 'lista', $allasok);
+				$this->out( 'filtered', $filtered);
+			break;
 		}
+	}
+
+	public function requests()
+	{
+		# code...
 	}
 
 	public function terms()

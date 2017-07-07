@@ -55,6 +55,8 @@ class Allasok
       // Létrehozás
       $updates = array();
       $metas = array();
+
+      $updates['created_by_admin'] = (int)$data['created_by_admin'];
       $updates['author_id'] = $data['author_id'];
       $updates['publish_after'] = (!isset($data['publish_now']) || $data['publish_now']) ? NOW : $data['publish_after'];
       $updates['keywords'] = $data['keywords'];
@@ -63,11 +65,13 @@ class Allasok
       $updates['short_desc'] = strip_tags($data['short_desc']);
       $updates['pre_content'] = $data['pre_content'];
       $updates['content'] = $data['content'];
+
       $updates['author_name'] = (isset($data['author_name']) && !empty($data['author_name'])) ? $data['author_name']:null;
       $updates['author_phone'] = (isset($data['author_phone']) && !empty($data['author_phone'])) ? $data['author_phone']:null;
       $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
       $updates['active'] = ($data['active']) ? 1 : 0;
+
       // Metas
       $metas['hirdetes_kategoria'] = array(
         'value' => (int)$data['hirdetes_kategoria'],
@@ -91,7 +95,7 @@ class Allasok
           $updates
         );
 
-        if (true) {
+        if ($updates['created_by_admin'] == 0) {
           (new Alerts(array('controller' => $this->controller)))->add(
             $updates['author_id'],
             'allas_letrehozas_sikeres',
@@ -317,6 +321,15 @@ class Allasok
     }
     // Filterek
     if (isset($filters) && !empty($filters)) {
+      // ID
+      if ($filters['ID']) {
+        $qry .= " and a.ID = '{$filters[ID]}'";
+      }
+      // ID
+      if ($filters['search']) {
+        $qry .= " and (a.short_desc LIKE '%{$filters['search']}%' || a.keywords LIKE '%{$filters['search']}%')";
+      }
+
       // Város
       if ($filters['city']) {
         $city = \Helper::makeSafeURL(trim($filters['city']));
@@ -355,6 +368,7 @@ class Allasok
         }
       }
     }
+
     if (isset($arg['active_in']) && is_array($arg['active_in'])) {
       $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
     }
@@ -605,9 +619,13 @@ class Allasok
   {
     return $this->current_category['content'];
   }
-  public function getPublishDate()
+  public function getPublishDate( $format = 'Y. m. d.')
   {
-    return date('Y. m. d.', strtotime($this->current_category['publish_after']));
+    return date($format, strtotime($this->current_category['publish_after']));
+  }
+  public function createDate( $format = 'Y. m. d.')
+  {
+    return date($format, strtotime($this->current_category['upload_at']));
   }
   public function getMegye()
   {
@@ -616,6 +634,24 @@ class Allasok
   public function getCity()
   {
     return $this->current_category['city'];
+  }
+  public function createdBy()
+  {
+    $data = array();
+
+    $data[by] = ($this->get('created_by_admin') != 0) ? 'admin' : 'user';
+    $data[ID] = ($data[by] == 'admin') ? $this->get('created_by_admin') : $this->get('author_id');
+
+    switch ($data[by]) {
+      case 'user':
+        $data['name'] = $this->db->query("SELECT name FROM ".\PortalManager\Users::TABLE_NAME." WHERE ID = {$data[ID]};")->fetchColumn();
+      break;
+      default:
+        $data['name'] = $this->db->query("SELECT name FROM admin WHERE ID = {$data[ID]};")->fetchColumn();
+      break;
+    }
+
+    return $data;
   }
   public function getAuthorData( $key = 'name')
   {
