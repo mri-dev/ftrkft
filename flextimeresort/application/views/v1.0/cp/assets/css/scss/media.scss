@@ -264,9 +264,9 @@ body.admin {
         }
 
         &.active {
-          padding-left: 10px;
+          border-left: 5px solid $color-primary-light;
           a {
-            background: lighten($color-primary-light, 10%);
+            background: darken($color-grey, 15%);
             color: white;
           }
         }
@@ -507,6 +507,170 @@ input[type=checkbox].ccb:checked + label:before{
     &.deep3{
       margin-left: 30px;
       border-left: 8px solid #aaaaaa;
+    }
+  }
+}
+
+.allas-requests{
+  .allas{
+    background: #ffffff;
+    margin: 5px 0;
+    border: 2px solid #d2d2d2;
+
+    .header {
+      padding: 10px;
+      font-size: 1.2em;
+      background: #eaeaea;
+      border-bottom: 1px solid #d1d1d1;
+      color: #454545;
+
+      .author-info{
+        font-size: 0.9em;
+        margin-bottom: 4px;
+        border-bottom: 1px solid #d2d2d2;
+        padding: 0 0 8px 0;
+        margin: 0 0 5px 0;
+
+        & > span {
+          margin-right: 5px;
+
+          strong {
+            color: #333333;
+          }
+        }
+
+        .by {
+          color: white;
+          padding: 3px;
+          font-size: 0.8em;
+          text-transform: uppercase;
+
+          &.by-user{
+            background: orange;
+          }
+
+          &.by-admin {
+            background: $color-red;
+          }
+        }
+      }
+
+      .desc{
+        font-size: 1.1em;
+        color: black;
+      }
+
+      .contact {
+        background: #dbdbdb;
+        padding: 5px 8px;
+        font-size: 0.9em;
+        margin-top: 10px;
+        color: #444444;
+        position: relative;
+
+        &:before {
+          content: "";
+          width: 0;
+          height: 0;
+          position: absolute;
+          border-style: solid;
+          border-width: 10px;
+          border-color: transparent transparent  #dbdbdb transparent;
+          top: -20px;
+          left: 15px;
+          pointer-events: none;
+        }
+
+        span {
+          padding: 0 8px 0 0; margin: 0 5px 0 0;
+          border-right: 1px solid #acacac;
+
+          i {
+            margin-right: 2px;
+          }
+        }
+
+        & > span:last-child{
+          border-right: none;
+        }
+      }
+    }
+
+    .requests{
+      .request{
+        font-size: 1.1em;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 9px;
+        border-bottom: 1px solid #f1f1f1;
+
+        .status{
+          flex-basis: 30px;
+          text-align: center;
+
+          i {
+            font-size: 18px;
+          }
+        }
+
+        .text {
+          flex-basis: calc(100% - 30px);
+        }
+
+        .contact {
+          flex-basis: 100%;
+
+          .contact-info {
+            background: #f3f3f3;
+            padding: 5px 8px;
+            font-size: 0.9em;
+            margin-top: 5px;
+            margin-left: 30px;
+            @include border-radius(5px);
+            color: #888888;
+            position: relative;
+
+            &:before {
+              content: "";
+              width: 0;
+              height: 0;
+              position: absolute;
+              border-style: solid;
+              border-width: 10px;
+              border-color: transparent transparent  #f3f3f3 transparent;
+              top: -20px;
+              left: 15px;
+              pointer-events: none;
+            }
+
+            span {
+              padding: 0 8px 0 0; margin: 0 5px 0 0;
+              border-right: 1px solid #acacac;
+
+              i {
+                margin-right: 2px;
+              }
+            }
+
+            & > span:last-child{
+              border-right: none;
+            }
+          }
+        }
+
+        &.status-allowed{
+          .status i{
+            color: $color-primary-light;
+          }
+        }
+        &.status-unallowed{
+          .status i{
+            color: orange;
+          }
+        }
+      }
     }
   }
 }

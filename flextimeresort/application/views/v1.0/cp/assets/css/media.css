@@ -265,11 +265,11 @@ body.admin aside.main-sidebar section.menu li.sub a:hover {
 }
 /* line 266, scss/media.scss */
 body.admin aside.main-sidebar section.menu li.sub.active {
-  padding-left: 10px;
+  border-left: 5px solid #39ac4f;
 }
 /* line 268, scss/media.scss */
 body.admin aside.main-sidebar section.menu li.sub.active a {
-  background: #52c668;
+  background: #353535;
   color: white;
 }
 /* line 277, scss/media.scss */
@@ -527,28 +527,191 @@ input[type=checkbox].ccb:checked + label:before {
   border-left: 8px solid #aaaaaa;
 }
 
-/* line 514, scss/media.scss */
+/* line 515, scss/media.scss */
+.allas-requests .allas {
+  background: #ffffff;
+  margin: 5px 0;
+  border: 2px solid #d2d2d2;
+}
+/* line 520, scss/media.scss */
+.allas-requests .allas .header {
+  padding: 10px;
+  font-size: 1.2em;
+  background: #eaeaea;
+  border-bottom: 1px solid #d1d1d1;
+  color: #454545;
+}
+/* line 527, scss/media.scss */
+.allas-requests .allas .header .author-info {
+  font-size: 0.9em;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #d2d2d2;
+  padding: 0 0 8px 0;
+  margin: 0 0 5px 0;
+}
+/* line 534, scss/media.scss */
+.allas-requests .allas .header .author-info > span {
+  margin-right: 5px;
+}
+/* line 537, scss/media.scss */
+.allas-requests .allas .header .author-info > span strong {
+  color: #333333;
+}
+/* line 542, scss/media.scss */
+.allas-requests .allas .header .author-info .by {
+  color: white;
+  padding: 3px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+/* line 548, scss/media.scss */
+.allas-requests .allas .header .author-info .by.by-user {
+  background: orange;
+}
+/* line 552, scss/media.scss */
+.allas-requests .allas .header .author-info .by.by-admin {
+  background: #f44e5e;
+}
+/* line 558, scss/media.scss */
+.allas-requests .allas .header .desc {
+  font-size: 1.1em;
+  color: black;
+}
+/* line 563, scss/media.scss */
+.allas-requests .allas .header .contact {
+  background: #dbdbdb;
+  padding: 5px 8px;
+  font-size: 0.9em;
+  margin-top: 10px;
+  color: #444444;
+  position: relative;
+}
+/* line 571, scss/media.scss */
+.allas-requests .allas .header .contact:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent transparent  #dbdbdb transparent;
+  top: -20px;
+  left: 15px;
+  pointer-events: none;
+}
+/* line 584, scss/media.scss */
+.allas-requests .allas .header .contact span {
+  padding: 0 8px 0 0;
+  margin: 0 5px 0 0;
+  border-right: 1px solid #acacac;
+}
+/* line 588, scss/media.scss */
+.allas-requests .allas .header .contact span i {
+  margin-right: 2px;
+}
+/* line 593, scss/media.scss */
+.allas-requests .allas .header .contact > span:last-child {
+  border-right: none;
+}
+/* line 600, scss/media.scss */
+.allas-requests .allas .requests .request {
+  font-size: 1.1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 9px;
+  border-bottom: 1px solid #f1f1f1;
+}
+/* line 609, scss/media.scss */
+.allas-requests .allas .requests .request .status {
+  flex-basis: 30px;
+  text-align: center;
+}
+/* line 613, scss/media.scss */
+.allas-requests .allas .requests .request .status i {
+  font-size: 18px;
+}
+/* line 618, scss/media.scss */
+.allas-requests .allas .requests .request .text {
+  flex-basis: calc(100% - 30px);
+}
+/* line 622, scss/media.scss */
+.allas-requests .allas .requests .request .contact {
+  flex-basis: 100%;
+}
+/* line 625, scss/media.scss */
+.allas-requests .allas .requests .request .contact .contact-info {
+  background: #f3f3f3;
+  padding: 5px 8px;
+  font-size: 0.9em;
+  margin-top: 5px;
+  margin-left: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  color: #888888;
+  position: relative;
+}
+/* line 635, scss/media.scss */
+.allas-requests .allas .requests .request .contact .contact-info:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent transparent  #f3f3f3 transparent;
+  top: -20px;
+  left: 15px;
+  pointer-events: none;
+}
+/* line 648, scss/media.scss */
+.allas-requests .allas .requests .request .contact .contact-info span {
+  padding: 0 8px 0 0;
+  margin: 0 5px 0 0;
+  border-right: 1px solid #acacac;
+}
+/* line 652, scss/media.scss */
+.allas-requests .allas .requests .request .contact .contact-info span i {
+  margin-right: 2px;
+}
+/* line 657, scss/media.scss */
+.allas-requests .allas .requests .request .contact .contact-info > span:last-child {
+  border-right: none;
+}
+/* line 664, scss/media.scss */
+.allas-requests .allas .requests .request.status-allowed .status i {
+  color: #39ac4f;
+}
+/* line 669, scss/media.scss */
+.allas-requests .allas .requests .request.status-unallowed .status i {
+  color: orange;
+}
+
+/* line 678, scss/media.scss */
 .nav-container {
   text-align: center;
 }
 
-/* line 518, scss/media.scss */
+/* line 682, scss/media.scss */
 ul.pagination {
   margin: 10px 0;
   justify-content: center;
 }
-/* line 522, scss/media.scss */
+/* line 686, scss/media.scss */
 ul.pagination li {
   list-style: none;
 }
 
-/* line 526, scss/media.scss */
+/* line 690, scss/media.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 532, scss/media.scss */
+/* line 696, scss/media.scss */
 table.table {
   font-size: 0.85em;
 }

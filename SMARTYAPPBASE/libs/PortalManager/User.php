@@ -142,7 +142,7 @@ class User
 
 	public function getPhone()
 	{
-		return $this->user['data']['phone'];
+		return $this->user['data']['telefon'];
 	}
 
 	public function getProfilImg()

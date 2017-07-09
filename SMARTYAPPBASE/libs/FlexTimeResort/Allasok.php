@@ -449,6 +449,7 @@ class Allasok
     }
     return $ids;
   }
+
   private function getLimit( $arg = array() )
 	{
 		$limit = array( 0, 25 );
@@ -466,6 +467,7 @@ class Allasok
 		$this->current_page = $page;
 		return $limit;
 	}
+
   private function loadTermList( $adid )
   {
     $data = array();
@@ -679,7 +681,7 @@ class Allasok
         return $alt;
       break;
       case 'author':
-        $obj = new User($this->get('author_id'), array('controller' => $this));
+        $obj = new User($this->get('author_id'), array('controller' => $this->controller));
         return $obj;
       break;
     }

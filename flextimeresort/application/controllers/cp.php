@@ -13,6 +13,7 @@ use PortalManager\Pages;
 use MailManager\Mailer;
 use DesignCreator\FormDesigns;
 use FlexTimeResort\Allasok;
+use FlexTimeResort\Requests;
 
 class cp extends Controller {
 	private $admin;
@@ -101,6 +102,17 @@ class cp extends Controller {
 				$this->out( 'modid', (int)$this->gets[3]);
 				$formdesign = new FormDesigns();
 				$this->out('formdesigns', $formdesign);
+			break;
+			case 'requests':
+				$this->temp = '/'.$this->gets[2];
+
+				$requests = new Requests(array(
+					'controller' => $this->ctrl
+				));
+				$requests->getTree();
+
+				$this->out( 'requests', $requests);
+
 			break;
 			default:
 				$allasok = new Allasok(array(
