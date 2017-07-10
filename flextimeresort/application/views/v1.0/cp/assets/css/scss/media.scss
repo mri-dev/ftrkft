@@ -558,6 +558,28 @@ input[type=checkbox].ccb:checked + label:before{
       .desc{
         font-size: 1.1em;
         color: black;
+
+        a{
+          color: black;
+          font-style: italic;
+          text-decoration: underline;
+        }
+      }
+
+      .ads-data{
+        font-size: 0.9em;
+        margin-top: 5px;
+
+        span {
+          margin: 0 5px;
+        }
+        .edit a{
+          font-size: 0.7em;
+          background: #888888;
+          color: white;
+          padding: 2px 4px;
+          @include border-radius(4px);
+        }
       }
 
       .contact {
@@ -597,12 +619,26 @@ input[type=checkbox].ccb:checked + label:before{
     }
 
     .requests{
+      .info{
+        text-align: center;
+        text-transform: uppercase;
+        padding: 4px;
+        font-size: 0.8em;
+        color: white;
+        background: #669d73;
+
+        a{
+          color: darken(white, 10%);
+          margin-left: 15px;
+        }
+
+        &.status-hasnotaccept{
+          background: #ffa34d;
+        }
+      }
       .request{
+        display: none;
         font-size: 1.1em;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        flex-wrap: wrap;
         padding: 9px;
         border-bottom: 1px solid #f1f1f1;
 
@@ -615,8 +651,22 @@ input[type=checkbox].ccb:checked + label:before{
           }
         }
 
+        .actions{
+          flex-basis: 30%;
+          text-align: right;
+
+          .btn {
+            font-size: 0.8em;
+            padding: 4px;
+          }
+
+          .picker{
+            color: $color-red;
+          }
+        }
+
         .text {
-          flex-basis: calc(100% - 30px);
+          flex-basis: calc(100% - 30% - 30px);
         }
 
         .contact {
@@ -670,8 +720,33 @@ input[type=checkbox].ccb:checked + label:before{
             color: orange;
           }
         }
+
+        &.opened{
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          flex-wrap: wrap;
+        }
       }
     }
+    &.focus{
+      opacity: 1;
+      filter: alpha(opacity=100);
+      border: 5px solid $color-primary-light;
+      -webkit-box-shadow: 0 10px 45px -10px black;
+      -moz-box-shadow: 0 10px 45px -10px black;
+      box-shadow: 0 10px 45px -10px black;
+    }
+    &.defocus{
+      opacity: 0.4;
+      filter: alpha(opacity=40);
+
+      &:hover{
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+    }
+
   }
 }
 

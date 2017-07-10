@@ -109,7 +109,20 @@ class cp extends Controller {
 				$requests = new Requests(array(
 					'controller' => $this->ctrl
 				));
-				$requests->getTree();
+				$filters = array();
+
+				if (isset($_GET['accepts'])) {
+					$filters['accepted'] = (int)$_GET['accepts'];
+				}
+
+				if (isset($_GET['hlad'])) {
+					$filters['ad_ids'] = (array)$_GET['hlad'];
+				}
+
+				$arg = array();
+				$arg['filters'] = $filters;
+
+				$requests->getTree($arg);
 
 				$this->out( 'requests', $requests);
 

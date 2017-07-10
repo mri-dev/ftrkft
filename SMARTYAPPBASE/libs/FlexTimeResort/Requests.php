@@ -16,6 +16,7 @@ class Requests
   public $total_items = 0;
   public $total_pages = 1;
   public $tree = false;
+  public $request_info = array();
 
 	private $current_category = false;
   public $tree_ids = array();
@@ -45,6 +46,7 @@ class Requests
     $filters = $arg['filters'];
 		$qry = "
 			SELECT SQL_CALC_FOUND_ROWS
+        r.hashkey,
         r.allas_id,
         r.user_id,
         r.request_at,
@@ -52,19 +54,27 @@ class Requests
         r.accepted_at,
         r.admin_accept_id,
         r.show_author_info,
-        a.name as admin_name
+        r.admin_pick,
+        a.name as admin_name,
+        ap.name as pick_admin_name
 			FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r
       LEFT OUTER JOIN admin as a ON a.ID = r.admin_accept_id
+      LEFT OUTER JOIN admin as ap ON ap.ID = r.admin_pick
 			WHERE 1=1 ";
 
 
     // Filterek
     if (isset($filters) && !empty($filters)) {
-
+      if (isset($filters['ad_ids'])) {
+        $qry .= " and r.allas_id IN(".implode(",",$filters['ad_ids']).")";
+      }
+      if (isset($filters['accepted'])) {
+        $qry .= " and r.accepted = ".$filters['accepted'];
+      }
     }
 
     // Order
-    $qry .= " ORDER BY r.accepted ASC, r.request_at ASC ";
+    $qry .= " ORDER BY r.accepted ASC, r.admin_pick ASC, r.request_at ASC ";
 
     // Limit
 		$limit = $this->getLimit($arg);
@@ -85,6 +95,12 @@ class Requests
 
       if (!in_array($top_cat['allas_id'], $this->tree_ids)) {
         $this->tree_ids[] = $top_cat[allas_id];
+      }
+
+      if ($top_cat['accepted']) {
+        $this->request_info[$top_cat['allas_id']]['requests']['accepted']++;
+      } else {
+        $this->request_info[$top_cat['allas_id']]['requests']['not_accepted']++;
       }
 
       if(!isset($this->tree_steped_item[$top_cat[allas_id]]['ID'])){
