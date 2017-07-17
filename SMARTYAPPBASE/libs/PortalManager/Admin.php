@@ -64,7 +64,7 @@ class Admin
 			)
 		);
 	}
-	
+
 	public function save( $new_data )
 	{
 		$name 	= ($new_data['admin_user']) ?: false;
@@ -85,7 +85,7 @@ class Admin
 
 		$this->db->query(sprintf("UPDATE admin SET user = '%s', jog = %d, engedelyezve = %d $password WHERE ID = %d", $name, $jog, $status, $this->admin_id ));
 	}
-	
+
 	public function delete()
 	{
 		$this->db->query(sprintf("DELETE FROM admin WHERE ID = %d",$this->admin_id));
@@ -100,7 +100,7 @@ class Admin
 	/*===============================
 	=            GETTERS            =
 	===============================*/
-	
+
 	public function getUsername()
 	{
 		return $this->admin['user'];
@@ -109,6 +109,11 @@ class Admin
 	public function getId()
 	{
 		return $this->admin['ID'];
+	}
+
+	public function getToken()
+	{
+		return $this->admin['valid_cookie_token'];
 	}
 
 	public function getLastLogindate()
@@ -125,13 +130,13 @@ class Admin
 	{
 		return (int)$this->admin['jog'];
 	}
-	
+
 	/*-----  End of GETTERS  ------*/
 
 	public function __destruct()
 	{
 		$this->db = null;
 	}
-		
+
 }
 ?>

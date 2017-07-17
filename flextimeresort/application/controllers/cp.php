@@ -33,9 +33,10 @@ class cp extends Controller {
 			'smarty' => $this->smarty,
 			'view' => $this->getAllVars()
 		));
+		$this->admin = $this->admins->get();
 
-		$this->out( 'admin', 	$this->admins->get() );
-		$this->out( 'root', 	'/'.__CLASS__.'/' );
+		$this->out( 'admin', $this->admin );
+		$this->out( 'root', '/'.__CLASS__.'/' );
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
 
 		// SEO Információk
@@ -105,14 +106,51 @@ class cp extends Controller {
 			break;
 			case 'requests':
 				$this->temp = '/'.$this->gets[2];
+				$filter_arr = $_GET;
+				unset($filter_arr['tag']);
 
 				$requests = new Requests(array(
 					'controller' => $this->ctrl
 				));
+
+				if (isset($_GET['pickrequest'])) {
+					$requestHash = $_GET['pickrequest'];
+
+					try {
+						$requests->pick($this->admin->getID(), $requestHash);
+						\Helper::reload($this->getVar('root') . 'ads/requests/?opened='.$requestHash.'&hlad='.$_GET['hlad']);
+					} catch (Exception $e) {
+						$this->out("requestError", $e->getMessage());
+					}
+				}
+
+				if (isset($_POST['requestAction'])) {
+					switch ($_POST['requestAction']) {
+						case 'decline':
+							$requestHash = $_GET['sedecline'];
+							$requests->setDecline($this->admin->getID(), $requestHash);
+						break;
+						case 'setallow':
+							$requestHash = $_GET['setallow'];
+							$show_author_info = (isset($_POST['show_author_info'])) ? true : false;
+							$requests->setAllow($this->admin->getID(), $requestHash, $show_author_info);
+						break;
+					}
+				}
+
+
 				$filters = array();
 
 				if (isset($_GET['accepts'])) {
 					$filters['accepted'] = (int)$_GET['accepts'];
+				}
+
+				if (isset($_GET['onlyunpicked'])) {
+					$filters['onlyunpicked'] = true;
+				}
+
+				if (isset($_GET['ownpicked'])) {
+					$filters['onlypickedby'] = (int)$this->admin->getID();
 				}
 
 				if (isset($_GET['hlad'])) {
@@ -123,9 +161,8 @@ class cp extends Controller {
 				$arg['filters'] = $filters;
 
 				$requests->getTree($arg);
-
 				$this->out( 'requests', $requests);
-
+				$this->out( 'filter_arr', $filter_arr);
 			break;
 			default:
 				$allasok = new Allasok(array(

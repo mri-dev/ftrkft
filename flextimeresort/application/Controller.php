@@ -136,6 +136,7 @@ class Controller
     $this->loadAllVars();
 
 		$this->smarty->registerPlugin('function', 'lang', array($this, 'language_translator'));
+		$this->smarty->registerPlugin('function', 'array_query_toggler', array($this, 'array_query_toggler'));
 
     if( $_GET['start'] == 'off' ) {
     	setcookie( 'stredir', '1', time() + 3600*24*365, '/' );
@@ -145,6 +146,20 @@ class Controller
 
 		return $this;
   }
+
+	public function array_query_toggler($params, &$smarty)
+	{
+		$get = (array)$params['from'];
+		$item = $params['item'];
+
+		if (array_key_exists($item, $get)) {
+			unset($get[$item]);
+		} else {
+			$get[$item] = 1;
+		}
+
+		return http_build_query($get);
+	}
 
 	function language_translator($params, &$smarty){
 		$text = $this->LANGUAGES->texts;

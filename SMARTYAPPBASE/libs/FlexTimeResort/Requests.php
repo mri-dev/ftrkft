@@ -17,6 +17,7 @@ class Requests
   public $total_pages = 1;
   public $tree = false;
   public $request_info = array();
+  public $infos = array();
 
 	private $current_category = false;
   public $tree_ids = array();
@@ -71,6 +72,16 @@ class Requests
       if (isset($filters['accepted'])) {
         $qry .= " and r.accepted = ".$filters['accepted'];
       }
+
+      if (isset($filters['onlyunpicked']) && $filters['onlyunpicked'] === true ) {
+        $qry .= " and r.admin_pick IS NULL";
+      }
+
+      if (isset($filters['onlypickedby'])) {
+        $qry .= " and r.admin_pick = ".$filters['onlypickedby'];
+      }
+
+
     }
 
     // Order
@@ -98,8 +109,10 @@ class Requests
       }
 
       if ($top_cat['accepted']) {
+        $this->infos['requests']['accepted']++;
         $this->request_info[$top_cat['allas_id']]['requests']['accepted']++;
       } else {
+        $this->infos['requests']['not_accepted']++;
         $this->request_info[$top_cat['allas_id']]['requests']['not_accepted']++;
       }
 
@@ -117,6 +130,60 @@ class Requests
 		$this->tree = $tree;
 		return $this;
 	}
+
+  public function pick($admin = false, $hashkey = null)
+  {
+    if (!$admin || is_null($hashkey)) {
+      return false;
+    }
+
+    $cs = (int)$this->db->query("SELECT admin_pick FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." WHERE hashkey = '{$hashkey}'")->fetchColumn();
+
+    if ( $cs !== 0) {
+      throw new \Exception("Időközben már felvette egy adminisztrátor a kérelem kezelését.");
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_REQUEST_X,
+      array(
+        'admin_pick' => 1
+      ),
+      sprintf("hashkey = '%s'", $hashkey)
+    );
+
+    return true;
+  }
+
+  public function setDecline($admin = false, $hashkey = null)
+  {
+
+  }
+
+  public function setAllow($admin = false, $hashkey = null, $show_author_info = false)
+  {
+    if (!$admin || is_null($hashkey)) {
+      return false;
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_REQUEST_X,
+      array(
+        'admin_accept_id' => $admin,
+        'accepted' => 1,
+        'accepted_at' => NOW,
+        'show_author_info' => ($show_author_info) ? 1 : 0
+      ),
+      sprintf("hashkey = '%s'", $hashkey)
+    );
+
+    /**
+    * Értesítők
+    **/
+    // ügyfélkapu értesítés
+    // e-mail értesítés
+
+    return true;
+  }
 
   public function get()
   {
