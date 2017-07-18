@@ -527,6 +527,10 @@ input[type=checkbox].ccb:checked + label:before{
       color: orange;
       margin: 0 5px;
     }
+    .declined{
+      color: red;
+      margin: 0 5px;
+    }
   }
   a.backurl{
     color: #ffffff;
@@ -597,23 +601,38 @@ input[type=checkbox].ccb:checked + label:before{
 
         a.btn {
           position: relative;
-          padding-left: 24px;
           color: #222222;
           font-size: 0.9em;
 
-          &:before{
-            content:"\f10c";
-            font-family: 'FontAwesome';
-            position: absolute;
-            left: 5px;
-            color: #adadad;
+          i {
+            margin-left: 3px;
           }
 
           &.btn-success{
             color: white;
-            &:before{
-              content:"\f111";
-              color: white;
+          }
+        }
+
+        &.hl{
+          a{
+            border-right-width:3px;
+            border-style: solid;
+            border-right-color: #444;
+          }
+
+          &.hl-red{
+            a{
+              border-right-color: red;
+            }
+          }
+          &.hl-orange{
+            a{
+              border-right-color: orange;
+            }
+          }
+          &.hl-green{
+            a{
+              border-right-color: $color-primary-light;
             }
           }
         }
@@ -785,7 +804,7 @@ input[type=checkbox].ccb:checked + label:before{
 
           .contact-info {
             background: #f3f3f3;
-            padding: 5px 8px;
+            padding: 4px 0;
             font-size: 0.9em;
             margin-top: 5px;
             margin-left: 30px;
@@ -807,11 +826,37 @@ input[type=checkbox].ccb:checked + label:before{
             }
 
             span {
-              padding: 0 8px 0 0; margin: 0 5px 0 0;
+              padding: 4px 8px 4px 4px;
+              margin: 0 5px 0 0;
               border-right: 1px solid #acacac;
+
 
               i {
                 margin-right: 2px;
+              }
+            }
+
+            & > span.messanger {
+              float: right;
+              margin: 0;
+              padding: 0;
+
+              a{
+                padding: 4px 6px;
+                font-size: 0.9em;
+                -moz-border-radius: 0 5px 5px 0;
+                -webkit-border-radius: 0 5px 5px 0;
+                border-radius: 0 5px 5px 0;
+              }
+
+              a.session{
+                background: $color-primary-light;
+                color: white;
+              }
+
+              a.creating{
+                background: $color-grey;
+                color: white;
               }
             }
 
@@ -840,6 +885,13 @@ input[type=checkbox].ccb:checked + label:before{
         &.status-unallowed{
           .status i{
             color: orange;
+          }
+        }
+        &.status-declined{
+          opacity: 0.6;
+          filter: alpha(opacity=60);
+          .status i{
+            color: red;
           }
         }
 
@@ -876,6 +928,7 @@ input[type=checkbox].ccb:checked + label:before{
   border-width: 5px;
   border-style: solid;
   color: white;
+  margin: 5px 0 10px 0;
 
   h2 {
     font-size: 1.8em;

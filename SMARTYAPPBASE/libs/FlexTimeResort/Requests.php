@@ -4,6 +4,9 @@ namespace FlexTimeResort;
 use ExceptionManager\RedirectException;
 use FlexTimeResort\Allasok;
 use PortalManager\User;
+use AlertsManager\Alerts;
+use MailManager\Mailer;
+use MailManager\Mails;
 
 class Requests
 {
@@ -56,6 +59,9 @@ class Requests
         r.admin_accept_id,
         r.show_author_info,
         r.admin_pick,
+        r.finished,
+        r.declined,
+        r.declined_at,
         a.name as admin_name,
         ap.name as pick_admin_name
 			FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r
@@ -77,15 +83,21 @@ class Requests
         $qry .= " and r.admin_pick IS NULL";
       }
 
+      if (isset($filters['onlydeclined']) && $filters['onlydeclined'] === true ) {
+        $qry .= " and r.declined = 1";
+      }
+
+      if (isset($filters['onlyaccepted']) && $filters['onlyaccepted'] === true ) {
+        $qry .= " and r.accepted = 1";
+      }
+
       if (isset($filters['onlypickedby'])) {
         $qry .= " and r.admin_pick = ".$filters['onlypickedby'];
       }
-
-
     }
 
     // Order
-    $qry .= " ORDER BY r.accepted ASC, r.admin_pick ASC, r.request_at ASC ";
+    $qry .= " ORDER BY r.finished ASC, r.declined ASC, r.accepted ASC, r.admin_pick ASC, r.request_at ASC ";
 
     // Limit
 		$limit = $this->getLimit($arg);
@@ -104,6 +116,8 @@ class Requests
 		foreach ( $top_cat_data as $top_cat ) {
 			$this->tree_items++;
 
+      $top_cat['messanger'] = $this->getMessangerSession($top_cat['allas_id'], $top_cat['user_id']);
+
       if (!in_array($top_cat['allas_id'], $this->tree_ids)) {
         $this->tree_ids[] = $top_cat[allas_id];
       }
@@ -114,6 +128,23 @@ class Requests
       } else {
         $this->infos['requests']['not_accepted']++;
         $this->request_info[$top_cat['allas_id']]['requests']['not_accepted']++;
+
+      }
+
+      if($top_cat['finished'] == 1){
+        $this->request_info[$top_cat['allas_id']]['requests']['finished']++;
+        $this->infos['requests']['finished']++;
+      } else {
+        $this->request_info[$top_cat['allas_id']]['requests']['not_finished']++;
+        $this->infos['requests']['not_finished']++;
+      }
+
+      if($top_cat['declined'] == 1){
+        $this->infos['requests']['declined']++;
+      }
+
+      if($top_cat['finished'] == 0 && ($top_cat['declined'] == 0 || $top_cat['accepted'] == 0)){
+          $this->request_info[$top_cat['allas_id']]['requests']['in_progress']++;
       }
 
       if(!isset($this->tree_steped_item[$top_cat[allas_id]]['ID'])){
@@ -130,6 +161,17 @@ class Requests
 		$this->tree = $tree;
 		return $this;
 	}
+
+  private function getMessangerSession( $id = 0, $user_id = 0 )
+  {
+    $sessionId = $this->db->query("SELECT sessionid FROM ".\PortalManager\Messanger::DBTABLE." WHERE allas_id IS NOT NULL and allas_id = ".$id." and allas_requester_user_id = ".$user_id)->fetch(\PDO::FETCH_ASSOC);
+
+    if(empty($sessionId)) {
+      return false;
+    }
+
+    return $sessionId;
+  }
 
   public function pick($admin = false, $hashkey = null)
   {
@@ -156,7 +198,21 @@ class Requests
 
   public function setDecline($admin = false, $hashkey = null)
   {
+    if (!$admin || is_null($hashkey)) {
+      return false;
+    }
 
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_REQUEST_X,
+      array(
+        'declined' => 1,
+        'declined_at' => NOW,
+        'finished' => 1
+      ),
+      sprintf("hashkey = '%s'", $hashkey)
+    );
+
+    return true;
   }
 
   public function setAllow($admin = false, $hashkey = null, $show_author_info = false)
@@ -165,22 +221,55 @@ class Requests
       return false;
     }
 
+    $lang = $this->controller->LANGUAGES->getCurrentLang();
+
     $this->db->update(
       \FlexTimeResort\Allasok::DB_REQUEST_X,
       array(
         'admin_accept_id' => $admin,
         'accepted' => 1,
         'accepted_at' => NOW,
-        'show_author_info' => ($show_author_info) ? 1 : 0
+        'show_author_info' => ($show_author_info) ? 1 : 0,
+        'finished' => 1
       ),
       sprintf("hashkey = '%s'", $hashkey)
     );
 
+    $requestDatas = $this->db->query("SELECT allas_id, user_id, request_at, accepted_at FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." WHERE hashkey = '{$hashkey}'")->fetch(\PDO::FETCH_ASSOC);
+    $allas = (new Allasok(array('controller' => $this->controller)))->load($requestDatas['allas_id']);
+
+    $requestedUser = new User($requestDatas['user_id'], array('controller' => $this->controller));
+
     /**
     * Értesítők
     **/
+
     // ügyfélkapu értesítés
+
+    (new Alerts(array('controller' => $this->controller)))->add(
+      $requestDatas['user_id'],
+      'allas_jelentkezes_hozzaferes_engedelyezes',
+      $requestDatas['allas_id']
+    );
+
     // e-mail értesítés
+		$mail = new Mailer(
+      $this->settings['page_title'],
+      $this->settings['email_noreply_address'],
+      $this->settings['mail_sender_mode']
+    );
+		$mail->add( $requestedUser->getEmail() );
+
+    $this->smarty->assign( 'allas', $allas );
+    $this->smarty->assign( 'user', $requestedUser );
+    $this->smarty->assign( 'hashkey', $hashkey );
+    $this->smarty->assign( 'request_at', $requestDatas['request_at'] );
+    $this->smarty->assign( 'accepted_at', $requestDatas['accepted_at'] );
+
+    $mail->setSubject( $this->controller->lang('MAIL_CP_ALLAS_JELENTKEZES_ENGEDELY_MEGADVA') );
+
+		$mail->setMsg( $this->smarty->fetch( 'mails/'.$lang.'/request_user_accept.tpl' ) );
+		$re = $mail->sendMail();
 
     return true;
   }

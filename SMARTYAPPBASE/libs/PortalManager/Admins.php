@@ -71,7 +71,7 @@ class Admins
 		return ($data['engedelyezve'] == 1) ? true : false;
 	}
 
-	private function getAdminByCookieToken($token){
+	public function getAdminByCookieToken($token){
 		$admin = $this->db->query("SELECT user FROM admin WHERE valid_cookie_token = '$token'")->fetch(\PDO::FETCH_COLUMN);
 
 		return $admin;

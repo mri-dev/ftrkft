@@ -1,6 +1,11 @@
 <?php
 namespace PortalManager;
 
+use FlexTimeResort\Allasok;
+use PortalManager\User;
+use MailManager\Mailer;
+use MailManager\Mails;
+
 class Messanger
 {
   const DBTABLE = 'messanger';
@@ -94,6 +99,7 @@ class Messanger
       ms.start_by_id,
       ms.archived_by_user,
       ms.archived_by_admin,
+      ms.allas_id,
       IF(m.from_admin, from_admin.name, from_user.name) as from_name,
       IF(ms.start_by = 'user', sess_user.name, sess_admin.name) as session_starter_name,
       IF(ms.start_by = 'user', 'outbox', 'inbox') as controll_for
@@ -126,7 +132,7 @@ class Messanger
         $qry .= " and ms.archived_by_user = 0 ";
       }
     }
-    
+
     if ($this->admin) {
       //$qry .= " ORDER BY m.";
     } else {
@@ -150,6 +156,7 @@ class Messanger
         $datas['list'][$d['sessionid']]['controll_for'] = $d['controll_for'];
         $datas['list'][$d['sessionid']]['archived_by_user'] = (int)$d['archived_by_user'];
         $datas['list'][$d['sessionid']]['archived_by_admin'] = (int)$d['archived_by_admin'];
+        $datas['list'][$d['sessionid']]['allas'] = $this->loadAllasData($d['allas_id']);
 
         $datas['list'][$d['sessionid']]['from'] = array(
           'name' => $d['session_starter_name'],
@@ -195,6 +202,25 @@ class Messanger
     return $datas;
   }
 
+  private function loadAllasData( $id = false )
+  {
+    if (!$id) {
+      return false;
+    }
+
+    $data = array();
+
+    $allas = (new Allasok(array('controller' => $this->controller)))->load($id);
+
+    $data['text'] = $allas->shortDesc();
+    $data['cat'] = $allas->get('cat_name');
+    $data['type'] = $allas->get('tipus_name');
+    $data['city'] = $allas->getCity();
+    $data['url'] = $allas->getUrl();
+
+    return $data;
+  }
+
   public function addMessage($session, $from, $to, $msg, $admin)
   {
     if ($this->isMessageSessionClosed($session)) {
@@ -215,6 +241,72 @@ class Messanger
     );
 
     return $this->db->lastInsertId();
+  }
+
+  public function createSession( $data, $by = 'admin' )
+  {
+    extract($data);
+    $createdSession = false;
+
+    $lang = $this->controller->LANGUAGES->getCurrentLang();
+
+    if (empty($msg)) {
+      throw new \Exception($this->controller->lang("Első üzenet tartalmát kötelező megadni."));
+    }
+
+    if (empty($subject)) {
+      throw new \Exception($this->controller->lang("A beszélgetés létrehozásához adja meg a témát."));
+    }
+    $createdSession = uniqid();
+
+    $this->db->insert(
+      self::DBTABLE,
+      array(
+        'sessionid' => $createdSession,
+        'subject' => $subject,
+        'allas_id' => (isset($allas_id) && !empty($allas_id)) ? (int)$allas_id : NULL,
+        'allas_requester_user_id' => (isset($user_id) && !empty($user_id)) ? (int)$user_id : NULL,
+        'start_by' => $by,
+        'start_by_id' => ($by == 'admin') ? $admin_id : $user_id
+      )
+    );
+
+    // Üzenet beszúrása
+    $this->addMessage(
+      $createdSession,
+      $admin_id,
+      $user_id,
+      $msg,
+      ($by == 'admin') ? true : false
+    );
+
+    // E-mail alert
+    if (isset($user_id) && !empty($user_id))
+    {
+      $allas = (new Allasok(array('controller' => $this->controller)))->load($allas_id);
+      $requestedUser = new User($user_id, array('controller' => $this->controller));
+
+      $mail = new Mailer(
+        $this->settings['page_title'],
+        $this->settings['email_noreply_address'],
+        $this->settings['mail_sender_mode']
+      );
+  		$mail->add( $requestedUser->getEmail() );
+
+      $this->smarty->assign( 'subject', $subject );
+      $this->smarty->assign( 'msg', $msg );
+      $this->smarty->assign( 'settings', $this->controller->settings );
+      $this->smarty->assign( 'allas', $allas );
+      $this->smarty->assign( 'user', $requestedUser );
+      $this->smarty->assign( 'msgurl', '/ugyfelkapu/uzenetek/msg/'.$createdSession.'/?rel=email-alert' );
+
+      $mail->setSubject( $this->controller->lang('MAIL_CP_MESSANGER_UJ_UZENET_BESZELGETES', array('tema' => $subject)));
+
+  		$mail->setMsg( $this->smarty->fetch( 'mails/'.$lang.'/messanger_new_sesssion_user.tpl' ) );
+  		$re = $mail->sendMail();
+    }
+
+    return $createdSession;
   }
 
   public function setReadedMessage($by, $session)

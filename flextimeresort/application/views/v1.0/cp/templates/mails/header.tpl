@@ -23,4 +23,4 @@
 			</table>
 			<div style="background: #39ac4f; width: 100%; margin: 20px auto 10px auto; height: 5px;"></div>
 		</div>
-		<div style="padding: 25px;">
+		<div style="padding: 10px 20px 25px 20px;">

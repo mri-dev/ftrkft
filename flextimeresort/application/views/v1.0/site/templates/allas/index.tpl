@@ -22,7 +22,7 @@
         <div class="content-text">
           {$allas->getContent()}
         </div>
-        {if $requested_data.show_author_info == 1}
+        {if $requested_data.show_author_info == 1 || $admin_access}
           {assign var="author_obj" value=$allas->getAuthorData('author')}
           {if !is_null($author_obj->getID())}
           <div class="author">
@@ -161,7 +161,12 @@
           <div class="title">
             <i class="fa fa-check-circle"></i> {lang text='Hozzáférés engedélyezve'}
           </div>
-          {lang text='Hozzáférés engedélyezve_TEXT' date=$requested_data.accepted_at admin=$requested_data.admin_name}
+          {if $admin_access}
+            {lang text="Állás adatlap admin engedély"}
+          {else}
+            {lang text='Hozzáférés engedélyezve_TEXT' date=$requested_data.accepted_at admin=$requested_data.admin_name}
+          {/if}
+
         </div>
       </div>
     {/if}

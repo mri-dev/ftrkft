@@ -1,4 +1,7 @@
-<div class="messanger-reader">
+<div ng-show="!data_loaded" class="alert alert-warning" style="margin-top: 10px;">
+  <i class="fa fa-spin fa-spinner"></i> {lang text="Üzenet betöltése folyamatban..."}
+</div>
+<div class="messanger-reader" ng-show="data_loaded">
   <div class="header">
     <div class="archiving" ng-show="(messages['{$msgsession}'].archived_by_user == 0)?true:false" ng-click="archiveMessageSession('{$msgsession}', 0)">
       <i class="fa fa-archive"></i> {lang text="Archiválás"}
@@ -22,6 +25,17 @@
         </div>
         <div class="newnotice-error" ng-show="(newnoticemsg['{$msgsession}'])?true:false">
           [[newnoticemsg['{$msgsession}'] ]]
+        </div>
+      </div>
+    </div>
+    <div class="allas-spot" ng-show="messages['{$msgsession}'].allas">
+      <div class="ico">
+        <i class="fa fa-file-text-o"></i>
+      </div>
+      <div class="data">
+        <a target="_blank" href="[[ messages['{$msgsession}'].allas.url ]]">[[ messages['{$msgsession}'].allas.text ]]</a>
+        <div class="categories">
+          <span class="city"><i class="fa fa-map-marker"></i> [[ messages['{$msgsession}'].allas.city ]]</span> <span class="type">[[ messages['{$msgsession}'].allas.type ]]</span> <span class="cat">[[ messages['{$msgsession}'].allas.cat ]]</span>
         </div>
       </div>
     </div>
@@ -54,9 +68,7 @@
     </div>
     <div class="conversation" ng-class="(conv.from_id == {$me->getID()} )?'from-me':'from-sender'" ng-repeat="conv in messages['{$msgsession}'].msg">
       <div class="bubble">
-        <div class="text">
-          [[conv.msg]]
-        </div>
+        <div class="text" ng-bind-html="conv.msg|nl2br"></div>
       </div>
       <div class="from">
         <span class="unreaded" ng-show="(conv.unreaded) ? true : false">{lang text="Új üzenet"}</span> <strong>[[conv.from.name]]</strong> <span class="timestamp">[[conv.send_at]]</span>

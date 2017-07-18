@@ -2693,6 +2693,52 @@ ul.pagination {
 
           }
         }
+
+        .allas-spot{
+          background: #efefef;
+          padding: 10px 5px;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          border: 2px dashed #ffffff;
+          align-items: center;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin-top: 8px;
+
+          .ico{
+            flex-basis: 50px;
+            text-align: center;
+
+            font-size: 38px;
+            color: black;
+          }
+
+          .data{
+            flex-basis: calc(100% - 50px);
+            line-height: 1.3;
+            color: #444444;
+
+            .categories{
+              span {
+                margin-right: 5px;
+              }
+              .city {
+                color: $color-red;
+              }
+            }
+
+            a{
+              color: black;
+              display: block;
+              margin-bottom: 8px;
+              font-style: italic;
+              text-decoration: underline;
+              font-size: 1.1em;
+            }
+          }
+        }
       }
       .conversation-creator{
         border: 2px solid #e2e2e2;

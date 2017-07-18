@@ -229,7 +229,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 /**
 * Ügyfélkapu üzenetváltó modul
 **/
-var msg = angular.module("UserMessanger", [], function($interpolateProvider){
+var msg = angular.module("UserMessanger", ['nl2br', 'ngSanitize'], function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });
@@ -241,6 +241,7 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
     inbox: 0,
     outbox: 0
   };
+  $scope.data_loaded = false;
   $scope.messages = {};
   $scope.result = {};
   $scope.newnoticemsg = {};
@@ -348,6 +349,7 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
   }
 
   $scope.loadMessages = function(type){
+    $scope.data_loaded = false;
     // Üzenetek betöltése
     $http({
       method: 'POST',
@@ -361,8 +363,7 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
       $scope.result = d;
       $scope.unreaded_messages = d.unreaded;
       $scope.messages = d.messages.list;
-
-      console.log(d);
+      $scope.data_loaded = true;
     }, function errorCallback(response) {});
   }
 }]);

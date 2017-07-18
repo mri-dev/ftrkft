@@ -8,6 +8,7 @@ use PortalManager\User;
 use PortalManager\Menus;
 use PortalManager\Articles;
 use PortalManager\Pagination;
+use PortalManager\Messanger;
 use ExceptionManager\RedirectException;
 use PortalManager\Pages;
 use MailManager\Mailer;
@@ -34,9 +35,10 @@ class cp extends Controller {
 			'view' => $this->getAllVars()
 		));
 		$this->admin = $this->admins->get();
+		$this->root = '/'.__CLASS__.'/';
 
 		$this->out( 'admin', $this->admin );
-		$this->out( 'root', '/'.__CLASS__.'/' );
+		$this->out( 'root', $this->root );
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
 
 		// SEO Információk
@@ -121,19 +123,38 @@ class cp extends Controller {
 						\Helper::reload($this->getVar('root') . 'ads/requests/?opened='.$requestHash.'&hlad='.$_GET['hlad']);
 					} catch (Exception $e) {
 						$this->out("requestError", $e->getMessage());
+						$this->out("link_back_list", true);
 					}
 				}
 
 				if (isset($_POST['requestAction'])) {
 					switch ($_POST['requestAction']) {
 						case 'decline':
-							$requestHash = $_GET['sedecline'];
-							$requests->setDecline($this->admin->getID(), $requestHash);
+							$requestHash = $_GET['setdecline'];
+							$status = $requests->setDecline($this->admin->getID(), $requestHash);
+							if ($status) {
+								\Helper::reload($this->root.'ads/requests/?ownpicked=1');
+							}
 						break;
 						case 'setallow':
 							$requestHash = $_GET['setallow'];
 							$show_author_info = (isset($_POST['show_author_info'])) ? true : false;
-							$requests->setAllow($this->admin->getID(), $requestHash, $show_author_info);
+							$status = $requests->setAllow($this->admin->getID(), $requestHash, $show_author_info);
+							if ($status) {
+								\Helper::reload($this->root.'ads/requests/?opened='.$requestHash.'&hlad='.$_GET['hlad']);
+							}
+						break;
+						case 'createMessanger':
+							$messanger = new Messanger(array('controller' => $this->ctrl));
+							try {
+								$session = $messanger->createSession( $_POST );
+
+								if ($session) {
+									\Helper::reload($this->root.'messanger/session/'.$session.'/?justcreated=1'); exit;
+								}
+							} catch (\Exception $e) {
+								$this->out("requestError", $e->getMessage());
+							}
 						break;
 					}
 				}
@@ -147,6 +168,14 @@ class cp extends Controller {
 
 				if (isset($_GET['onlyunpicked'])) {
 					$filters['onlyunpicked'] = true;
+				}
+
+				if (isset($_GET['onlyaccepted'])) {
+					$filters['onlyaccepted'] = true;
+				}
+
+				if (isset($_GET['onlydeclined'])) {
+					$filters['onlydeclined'] = true;
 				}
 
 				if (isset($_GET['ownpicked'])) {

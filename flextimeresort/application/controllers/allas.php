@@ -1,5 +1,6 @@
 <?
 use FlexTimeResort\Allasok;
+use PortalManager\Admins;
 
 class allas extends Controller{
 	function __construct(){
@@ -19,15 +20,35 @@ class allas extends Controller{
 			Helper::reload($this->settings['page_url'].$this->settings['munkavallalo_search_slug']);
 		}
 
-
 		$allasok->logVisit($this->ME->getID());
 		$request = $allasok->checkRequestAd($this->ME->getID(), $id);
 		$request_data = $allasok->getRequest($request);
 		$access_granted = ($request_data['accepted'] == 1) ? true : false;
 
+		// Admin view
+		if (isset($_GET['showfull']))
+		{
+			$adminToken = $_GET['atoken'];
+
+			$admins = new Admins(array(
+				'db' => $this->db,
+				'view' => array(
+					'settings' => $this->settings
+				)
+			));
+
+			$adminTokenUser = $admins->getAdminByCookieToken($adminToken);
+
+			if ($adminTokenUser) {
+				$access_granted = true;
+				$adminAccess = true;
+			}
+		}
+
 		$this->out( 'requested_ad', $request );
 		$this->out( 'requested_data', $request_data );
 		$this->out( 'access_granted', $access_granted );
+		$this->out( 'admin_access', $adminAccess );
 
 		// SEO Információk
 		$SEO = null;

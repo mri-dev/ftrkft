@@ -21,9 +21,9 @@ class Lang {
 		$this->settings = $smarty_config;
 		$this->language = $smarty_config['default_language'];
 
-        if( isset( $_COOKIE['language'] ) ) {
-            $this->language = $_COOKIE['language'];
-        }
+    if( isset( $_COOKIE['language'] ) ) {
+        $this->language = $_COOKIE['language'];
+    }
 	}
 
   static public function getCurrentLang()
