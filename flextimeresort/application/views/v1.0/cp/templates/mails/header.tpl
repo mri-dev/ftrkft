@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
-<body style="background: #006534; color: #444; font-size: 14px; margin:0; padding:0; font-family: 'Arial'; ">
-	<div style="width: 800px; margin: 20px auto; background:#ffffff;">
+<body style="background: #006534; color: #444; font-size: 16px; margin:0; padding:0; font-family: 'Arial'; ">
+	<div style="width: 85%; margin: 25px auto; background:#ffffff;">
 		<div style="padding: 25px;">
 			<table style="width: 100%; text-align: center; ">
 				<tbody>
