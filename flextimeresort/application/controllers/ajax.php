@@ -271,6 +271,10 @@ class ajax extends Controller  {
 					$group = $params['by'];
 					$uid = (int)$this->ME->getID();
 
+					if (isset($params['for']) && $params['for'] == 'admin') {
+						$arg['admin'] = true;
+					}
+
 					switch ($group) {
 						case 'msg':
 							$arg['controll_by'] = 'msg';

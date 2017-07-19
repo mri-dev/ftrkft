@@ -29,6 +29,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^cp/users(/)?(\d)?(/)?$ index.php?tag=cp/users&page=$2 [NC,QSA,L]
 
+# Admin - Üzenetek
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/messanger(/)?(inbox|outbox|archiv|session)(/)?(.+)?(/)?$ index.php?tag=cp/messanger&sub=$2&msgid=$4 [NC,QSA,L]
+
 # Users
 # Reg
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -48,7 +53,7 @@ RewriteRule ^elfelejtett-jelszo(/)?$ index.php?tag=resetpassword [NC,QSA,L]
 # Ügyfélkapu üzenetek
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ugyfelkapu/uzenetek/(inbox|outbox|archiv|msg)(/)?(.+)?$ index.php?tag=user/ugyfelkapu&p=uzenetek&sub=$1&msgid=$3 [NC,QSA,L]
+RewriteRule ^ugyfelkapu/uzenetek/(inbox|outbox|archiv|msg)(/)?(.+)?(/)?$ index.php?tag=user/ugyfelkapu&p=uzenetek&sub=$1&msgid=$3 [NC,QSA,L]
 
 # Ügyfélkapu profil
 RewriteCond %{REQUEST_FILENAME} !-d

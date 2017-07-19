@@ -2923,10 +2923,48 @@ ul.pagination {
       .message-session {
         border: 1px solid #eaeaea;
         background: #f8f8f8;
-        padding: 10px 10px 10px 15px;
+        padding: 0;
         margin: 10px 0;
         position: relative;
         border-radius: 4px;
+
+        .allas-spot{
+          background: $color-grey;
+          color: #bbbbbb;
+          padding: 8px 4px;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          align-items: center;
+          border-radius: 0 0 3px 3px;
+
+          .ico {
+            flex-basis: 50px;
+            text-align: center;
+            font-size: 38px;
+            color: black;
+
+            i{
+              color: $color-primary-light;
+            }
+          }
+
+          .data{
+            line-height: 1.4;
+            .categories{
+              span{
+                margin-right: 8px;
+              }
+            }
+          }
+
+          a{
+            color: white;
+            text-decoration: underline;
+
+          }
+        }
+
         .unread {
           background: $color-red;
           color: white;
@@ -2946,6 +2984,7 @@ ul.pagination {
 
         .group-head{
           position: relative;
+          padding: 7px 12px;
 
           .from {
             font-size: 1em;
@@ -2978,8 +3017,8 @@ ul.pagination {
 
             .unread-label {
               position: absolute;
-              right: -8px;
-              bottom: 0;
+              right: 12px;
+              bottom: 17px;
 
               a {
                 background: #cecece;
@@ -3035,8 +3074,8 @@ ul.pagination {
 
           .session-start{
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 10px;
+            top: 10px;
             line-height: 1;
             font-size: 0.8em;
             color: #bfbfbf;

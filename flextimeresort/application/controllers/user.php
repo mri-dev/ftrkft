@@ -136,7 +136,7 @@ class user extends Controller{
 						break;
 						case 'msg':
 							$subtitle .= ' / '.$this->lang('Üzenet olvasása');
-							$this->out('msgsession', $_GET['msgid']);
+							$this->out('msgsession', rtrim($_GET['msgid'], '/'));
 						break;
 					}
 				break;

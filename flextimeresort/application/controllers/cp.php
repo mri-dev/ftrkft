@@ -96,6 +96,15 @@ class cp extends Controller {
 		}
 	}
 
+	public function messanger()
+	{
+		if (isset($_GET['msgid']) && !empty($_GET['msgid'])) {
+			$msgsession = rtrim($_GET['msgid'], '/');
+		}
+
+		$this->out('msgsession', $msgsession);
+	}
+
 	public function ads()
 	{
 		switch ( $this->gets[2] ) {

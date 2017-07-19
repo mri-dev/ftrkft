@@ -991,28 +991,69 @@ input[type=checkbox].ccb:checked + label:before {
   line-height: 1.2;
 }
 
-/* line 971, scss/media.scss */
+/* line 975, scss/media.scss */
+.messanger .wrapper .message-list .message-session .allas-spot {
+  padding: 3px;
+}
+/* line 978, scss/media.scss */
+.messanger .wrapper .message-list .message-session .allas-spot a {
+  margin-bottom: 4px;
+  display: block;
+}
+/* line 986, scss/media.scss */
+.messanger .wrapper .messanger-reader .header {
+  padding: 0 0 20px 0;
+}
+/* line 988, scss/media.scss */
+.messanger .wrapper .messanger-reader .header .allas-spot {
+  background: #ffffff;
+  border: 2px dashed #dbdbdb;
+  padding: 8px 4px;
+}
+/* line 993, scss/media.scss */
+.messanger .wrapper .messanger-reader .header .user-spot {
+  background: #ffffff;
+  padding: 8px 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px dashed #dbdbdb;
+  align-items: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+/* line 1006, scss/media.scss */
+.messanger .wrapper .messanger-reader .header .user-spot .ico {
+  flex-basis: 50px;
+  text-align: center;
+  font-size: 38px;
+  color: black;
+}
+
+/* line 1018, scss/media.scss */
 .nav-container {
   text-align: center;
 }
 
-/* line 975, scss/media.scss */
+/* line 1022, scss/media.scss */
 ul.pagination {
   margin: 10px 0;
   justify-content: center;
 }
-/* line 979, scss/media.scss */
+/* line 1026, scss/media.scss */
 ul.pagination li {
   list-style: none;
 }
 
-/* line 983, scss/media.scss */
+/* line 1030, scss/media.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 989, scss/media.scss */
+/* line 1036, scss/media.scss */
 table.table {
   font-size: 0.85em;
 }

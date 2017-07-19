@@ -968,6 +968,53 @@ input[type=checkbox].ccb:checked + label:before{
   }
 }
 
+.messanger{
+  .wrapper{
+    .message-list{
+      .message-session{
+        .allas-spot{
+          padding: 3px;
+
+          a{
+            margin-bottom: 4px;
+            display: block;
+          }
+        }
+      }
+    }
+    .messanger-reader{
+      .header{
+        padding: 0 0 20px 0;
+        .allas-spot{
+          background: #ffffff;
+          border: 2px dashed #dbdbdb;
+          padding: 8px 4px;
+        }
+        .user-spot{
+          background: #ffffff;
+          padding: 8px 4px;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          border: 2px dashed #dbdbdb;
+          align-items: center;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
+          margin-top: 8px;
+
+          .ico{
+            flex-basis: 50px;
+            text-align: center;
+            font-size: 38px;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
 .nav-container{
   text-align: center;
 }

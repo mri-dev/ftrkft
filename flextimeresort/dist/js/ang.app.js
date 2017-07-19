@@ -234,7 +234,7 @@ var msg = angular.module("UserMessanger", ['nl2br', 'ngSanitize'], function($int
   $interpolateProvider.endSymbol(']]');
 });
 
-msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
+msg.controller( "MessagesList", ['$scope', '$http', '$timeout', function($scope, $http, $timeout)
 {
   $scope.is_msg = false;
   $scope.unreaded_messages = {
@@ -251,6 +251,8 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
   $scope.newmsg_focused = false;
   $scope.newmsg_send_progress = false;
   $scope.newmsgerrmsg=false;
+  $scope.syncMsgTimeout = null;
+  $scope.syncCount = 0;
 
   // Init messanger
   $scope.init = function(group, is_msg, uid, session){
@@ -309,7 +311,6 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
   }
 
   $scope.sendMessage = function(session, from_id, to_id, admin){
-    console.log($scope.newmsg);
     if($scope.is_msg) {
       if(!$scope.newmsg_send_progress) {
         $scope.newmsg_send_progress = true;
@@ -338,7 +339,6 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
             $scope.newmsgerrmsg = d.msg;
           }
 
-          console.log(d);
         }, function errorCallback(response) {});
       }
     }
@@ -349,7 +349,6 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
   }
 
   $scope.loadMessages = function(type){
-    $scope.data_loaded = false;
     // Üzenetek betöltése
     $http({
       method: 'POST',
@@ -364,11 +363,188 @@ msg.controller( "MessagesList", ['$scope', '$http', function($scope, $http)
       $scope.unreaded_messages = d.unreaded;
       $scope.messages = d.messages.list;
       $scope.data_loaded = true;
+
+      if ($scope.syncCount <= 1000) {
+        $timeout.cancel($scope.syncMsgTimeout);
+        $scope.syncMsgTimeout = $timeout(function() {
+          $scope.syncCount++;
+          $scope.syncMessages();
+        }, 5000);
+      }
+
     }, function errorCallback(response) {});
   }
 }]);
 
 msg.directive('focusMe', function($timeout) {
+  return {
+    scope: { trigger: '=focusMe' },
+    link: function(scope, element) {
+      scope.$watch('trigger', function(value) {
+        if(value === true) {
+          //console.log('trigger',value);
+          //$timeout(function() {
+            element[0].focus();
+            scope.trigger = false;
+          //});
+        }
+      });
+    }
+  };
+});
+
+/**
+* Admin ügyfélkapu üzenetváltó modul
+**/
+var admmsg = angular.module("AdminMessanger", ['nl2br', 'ngSanitize'], function($interpolateProvider){
+  $interpolateProvider.startSymbol('[[');
+  $interpolateProvider.endSymbol(']]');
+});
+
+admmsg.controller( "MessagesList", ['$scope', '$http', '$timeout', function($scope, $http, $timeout)
+{
+  $scope.is_msg = false;
+  $scope.unreaded_messages = {
+    inbox: 0,
+    outbox: 0
+  };
+  $scope.data_loaded = false;
+  $scope.messages = {};
+  $scope.result = {};
+  $scope.newnoticemsg = {};
+  $scope.msgtgl = {};
+  $scope.newmsg_left_length = 1000;
+  $scope.newmsg = null;
+  $scope.newmsg_focused = false;
+  $scope.newmsg_send_progress = false;
+  $scope.newmsgerrmsg=false;
+  $scope.syncMsgTimeout = null;
+  $scope.syncCount = 0;
+
+  // Init messanger
+  $scope.init = function(group, is_msg, uid, session){
+    $scope.is_msg = is_msg;
+    $scope.loadMessages(group);
+
+    if (is_msg) {
+      $scope.MessageSessionActions(session);
+    }
+
+  }
+
+  $scope.MessageSessionActions = function(session){
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_message_viewed',
+        session: session,
+        by: 'admin_readed_at'
+      }
+    }).then(
+      function successCallback(response) {},
+      function errorCallback(response) {});
+  }
+
+  $scope.archiveMessageSession = function(session, admin){
+    if (admin == 1) {
+      $scope.saveMsgSessionData(session, 'archived_by_admin', 1);
+    } else {
+      $scope.saveMsgSessionData(session, 'archived_by_user', 1);
+    }
+  }
+
+  $scope.saveMsgSessionData = function(session, record, value){
+    $scope.newnoticemsg[session] = false;
+
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_messagesession_edit',
+        session: session,
+        what: record,
+        value: value
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+
+      if (d.success) {
+        $scope.msgtgl[session] = false;
+      } else {
+        $scope.newnoticemsg[d.session] = d.msg;
+      }
+    }, function errorCallback(response) {});
+  }
+
+  $scope.sendMessage = function(session, from_id, to_id, admin){
+    if($scope.is_msg) {
+      if(!$scope.newmsg_send_progress) {
+        $scope.newmsg_send_progress = true;
+        $scope.newmsgerrmsg = false;
+        // Üzenetek küldése
+        $http({
+          method: 'POST',
+          url: '/ajax/data',
+          params: {
+            type: 'messanger_message_send',
+            session: session,
+            msg: $scope.newmsg,
+            from: from_id,
+            to: to_id,
+            admin: admin
+          }
+        }).then(function successCallback(response) {
+          var d = response.data;
+          $scope.newmsg_send_progress = false;
+
+          if (d.success) {
+            $scope.syncMessages();
+            $scope.newmsg = null;
+            $scope.newmsg_focused=true;
+          } else {
+            $scope.newmsgerrmsg = d.msg;
+          }
+
+        }, function errorCallback(response) {});
+      }
+    }
+  }
+
+  $scope.syncMessages = function(){
+    $scope.loadMessages();
+  }
+
+  $scope.loadMessages = function(type){
+    // Üzenetek betöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'messanger_messages',
+        by: type,
+        for: 'admin'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.result = d;
+      $scope.unreaded_messages = d.unreaded;
+      $scope.messages = d.messages.list;
+      $scope.data_loaded = true;
+
+      if ($scope.syncCount <= 1000) {
+        $timeout.cancel($scope.syncMsgTimeout);
+        $scope.syncMsgTimeout = $timeout(function() {
+          $scope.syncCount++;
+          $scope.syncMessages();
+        }, 5000);
+      }
+
+    }, function errorCallback(response) {});
+  }
+}]);
+
+admmsg.directive('focusMe', function($timeout) {
   return {
     scope: { trigger: '=focusMe' },
     link: function(scope, element) {

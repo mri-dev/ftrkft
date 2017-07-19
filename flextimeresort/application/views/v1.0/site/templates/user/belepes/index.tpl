@@ -11,7 +11,7 @@
           <div class="row col-vertical-middle">
             <div class="col-md-6">
               <form class="" action="/forms/auth" method="post">
-    						<input type="hidden" name="return" value="{$smarty.server.REQUEST_URI}">
+    						<input type="hidden" name="return" value="{if isset($smarty.get.re)}{$smarty.get.re}{else}{$smarty.server.REQUEST_URI}{/if}">
                 <input type="hidden" name="form" value="1">
                 <input type="hidden" name="session_path" value="/user/belepes">
                 <h1>{lang text="BEJELENTKEZES_FIOKJABA"}</h1>

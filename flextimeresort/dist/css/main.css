@@ -3215,12 +3215,47 @@ ul.pagination.circle_rounded li.active a {
 .messanger .wrapper .message-list .message-session {
   border: 1px solid #eaeaea;
   background: #f8f8f8;
-  padding: 10px 10px 10px 15px;
+  padding: 0;
   margin: 10px 0;
   position: relative;
   border-radius: 4px;
 }
-/* line 2930, less/main.scss */
+/* line 2931, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot {
+  background: #5b5b5b;
+  color: #bbbbbb;
+  padding: 8px 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 3px 3px;
+}
+/* line 2941, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot .ico {
+  flex-basis: 50px;
+  text-align: center;
+  font-size: 38px;
+  color: black;
+}
+/* line 2947, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot .ico i {
+  color: #39ac4f;
+}
+/* line 2952, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot .data {
+  line-height: 1.4;
+}
+/* line 2955, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot .data .categories span {
+  margin-right: 8px;
+}
+/* line 2961, less/main.scss */
+.messanger .wrapper .message-list .message-session .allas-spot a {
+  color: white;
+  text-decoration: underline;
+}
+/* line 2968, less/main.scss */
 .messanger .wrapper .message-list .message-session .unread {
   background: #f44e5e;
   color: white;
@@ -3237,47 +3272,48 @@ ul.pagination.circle_rounded li.active a {
   font-size: 0.8em;
   transform: translate(-50%, -50%);
 }
-/* line 2947, less/main.scss */
+/* line 2985, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head {
   position: relative;
+  padding: 7px 12px;
 }
-/* line 2950, less/main.scss */
+/* line 2989, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from {
   font-size: 1em;
   color: #828282;
   line-height: 1;
   margin: 0 0 8px 0;
 }
-/* line 2956, less/main.scss */
+/* line 2995, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .from strong {
   color: black;
 }
-/* line 2961, less/main.scss */
+/* line 3000, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject {
   font-size: 1.35em;
   color: #333333;
   font-weight: bold;
   line-height: 1;
 }
-/* line 2967, less/main.scss */
+/* line 3006, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .locked {
   color: #f44e5e;
 }
-/* line 2971, less/main.scss */
+/* line 3010, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject a {
   color: #333333;
 }
-/* line 2974, less/main.scss */
+/* line 3013, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject a:hover {
   color: #39ac4f;
 }
-/* line 2979, less/main.scss */
+/* line 3018, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label {
   position: absolute;
-  right: -8px;
-  bottom: 0;
+  right: 12px;
+  bottom: 17px;
 }
-/* line 2984, less/main.scss */
+/* line 3023, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label a {
   background: #cecece;
   padding: 5px 10px;
@@ -3286,16 +3322,16 @@ ul.pagination.circle_rounded li.active a {
   font-weight: 300;
   border-radius: 20px;
 }
-/* line 2992, less/main.scss */
+/* line 3031, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .subject .unread-label a:hover {
   background: #f44e5e;
   color: white;
 }
-/* line 3001, less/main.scss */
+/* line 3040, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice input[type=text] {
   font-size: 0.9em;
 }
-/* line 3004, less/main.scss */
+/* line 3043, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen {
   color: #4e4e4e;
   font-style: italic;
@@ -3304,52 +3340,52 @@ ul.pagination.circle_rounded li.active a {
   font-weight: 300;
   margin-top: 4px;
 }
-/* line 3012, less/main.scss */
+/* line 3051, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice {
   margin-left: 5px;
   cursor: pointer;
 }
-/* line 3015, less/main.scss */
+/* line 3054, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .writen .edit-notice i {
   color: #333333;
 }
-/* line 3021, less/main.scss */
+/* line 3060, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .newnotice a {
   font-size: 0.8em;
   color: #8e8e8e;
   font-style: italic;
   text-decoration: underline;
 }
-/* line 3029, less/main.scss */
+/* line 3068, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .notice .newnotice-error {
   color: #f44e5e;
   font-size: 0.8em;
 }
-/* line 3036, less/main.scss */
+/* line 3075, less/main.scss */
 .messanger .wrapper .message-list .message-session .group-head .session-start {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   line-height: 1;
   font-size: 0.8em;
   color: #bfbfbf;
 }
-/* line 3046, less/main.scss */
+/* line 3085, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded {
   border-left: 5px solid #f44e5e;
 }
-/* line 3050, less/main.scss */
+/* line 3089, less/main.scss */
 .messanger .wrapper .message-list .message-session.has-unreaded .group-head .subject .lab {
   background: #f44e5e;
   color: white;
 }
 
-/* line 3062, less/main.scss */
+/* line 3101, less/main.scss */
 .more-allas {
   text-align: center;
   margin: 20px 0;
 }
-/* line 3065, less/main.scss */
+/* line 3104, less/main.scss */
 .more-allas a {
   margin: 0 auto;
   padding: 9px 15px;
@@ -3361,12 +3397,12 @@ ul.pagination.circle_rounded li.active a {
   font-weight: 300;
   text-transform: uppercase;
 }
-/* line 3076, less/main.scss */
+/* line 3115, less/main.scss */
 .more-allas a:hover {
   background: #39ac4f;
 }
 
-/* line 3082, less/main.scss */
+/* line 3121, less/main.scss */
 .allasok {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3374,15 +3410,15 @@ ul.pagination.circle_rounded li.active a {
   flex-wrap: wrap;
   margin: 0 -10px;
 }
-/* line 3089, less/main.scss */
+/* line 3128, less/main.scss */
 .allasok .allas {
   flex-basis: 100%;
 }
-/* line 3092, less/main.scss */
+/* line 3131, less/main.scss */
 .allasok .allas > .wrapper {
   padding: 10px;
 }
-/* line 3095, less/main.scss */
+/* line 3134, less/main.scss */
 .allasok .allas > .wrapper .inside {
   background: #ffffff;
   border: 1px solid #e6e6e6;
@@ -3392,11 +3428,11 @@ ul.pagination.circle_rounded li.active a {
   height: auto !important;
   padding: 0 !important;
 }
-/* line 3104, less/main.scss */
+/* line 3143, less/main.scss */
 .allasok .allas > .wrapper .inside .body {
   padding: 10px;
 }
-/* line 3106, less/main.scss */
+/* line 3145, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3404,7 +3440,7 @@ ul.pagination.circle_rounded li.active a {
   align-items: flex-start;
   margin-bottom: 10px;
 }
-/* line 3113, less/main.scss */
+/* line 3152, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type, .allasok .allas > .wrapper .inside .body .top .kat {
   flex-basis: 50%;
   display: -webkit-box;
@@ -3412,18 +3448,18 @@ ul.pagination.circle_rounded li.active a {
   display: flex;
   align-items: center;
 }
-/* line 3120, less/main.scss */
+/* line 3159, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .ico, .allasok .allas > .wrapper .inside .body .top .kat .ico {
   flex-basis: 20px;
   position: relative;
 }
-/* line 3123, less/main.scss */
+/* line 3162, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .ico img, .allasok .allas > .wrapper .inside .body .top .kat .ico img {
   width: 20px;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 3130, less/main.scss */
+/* line 3169, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .text, .allasok .allas > .wrapper .inside .body .top .kat .text {
   padding-left: 8px;
   color: black;
@@ -3431,11 +3467,11 @@ ul.pagination.circle_rounded li.active a {
   line-height: 1.2;
   padding-right: 5px;
 }
-/* line 3140, less/main.scss */
+/* line 3179, less/main.scss */
 .allasok .allas > .wrapper .inside .body .top .type .text {
   color: #39ac4f;
 }
-/* line 3145, less/main.scss */
+/* line 3184, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc {
   line-height: 1.2;
   font-size: 1em;
@@ -3445,25 +3481,25 @@ ul.pagination.circle_rounded li.active a {
   display: flex;
   align-items: flex-start;
 }
-/* line 3154, less/main.scss */
+/* line 3193, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .ico {
   flex-basis: 20px;
   position: relative;
 }
-/* line 3157, less/main.scss */
+/* line 3196, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .ico img {
   width: 20px;
   opacity: 0.2;
   filter: alpha(opacity=20);
 }
-/* line 3164, less/main.scss */
+/* line 3203, less/main.scss */
 .allasok .allas > .wrapper .inside .body .desc .text {
   padding-left: 8px;
   color: #444444;
   height: 50px;
   overflow: hidden;
 }
-/* line 3173, less/main.scss */
+/* line 3212, less/main.scss */
 .allasok .allas > .wrapper .inside .request-body {
   background: #fcfcd7;
   border-top: 1px solid #efefb0;
@@ -3473,22 +3509,22 @@ ul.pagination.circle_rounded li.active a {
   font-weight: 300;
   text-align: center;
 }
-/* line 3182, less/main.scss */
+/* line 3221, less/main.scss */
 .allasok .allas > .wrapper .inside .request-body .status {
   font-size: 1.2em;
 }
-/* line 3186, less/main.scss */
+/* line 3225, less/main.scss */
 .allasok .allas > .wrapper .inside .request-body.accepted {
   background: #bce3c4;
   color: #43634a;
   border-top: 1px solid #9ed7aa;
 }
-/* line 3193, less/main.scss */
+/* line 3232, less/main.scss */
 .allasok .allas > .wrapper .inside .footer {
   background: #555555;
   color: white;
 }
-/* line 3196, less/main.scss */
+/* line 3235, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3496,14 +3532,14 @@ ul.pagination.circle_rounded li.active a {
   align-items: center;
   justify-content: center;
 }
-/* line 3203, less/main.scss */
+/* line 3242, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div {
   padding: 0 10px;
   height: 40px;
   line-height: 40px;
   font-size: 1em;
 }
-/* line 3209, less/main.scss */
+/* line 3248, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico {
   height: 100%;
   position: relative;
@@ -3511,25 +3547,25 @@ ul.pagination.circle_rounded li.active a {
   width: 20px;
   margin-right: 5px;
 }
-/* line 3215, less/main.scss */
+/* line 3254, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > div .ico img {
   max-width: 16px;
   margin-top: -4px;
 }
-/* line 3222, less/main.scss */
+/* line 3261, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .published {
   flex-basis: 30%;
 }
-/* line 3226, less/main.scss */
+/* line 3265, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .where {
   flex-basis: 50%;
 }
-/* line 3230, less/main.scss */
+/* line 3269, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button {
   padding: 0;
   flex-basis: 20%;
 }
-/* line 3233, less/main.scss */
+/* line 3272, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a {
   position: relative;
   background: #39ac4f;
@@ -3539,7 +3575,7 @@ ul.pagination.circle_rounded li.active a {
   font-size: 1.1em;
   text-align: center;
 }
-/* line 3243, less/main.scss */
+/* line 3282, less/main.scss */
 .allasok .allas > .wrapper .inside .footer .footer-holder > .button a:before {
   content: "";
   position: absolute;
@@ -3552,18 +3588,18 @@ ul.pagination.circle_rounded li.active a {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 3264, less/main.scss */
+/* line 3303, less/main.scss */
 .allasok.style-new-home .allas {
   flex-basis: calc(100%/2);
 }
-/* line 3269, less/main.scss */
+/* line 3308, less/main.scss */
 .allasok.style-history .header {
   background: transparent !important;
   flex-basis: 100%;
   text-align: center;
   padding: 0 10px;
 }
-/* line 3276, less/main.scss */
+/* line 3315, less/main.scss */
 .allasok.style-history .header.color-red .inside {
   background: #f44e5e;
   border-radius: 5px;
@@ -3571,63 +3607,63 @@ ul.pagination.circle_rounded li.active a {
   padding: 10px;
   font-size: 1.3em;
 }
-/* line 3288, less/main.scss */
+/* line 3327, less/main.scss */
 .allasok.style-history .allas .body .top .type {
   flex-basis: 100% !important;
 }
-/* line 3294, less/main.scss */
+/* line 3333, less/main.scss */
 .allasok.style-history .allas .body .desc .text {
   height: auto !important;
 }
-/* line 3299, less/main.scss */
+/* line 3338, less/main.scss */
 .allasok.style-history .allas .footer {
   font-size: 0.9em !important;
 }
-/* line 3301, less/main.scss */
+/* line 3340, less/main.scss */
 .allasok.style-history .allas .footer .published {
   flex-basis: 60% !important;
 }
-/* line 3304, less/main.scss */
+/* line 3343, less/main.scss */
 .allasok.style-history .allas .footer .button {
   flex-basis: 40% !important;
 }
 
-/* line 3312, less/main.scss */
+/* line 3351, less/main.scss */
 .advertise-creator {
   padding: 20px 0;
 }
-/* line 3315, less/main.scss */
+/* line 3354, less/main.scss */
 .advertise-creator h3 {
   color: #39ac4f;
   margin: 10px 0 5px 0;
 }
-/* line 3320, less/main.scss */
+/* line 3359, less/main.scss */
 .advertise-creator .row {
   margin-bottom: 20px;
   margin-top: 10px;
 }
-/* line 3324, less/main.scss */
+/* line 3363, less/main.scss */
 .advertise-creator .row label {
   font-size: 1em;
 }
-/* line 3328, less/main.scss */
+/* line 3367, less/main.scss */
 .advertise-creator .row .infotext {
   font-size: 0.9em;
   color: #888888;
   line-height: 1.2;
   margin: 5px 0 10px 0;
 }
-/* line 3335, less/main.scss */
+/* line 3374, less/main.scss */
 .advertise-creator .row .input-wrapper {
   padding-right: 50px;
   position: relative;
 }
-/* line 3339, less/main.scss */
+/* line 3378, less/main.scss */
 .advertise-creator .row .input-wrapper input, .advertise-creator .row .input-wrapper textarea, .advertise-creator .row .input-wrapper select, .advertise-creator .row .input-wrapper .select-list {
   color: #39ac4f;
   position: relative;
 }
-/* line 3343, less/main.scss */
+/* line 3382, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper, .advertise-creator .row .input-wrapper textarea + .form-helper, .advertise-creator .row .input-wrapper select + .form-helper, .advertise-creator .row .input-wrapper .select-list + .form-helper {
   position: absolute;
   right: 15px;
@@ -3637,7 +3673,7 @@ ul.pagination.circle_rounded li.active a {
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 3352, less/main.scss */
+/* line 3391, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper:before, .advertise-creator .row .input-wrapper textarea + .form-helper:before, .advertise-creator .row .input-wrapper select + .form-helper:before, .advertise-creator .row .input-wrapper .select-list + .form-helper:before {
   position: absolute;
   width: 24px;
@@ -3652,27 +3688,27 @@ ul.pagination.circle_rounded li.active a {
   text-align: center;
   content: "";
 }
-/* line 3367, less/main.scss */
+/* line 3406, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper.invalid:before, .advertise-creator .row .input-wrapper textarea + .form-helper.invalid:before, .advertise-creator .row .input-wrapper select + .form-helper.invalid:before, .advertise-creator .row .input-wrapper .select-list + .form-helper.invalid:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 3372, less/main.scss */
+/* line 3411, less/main.scss */
 .advertise-creator .row .input-wrapper input + .form-helper.valid:before, .advertise-creator .row .input-wrapper textarea + .form-helper.valid:before, .advertise-creator .row .input-wrapper select + .form-helper.valid:before, .advertise-creator .row .input-wrapper .select-list + .form-helper.valid:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 3378, less/main.scss */
+/* line 3417, less/main.scss */
 .advertise-creator .row .input-wrapper input.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-invalid + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-invalid + .form-helper:before {
   content: "\f056";
   color: #f44e5e;
 }
-/* line 3383, less/main.scss */
+/* line 3422, less/main.scss */
 .advertise-creator .row .input-wrapper input.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper input.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper textarea.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper select.ng-valid.ng-not-empty + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-touched + .form-helper:before, .advertise-creator .row .input-wrapper .select-list.ng-valid.ng-not-empty + .form-helper:before {
   content: "\f058";
   color: #39ac4f;
 }
-/* line 3393, less/main.scss */
+/* line 3432, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup {
   background: #efefef;
   border: 1px solid #e3e3e3;
@@ -3680,12 +3716,12 @@ ul.pagination.circle_rounded li.active a {
   border-radius: 4px;
   padding: 5px 10px;
 }
-/* line 3400, less/main.scss */
+/* line 3439, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup input, .advertise-creator .tematic-list-params .listgroup select {
   color: #39ac4f;
   font-weight: bold;
 }
-/* line 3405, less/main.scss */
+/* line 3444, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-remover {
   background: #f44e5e;
   color: white;
@@ -3697,7 +3733,7 @@ ul.pagination.circle_rounded li.active a {
   line-height: 20px;
   margin: 0 auto;
 }
-/* line 3417, less/main.scss */
+/* line 3456, less/main.scss */
 .advertise-creator .tematic-list-params .listgroup .param-index {
   background: #39ac4f;
   color: white;
@@ -3710,22 +3746,22 @@ ul.pagination.circle_rounded li.active a {
   font-size: 20px;
 }
 
-/* line 3433, less/main.scss */
+/* line 3472, less/main.scss */
 .allasok-view .header {
   padding: 15px 0;
   background: #39ac4f;
   color: white;
 }
-/* line 3438, less/main.scss */
+/* line 3477, less/main.scss */
 .allasok-view .header h1 {
   color: white;
   text-transform: uppercase;
 }
-/* line 3444, less/main.scss */
+/* line 3483, less/main.scss */
 .allasok-view .sidebar {
   margin-top: -200px;
 }
-/* line 3448, less/main.scss */
+/* line 3487, less/main.scss */
 .allasok-view .allasok-list-top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3734,39 +3770,39 @@ ul.pagination.circle_rounded li.active a {
   margin: 10px 0 5px 0;
   align-items: center;
 }
-/* line 3456, less/main.scss */
+/* line 3495, less/main.scss */
 .allasok-view .allasok-list-top .pages-info {
   flex-basis: 75%;
   font-size: 1.2em;
   color: black;
 }
-/* line 3461, less/main.scss */
+/* line 3500, less/main.scss */
 .allasok-view .allasok-list-top .pages-info .current {
   font-weight: bold;
 }
-/* line 3465, less/main.scss */
+/* line 3504, less/main.scss */
 .allasok-view .allasok-list-top .order {
   flex-basis: 25%;
   text-align: right;
 }
-/* line 3469, less/main.scss */
+/* line 3508, less/main.scss */
 .allasok-view .allasok-list-top .order label, .allasok-view .allasok-list-top .order select {
   font-size: 0.85em;
 }
-/* line 3473, less/main.scss */
+/* line 3512, less/main.scss */
 .allasok-view .allasok-list-top .order select {
   padding: 5px;
   height: 32px;
 }
 
-/* line 3482, less/main.scss */
+/* line 3521, less/main.scss */
 .allas-view .header {
   flex-basis: 100%;
   text-align: center;
   padding: 20px 0;
   border-top: 10px solid #8e8e8e;
 }
-/* line 3488, less/main.scss */
+/* line 3527, less/main.scss */
 .allas-view .header h1 {
   color: #39ac4f;
   text-transform: uppercase;
@@ -3774,7 +3810,7 @@ ul.pagination.circle_rounded li.active a {
   margin: 10px 0 20px 0;
   line-height: 1.2;
 }
-/* line 3496, less/main.scss */
+/* line 3535, less/main.scss */
 .allas-view .header .types {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3786,12 +3822,12 @@ ul.pagination.circle_rounded li.active a {
   font-size: 1.2em;
   color: black;
 }
-/* line 3507, less/main.scss */
+/* line 3546, less/main.scss */
 .allas-view .header .types > div {
   padding: 2px 10px;
   line-height: 1;
 }
-/* line 3514, less/main.scss */
+/* line 3553, less/main.scss */
 .allas-view .allas-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3799,54 +3835,54 @@ ul.pagination.circle_rounded li.active a {
   flex-wrap: wrap;
   padding: 20px 0 25px 0;
 }
-/* line 3521, less/main.scss */
+/* line 3560, less/main.scss */
 .allas-view .allas-wrapper .content-side {
   flex-basis: 75%;
 }
-/* line 3523, less/main.scss */
+/* line 3562, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text {
   font-size: 0.8em;
   color: #535353;
 }
-/* line 3527, less/main.scss */
+/* line 3566, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text p {
   margin: 8px 0;
   line-height: 1.5;
   position: relative;
 }
-/* line 3532, less/main.scss */
+/* line 3571, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text p img {
   max-width: 100%;
 }
-/* line 3537, less/main.scss */
+/* line 3576, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text h1 {
   margin: 20px 0 12px 0;
   color: #444;
 }
-/* line 3541, less/main.scss */
+/* line 3580, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text h2 {
   margin: 15px 0 8px 0;
   color: #555;
 }
-/* line 3545, less/main.scss */
+/* line 3584, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text h3 {
   margin: 10px 0 5px 0;
   color: #666;
 }
-/* line 3550, less/main.scss */
+/* line 3589, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text a {
   color: #39ac4f;
 }
-/* line 3552, less/main.scss */
+/* line 3591, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text a:hover {
   text-decoration: underline;
   color: #006534;
 }
-/* line 3556, less/main.scss */
+/* line 3595, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text a:visited {
   color: #006534;
 }
-/* line 3561, less/main.scss */
+/* line 3600, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text .view-design-fullcontent {
   background-image: url("/dist/img/more_details_text.svg");
   background-repeat: no-repeat;
@@ -3854,7 +3890,7 @@ ul.pagination.circle_rounded li.active a {
   height: 130px;
   position: relative;
 }
-/* line 3569, less/main.scss */
+/* line 3608, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text .view-design-fullcontent .text {
   position: absolute;
   top: 50%;
@@ -3864,11 +3900,11 @@ ul.pagination.circle_rounded li.active a {
   font-size: 1.1em;
   color: black;
 }
-/* line 3577, less/main.scss */
+/* line 3616, less/main.scss */
 .allas-view .allas-wrapper .content-side .content-text .view-design-fullcontent .text h4 {
   color: #f44e5e;
 }
-/* line 3584, less/main.scss */
+/* line 3623, less/main.scss */
 .allas-view .allas-wrapper .content-side .author {
   margin: 20px 0;
   background: #e8e8e8;
@@ -3880,11 +3916,11 @@ ul.pagination.circle_rounded li.active a {
   align-items: center;
   border-radius: 120px 10px 10px 120px;
 }
-/* line 3595, less/main.scss */
+/* line 3634, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .img {
   flex-basis: 120px;
 }
-/* line 3598, less/main.scss */
+/* line 3637, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .img .imgwrapper {
   width: 120px;
   height: 120px;
@@ -3893,7 +3929,7 @@ ul.pagination.circle_rounded li.active a {
   border-radius: 120px;
   border: 5px solid #39ac4f;
 }
-/* line 3606, less/main.scss */
+/* line 3645, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .img .imgwrapper img {
   position: absolute;
   height: 110%;
@@ -3902,27 +3938,27 @@ ul.pagination.circle_rounded li.active a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* line 3617, less/main.scss */
+/* line 3656, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .data {
   font-size: 1.2em;
   padding-left: 25px;
 }
-/* line 3621, less/main.scss */
+/* line 3660, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .data .name {
   font-size: 1.4em;
   color: #f44e5e;
   font-weight: bold;
 }
-/* line 3627, less/main.scss */
+/* line 3666, less/main.scss */
 .allas-view .allas-wrapper .content-side .author .data .phone {
   font-size: 1.3em;
   color: #888888;
 }
-/* line 3634, less/main.scss */
+/* line 3673, less/main.scss */
 .allas-view .allas-wrapper .info-side {
   flex-basis: 25%;
 }
-/* line 3639, less/main.scss */
+/* line 3678, less/main.scss */
 .allas-view .allas-wrapper .info-side .keywords a,
 .allas-view .allas-wrapper .info-side .term-value a {
   background: #e7e7e7;
@@ -3934,60 +3970,60 @@ ul.pagination.circle_rounded li.active a {
   font-weight: 300;
   font-size: 10px;
 }
-/* line 3649, less/main.scss */
+/* line 3688, less/main.scss */
 .allas-view .allas-wrapper .info-side .keywords a:hover,
 .allas-view .allas-wrapper .info-side .term-value a:hover {
   color: white;
   background: #39ac4f;
 }
-/* line 3656, less/main.scss */
+/* line 3695, less/main.scss */
 .allas-view .allas-wrapper .info-side .term-value a {
   font-size: 12px;
   background: #39ac4f;
   color: white;
 }
-/* line 3661, less/main.scss */
+/* line 3700, less/main.scss */
 .allas-view .allas-wrapper .info-side .term-value a:hover {
   background: #006534;
 }
-/* line 3666, less/main.scss */
+/* line 3705, less/main.scss */
 .allas-view .allas-wrapper .info-side .e {
   margin-bottom: 20px;
   text-align: right;
 }
-/* line 3670, less/main.scss */
+/* line 3709, less/main.scss */
 .allas-view .allas-wrapper .info-side .e .title {
   font-size: 0.9em;
   line-height: 1;
   color: #aaaaaa;
   margin-bottom: 5px;
 }
-/* line 3676, less/main.scss */
+/* line 3715, less/main.scss */
 .allas-view .allas-wrapper .info-side .e .val {
   font-weight: bold;
   color: black;
   line-height: 1.3;
 }
-/* line 3684, less/main.scss */
+/* line 3723, less/main.scss */
 .allas-view .access-granted {
   background: #f3f3ab;
   color: #5b5b07;
   padding: 20px 0;
 }
-/* line 3689, less/main.scss */
+/* line 3728, less/main.scss */
 .allas-view .access-granted .title {
   font-size: 1.3em;
   font-weight: bold;
   text-transform: uppercase;
   color: black;
 }
-/* line 3696, less/main.scss */
+/* line 3735, less/main.scss */
 .allas-view .accept-for-ad {
   background-color: #39ac4f;
   padding: 25px 0;
   position: relative;
 }
-/* line 3701, less/main.scss */
+/* line 3740, less/main.scss */
 .allas-view .accept-for-ad .ico {
   position: absolute;
   left: 50%;
@@ -4002,7 +4038,7 @@ ul.pagination.circle_rounded li.active a {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-/* line 3715, less/main.scss */
+/* line 3754, less/main.scss */
 .allas-view .accept-for-ad .ico i {
   font-size: 37px;
   color: #757575;
@@ -4010,33 +4046,33 @@ ul.pagination.circle_rounded li.active a {
   padding: 0;
   margin: 0;
 }
-/* line 3724, less/main.scss */
+/* line 3763, less/main.scss */
 .allas-view .accept-for-ad .text {
   text-align: center;
   padding: 40px 0 20px 0;
   color: #d3f7da;
   font-size: 1.2em;
 }
-/* line 3730, less/main.scss */
+/* line 3769, less/main.scss */
 .allas-view .accept-for-ad .text .infotext {
   font-size: 0.7em;
   color: #99dfa6;
 }
-/* line 3735, less/main.scss */
+/* line 3774, less/main.scss */
 .allas-view .accept-for-ad .text h4 {
   color: white;
   font-size: 1.9em;
 }
-/* line 3741, less/main.scss */
+/* line 3780, less/main.scss */
 .allas-view .accept-for-ad .request-access {
   margin-top: 25px;
 }
-/* line 3744, less/main.scss */
+/* line 3783, less/main.scss */
 .allas-view .accept-for-ad .request-access button {
   background: #f44e5e;
   text-transform: uppercase;
 }
-/* line 3749, less/main.scss */
+/* line 3788, less/main.scss */
 .allas-view .accept-for-ad .request-started {
   background: #5b5b5b;
   color: white;
@@ -4046,14 +4082,14 @@ ul.pagination.circle_rounded li.active a {
   border-radius: 20px;
   color: white;
 }
-/* line 3758, less/main.scss */
+/* line 3797, less/main.scss */
 .allas-view .accept-for-ad .request-started i {
   display: block;
   font-size: 48px;
   color: #79d28a;
 }
 
-/* line 3767, less/main.scss */
+/* line 3806, less/main.scss */
 .order-select {
   position: relative;
   border: 2px solid #eaeaea;
@@ -4061,13 +4097,13 @@ ul.pagination.circle_rounded li.active a {
   overflow: hidden;
   background: #ffffff;
 }
-/* line 3774, less/main.scss */
+/* line 3813, less/main.scss */
 .order-select select {
   -webkit-appearance: none;
   background: transparent;
   border: none;
 }
-/* line 3780, less/main.scss */
+/* line 3819, less/main.scss */
 .order-select:after {
   content: "\f107";
   position: absolute;
@@ -4085,11 +4121,11 @@ ul.pagination.circle_rounded li.active a {
   height: 32px;
 }
 
-/* line 3798, less/main.scss */
+/* line 3837, less/main.scss */
 .ertesito-kozpont {
   padding: 25px 0;
 }
-/* line 3800, less/main.scss */
+/* line 3839, less/main.scss */
 .ertesito-kozpont .item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4099,7 +4135,7 @@ ul.pagination.circle_rounded li.active a {
   border: 1px solid #f1f1f1;
   margin: 5px 0;
 }
-/* line 3810, less/main.scss */
+/* line 3849, less/main.scss */
 .ertesito-kozpont .item > .ico {
   flex-basis: 100px;
   height: 100%;
@@ -4107,29 +4143,29 @@ ul.pagination.circle_rounded li.active a {
   text-align: center;
   background: #39ac4f;
 }
-/* line 3817, less/main.scss */
+/* line 3856, less/main.scss */
 .ertesito-kozpont .item > .ico i {
   font-size: 48px;
   line-height: 100px;
   color: white;
 }
-/* line 3824, less/main.scss */
+/* line 3863, less/main.scss */
 .ertesito-kozpont .item > .data {
   line-height: 1;
   padding: 0;
   flex-basis: calc(100% - 100px);
 }
-/* line 3829, less/main.scss */
+/* line 3868, less/main.scss */
 .ertesito-kozpont .item > .data .wrapper {
   padding: 0 15px;
 }
-/* line 3833, less/main.scss */
+/* line 3872, less/main.scss */
 .ertesito-kozpont .item > .data .message {
   font-size: 1.3em;
   color: black;
   font-weight: bold;
 }
-/* line 3838, less/main.scss */
+/* line 3877, less/main.scss */
 .ertesito-kozpont .item > .data .message .item-msg {
   margin-top: 5px;
   font-size: 0.75em;
@@ -4138,7 +4174,7 @@ ul.pagination.circle_rounded li.active a {
   border-left: 3px solid #b6b5b5;
   padding-left: 5px;
 }
-/* line 3848, less/main.scss */
+/* line 3887, less/main.scss */
 .ertesito-kozpont .item > .data .infos {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4148,11 +4184,11 @@ ul.pagination.circle_rounded li.active a {
   padding-top: 15px;
   justify-content: space-between;
 }
-/* line 3857, less/main.scss */
+/* line 3896, less/main.scss */
 .ertesito-kozpont .item > .data .infos .date {
   color: #888888;
 }
-/* line 3861, less/main.scss */
+/* line 3900, less/main.scss */
 .ertesito-kozpont .item > .data .infos .button a {
   font-size: 0.8em;
   background: #5b5b5b;
@@ -4160,58 +4196,58 @@ ul.pagination.circle_rounded li.active a {
   color: white;
   font-weight: 300;
 }
-/* line 3873, less/main.scss */
+/* line 3912, less/main.scss */
 .ertesito-kozpont .item.status-unwatched > .ico {
   background: orange;
 }
 
-/* line 3880, less/main.scss */
+/* line 3919, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 3884, less/main.scss */
+/* line 3923, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 3888, less/main.scss */
+/* line 3927, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 3893, less/main.scss */
+/* line 3932, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 3896, less/main.scss */
+/* line 3935, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 3899, less/main.scss */
+/* line 3938, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 3904, less/main.scss */
+/* line 3943, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 3907, less/main.scss */
+/* line 3946, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 3910, less/main.scss */
+/* line 3949, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

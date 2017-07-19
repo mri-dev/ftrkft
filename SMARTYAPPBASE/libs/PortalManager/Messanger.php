@@ -79,6 +79,7 @@ class Messanger
     $unreads = 0;
     $unreaded_msg_ids = array();
     $unreaded_msg_sessions = array();
+    $this->admin = (isset($arg['admin'])) ? true : false;
 
     $qry = "SELECT
       m.ID,
@@ -100,13 +101,17 @@ class Messanger
       ms.archived_by_user,
       ms.archived_by_admin,
       ms.allas_id,
+      ms.start_by,
       IF(m.from_admin, from_admin.name, from_user.name) as from_name,
       IF(ms.start_by = 'user', sess_user.name, sess_admin.name) as session_starter_name,
-      IF(ms.start_by = 'user', 'outbox', 'inbox') as controll_for
+      IF(ms.start_by = 'user', 'outbox', 'inbox') as controll_for,
+      IF(ms.start_by = 'admin', ms.to_id, NULL) as user_to_id,
+      IF(ms.start_by = 'admin', to_user.name, NULL) as user_to_name
     FROM ".self::DBTABLE_MESSAGES." as m
     LEFT OUTER JOIN ".self::DBTABLE." as ms ON ms.sessionid = m.sessionid
     LEFT OUTER JOIN accounts as from_user ON from_user.ID = m.user_from_id
     LEFT OUTER JOIN accounts as sess_user ON sess_user.ID = ms.start_by_id
+    LEFT OUTER JOIN accounts as to_user ON to_user.ID = ms.to_id
     LEFT OUTER JOIN admin as from_admin ON from_admin.ID = m.user_from_id
     LEFT OUTER JOIN admin as sess_admin ON sess_admin.ID = ms.start_by_id
     WHERE 1=1";
@@ -118,6 +123,12 @@ class Messanger
         'inbox' => 'admin',
         'outbox' => 'user'
       );
+      if($this->admin){
+        $cby = array(
+          'inbox' => 'user',
+          'outbox' => 'admin'
+        );
+      }
       $qry .= " and (ms.start_by = '".$cby[$arg['controll_by']]."')";
     }
 
@@ -134,7 +145,7 @@ class Messanger
     }
 
     if ($this->admin) {
-      //$qry .= " ORDER BY m.";
+      $qry .= " ORDER BY m.send_at DESC";
     } else {
       $qry .= " ORDER BY m.send_at DESC";
     }
@@ -157,10 +168,20 @@ class Messanger
         $datas['list'][$d['sessionid']]['archived_by_user'] = (int)$d['archived_by_user'];
         $datas['list'][$d['sessionid']]['archived_by_admin'] = (int)$d['archived_by_admin'];
         $datas['list'][$d['sessionid']]['allas'] = $this->loadAllasData($d['allas_id']);
+        $datas['list'][$d['sessionid']]['user_to_id'] = $d['user_to_id'];
+
+        if ($this->admin) {
+          $toUserData = new User($d['user_to_id'], array('controller' => $this->controller));
+        }
 
         $datas['list'][$d['sessionid']]['from'] = array(
-          'name' => $d['session_starter_name'],
-          'ID' => $d['start_by_id']
+          'name' => ($this->admin) ? $d['user_to_name'] : $d['session_starter_name'],
+          'ID' => ($this->admin) ? $d['to_id'] : $d['start_by_id'],
+          'user_data' => ($this->admin) ? array(
+            'phone' => $toUserData->getPhone(),
+            'email' => $toUserData->getEmail(),
+            'name' => $toUserData->getName()
+          )  : false,
         );
       }
 
@@ -237,6 +258,8 @@ class Messanger
         'user_to_id' => $to,
         'user_readed_at' => ($admin) ? NULL : NOW,
         'admin_readed_at' => ($admin) ? NOW : NULL,
+        'user_alerted' => ($admin) ? 0 : 1,
+        'admin_alerted' => ($admin) ? 1 : 0,
       )
     );
 
@@ -267,7 +290,8 @@ class Messanger
         'allas_id' => (isset($allas_id) && !empty($allas_id)) ? (int)$allas_id : NULL,
         'allas_requester_user_id' => (isset($user_id) && !empty($user_id)) ? (int)$user_id : NULL,
         'start_by' => $by,
-        'start_by_id' => ($by == 'admin') ? $admin_id : $user_id
+        'start_by_id' => ($by == 'admin') ? $admin_id : $user_id,
+        'to_id' => ($by == 'admin') ? $user_id : NULL
       )
     );
 
