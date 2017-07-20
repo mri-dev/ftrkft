@@ -1,4 +1,4 @@
-<div class="messanger" ng-app="AdminMessanger" ng-controller="MessagesList" ng-init="init('{$smarty.get.sub}', {if $smarty.get.sub == 'session'}true{else}false{/if}, {$me->getID()}, '{$msgsession}')">
+<div class="messanger" ng-app="AdminMessanger" ng-controller="MessagesList" ng-init="init('{$smarty.get.sub}', {if $smarty.get.sub == 'session'}true{else}false{/if}, {$admin->getID()}, '{$msgsession}')">
   <div class="wrapper">
 
     {if $smarty.get.sub == 'session'}
