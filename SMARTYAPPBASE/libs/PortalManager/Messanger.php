@@ -116,7 +116,9 @@ class Messanger
     LEFT OUTER JOIN admin as sess_admin ON sess_admin.ID = ms.start_by_id
     WHERE 1=1";
 
-    $qry .= " and (m.user_from_id = {$uid} or m.user_to_id = {$uid})";
+    if(!$this->admin){
+      $qry .= " and (m.user_from_id = {$uid} or m.user_to_id = {$uid})";
+    }
 
     if (isset($arg['controll_by']) && in_array($arg['controll_by'], array('inbox', 'outbox'))) {
       $cby = array(
