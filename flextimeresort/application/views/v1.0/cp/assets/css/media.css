@@ -528,76 +528,33 @@ input[type=checkbox].ccb:checked + label:before {
 }
 
 /* line 515, scss/media.scss */
-.allas-requests .item-status {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-/* line 518, scss/media.scss */
-.allas-requests .item-status .total {
-  color: black;
-  margin-right: 10px;
-}
-/* line 522, scss/media.scss */
-.allas-requests .item-status .accepted {
-  color: #39ac4f;
-  margin: 0 5px;
-}
-/* line 526, scss/media.scss */
-.allas-requests .item-status .unaccepted {
-  color: orange;
-  margin: 0 5px;
-}
-/* line 530, scss/media.scss */
-.allas-requests .item-status .declined {
-  color: red;
-  margin: 0 5px;
-}
-/* line 535, scss/media.scss */
-.allas-requests a.backurl {
-  color: #ffffff;
-  margin-bottom: 10px;
-  background: #9a9a9a;
-}
-/* line 540, scss/media.scss */
-.allas-requests .no-result {
-  text-align: center;
-  font-size: 1.34em;
-  color: #acacac;
-  margin: 25px 0;
-}
-/* line 546, scss/media.scss */
-.allas-requests .no-result h3 {
-  color: #333333;
-}
-/* line 550, scss/media.scss */
-.allas-requests .no-result i {
-  font-size: 48px;
-  color: #39ac4f;
-  margin-bottom: 10px;
-}
-/* line 557, scss/media.scss */
-.allas-requests .alert i {
-  font-size: 13px;
-}
-/* line 561, scss/media.scss */
-.allas-requests .alert a {
-  color: white;
-  text-decoration: underline;
-  margin-left: 8px;
-}
-/* line 567, scss/media.scss */
-.allas-requests .filters {
+.filters {
   margin: 0 0 15px 0;
 }
-/* line 569, scss/media.scss */
-.allas-requests .filters fieldset {
+/* line 519, scss/media.scss */
+.filters form .row {
+  align-items: flex-end;
+}
+/* line 521, scss/media.scss */
+.filters form .row label {
+  font-size: 0.8em;
+}
+/* line 524, scss/media.scss */
+.filters form .row input {
+  padding: 0 5px;
+  line-height: 34px;
+  height: 34px;
+  font-size: 0.9em;
+}
+/* line 532, scss/media.scss */
+.filters fieldset {
   position: relative;
   background: #ffffff;
   padding: 10px;
   border: 1px solid #e2e2e2;
 }
-/* line 574, scss/media.scss */
-.allas-requests .filters fieldset legend {
+/* line 537, scss/media.scss */
+.filters fieldset legend {
   border: 1px solid #e2e2e2;
   border-bottom: none;
   text-transform: none;
@@ -611,58 +568,117 @@ input[type=checkbox].ccb:checked + label:before {
   background: #ffffff;
   width: auto;
 }
-/* line 589, scss/media.scss */
-.allas-requests .filters ul, .allas-requests .filters li {
+/* line 552, scss/media.scss */
+.filters ul, .filters li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-/* line 596, scss/media.scss */
-.allas-requests .filters ul li {
+/* line 559, scss/media.scss */
+.filters ul li {
   padding-right: 8px;
   display: inline-block;
   *display: inline;
   zoom: 1;
 }
-/* line 602, scss/media.scss */
-.allas-requests .filters ul li a.btn {
+/* line 565, scss/media.scss */
+.filters ul li a.btn {
   position: relative;
   color: #222222;
   font-size: 0.9em;
 }
-/* line 607, scss/media.scss */
-.allas-requests .filters ul li a.btn i {
+/* line 570, scss/media.scss */
+.filters ul li a.btn i {
   margin-left: 3px;
 }
-/* line 611, scss/media.scss */
-.allas-requests .filters ul li a.btn.btn-success {
+/* line 574, scss/media.scss */
+.filters ul li a.btn.btn-success {
   color: white;
 }
-/* line 617, scss/media.scss */
-.allas-requests .filters ul li.hl a {
+/* line 580, scss/media.scss */
+.filters ul li.hl a {
   border-right-width: 3px;
   border-style: solid;
   border-right-color: #444;
 }
-/* line 624, scss/media.scss */
-.allas-requests .filters ul li.hl.hl-red a {
+/* line 587, scss/media.scss */
+.filters ul li.hl.hl-red a {
   border-right-color: red;
 }
-/* line 629, scss/media.scss */
-.allas-requests .filters ul li.hl.hl-orange a {
+/* line 592, scss/media.scss */
+.filters ul li.hl.hl-orange a {
   border-right-color: orange;
 }
-/* line 634, scss/media.scss */
-.allas-requests .filters ul li.hl.hl-green a {
+/* line 597, scss/media.scss */
+.filters ul li.hl.hl-green a {
   border-right-color: #39ac4f;
 }
+
+/* line 607, scss/media.scss */
+.allas-requests .item-status {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+/* line 610, scss/media.scss */
+.allas-requests .item-status .total {
+  color: black;
+  margin-right: 10px;
+}
+/* line 614, scss/media.scss */
+.allas-requests .item-status .accepted {
+  color: #39ac4f;
+  margin: 0 5px;
+}
+/* line 618, scss/media.scss */
+.allas-requests .item-status .unaccepted {
+  color: orange;
+  margin: 0 5px;
+}
+/* line 622, scss/media.scss */
+.allas-requests .item-status .declined {
+  color: red;
+  margin: 0 5px;
+}
+/* line 627, scss/media.scss */
+.allas-requests a.backurl {
+  color: #ffffff;
+  margin-bottom: 10px;
+  background: #9a9a9a;
+}
+/* line 632, scss/media.scss */
+.allas-requests .no-result {
+  text-align: center;
+  font-size: 1.34em;
+  color: #acacac;
+  margin: 25px 0;
+}
+/* line 638, scss/media.scss */
+.allas-requests .no-result h3 {
+  color: #333333;
+}
 /* line 642, scss/media.scss */
+.allas-requests .no-result i {
+  font-size: 48px;
+  color: #39ac4f;
+  margin-bottom: 10px;
+}
+/* line 649, scss/media.scss */
+.allas-requests .alert i {
+  font-size: 13px;
+}
+/* line 653, scss/media.scss */
+.allas-requests .alert a {
+  color: white;
+  text-decoration: underline;
+  margin-left: 8px;
+}
+/* line 659, scss/media.scss */
 .allas-requests .allas {
   background: #ffffff;
   margin: 5px 0;
   border: 2px solid #d2d2d2;
 }
-/* line 647, scss/media.scss */
+/* line 664, scss/media.scss */
 .allas-requests .allas .header {
   padding: 10px;
   font-size: 1.2em;
@@ -670,7 +686,7 @@ input[type=checkbox].ccb:checked + label:before {
   border-bottom: 1px solid #d1d1d1;
   color: #454545;
 }
-/* line 654, scss/media.scss */
+/* line 671, scss/media.scss */
 .allas-requests .allas .header .author-info {
   font-size: 0.9em;
   margin-bottom: 4px;
@@ -678,50 +694,50 @@ input[type=checkbox].ccb:checked + label:before {
   padding: 0 0 8px 0;
   margin: 0 0 5px 0;
 }
-/* line 661, scss/media.scss */
+/* line 678, scss/media.scss */
 .allas-requests .allas .header .author-info > span {
   margin-right: 5px;
 }
-/* line 664, scss/media.scss */
+/* line 681, scss/media.scss */
 .allas-requests .allas .header .author-info > span strong {
   color: #333333;
 }
-/* line 669, scss/media.scss */
+/* line 686, scss/media.scss */
 .allas-requests .allas .header .author-info .by {
   color: white;
   padding: 3px;
   font-size: 0.8em;
   text-transform: uppercase;
 }
-/* line 675, scss/media.scss */
+/* line 692, scss/media.scss */
 .allas-requests .allas .header .author-info .by.by-user {
   background: orange;
 }
-/* line 679, scss/media.scss */
+/* line 696, scss/media.scss */
 .allas-requests .allas .header .author-info .by.by-admin {
   background: #f44e5e;
 }
-/* line 685, scss/media.scss */
+/* line 702, scss/media.scss */
 .allas-requests .allas .header .desc {
   font-size: 1.1em;
   color: black;
 }
-/* line 689, scss/media.scss */
+/* line 706, scss/media.scss */
 .allas-requests .allas .header .desc a {
   color: black;
   font-style: italic;
   text-decoration: underline;
 }
-/* line 696, scss/media.scss */
+/* line 713, scss/media.scss */
 .allas-requests .allas .header .ads-data {
   font-size: 0.9em;
   margin-top: 5px;
 }
-/* line 700, scss/media.scss */
+/* line 717, scss/media.scss */
 .allas-requests .allas .header .ads-data span {
   margin: 0 5px;
 }
-/* line 703, scss/media.scss */
+/* line 720, scss/media.scss */
 .allas-requests .allas .header .ads-data .edit a {
   font-size: 0.7em;
   background: #888888;
@@ -732,7 +748,7 @@ input[type=checkbox].ccb:checked + label:before {
   -ms-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 712, scss/media.scss */
+/* line 729, scss/media.scss */
 .allas-requests .allas .header .contact {
   background: #dbdbdb;
   padding: 5px 8px;
@@ -741,7 +757,7 @@ input[type=checkbox].ccb:checked + label:before {
   color: #444444;
   position: relative;
 }
-/* line 720, scss/media.scss */
+/* line 737, scss/media.scss */
 .allas-requests .allas .header .contact:before {
   content: "";
   width: 0;
@@ -754,21 +770,21 @@ input[type=checkbox].ccb:checked + label:before {
   left: 15px;
   pointer-events: none;
 }
-/* line 733, scss/media.scss */
+/* line 750, scss/media.scss */
 .allas-requests .allas .header .contact span {
   padding: 0 8px 0 0;
   margin: 0 5px 0 0;
   border-right: 1px solid #acacac;
 }
-/* line 737, scss/media.scss */
+/* line 754, scss/media.scss */
 .allas-requests .allas .header .contact span i {
   margin-right: 2px;
 }
-/* line 742, scss/media.scss */
+/* line 759, scss/media.scss */
 .allas-requests .allas .header .contact > span:last-child {
   border-right: none;
 }
-/* line 749, scss/media.scss */
+/* line 766, scss/media.scss */
 .allas-requests .allas .requests .info {
   text-align: center;
   text-transform: uppercase;
@@ -777,58 +793,58 @@ input[type=checkbox].ccb:checked + label:before {
   color: white;
   background: #669d73;
 }
-/* line 757, scss/media.scss */
+/* line 774, scss/media.scss */
 .allas-requests .allas .requests .info a {
   color: #e6e6e6;
   margin-left: 15px;
 }
-/* line 762, scss/media.scss */
+/* line 779, scss/media.scss */
 .allas-requests .allas .requests .info.status-hasnotaccept {
   background: #ffa34d;
 }
-/* line 766, scss/media.scss */
+/* line 783, scss/media.scss */
 .allas-requests .allas .requests .request {
   display: none;
   font-size: 1.1em;
   padding: 9px;
   border-bottom: 1px solid #f1f1f1;
 }
-/* line 772, scss/media.scss */
+/* line 789, scss/media.scss */
 .allas-requests .allas .requests .request .status {
   flex-basis: 30px;
   text-align: center;
 }
-/* line 776, scss/media.scss */
+/* line 793, scss/media.scss */
 .allas-requests .allas .requests .request .status i {
   font-size: 18px;
 }
-/* line 781, scss/media.scss */
+/* line 798, scss/media.scss */
 .allas-requests .allas .requests .request .actions {
   flex-basis: 30%;
   text-align: right;
 }
-/* line 785, scss/media.scss */
+/* line 802, scss/media.scss */
 .allas-requests .allas .requests .request .actions .btn {
   font-size: 0.8em;
   padding: 4px;
 }
-/* line 790, scss/media.scss */
+/* line 807, scss/media.scss */
 .allas-requests .allas .requests .request .actions .picker {
   color: #f44e5e;
 }
-/* line 792, scss/media.scss */
+/* line 809, scss/media.scss */
 .allas-requests .allas .requests .request .actions .picker.done {
   color: #39ac4f;
 }
-/* line 798, scss/media.scss */
+/* line 815, scss/media.scss */
 .allas-requests .allas .requests .request .text {
   flex-basis: calc(100% - 30% - 30px);
 }
-/* line 802, scss/media.scss */
+/* line 819, scss/media.scss */
 .allas-requests .allas .requests .request .contact {
   flex-basis: 100%;
 }
-/* line 805, scss/media.scss */
+/* line 822, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info {
   background: #f3f3f3;
   padding: 4px 0;
@@ -842,7 +858,7 @@ input[type=checkbox].ccb:checked + label:before {
   color: #888888;
   position: relative;
 }
-/* line 815, scss/media.scss */
+/* line 832, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info:before {
   content: "";
   width: 0;
@@ -855,23 +871,23 @@ input[type=checkbox].ccb:checked + label:before {
   left: 15px;
   pointer-events: none;
 }
-/* line 828, scss/media.scss */
+/* line 845, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info span {
   padding: 4px 8px 4px 4px;
   margin: 0 5px 0 0;
   border-right: 1px solid #acacac;
 }
-/* line 834, scss/media.scss */
+/* line 851, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info span i {
   margin-right: 2px;
 }
-/* line 839, scss/media.scss */
+/* line 856, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info > span.messanger {
   float: right;
   margin: 0;
   padding: 0;
 }
-/* line 844, scss/media.scss */
+/* line 861, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info > span.messanger a {
   padding: 4px 6px;
   font-size: 0.9em;
@@ -879,56 +895,56 @@ input[type=checkbox].ccb:checked + label:before {
   -webkit-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
 }
-/* line 852, scss/media.scss */
+/* line 869, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info > span.messanger a.session {
   background: #39ac4f;
   color: white;
 }
-/* line 857, scss/media.scss */
+/* line 874, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info > span.messanger a.creating {
   background: #5b5b5b;
   color: white;
 }
-/* line 863, scss/media.scss */
+/* line 880, scss/media.scss */
 .allas-requests .allas .requests .request .contact .contact-info > span:last-child {
   border-right: none;
 }
-/* line 869, scss/media.scss */
+/* line 886, scss/media.scss */
 .allas-requests .allas .requests .request .request-actions {
   flex-basis: 100%;
   padding: 10px 0;
   padding: 10px 0;
   text-align: right;
 }
-/* line 875, scss/media.scss */
+/* line 892, scss/media.scss */
 .allas-requests .allas .requests .request .request-actions a {
   font-size: 0.95em;
 }
-/* line 881, scss/media.scss */
+/* line 898, scss/media.scss */
 .allas-requests .allas .requests .request.status-allowed .status i {
   color: #39ac4f;
 }
-/* line 886, scss/media.scss */
+/* line 903, scss/media.scss */
 .allas-requests .allas .requests .request.status-unallowed .status i {
   color: orange;
 }
-/* line 890, scss/media.scss */
+/* line 907, scss/media.scss */
 .allas-requests .allas .requests .request.status-declined {
   opacity: 0.6;
   filter: alpha(opacity=60);
 }
-/* line 893, scss/media.scss */
+/* line 910, scss/media.scss */
 .allas-requests .allas .requests .request.status-declined .status i {
   color: red;
 }
-/* line 898, scss/media.scss */
+/* line 915, scss/media.scss */
 .allas-requests .allas .requests .request.opened {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
 }
-/* line 906, scss/media.scss */
+/* line 923, scss/media.scss */
 .allas-requests .allas.focus {
   opacity: 1;
   filter: alpha(opacity=100);
@@ -937,52 +953,52 @@ input[type=checkbox].ccb:checked + label:before {
   -moz-box-shadow: 0 10px 45px -10px black;
   box-shadow: 0 10px 45px -10px black;
 }
-/* line 914, scss/media.scss */
+/* line 931, scss/media.scss */
 .allas-requests .allas.defocus {
   opacity: 0.4;
   filter: alpha(opacity=40);
 }
-/* line 918, scss/media.scss */
+/* line 935, scss/media.scss */
 .allas-requests .allas.defocus:hover {
   opacity: 1;
   filter: alpha(opacity=100);
 }
 
-/* line 927, scss/media.scss */
+/* line 944, scss/media.scss */
 .request-action-panel {
   border-width: 5px;
   border-style: solid;
   color: white;
   margin: 5px 0 10px 0;
 }
-/* line 933, scss/media.scss */
+/* line 950, scss/media.scss */
 .request-action-panel h2 {
   font-size: 1.8em;
   margin-bottom: 12px;
 }
-/* line 938, scss/media.scss */
+/* line 955, scss/media.scss */
 .request-action-panel .info {
   text-align: center;
   padding: 20px;
   line-height: 1.4;
 }
-/* line 944, scss/media.scss */
+/* line 961, scss/media.scss */
 .request-action-panel.panel-decline {
   background: #f44e5e;
   border-color: #f44e5e;
 }
-/* line 949, scss/media.scss */
+/* line 966, scss/media.scss */
 .request-action-panel.panel-allower {
   background: #39ac4f;
   border-color: #39ac4f;
 }
-/* line 954, scss/media.scss */
+/* line 971, scss/media.scss */
 .request-action-panel .buttons {
   text-align: center;
   padding: 20px;
   background: #5b5b5b;
 }
-/* line 960, scss/media.scss */
+/* line 977, scss/media.scss */
 .request-action-panel .buttons .options label {
   font-size: 1em !important;
   font-weight: normal !important;
@@ -991,26 +1007,30 @@ input[type=checkbox].ccb:checked + label:before {
   line-height: 1.2;
 }
 
-/* line 975, scss/media.scss */
+/* line 994, scss/media.scss */
+.messanger .wrapper .message-list .message-session .group-head .session-start .from_admin {
+  color: #f44e5e;
+}
+/* line 999, scss/media.scss */
 .messanger .wrapper .message-list .message-session .allas-spot {
   padding: 3px;
 }
-/* line 978, scss/media.scss */
+/* line 1002, scss/media.scss */
 .messanger .wrapper .message-list .message-session .allas-spot a {
   margin-bottom: 4px;
   display: block;
 }
-/* line 986, scss/media.scss */
+/* line 1010, scss/media.scss */
 .messanger .wrapper .messanger-reader .header {
   padding: 0 0 20px 0;
 }
-/* line 988, scss/media.scss */
+/* line 1012, scss/media.scss */
 .messanger .wrapper .messanger-reader .header .allas-spot {
   background: #ffffff;
   border: 2px dashed #dbdbdb;
   padding: 8px 4px;
 }
-/* line 993, scss/media.scss */
+/* line 1017, scss/media.scss */
 .messanger .wrapper .messanger-reader .header .user-spot {
   background: #ffffff;
   padding: 8px 4px;
@@ -1024,36 +1044,64 @@ input[type=checkbox].ccb:checked + label:before {
   border-radius: 5px;
   margin-top: 8px;
 }
-/* line 1006, scss/media.scss */
+/* line 1030, scss/media.scss */
 .messanger .wrapper .messanger-reader .header .user-spot .ico {
   flex-basis: 50px;
   text-align: center;
   font-size: 38px;
   color: black;
 }
+/* line 1043, scss/media.scss */
+.messanger .wrapper nav ul li a {
+  background: #c3c3c3;
+  color: #6d6d6d;
+}
+/* line 1048, scss/media.scss */
+.messanger .wrapper nav ul li.active a {
+  background: #f3f3f3;
+}
 
-/* line 1018, scss/media.scss */
+/* line 1058, scss/media.scss */
+.evt-grp {
+  margin: 4px 0;
+}
+/* line 1060, scss/media.scss */
+.evt-grp span {
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+/* line 1064, scss/media.scss */
+.evt-grp span i {
+  color: #555555;
+  font-size: 10px;
+}
+/* line 1069, scss/media.scss */
+.evt-grp span a {
+  color: #39ac4f;
+}
+
+/* line 1075, scss/media.scss */
 .nav-container {
   text-align: center;
 }
 
-/* line 1022, scss/media.scss */
+/* line 1079, scss/media.scss */
 ul.pagination {
   margin: 10px 0;
   justify-content: center;
 }
-/* line 1026, scss/media.scss */
+/* line 1083, scss/media.scss */
 ul.pagination li {
   list-style: none;
 }
 
-/* line 1030, scss/media.scss */
+/* line 1087, scss/media.scss */
 .page-item.active .page-link {
   background-color: #39ac4f;
   border-color: #2c863d;
 }
 
-/* line 1036, scss/media.scss */
+/* line 1093, scss/media.scss */
 table.table {
   font-size: 0.85em;
 }

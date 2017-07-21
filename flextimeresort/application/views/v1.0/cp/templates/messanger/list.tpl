@@ -11,8 +11,9 @@
       <div class="from">
         [[msg.from.name]]
       </div>
-      <div class="session-start" data-toggle="tooltip" title="{lang text='A beszélgetés kezdete'}">
-        [[msg.created_at]]
+      <div class="session-start" >
+        <span data-toggle="tooltip" title="{lang text='A beszélgetés kezdete'}">[[msg.created_at]]</span>
+        <span data-toggle="tooltip" data-placement="left" title="{lang text='Beszélgetés indító admin'}" ng-show="msg.from_admin_name"> &bull; <span class="from_admin">[[msg.from_admin_name]]</span></span>
       </div>
       <div class="subject" ng-class="(msg.subject == '') ? 'no-sub' : ''">
         <span class="locked" data-toggle="tooltip" title="{lang text='Ez a beszélgetés zárolva lett'}." ng-show="msg.closed"><i class="fa fa-lock"></i></span> <a href="{$root}messanger/session/[[session]]">[[msg.subject]]</a> <span ng-show="(msg.unreaded) ? true : false" class="unread-label"><a href="{$root}messanger/session/[[session]]">[[msg.unreaded]] {lang text="olvasatlan üzenet"} <i class="fa fa-arrow-circle-right"></i></a></span>

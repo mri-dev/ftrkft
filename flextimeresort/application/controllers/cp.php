@@ -98,11 +98,15 @@ class cp extends Controller {
 
 	public function messanger()
 	{
+		$filter_arr = $_GET;
+		unset($filter_arr['tag']);
+
 		if (isset($_GET['msgid']) && !empty($_GET['msgid'])) {
 			$msgsession = rtrim($_GET['msgid'], '/');
 		}
 
 		$this->out('msgsession', $msgsession);
+		$this->out( 'filter_arr', $filter_arr);
 	}
 
 	public function ads()
@@ -168,9 +172,7 @@ class cp extends Controller {
 					}
 				}
 
-
 				$filters = array();
-
 				if (isset($_GET['accepts'])) {
 					$filters['accepted'] = (int)$_GET['accepts'];
 				}
@@ -204,11 +206,13 @@ class cp extends Controller {
 			break;
 			default:
 				$allasok = new Allasok(array(
-					'controller' => $this->ctrl
+					'controller' => $this->ctrl,
+					'admin' => true
 				));
 				$filtered = false;
 				$arg = array();
 				$filters = array();
+
 				if(!empty($_GET['ID'])) {
 					$filters['ID'] = $_GET['ID'];
 				}

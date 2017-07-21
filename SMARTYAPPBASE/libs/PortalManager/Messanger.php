@@ -106,7 +106,8 @@ class Messanger
       IF(ms.start_by = 'user', sess_user.name, sess_admin.name) as session_starter_name,
       IF(ms.start_by = 'user', 'outbox', 'inbox') as controll_for,
       IF(ms.start_by = 'admin', ms.to_id, NULL) as user_to_id,
-      IF(ms.start_by = 'admin', to_user.name, NULL) as user_to_name
+      IF(ms.start_by = 'admin', to_user.name, NULL) as user_to_name,
+      IF(ms.start_by = 'admin', from_admin.name, NULL) as from_admin_name
     FROM ".self::DBTABLE_MESSAGES." as m
     LEFT OUTER JOIN ".self::DBTABLE." as ms ON ms.sessionid = m.sessionid
     LEFT OUTER JOIN accounts as from_user ON from_user.ID = m.user_from_id
@@ -118,6 +119,14 @@ class Messanger
 
     if(!$this->admin){
       $qry .= " and (m.user_from_id = {$uid} or m.user_to_id = {$uid})";
+    }
+
+    if (isset($arg['onlybyad'])) {
+      $qry .= " and ms.allas_id = ".(int)$arg['onlybyad'];
+    }
+
+    if (isset($arg['onlybyadmin'])) {
+      $qry .= " and (ms.start_by = 'admin' && ms.start_by_id = ".(int)$arg['onlybyadmin'].")";
     }
 
     if (isset($arg['controll_by']) && in_array($arg['controll_by'], array('inbox', 'outbox'))) {
@@ -171,6 +180,7 @@ class Messanger
         $datas['list'][$d['sessionid']]['archived_by_admin'] = (int)$d['archived_by_admin'];
         $datas['list'][$d['sessionid']]['allas'] = $this->loadAllasData($d['allas_id']);
         $datas['list'][$d['sessionid']]['user_to_id'] = $d['user_to_id'];
+        $datas['list'][$d['sessionid']]['from_admin_name'] = $d['from_admin_name'];
 
         if ($this->admin) {
           $toUserData = new User($d['user_to_id'], array('controller' => $this->controller));

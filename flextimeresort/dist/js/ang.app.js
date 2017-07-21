@@ -401,7 +401,7 @@ var admmsg = angular.module("AdminMessanger", ['nl2br', 'ngSanitize'], function(
   $interpolateProvider.endSymbol(']]');
 });
 
-admmsg.controller( "MessagesList", ['$scope', '$http', '$timeout', function($scope, $http, $timeout)
+admmsg.controller( "MessagesList", ['$scope', '$http', '$timeout', '$window', function($scope, $http, $timeout, $window)
 {
   $scope.is_msg = false;
   $scope.unreaded_messages = {
@@ -523,7 +523,8 @@ admmsg.controller( "MessagesList", ['$scope', '$http', '$timeout', function($sco
       params: {
         type: 'messanger_messages',
         by: type,
-        for: 'admin'
+        for: 'admin',
+        getstr: $window.location.search.substring(1)
       }
     }).then(function successCallback(response) {
       var d = response.data;

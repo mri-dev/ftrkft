@@ -284,7 +284,9 @@ class Allasok
         a.*,
         u.name as oauthor_name,
         u.email as oauthor_email,
-        (SELECT ertek FROM accounts_details WHERE fiok_id = a.author_id and nev = 'telefon') as oauthor_phone
+        (SELECT ertek FROM accounts_details WHERE fiok_id = a.author_id and nev = 'telefon') as oauthor_phone,
+        (SELECT count(ap.ID) FROM ".self::DB_REQUEST_X." as ap WHERE ap.allas_id = a.ID) as applicant_count,
+        (SELECT count(apm.allas_id) FROM ".\PortalManager\Messanger::DBTABLE." as apm WHERE apm.allas_id = a.ID and apm.archived_by_admin = 0) as applicant_msg_count
 			FROM ".self::DBTABLE." as a
       LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
 			WHERE 1=1";
@@ -592,6 +594,14 @@ class Allasok
     } else {
       return $this->get('keywords');
     }
+  }
+  public function getApplicantCount()
+  {
+    return (int)$this->current_category['applicant_count'];
+  }
+  public function getApplicantMessangerCount()
+  {
+    return (int)$this->current_category['applicant_msg_count'];
   }
 	public function getID()
 	{

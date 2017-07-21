@@ -81,6 +81,10 @@
 			</div>
 			<div class="col-md-4">
 				{$lista->shortDesc()}
+				<div class="evt-grp">
+					<span data-toggle="tooltip" title="Jelentkezések erre a hirdetésre"><i class="fa fa-mouse-pointer"></i> <a href="{$root}ads/requests/?hlad={$lista->getID()}" target="_blank">{$lista->getApplicantCount()}</a></span>
+					<span data-toggle="tooltip" title="Kapcsolódó jelentkezői aktív üzenetváltások"><i class="fa fa-comments-o"></i> <a href="{$root}messanger/outbox/?ad={$lista->getID()}" target="_blank">{$lista->getApplicantMessangerCount()}</a></span>
+				</div>
 			</div>
 			<div class="col-md-3 center">
 				{$lista->get('tipus_name')} / {$lista->get('cat_name')}

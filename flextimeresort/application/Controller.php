@@ -87,7 +87,7 @@ class Controller
 		));
 		$messangerinfo = $this->MESSANGER->readInfos($this->ME->getID());
 		$this->out( 'messangerinfo', $messangerinfo);
-		$total_notify += $total_unreaded;
+		$total_notify += (int)$messangerinfo[inbox_unreaded];
 
 		// Kategória listák
 		$this->out( 'megyelist', $this->tematikus_lista_elemek('megyek', 'megyelist'));

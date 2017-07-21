@@ -270,6 +270,15 @@ class ajax extends Controller  {
 					$arg = array();
 					$group = $params['by'];
 					$uid = (int)$this->ME->getID();
+					parse_str($params[getstr], $getstr);
+
+					if (isset($getstr['ad']) && !empty($getstr['ad'])) {
+						$arg['onlybyad'] = (int)$getstr['ad'];
+					}
+
+					if (isset($getstr['byadmin']) && !empty($getstr['byadmin'])) {
+						$arg['onlybyadmin'] = (int)$getstr['byadmin'];
+					}
 
 					if (isset($params['for']) && $params['for'] == 'admin') {
 						$arg['admin'] = true;
@@ -294,6 +303,7 @@ class ajax extends Controller  {
 					$unreaded = $messages['unreaded_group'];
 
 					$data['uid'] = $uid;
+					$data['str'] = $getstr;
 					$data['unreaded'] = $unreaded;
 					$data['messages'] = $messages;
 				break;
