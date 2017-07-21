@@ -542,8 +542,8 @@ input[type=checkbox].ccb:checked + label:before {
 /* line 524, scss/media.scss */
 .filters form .row input {
   padding: 0 5px;
-  line-height: 34px;
-  height: 34px;
+  line-height: 28px;
+  height: 28px;
   font-size: 0.9em;
 }
 /* line 532, scss/media.scss */

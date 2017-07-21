@@ -125,9 +125,18 @@ class Messanger
       $qry .= " and ms.allas_id = ".(int)$arg['onlybyad'];
     }
 
+    if (isset($arg['touser'])) {
+      $qry .= " and (ms.start_by = 'admin' && ms.to_id = ".(int)$arg['touser'].")";
+    }
+
     if (isset($arg['onlybyadmin'])) {
       $qry .= " and (ms.start_by = 'admin' && ms.start_by_id = ".(int)$arg['onlybyadmin'].")";
     }
+
+    if (isset($arg['useremail'])) {
+      $qry .= " and (ms.start_by = 'admin' && (to_user.email LIKE '".$arg['useremail']."%' || to_user.name LIKE '%".$arg['useremail']."%'))";
+    }
+
 
     if (isset($arg['controll_by']) && in_array($arg['controll_by'], array('inbox', 'outbox'))) {
       $cby = array(

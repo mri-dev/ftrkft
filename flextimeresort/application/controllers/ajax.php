@@ -280,6 +280,14 @@ class ajax extends Controller  {
 						$arg['onlybyadmin'] = (int)$getstr['byadmin'];
 					}
 
+					if (isset($getstr['touser']) && !empty($getstr['touser'])) {
+						$arg['touser'] = (int)$getstr['touser'];
+					}
+
+					if (isset($getstr['toemail']) && !empty($getstr['toemail'])) {
+						$arg['useremail'] = $getstr['toemail'];
+					}
+
 					if (isset($params['for']) && $params['for'] == 'admin') {
 						$arg['admin'] = true;
 					}

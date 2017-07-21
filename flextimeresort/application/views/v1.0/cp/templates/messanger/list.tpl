@@ -1,7 +1,11 @@
 <div class="message-list">
+  <div ng-show="!data_loaded" class="alert alert-warning" style="margin-top: 10px;">
+    <i class="fa fa-spin fa-spinner"></i> {lang text="Üzenet betöltése folyamatban..."}
+  </div>
   <div class="no-messages" ng-show="!messages">
     <i class="fa fa-comments-o"></i>
-    <h3>{lang text="Nincsennek üzenetek"}</h3>
+    <h3>{lang text="Nincsennek üzenetek"}.</h3>
+    {lang text="Nincsennek üzenetek_SUBTEXT"}
   </div>
   <div class="message-session" ng-repeat="(session, msg) in messages" ng-class="(msg.unreaded) ? 'has-unreaded' : ''">
     <div class="unread" ng-show="(msg.unreaded) ? true : false">
