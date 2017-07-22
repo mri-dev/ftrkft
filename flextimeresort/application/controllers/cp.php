@@ -181,6 +181,10 @@ class cp extends Controller {
 					$filters['onlyunpicked'] = true;
 				}
 
+				if (isset($_GET['undown'])) {
+					$filters['undown'] = true;
+				}
+
 				if (isset($_GET['onlyaccepted'])) {
 					$filters['onlyaccepted'] = true;
 				}
@@ -418,7 +422,9 @@ class cp extends Controller {
 	function __destruct(){
 		// RENDER OUTPUT
 		parent::bodyHead();					# HEADER
-		$this->displayView( __CLASS__.$this->temp.'/index', true );		# CONTENT
+		if ($this->admin->logged) {
+			$this->displayView( __CLASS__.$this->temp.'/index', true );		# CONTENT
+		}
 		parent::__destruct();				# FOOTER
 	}
 }

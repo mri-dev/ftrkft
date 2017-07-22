@@ -6,6 +6,8 @@
       <ul>
         {assign var="filter_qry" value=http_build_query($filter_arr)}
         <li><a class="btn btn-sm btn-{if isset($smarty.get.ownpicked)}success{else}default{/if}" href="{$root}ads/requests/?{array_query_toggler from=$filter_arr item='ownpicked'}">Felvett kérelmeim</a></li>
+        <li><a class="btn btn-sm btn-{if isset($smarty.get.undown)}success{else}default{/if}" href="{$root}ads/requests/?{array_query_toggler from=$filter_arr item='undown'}">Felvett, befejezettlen kérelmek <i class="fa fa-retweet"></i></a></li>
+        <li class="sep">|</li>
         <li class="hl hl-green"><a class="btn btn-sm btn-{if isset($smarty.get.onlyaccepted)}success{else}default{/if}" href="{$root}ads/requests/?{array_query_toggler from=$filter_arr item='onlyaccepted'}">Engedélyezett kérelmek <i class="fa fa-check-circle"></i></a></li>
         <li class="hl hl-orange"><a class="btn btn-sm btn-{if isset($smarty.get.onlyunpicked)}success{else}default{/if}" href="{$root}ads/requests/?{array_query_toggler from=$filter_arr item='onlyunpicked'}">Csak kezelésre váró <i class="fa fa-hourglass-half"></i></a></li>
         <li class="hl hl-red"><a class="btn btn-sm btn-{if isset($smarty.get.onlydeclined)}success{else}default{/if}" href="{$root}ads/requests/?{array_query_toggler from=$filter_arr item='onlydeclined'}">Elutasított kérelmek <i class="fa fa-minus-circle"></i></a></li>

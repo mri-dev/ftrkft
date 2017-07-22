@@ -79,6 +79,10 @@ class Requests
         $qry .= " and r.accepted = ".$filters['accepted'];
       }
 
+      if (isset($filters['undown'])) {
+        $qry .= " and (r.admin_pick IS NOT NULL and r.finished = 0)";
+      }
+
       if (isset($filters['onlyunpicked']) && $filters['onlyunpicked'] === true ) {
         $qry .= " and r.admin_pick IS NULL";
       }
