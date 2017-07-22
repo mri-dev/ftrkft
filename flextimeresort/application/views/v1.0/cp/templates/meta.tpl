@@ -59,6 +59,7 @@
   var closedSidebar = localStorage.getItem('closedSidebar');
 
   $(function(){
+    watchNotifies();
     $('[data-toggle="tooltip"]').tooltip();
     $('table.datatable').DataTable({
         "language": {
@@ -114,4 +115,30 @@
       }
     });
   })
+
+  function watchNotifies() {
+    $.post('/ajax/get/',
+    {
+      type: 'adminotify'
+    },function(d){
+        console.log(d);
+      if (d.unwatched_messages == 0) {
+        $('.unwatched_messages_ntf').hide(0);
+      } else{
+        $('.unwatched_messages_ntf').show(0).text(d.unwatched_messages);
+      }
+
+      if (d.waiting_ad_applicant == 0) {
+        $('.waiting_ad_applicant_ntf').hide(0);
+      } else{
+        $('.waiting_ad_applicant_ntf').show(0).text(d.waiting_ad_applicant);
+      }
+    },
+      "json"
+    );
+
+    setTimeout(function(){
+      watchNotifies();
+    }, 2500);
+  }
 </script>

@@ -215,6 +215,25 @@ body.admin {
         margin: 0;
         left: 0;
 
+        .notify{
+          display: none;
+          background: $color-red;
+          color: white;
+          text-align: center;
+          line-height: 1;
+          padding: 0;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+          width: 24px;
+          height: 24px;
+          line-height: 24px;
+          font-size: 0.66em;
+          -webkit-box-shadow: 1px 1px 4px -1px #000;
+          -moz-box-shadow: 1px 1px 4px -1px #000;
+          box-shadow: 1px 1px 4px -1px #000;
+        }
+
         a{
           display: block;
           color: white;
@@ -231,6 +250,7 @@ body.admin {
       }
       li a:hover {
         background: darken($color-grey, 5%);
+        text-decoration: none;
       }
 
       li.active a {
@@ -396,7 +416,6 @@ body.admin {
         border: 5px solid $color-red;
       }
     }
-
   }
 
   &.sidebar-toggled{
@@ -416,6 +435,21 @@ body.admin {
     }
     aside.main-sidebar section.menu li a .text {
       display: none;
+    }
+
+    section.menu{
+      li {
+        .notify{
+          position: absolute !important;
+          right: 5px !important;
+          top: 5px !important;
+          font-size: 0.5em !important;
+          width: 18px !important;
+          height: 18px !important;
+          line-height: 18px !important;
+          pointer-events: none  !important;
+        }
+      }
     }
   }
 

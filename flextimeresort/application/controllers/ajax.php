@@ -604,50 +604,22 @@ class ajax extends Controller  {
 			}
 
 			switch ( $type ) {
-				case 'me':
-
-				break;
-				case 'job_mode_studies_hint':
+				case 'adminotify':
 					$params = array();
-
-					foreach ( $_POST as $key => $value ) {
-						$params[$key] = $value;
-					}
-
 					$output = array(
-						'error' 	=> 0,
-						'msg' 		=> null,
-						'params' 	=> $params
+						'waiting_ad_applicant' => 0,
+						'unwatched_messages' => 0
 					);
 
-					$src = $this->db->query("SELECT id, neve as value FROM ".\PortalManager\Categories::TYPE_STUDIES." WHERE neve LIKE '%$search%';");
+					$msg = $this->db->query("SELECT
+						count(m.sessionid)
+					FROM ".\PortalManager\Messanger::DBTABLE_MESSAGES." as m
+					LEFT OUTER JOIN ".\PortalManager\Messanger::DBTABLE." as ms ON ms.sessionid = m.sessionid
+					WHERE m.admin_readed_at IS NULL")->fetchColumn();
+					$output['unwatched_messages'] = (int)$msg;
 
-					$result = $src->fetchAll( \PDO::FETCH_ASSOC );
-
-					$list = array();
-
-					if ( $src->rowCount() != 0 && !empty( $search ) )  {
-						foreach ( $result as $res ) {
-							// Egyezés százalék
-							similar_text( $res['value'], $search, $res['similar_percent'] );
-							$res['order'] = round($res['similar_percent'] * 100);
-
-							$res['value'] = preg_replace('/'.$search.'/i', '<strong>'.$search.'</strong>', $res['value']);
-
-	 						$list[] = $res;
-						}
-
-						// Egyezés alapján sorba rendezés
-						// előre kerülnek azok az elemek, ahol nagyobb az egyezési
-						// arány
-						usort( $list, function($a, $b) {
-						    return $b['order'] - $a['order'];
-						});
-					} else {
-						$list = false;
-					}
-
-					$output['search'] = $list;
+					$app = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r WHERE r.finished = 0 and r.admin_pick IS NULL")->fetchColumn();
+					$output['waiting_ad_applicant'] = (int)$app;
 
 					echo json_encode( $output );
 				break;
