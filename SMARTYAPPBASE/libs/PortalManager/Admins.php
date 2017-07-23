@@ -83,6 +83,20 @@ class Admins
 		return $admin;
 	}
 
+	public function lista( $arg = array() )
+	{
+		$q = "SELECT
+			*
+		FROM admin
+		ORDER BY utoljara_belepett DESC
+		";
+
+		$arg['multi'] = 1;
+		extract($this->db->q($q, $arg));
+
+		return $data;
+	}
+
 	function isLogged(){
 		if(isset($this->admin) && $this->admin != ''){
 			if( $this->settings['admin_login_mode'] == 'cookie'){
@@ -113,91 +127,6 @@ class Admins
 			}
 		}
 	}
-
-	public function saveServiceExtra( $post )
-	{
-		foreach ($post['ar'] as $csomag => $ar ) {
-			$q = "UPDATE ".\PortalManager\Services::DB_TABLE." SET ";
-
-			$val = $post['ervenyes_napig'][$csomag];
-			$q .= "ervenyes_napig = '".$val."', ";
-
-			$val = $post['aktiv'][$csomag];
-
-			$val = (isset($val)) ? 1 : 0;
-			$q .= "aktiv = '".$val."', ";
-
-			$q .= "ar = '".$ar."', ";
-
-			$q = rtrim($q,", ");
-
-			$q .= " WHERE szolg_id = '".$csomag."';";
-
-			$this->db->query($q);
-		}
-
-		return false;
-	}
-
-	public function saveAdServices( $post )
-	{
-		foreach ($post['elerheto_idotartamok'] as $csomag => $aktiv ) {
-			$q = "UPDATE ".\PortalManager\AdServices::DB_TABLE." SET ";
-
-			$val = $post['elerheto_idotartamok'][$csomag];
-			$q .= "elerheto_idotartamok = '".$val."', ";
-
-			$val = $post['hirdetes'][$csomag];
-			$q .= "hirdetes = '".$val."', ";
-
-			$val = $post['aktiv'][$csomag];
-
-			$val = (isset($val)) ? 1 : 0;
-			$q .= "aktiv = '".$val."', ";
-
-			$val = $post['netto_ar_21nap'][$csomag];
-			$val = (isset($val)) ? $val : 0;
-			$q .= "netto_ar_21nap = '".$val."', ";
-
-			$val = $post['netto_ar_28nap'][$csomag];
-			$val = (isset($val)) ? $val : 0;
-			$q .= "netto_ar_28nap = '".$val."', ";
-
-			$val = $post['netto_ar_30nap'][$csomag];
-			$val = (isset($val)) ? $val : 0;
-			$q .= "netto_ar_30nap = '".$val."', ";
-
-
-			$val = $post['netto_ar_14nap'][$csomag];
-			$val = (isset($val)) ? $val : 0;
-			$q .= "netto_ar_14nap = '".$val."', ";
-
-			$val = $post['kedvezmeny_szazalek'][$csomag];
-			$val = (isset($val) && !empty($val)) ? (int)$val : 0;
-			$q .= "kedvezmeny_szazalek = '".$val."', ";
-
-			$q = rtrim($q,", ");
-
-			$q .= " WHERE csomag_id = '".$csomag."';";
-
-			$this->db->query($q);
-		}
-
-		return false;
-	}
-
-	public function saveAdServicesExtensionPrices( $post )
-	{
-
-		foreach ($post as $what => $csomag ) {
-			foreach ( $csomag as $csomag_id => $value ) {
-				$q = "UPDATE ".\PortalManager\AdServices::DB_TABLE." SET ".$what." = ".$value." WHERE csomag_id = '".$csomag_id."';";
-
-				$this->db->query($q);
-			}
-		}
-	}
-
 
 	function logout(){
 		unset($_SESSION[adm]);

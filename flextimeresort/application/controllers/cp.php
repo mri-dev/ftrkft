@@ -35,11 +35,50 @@ class cp extends Controller {
 			'view' => $this->getAllVars()
 		));
 		$this->admin = $this->admins->get();
-		$this->root = '/'.__CLASS__.'/';
+  		$this->root = '/'.__CLASS__.'/';
 
 		$this->out( 'admin', $this->admin );
 		$this->out( 'root', $this->root );
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
+
+    /**
+    * Dashboard info
+    **/
+    $dashboardinfo = array();
+
+    if ($this->admin)
+    {
+      // Requests
+      $dashboardinfo['requests']['unpicked'] = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r WHERE r.finished = 0 and r.admin_pick IS NULL")->fetchColumn();
+      $dashboardinfo['requests']['ownpicked_inprogress'] = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r WHERE r.finished = 0 and r.admin_pick = ".(int)$this->admin->getID())->fetchColumn();
+      $dashboardinfo['requests']['ownpicked_done'] = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r WHERE r.finished = 1 and r.admin_pick = ".(int)$this->admin->getID())->fetchColumn();
+
+      // Ads
+      $dashboardinfo['ads']['aktiv'] = $this->db->query("SELECT count(a.ID) FROM ".\FlexTimeResort\Allasok::DBTABLE." as a WHERE a.active = 1")->fetchColumn();
+      $dashboardinfo['ads']['30d_created'] = $this->db->query("SELECT count(a.ID) FROM ".\FlexTimeResort\Allasok::DBTABLE." as a WHERE a.active = 1 and DATEDIFF(now(), a.upload_at) <= 30")->fetchColumn();
+
+      // Users
+      $dashboardinfo['user']['munkavallalo'] = $this->db->query("SELECT count(u.ID) FROM ".\PortalManager\Users::TABLE_NAME." as u WHERE u.engedelyezve = 1 and u.user_group = 0")->fetchColumn();
+      $dashboardinfo['user']['munkaado'] = $this->db->query("SELECT count(u.ID) FROM ".\PortalManager\Users::TABLE_NAME." as u WHERE u.engedelyezve = 1 and u.user_group = 10")->fetchColumn();
+      $dashboardinfo['user']['active'] = $this->db->query("SELECT count(u.ID) FROM ".\PortalManager\Users::TABLE_NAME." as u WHERE u.engedelyezve = 1 and DATEDIFF(now(), u.last_login_date) <= 30")->fetchColumn();
+      $dashboardinfo['user']['newreg'] = $this->db->query("SELECT count(u.ID) FROM ".\PortalManager\Users::TABLE_NAME." as u WHERE u.engedelyezve = 1 and DATEDIFF(now(), u.register_date) <= 30")->fetchColumn();
+
+      // Messages
+      $dashboardinfo['messages']['unreaded'] = $this->db->query("
+      SELECT count(m.sessionid)
+      FROM ".\PortalManager\Messanger::DBTABLE_MESSAGES." as m
+      LEFT OUTER JOIN ".\PortalManager\Messanger::DBTABLE." as ms ON ms.sessionid = m.sessionid
+      WHERE m.from_admin = 0 and m.admin_readed_at IS NULL and ms.archived_by_admin = 0
+      ")->fetchColumn();
+      $dashboardinfo['messages']['myunreaded'] = $this->db->query("
+      SELECT count(m.sessionid)
+      FROM ".\PortalManager\Messanger::DBTABLE_MESSAGES." as m
+      LEFT OUTER JOIN ".\PortalManager\Messanger::DBTABLE." as ms ON ms.sessionid = m.sessionid
+      WHERE m.from_admin = 0 and m.admin_readed_at IS NULL and ms.archived_by_admin = 0 and ms.start_by = 'admin' and ms.start_by_id = ".(int)$this->admin->getID()."
+      ")->fetchColumn();
+
+      $this->out( 'dashboardinfo', $dashboardinfo );
+    }
 
 		// SEO Információk
 		$SEO = null;
@@ -411,6 +450,11 @@ class cp extends Controller {
 			break;
 		}
 	}
+
+  public function settings()
+  {
+    $this->out( 'adminok', $this->admins->lista() );
+  }
 
 	public function logout()
 	{

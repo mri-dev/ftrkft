@@ -9,7 +9,7 @@
 							<div class="primary text-orange with-link">
 								<div class="">
 									<div class="n">
-										<i class="fa fa-hourglass-half"></i> 1 279
+										<i class="fa fa-hourglass-half"></i> {$dashboardinfo.requests.unpicked|intval}
 									</div>
 									<div class="t">
 										feldolgozásra váró jelentkezések
@@ -26,7 +26,7 @@
 							<div class="primary text-darkorange with-link">
 								<div class="">
 									<div class="n">
-										<i class="fa fa-retweet"></i> 11
+										<i class="fa fa-retweet"></i> {$dashboardinfo.requests.ownpicked_inprogress|intval}
 									</div>
 									<div class="t">
 										általam felvett, nem lezárt jelentkezések
@@ -43,7 +43,7 @@
 							<div class="primary text-green with-link">
 								<div class="">
 									<div class="n">
-										<i class="fa fa-check-circle"></i> 240
+										<i class="fa fa-check-circle"></i> {$dashboardinfo.requests.ownpicked_done|intval}
 									</div>
 									<div class="t">
 										általam felvett, engedélyezett jelentkezések
@@ -62,7 +62,7 @@
 						<div class="box">
 							<div class="primary">
 								<div class="n">
-									9 990
+									{$dashboardinfo.ads.aktiv|intval}
 								</div>
 								<div class="t">
 									aktív, futó állásajánlat
@@ -74,7 +74,7 @@
 						<div class="box">
 							<div class="primary">
 								<div class="n">
-									0
+									{$dashboardinfo.ads.30d_created|intval}
 								</div>
 								<div class="t">
 									létrehozott állásajánlat az elmúlt 30 napban
@@ -86,7 +86,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<h2>Felhasználók</h2>
 				<div class="row">
 					<div class="col-md-12">
@@ -94,7 +94,7 @@
 							<div class="primary splitted centered">
 								<div class="text-orange">
 									<div class="n">
-										999
+										{$dashboardinfo.user.munkavallalo|intval}
 									</div>
 									<div class="t">
 										munkavállaló
@@ -102,7 +102,7 @@
 								</div>
 								<div class="text-red">
 									<div class="n">
-										1 920
+										{$dashboardinfo.user.munkaado|intval}
 									</div>
 									<div class="t">
 										munkaadó
@@ -117,10 +117,10 @@
 						<div class="box">
 							<div class="primary">
 								<div class="n">
-									1 478
+									{$dashboardinfo.user.active|intval}
 								</div>
 								<div class="t">
-									aktív felhasználó
+									aktív felhasználó (30 nap)
 								</div>
 							</div>
 						</div>
@@ -129,18 +129,42 @@
 						<div class="box">
 							<div class="primary">
 								<div class="n">
-									490
+									{$dashboardinfo.user.newreg|intval}
 								</div>
 								<div class="t">
-									új regisztrált felhasználó
+									új regisztrált felhasználó (30 nap)
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-6">
 				<h2>Üzenetek</h2>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="box">
+							<div class="primary splitted centered">
+								<div class="text-orange">
+									<div class="n">
+										{$dashboardinfo.messages.unreaded|intval}
+									</div>
+									<div class="t">
+										olvasatlan üzenet
+									</div>
+								</div>
+								<div class="text-red">
+									<div class="n">
+										{$dashboardinfo.messages.myunreaded|intval}
+									</div>
+									<div class="t">
+										olvasatlan, általam nyitott üzenet
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
