@@ -74,7 +74,7 @@
         <li class="toggler"><a href="#" class="sidebar-toggle"><i class="fa fa-bars"></i></a></li>
         <li class="quicknav">
           <ul class="quicknav">
-            <li><a href="#">{$admin->getUsername()}</a></li>
+            <li><a href="#"><strong>{$admin->getName()}</strong> <small>({$admin->getUsername()})</small></a></li>
             <li class="logout"><a data-toggle="tooltip" data-placement="left" title="Kijelentkezés" href="{$root}logout"><i class="fa fa-times"></i></a></li>
           </ul>
         </li>
@@ -103,7 +103,9 @@
         <li class="sub {if $smarty.get.groupkey == $tl.termkey}active{/if}"><a {if !empty($tl.description)}data-toggle="tooltip" data-placement="right" title="{$tl.description}"{/if} href="{$root}cat-{$tl.termkey}"><i class="fa fa-{$tl.faico}"></i> <span class="text">{$tl.neve}</span></a></li>
         {/foreach}
       {/if}
-      <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
+      {if $admin && $admin->getPrivIndex() == 0}
+        <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
+      {/if}
     </ul>
   </section>
 </aside>

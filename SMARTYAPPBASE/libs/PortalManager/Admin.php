@@ -36,59 +36,64 @@ class Admin
 	 */
 	public function add( $data )
 	{
-		$name 	= ($data['admin_user']) ?: false;
-		$pw1 	= ($data['admin_pw1']) ?: false;
-		$pw2 	= ($data['admin_pw2']) ?: false;
-		$status = $data['admin_status'];
+		$name 	= ($data['admin_name']) ?: false;
+    $user 	= ($data['admin_user']) ?: false;
+		$pw1 	= ($data['admin_pw']) ?: false;
+		$status = (isset($data['admin_status'])) ? 1 : 0;
 		$jog 	= $data['admin_jog'];
 
-		if (!$name) {
-			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>belépési azonosítóját</strong>!");
+    if (!$name) {
+			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>Nevét</strong>!");
 		}
 
-		if ( !$pw1 || !$pw2 ) {
+		if (!$user) {
+			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>E-mail / Login</strong> azonosítóját!");
+		}
+
+		if ( !$pw1) {
 			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>jelszavát</strong>!");
-		}
-
-		if ( $pw1 != $pw2 ) {
-			throw new \Exception("A megadott jelszó nem egyezik, kérjük, hogy írja be újra!");
 		}
 
 		$this->db->insert(
 			"admin",
 			array(
-				'user' => trim($name),
-				'pw' => \Hash::jelszo($pw2),
+        'name' => trim($name),
+				'user' => trim($user),
+				'pw' => \Hash::jelszo($pw1),
 				'engedelyezve' => $status,
 				'jog' => $jog,
 			)
 		);
+
+    return (int)$this->db->lastInsertId();
 	}
 
-	public function save( $new_data )
+	public function save( $id, $new_data )
 	{
-		$name 	= ($new_data['admin_user']) ?: false;
-		$status = $new_data['admin_status'];
+		$name 	= ($new_data['admin_name']) ?: false;
+    $user 	= ($new_data['admin_user']) ?: false;
+		$status = (isset($new_data['admin_status'])) ? 1 : 0;
 		$jog 	= $new_data['admin_jog'];
 		$password = false;
 
-		if (!$name) {
-			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>belépési azonosítóját</strong>!");
+    if (!$name) {
+			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>Nevét</strong>!");
 		}
 
-		if ($new_data['admin_pw1'] != '' && $new_data['admin_pw2'] != '') {
-			if ( $new_data['admin_pw1'] != $new_data['admin_pw2'] ) {
-				throw new \Exception("A megadott jelszó nem egyezik, kérjük, hogy írja be újra!");
-			}
-			$password = ", pw = '".\Hash::jelszo($new_data['admin_pw2'])."'";
+		if (!$user) {
+			throw new \Exception("Kérjük, hogy adja meg az adminisztrátor <strong>E-mail / Login</strong> azonosítóját!");
 		}
 
-		$this->db->query(sprintf("UPDATE admin SET user = '%s', jog = %d, engedelyezve = %d $password WHERE ID = %d", $name, $jog, $status, $this->admin_id ));
+		if ($new_data['admin_pw'] != '') {
+			$password = ", pw = '".\Hash::jelszo($new_data['admin_pw'])."'";
+		}
+
+		$this->db->query(sprintf("UPDATE admin SET name = '%s', user = '%s', jog = %d, engedelyezve = %d $password WHERE ID = %d", $name, $user, $jog, $status, $id ));
 	}
 
-	public function delete()
+	public function delete($id)
 	{
-		$this->db->query(sprintf("DELETE FROM admin WHERE ID = %d",$this->admin_id));
+		$this->db->query(sprintf("DELETE FROM admin WHERE ID = %d",$id));
 	}
 
 	private function getAdmin()
@@ -102,6 +107,16 @@ class Admin
 	===============================*/
 
 	public function getUsername()
+	{
+		return $this->admin['user'];
+	}
+
+  public function getName()
+	{
+		return $this->admin['name'];
+	}
+
+  public function getEmail()
 	{
 		return $this->admin['user'];
 	}

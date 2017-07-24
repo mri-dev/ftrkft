@@ -72,7 +72,7 @@
 		</div>
 		</form>
 		{foreach from=$lista.data item=user}
-		<div class="row col-vertical-middle">
+		<div class="row col-vertical-middle lie">
 			<div class="col-md-1 center">
 				{$user.ID}
 			</div>

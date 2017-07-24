@@ -65,6 +65,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ugyfelkapu/hirdetesek/mod/([0-9]+)$ index.php?tag=user/ugyfelkapu&p=uj-hirdetesek&modid=$1 [NC,QSA,L]
 
+# Ügyfélkapu - Profil modulview
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ugyfelkapu/profil/modulview/(.+)/(.+)$ index.php?tag=user/modulview&group=$1&item=$2 [NC,QSA,L]
+
 # Ügyfélkapu
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

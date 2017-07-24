@@ -224,7 +224,16 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       });
     }
   }
- }]);
+ }])
+ .directive('profilModul', function(){
+   return {
+    restrict: 'E',
+    templateUrl: function(e,a){
+      return 'modulview/'+a.group+'/'+a.item;
+    }
+
+   }
+ });
 
 /**
 * Ügyfélkapu üzenetváltó modul

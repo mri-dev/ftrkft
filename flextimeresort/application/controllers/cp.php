@@ -1,5 +1,6 @@
 <?
 use PortalManager\Admins;
+use PortalManager\Admin;
 use PortalManager\Form;
 use PortalManager\Categories;
 use PortalManager\Category;
@@ -453,7 +454,71 @@ class cp extends Controller {
 
   public function settings()
   {
+		if ($this->admin->getPrivIndex() > 0) {
+			\Helper::reload($this->template_root); exit;
+		}
     $this->out( 'adminok', $this->admins->lista() );
+
+		$admcreator = array(
+			'button_text' => 'Admin hozzáadása <i class="fa fa-plus-circle"></i>',
+			'title' => 'Adminisztrátor létrehozása',
+			'box_class' => '',
+			'button_class' => 'primary'
+		);
+
+		if (isset($_POST[admincreator]))
+		{
+			$this->out('formpost', $_POST);
+			try {
+				switch ($_POST['admincreator']) {
+					case 'edit':
+						$this->admin->save((int)$_GET['aid'], $_POST);
+						\Helper::reload();
+					break;
+					case 'delete':
+						$this->admin->delete((int)$_GET['aid']);
+						\Helper::reload($this->template_root.'settings');
+					break;
+					default:
+						$rid = $this->admin->add($_POST);
+						\Helper::reload($this->template_root.'settings/?admincreator=edit&aid='.$rid);
+					break;
+				}
+			} catch (\Exception $e) {
+				$this->out('adm_form_msg', $e->getMessage());
+			}
+		}
+
+		if (isset($_GET['admincreator'])) {
+			$cmode = $_GET['admincreator'];
+			$adm_id = (int)$_GET['aid'];
+
+			$sel_adm = new Admin($adm_id, array(
+				'db' => $this->db,
+				'view' => array(
+					'settings' => $this->settings
+				)
+			));
+
+			$this->out('sel_admin', $sel_adm);
+
+			switch ($cmode) {
+				case 'edit':
+					$admcreator['button_text'] = 'Admin adat módosítás <i class="fa fa-save"></i>';
+					$admcreator['title'] = $sel_adm->getName().' adminisztrátor szerkesztése';
+					$admcreator['box_class'] = 'editor';
+					$admcreator['button_class'] = 'success';
+				break;
+				case 'delete':
+					$admcreator['button_text'] = 'Admin törlése <i class="fa fa-trash"></i>';
+					$admcreator['title'] = $sel_adm->getName().' adminisztrátor végleges törlése';
+					$admcreator['box_class'] = 'delete';
+					$admcreator['button_class'] = 'danger';
+				break;
+			}
+		}
+
+		$this->out('admcreator', $admcreator);
   }
 
 	public function logout()

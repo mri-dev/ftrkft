@@ -498,7 +498,7 @@ ul.navi > li ul.submenu {
   display: none;
   z-index: 9999;
   position: absolute;
-  background: rgba(15, 15, 15, 0.9);
+  background: #0f0f0f;
   border-top: 4px solid #006534;
   top: 54px;
   left: 50%;
@@ -528,7 +528,7 @@ ul.navi > li ul.submenu:before {
   top: -20px;
   border-width: 10px;
   border-style: solid;
-  border-color: transparent transparent rgba(15, 15, 15, 0.89) transparent;
+  border-color: transparent transparent #0f0f0f transparent;
   left: 50%;
   pointer-events: none;
   -webkit-transform: translateX(-50%);
@@ -728,7 +728,7 @@ body.resetpassword .content-holder {
 
 /* line 466, less/main.scss */
 section.content-header {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0);
   padding: 0;
 }
 
@@ -1138,7 +1138,7 @@ input[type=checkbox].ccb:checked + label:before {
 /* line 843, less/main.scss */
 .header-searcher-container .login-instruction {
   padding: 10px 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0);
 }
 /* line 848, less/main.scss */
 .header-searcher-container .login-instruction .buttons ul {
@@ -1189,7 +1189,7 @@ input[type=checkbox].ccb:checked + label:before {
 .header-searcher-container .home-instruction,
 .header-searcher-container .profil-instruction {
   padding: 0;
-  background: rgba(0, 150, 29, 0.68);
+  background: rgba(0, 150, 29, 0);
   color: white;
 }
 /* line 899, less/main.scss */
@@ -1250,7 +1250,7 @@ input[type=checkbox].ccb:checked + label:before {
 /* line 945, less/main.scss */
 .header-searcher-container .home-instruction .instuction .center-inst,
 .header-searcher-container .profil-instruction .instuction .center-inst {
-  background: rgba(197, 236, 205, 0.2);
+  background: #c5eccd;
 }
 /* line 950, less/main.scss */
 .header-searcher-container .home-instruction.ugyfelkapu,
@@ -1265,7 +1265,7 @@ input[type=checkbox].ccb:checked + label:before {
 }
 /* line 960, less/main.scss */
 .header-searcher-container .profil-instruction {
-  background: rgba(0, 150, 29, 0.46);
+  background: rgba(0, 150, 29, 0);
 }
 /* line 962, less/main.scss */
 .header-searcher-container .profil-instruction .instuction .info .text {
@@ -1842,7 +1842,7 @@ footer .top {
 
 /* line 1535, less/main.scss */
 .user-section.user-register section.info, .user-section.user-login section.info, .user-section.user-resetpassword section.info {
-  background-color: rgba(245, 245, 245, 0.64);
+  background-color: rgba(245, 245, 245, 0);
   background-image: url(/dist/img/worldmap.svg);
   background-position: center top;
   background-repeat: no-repeat;
@@ -1977,7 +1977,7 @@ footer .top {
 }
 /* line 1644, less/main.scss */
 .user-section.user-login section.info {
-  background-color: rgba(9, 171, 59, 0.58);
+  background-color: rgba(9, 171, 59, 0);
 }
 /* line 1646, less/main.scss */
 .user-section.user-login section.info h1 {
@@ -2037,7 +2037,7 @@ footer .top {
 .user-section.user-resetpassword {
   min-height: 600px;
   position: relative;
-  background: rgba(153, 0, 0, 0.72);
+  background: rgba(153, 0, 0, 0);
   text-align: center;
 }
 /* line 1710, less/main.scss */
@@ -2077,7 +2077,7 @@ footer .top {
 }
 /* line 1746, less/main.scss */
 .activator-content .pw {
-  background: rgba(255, 255, 255, 0.69);
+  background: white;
   padding: 25px;
   width: 50%;
   position: absolute;

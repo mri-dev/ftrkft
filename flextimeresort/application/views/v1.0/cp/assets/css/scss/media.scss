@@ -12,6 +12,11 @@ body.admin {
 	-moz-osx-font-smoothing: grayscale;
   background: #f3f3f3;
 
+  .row.np{
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+  }
+
   &.login-page{
     background: darken($color-grey, 5%);
   }
@@ -391,7 +396,7 @@ body.admin {
           padding: 10px 0;
         }
 
-        .row:not(.row-head):not(.row-search):nth-child(even){
+        .row.lie:not(.row-head):not(.row-search):nth-child(even){
           background: #f1f1f1;
         }
 
@@ -536,10 +541,6 @@ body.admin {
 
         & > div:first-child{
           border-right: 1px solid #f1f1f1;
-        }
-
-        .n{
-          font-size: 2.8em;
         }
       }
       .centered{

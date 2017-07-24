@@ -184,17 +184,31 @@ class user extends Controller{
 			//$this->temp = '/'.__FUNCTION__;
 		}
 
+		function modulview()
+		{
+			$this->defined_stl_temp = 'user/ugyfelkapu/profil/modulview/'.$_GET['group'].'/'.$_GET['item'];
+
+			if ( !$this->smarty->templateExists($this->defined_stl_temp.'.tpl') ) {
+				$this->defined_stl_temp = 'user/ugyfelkapu/profil/modulview/notfound';
+			}
+		}
+
 		function logout()
 		{
 			$this->User->logout();
-            \Helper::reload( '/'.__CLASS__ );
+      \Helper::reload( '/'.__CLASS__ );
 		}
 
 		function __destruct(){
 			// RENDER OUTPUT
-			parent::bodyHead();					# HEADER
-			$this->displayView( __CLASS__.$this->temp.'/index', true );		# CONTENT
-			parent::__destruct();				# FOOTER
+			if (!isset($this->defined_stl_temp)) {
+				parent::bodyHead();					# HEADER
+				$this->displayView( __CLASS__.$this->temp.'/index', true );		# CONTENT
+				parent::__destruct();				# FOOTER
+			} else{
+				$this->displayView( $this->defined_stl_temp, true );		# CONTENT
+			}
+
 		}
 	}
 
