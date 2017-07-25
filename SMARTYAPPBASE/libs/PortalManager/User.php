@@ -164,7 +164,7 @@ class User
 	public function profilPercent()
 	{
 		$dataset = $this->user['data'];
-		$req = array('email', 'name', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'csaladi_allapot', 'nem', 'profil_img');
+		$req = array('email', 'name', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'csaladi_allapot', 'nem', 'profil_img', 'telefon', 'lakcim_irsz', 'lakcim_city', 'lakcim_uhsz',	'social_url_facebook', 'social_url_twitter', 'social_url_linkedin');
 		$has = array();
 		$current = 0;
 

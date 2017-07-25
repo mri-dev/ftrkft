@@ -255,7 +255,6 @@ class Categories
 
 			// Kapcsolódó elemek száma
 			//$top_cat['items'] = $this->calcItemNumbers( $top_cat );
-
 			$this->tree_steped_item[] = $top_cat;
 
 			// Alkategóriák betöltése

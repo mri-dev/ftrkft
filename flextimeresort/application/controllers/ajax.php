@@ -39,15 +39,30 @@ class ajax extends Controller  {
 
 			switch ( $params['type'] ) {
 				case 'me':
+					// Terms
+					$data['terms']['anyanyelv'] = (int)$this->ME->getAccountData('anyanyelv');
+					$data['terms']['nem'] = (int)$this->ME->getAccountData('nem');
+					$data['terms']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
+					$data['terms']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
+					$data['terms']['iskolai_vegzettsegi_szintek'] = (int)$this->ME->getAccountData('iskolai_vegzettsegi_szintek');
+
 					// Alapadatok
 					$data['alap']['name'] = $this->ME->getName();
 					$data['alap']['email'] = $this->ME->getEmail();
 					$data['alap']['profil_kep'] = $this->ME->getProfilImg();
 					$data['alap']['szuletesi_datum'] = $this->ME->getAccountData('szuletesi_datum');
-					$data['alap']['anyanyelv'] = (int)$this->ME->getAccountData('anyanyelv');
-					$data['alap']['nem'] = (int)$this->ME->getAccountData('nem');
-					$data['alap']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
-					$data['alap']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
+
+
+					// Elérhetőségek
+					$data['elerhetoseg']['telefon'] = $this->ME->getAccountData('telefon');
+					$data['elerhetoseg']['lakcim_irsz'] = (int)$this->ME->getAccountData('lakcim_irsz');
+					$data['elerhetoseg']['lakcim_city'] = $this->ME->getAccountData('lakcim_city');
+					$data['elerhetoseg']['lakcim_uhsz'] = $this->ME->getAccountData('lakcim_uhsz');
+					$data['elerhetoseg']['social_url_facebook'] = $this->ME->getAccountData('social_url_facebook');
+					$data['elerhetoseg']['social_url_twitter'] = $this->ME->getAccountData('social_url_twitter');
+					$data['elerhetoseg']['social_url_linkedin'] = $this->ME->getAccountData('social_url_linkedin');
+
+					// Végzettségek
 				break;
 				case 'user':
 					$user = new User($params['id'], array(
@@ -90,6 +105,16 @@ class ajax extends Controller  {
 					$profildetails['allampolgarsag'] = (int)$form['allampolgarsag'];
 					$profildetails['csaladi_allapot'] = (int)$form['csaladi_allapot'];
 
+					$profildetails['telefon'] = $form['telefon'];
+					$profildetails['lakcim_irsz'] = $form['lakcim_irsz'];
+					$profildetails['lakcim_uhsz'] = $form['lakcim_uhsz'];
+					$profildetails['lakcim_city'] = $form['lakcim_city'];
+					$profildetails['social_url_facebook'] = $form['social_url_facebook'];
+					$profildetails['social_url_twitter'] = $form['social_url_twitter'];
+					$profildetails['social_url_linkedin'] = $form['social_url_linkedin'];
+
+					$profildetails['iskolai_vegzettsegi_szintek'] = (int)$form['iskolai_vegzettsegi_szintek'];
+
 					if (isset($form['newprofilimg'])) {
 						$this->ME->changeProfilImg($form['newprofilimg']);
 					}
@@ -110,11 +135,17 @@ class ajax extends Controller  {
 							$terms = $cat->getTree($list);
 							$data[lists][$list] = $ld;
 							while ( $terms->walk() ) {
-								$data[terms][$list][(int)$cat->getID()] = array(
-									'id' => (int)$cat->getID(),
-									'value' => $cat->getName(),
-									'slug' => $cat->getSlug(),
-									'deep' => (int)$cat->getDeep()
+								$value_prefix = '';
+
+								if($terms->getDeep() != 0) {
+									$value_prefix = str_repeat('–', $terms->getDeep()).' ';
+								}
+								$tid = (int)$terms->getID();
+								$data[terms][$list][':'.$tid] = array(
+									'id' => $tid,
+									'value' => $value_prefix.$terms->getName(),
+									'slug' => $terms->getSlug(),
+									'deep' => (int)$terms->getDeep()
 								);
 							}
 						}
@@ -130,7 +161,7 @@ class ajax extends Controller  {
 							$terms = $cat->getTree($list);
 							$data[lists][$list] = $ld;
 							while ( $terms->walk() ) {
-								$data[terms][$list][(int)$cat->getID()] = array(
+								$data[terms][$list][':'.(int)$cat->getID()] = array(
 									'id' => (int)$cat->getID(),
 									'value' => $cat->getName(),
 									'slug' => $cat->getSlug(),

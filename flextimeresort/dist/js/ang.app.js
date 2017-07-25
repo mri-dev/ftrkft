@@ -48,13 +48,13 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     size: 0,
     type: null
   };
+  $scope.multiparam = [];
 
   $scope.fromgroup = {
-    alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv']
+    alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
   }
 
   $scope.tglList = function(l){
-
     angular.forEach($scope.fromgroup, function(v, k){
       angular.forEach(v, function(v2, k2){
         if(  v2 != l) {
@@ -81,14 +81,22 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.szuletesi_datum = user.alap.szuletesi_datum;
     $scope.profilpreview = user.alap.profil_kep;
 
+    $scope.form.telefon = user.elerhetoseg.telefon;
+    $scope.form.lakcim_irsz = user.elerhetoseg.lakcim_irsz;
+    $scope.form.lakcim_city = user.elerhetoseg.lakcim_city;
+    $scope.form.lakcim_uhsz = user.elerhetoseg.lakcim_uhsz;
+    $scope.form.social_url_facebook = user.elerhetoseg.social_url_facebook;
+    $scope.form.social_url_twitter = user.elerhetoseg.social_url_twitter;
+    $scope.form.social_url_linkedin = user.elerhetoseg.social_url_linkedin;
+
     // List
     var termcicle = 0;
     angular.forEach($scope.terms, function(v, k){
-      var ld = $scope.terms[k][user.alap[k]];
+      var ld = $scope.terms[k][':'+user.terms[k]];
       termcicle++;
 
       if (typeof ld !== 'undefined') {
-        $scope.form[k] = user.alap[k];
+        $scope.form[k] = user.terms[k];
         $scope.selectedlist[k] = {
           id: ld.id,
           text: ld.value
@@ -124,7 +132,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     url: '/ajax/data',
     params: {
       type: 'lists',
-      lists: 'nem,megyek,allampolgarsag,csaladi_allapot,anyanyelv'
+      lists: 'nem,megyek,allampolgarsag,csaladi_allapot,anyanyelv,iskolai_vegzettsegi_szintek,honapok,tanulmany_szakirany'
     }
   }).then(function successCallback(response) {
     var d = response.data;
@@ -187,6 +195,31 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       }, function errorCallback(response) {});
     });
   }
+
+  $scope.newModulVariable = function(key) {
+    if (typeof $scope.multiparam[key] === 'undefined') {
+        $scope.multiparam[key] = [];
+    }
+
+    $scope.multiparam[key].push({
+      egy: 1
+    });
+
+    console.log($scope.multiparam);
+  }
+
+
+  $scope.yearGenerator = function(min_year){
+    var years = new Array();
+    var cyear = parseInt(new Date().getFullYear());
+    var tyear = (typeof min_year === 'undefined') ? cyear - 80: min_year;
+
+    for (var i = cyear; i >= tyear; i--) {
+      years.push(i);
+    }
+
+    return years;
+  }
 }])
 .directive('fileModel', ['$parse', function ($parse) {
   return {
@@ -230,8 +263,11 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     restrict: 'E',
     templateUrl: function(e,a){
       return 'modulview/'+a.group+'/'+a.item;
+    },
+    scope: false,
+    link: function(scope, e, attrs){
+      scope.multiparam_key = attrs.multiparam;
     }
-
    }
  });
 
@@ -684,7 +720,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         $scope.terms[v.termkey] = d.terms[v.termkey];
       });
       $scope.dataloaded = true;
-      console.log($scope.terms.munkakorok);
     }, function errorCallback(response) {});
 
     if ($scope.settings.edit_ad_id != 0) {

@@ -19,6 +19,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^cp/cat/(edit|del)?(/)?(.+)?$ index.php?tag=cp/terms&mod=$1&id=$3 [NC,QSA,L]
 
+# Admin - Tematikus lista elemek
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^cp/cat-([a-zA-Z_]+)(/)?(edit|del)?(/)?(.*)$ index.php?tag=cp/terms&groupkey=$1&mod=$3&id=$5 [NC,QSA,L]
+
 # Admin - User edit/del/create
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

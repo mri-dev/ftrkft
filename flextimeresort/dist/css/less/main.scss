@@ -1799,6 +1799,28 @@ body.ugyfelkapu-view{
         font-size: 1em;
       }
     }
+
+    .multi-param-holder{
+      .multi-param{
+        margin: 10px 0;
+        background: #f7f7f7;
+        border: 3px solid #e3e3e3;
+        border-left: 5px solid #0275d8;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        padding: 15px 20px;
+
+        label{
+          padding: 0;
+        }
+
+        .row{
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+      }
+    }
   }
 
   .allas-list{
@@ -1906,6 +1928,9 @@ body.ugyfelkapu-view{
 
 .profil-changer-container{
   .group{
+    .row{
+      margin: 20px 10px;
+    }
     .title{
       position: relative;
       h3 {
@@ -1932,6 +1957,14 @@ body.ugyfelkapu-view{
         background: #eeeeee;
         position: absolute;
       }
+    }
+
+    label {
+      font-weight: normal;
+      font-size: 1em;
+      line-height: 1.1;
+      color: black;
+      margin: 0 0 5px 0;
     }
 
     .input-line{

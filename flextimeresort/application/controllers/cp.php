@@ -27,6 +27,8 @@ class cp extends Controller {
 		) );
 		parent::$pageTitle = 'ADMIN';
 
+		//print_r($_GET);
+
 		$form = new Form( $_GET['response'] );
 		$this->out( 'form', $form );
 
