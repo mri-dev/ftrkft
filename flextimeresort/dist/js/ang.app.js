@@ -49,6 +49,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     type: null
   };
   $scope.multiparam = [];
+  $scope.multiparam_group_deletting = [];
 
   $scope.fromgroup = {
     alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
@@ -75,6 +76,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   }
 
   $scope.validateUserData = function(user) {
+    //console.log(user);
     // Pass
     $scope.form.name = user.alap.name;
     $scope.form.email = user.alap.email;
@@ -104,10 +106,78 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       }
     });
 
+    var modulparams = user.moduls;
+    if (modulparams) {
+      angular.forEach(modulparams, function(modulstack, profilpage){
+        angular.forEach(modulstack, function(moduldata, modulkey){
+          angular.forEach(moduldata, function(data, ix){
+            if (typeof $scope.multiparam[modulkey] == 'undefined') {
+              $scope.multiparam[modulkey] = [];
+            }
+            $scope.multiparam[modulkey].push($scope.prepareRAWModulData(modulkey, data));
+          });
+        });
+      });
+    }
+
     if(termcicle == 0) {
       window.location.reload();
     }
   };
+
+  $scope.defaultModulData = function(modulkey){
+    switch (modulkey) {
+      case 'vegzettseg':
+        var data = {
+          vegzettseg_szint: 0,
+          szakirany: 0,
+          intezmeny: '',
+          keszsegek: '',
+          folyamatban: false,
+          startdate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
+          enddate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
+          grouphash: false
+        };
+      break;
+      default:
+        var data = {
+          grouphash: false
+        };
+      break;
+    }
+
+    return data;
+  }
+
+  $scope.prepareRAWModulData = function(modulkey, raw){
+    switch (modulkey) {
+      case 'vegzettseg':
+        var data = angular.extend($scope.defaultModulData(modulkey), {
+          vegzettseg_szint: raw.vegzettseg_szint.value,
+          szakirany: raw.szakirany.value,
+          intezmeny: raw.intezmeny.value,
+          keszsegek: raw.keszsegek.value,
+          folyamatban: (raw.folyamatban.value == 0) ? false : true,
+          startdate: {
+            year: raw.startdate.year.value,
+            month: raw.startdate.month.value
+          },
+          enddate: {
+            year: raw.enddate.year.value,
+            month: raw.enddate.month.value
+          },
+          grouphash: raw.grouphash
+        });
+      break;
+    }
+    return data;
+  }
 
   $scope.uploadProfil = function(callback){
     var file = $scope.fileinput;
@@ -171,6 +241,12 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         $scope.form.newprofilimg = re.uploaded_path;
       }
 
+      var multiparamdata = {};
+      angular.extend(multiparamdata,$scope.multiparam);
+
+      var delete_modul_group = {};
+      angular.extend(delete_modul_group, $scope.multiparam_group_deletting);
+
       // Felhasználó adatok mentése
       $http({
         method: 'POST',
@@ -178,6 +254,8 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         params: {
           type: 'profilsave',
           form: $scope.form,
+          moduldatas: multiparamdata,
+          moduldelete: delete_modul_group,
           page: $scope.step
         }
       }).then(function successCallback(response) {
@@ -185,6 +263,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         $scope.successfullsaved = true;
 
         var d = response.data;
+        console.log(d);
         if(next) {
           document.location = '/ugyfelkapu/profil/'+d.nextpage;
         } else {
@@ -196,14 +275,21 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     });
   }
 
+  $scope.modulVariableRemover = function(key, index, storedgrouphash){
+    $scope.multiparam[key].splice(index, 1);
+    if (storedgrouphash) {
+      $scope.multiparam_group_deletting.push(storedgrouphash);
+    }
+  }
+
   $scope.newModulVariable = function(key) {
+
     if (typeof $scope.multiparam[key] === 'undefined') {
         $scope.multiparam[key] = [];
+        $scope.multiparam[key].push($scope.defaultModulData(key));
+    } else {
+      $scope.multiparam[key].push($scope.defaultModulData(key));
     }
-
-    $scope.multiparam[key].push({
-      egy: 1
-    });
 
     console.log($scope.multiparam);
   }
@@ -261,12 +347,26 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
  .directive('profilModul', function(){
    return {
     restrict: 'E',
+    replace: true,
     templateUrl: function(e,a){
       return 'modulview/'+a.group+'/'+a.item;
     },
-    scope: false,
-    link: function(scope, e, attrs){
-      scope.multiparam_key = attrs.multiparam;
+    scope: {
+      mpkey: '@'
+    },
+    link: function(s, e, a){
+      s.newModulVariable = function(mpkey){
+          return s.$parent.newModulVariable(mpkey);
+      }
+      s.yearGenerator = function(y){
+          return s.$parent.yearGenerator(y);
+      }
+      s.modulVariableRemover = function(a, b, c){
+          return s.$parent.modulVariableRemover(a, b, c);
+      }
+
+      s.multiparam = s.$parent.multiparam;
+      s.terms = s.$parent.terms;
     }
    }
  });

@@ -52,7 +52,6 @@ class ajax extends Controller  {
 					$data['alap']['profil_kep'] = $this->ME->getProfilImg();
 					$data['alap']['szuletesi_datum'] = $this->ME->getAccountData('szuletesi_datum');
 
-
 					// Elérhetőségek
 					$data['elerhetoseg']['telefon'] = $this->ME->getAccountData('telefon');
 					$data['elerhetoseg']['lakcim_irsz'] = (int)$this->ME->getAccountData('lakcim_irsz');
@@ -62,7 +61,8 @@ class ajax extends Controller  {
 					$data['elerhetoseg']['social_url_twitter'] = $this->ME->getAccountData('social_url_twitter');
 					$data['elerhetoseg']['social_url_linkedin'] = $this->ME->getAccountData('social_url_linkedin');
 
-					// Végzettségek
+					// Modul paraméterek
+					$data['moduls'] = $this->ME->getAccountModulData();
 				break;
 				case 'user':
 					$user = new User($params['id'], array(
@@ -93,6 +93,8 @@ class ajax extends Controller  {
 						'alap' => 'elerhetoseg'
 					);
 					$form = json_decode($params['form'], true);
+					$moduldatas = json_decode($params['moduldatas'], true);
+					$moduldelete = json_decode($params['moduldelete'], true);
 					$page = $params['page'];
 
 					$profildata = array();
@@ -121,7 +123,17 @@ class ajax extends Controller  {
 
 					$re = $this->ME->saveProfil($profildata, $profildetails);
 
+					if (!empty($moduldatas)) {
+						$this->ME->saveProfilModulDatas($moduldatas);
+					}
+
+					if (!empty($moduldelete)) {
+						$this->ME->removeModulDatas($moduldelete);
+					}
+
 					$data['form'] = $form;
+					$data['moduldatas'] = $moduldatas;
+					$data['moduldelete'] = $moduldelete;
 					$data['page'] = $page;
 					$data['nextpage'] = $nextpages[$page];
 				break;
@@ -145,7 +157,8 @@ class ajax extends Controller  {
 									'id' => $tid,
 									'value' => $value_prefix.$terms->getName(),
 									'slug' => $terms->getSlug(),
-									'deep' => (int)$terms->getDeep()
+									'deep' => (int)$terms->getDeep(),
+									'sort' => (int)$terms->getSortIndex(),
 								);
 							}
 						}
@@ -165,7 +178,8 @@ class ajax extends Controller  {
 									'id' => (int)$cat->getID(),
 									'value' => $cat->getName(),
 									'slug' => $cat->getSlug(),
-									'deep' => (int)$cat->getDeep()
+									'deep' => (int)$cat->getDeep(),
+									'sort' => (int)$terms->getSortIndex(),
 								);
 							}
 						}

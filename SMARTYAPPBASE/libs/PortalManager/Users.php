@@ -20,11 +20,7 @@ class Users
 {
 	const TABLE_NAME 			= 'accounts';
 	const TABLE_DETAILS_NAME 	= 'accounts_details';
-	const TABLE_EUROPASS_XML 	= 'europass_xml';
-	const TABLE_COMPETENCE_XREF	= 'felhasznalo_kompetencia_xref';
-	const TABLE_APPLICANT 		= 'jelentkezesek';
-	const TABLE_PREMIUM 		= 'premium_fiok';
-	const TABLE_SERVICES_ORDED	= 'szolgaltatasok';
+	const TABLE_MODULDATAS = 'account_modul_datas';
 
 	private $db = null;
 	private $is_cp = false;

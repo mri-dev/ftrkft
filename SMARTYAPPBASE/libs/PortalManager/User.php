@@ -194,6 +194,121 @@ class User
 
 	}
 
+	public function getAccountModulData()
+	{
+		$moduls = array();
+
+		if (!$this->getID() || $this->getID() == '') {
+			return $moduls;
+		}
+
+		$data = $this->db->query("
+		SELECT
+			m.*
+		FROM ".\PortalManager\Users::TABLE_MODULDATAS." as m
+		WHERE 1=1 and
+		m.fiok_id = ".$this->getID()."
+		")->fetchAll(\PDO::FETCH_ASSOC);
+
+		foreach ((array)$data as $d) {
+			$keyname = $d['keyname'];
+			$is_grouped = (is_null($d['groupedfor'])) ? false : true;
+
+			if (!isset($moduls[$d['pagename']][$d['modulkey']][$d['sortindex']]['grouphash'])) {
+				$moduls[$d['pagename']][$d['modulkey']][$d['sortindex']]['grouphash'] = $d['grouphash'];
+			}
+
+			if ($is_grouped) {
+				$keyname = $d['groupedfor'];
+				$subkey = str_replace($d['groupedfor'].'_','', $d['keyname']);
+				$moduls[$d['pagename']][$d['modulkey']][$d['sortindex']][$keyname][$subkey] = array(
+					'ID' => (int)$d['ID'],
+					'hashkey' => $d['storehash'],
+					'value' => (is_numeric($d['datavalue'])) ? (int)$d['datavalue'] : $d['datavalue'],
+				);
+			}else{
+				$moduls[$d['pagename']][$d['modulkey']][$d['sortindex']][$keyname] = array(
+					'ID' => (int)$d['ID'],
+					'hashkey' => $d['storehash'],
+					'value' => (is_numeric($d['datavalue'])) ? (int)$d['datavalue'] : $d['datavalue'],
+				);
+			}
+		}
+
+		return $moduls;
+	}
+
+	public function removeModulDatas($group_hashkeys = array())
+	{
+		if (!is_array($group_hashkeys) || empty($group_hashkeys)) {
+			return false;
+		}
+
+		foreach ((array)$group_hashkeys as $grouphash) {
+			$this->db->query("DELETE FROM ".\PortalManager\Users::TABLE_MODULDATAS." WHERE fiok_id = ".$this->getID()." and grouphash = '".$grouphash."'");
+		}
+	}
+
+	public function saveProfilModulDatas( $data )
+	{
+		if (!is_array($data) || empty($data)) {
+			return false;
+		}
+
+		$modulinsert = array();
+		foreach ((array)$data as $modulkey => $set) {
+			foreach ((array)$set as $i => $row) {
+				$grouphash = uniqid();
+				foreach ($row as $key => $value) {
+					$page = 'vegzettseg';
+
+					if (is_array($value)) {
+						foreach ($value as $vkey => $vvalue) {
+							if($key == 'grouphash') continue;
+							$hash = md5($this->getID().'_'.$page.'_'.$modulkey.'_'.$key.'_'.$vkey.'_'.$i);
+							$modulinsert[] = array(
+								$this->getID(),
+								$grouphash,
+								$hash,
+								$page,
+								$modulkey,
+								$key.'_'.$vkey,
+								$vvalue,
+								$key,
+								$i
+							);
+						}
+					} else {
+						$hash = md5($this->getID().'_'.$page.'_'.$modulkey.'_'.$key.'_'.$i);
+						if($key == 'grouphash') continue;
+						$modulinsert[] = array(
+							$this->getID(),
+							$grouphash,
+							$hash,
+							$page,
+							$modulkey,
+							$key,
+							$value,
+							NULL,
+							$i
+						);
+					}
+				}
+			}
+		}
+
+		if (!empty($modulinsert)) {
+			$this->db->multi_insert(
+				\PortalManager\Users::TABLE_MODULDATAS,
+				array('fiok_id', 'grouphash', 'storehash', 'pagename', 'modulkey', 'keyname', 'datavalue', 'groupedfor', 'sortindex'),
+				$modulinsert,
+				array(
+					'duplicate_keys' => array('storehash', 'datavalue', 'sortindex')
+				)
+			);
+		}
+	}
+
 	public function saveProfil( $profils = array(), $details = array() )
 	{
 		if(empty($profils)) return false;

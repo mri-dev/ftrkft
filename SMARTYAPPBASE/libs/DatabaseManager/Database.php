@@ -117,7 +117,98 @@ class Database
 	 *
 	 * @return string A Query szövege
 	 */
-	public function multi_insert( $table, $head = false, $data = false, $arg = array() ){
+	 public function multi_insert( $table, $head = false, $data = false, $arg = array() ){
+
+		$query 	= null;
+		$debug_str = null;
+		$header	= null;
+		$value 	= null;
+		$debug 	= ( !$arg[debug] ) ? false : true;
+
+		if( $table == '' ) return false;
+		if( !$head || !is_array( $head ) ) return false;
+		if( !$data || !is_array( $data ) ) return false;
+
+		foreach( $head as $h ){
+			$header[] 	= $h;
+		}
+
+		$total_step = 0;
+		$steplimit = ($arg['steplimit']) ?: 50;
+		$step = 0;
+		$step_rows = array();
+		$step_breaks = 0;
+
+		foreach( $data as $dh => $dv ){
+			if ($steplimit <= $step) {
+				$step_breaks++;
+				$step = 0;
+			}
+
+			$v = null;
+
+			$v = '(';
+				foreach ( $dv as $vd ) {
+
+					// IF NULL
+					if( is_null( $vd ) ){
+						$v .= 'NULL';
+					}else if( is_bool( $vd ) ){
+					// IF BOOLEAN
+						if( $vd ){
+							$v .= 1;
+						}else{
+							$v .= 0;
+						}
+					}else if( is_numeric( $vd ) ){
+					// IF NUMBER
+							$v .= "'".$vd."'";
+					}else if(strpos($vd, 'FUNCTION:') !== false){
+						$fnc = str_replace("FUNCTION:","",$vd);
+						$v .= $fnc;
+					}else if( is_string( $vd ) ){
+					// IF STRING
+						$v .= "'".$vd."'";
+					}
+
+					$v .= ', ';
+				}
+				$v = rtrim( $v, ', ');
+			$v .= ')';
+
+			$step_rows[$step_breaks][] = $v;
+			$step++;
+			$total_step++;
+		}
+
+		$wk_step = 0;
+		while ( $step_breaks >= 0 ) {
+			$query = ' INSERT INTO '.$table.'(' . implode( ', ', $header ) . ') VALUES '. implode( ", ", $step_rows[$wk_step] ) ;
+
+			if( $arg['duplicate_keys'] ) {
+				$query .= " ON DUPLICATE KEY UPDATE ";
+				$keys = '';
+				foreach($arg['duplicate_keys'] as $key){
+					$keys .= $key . " = VALUES(".$key."), ";
+				}
+				$keys = rtrim($keys,", ");
+				$query .= $keys;
+			}
+
+			if( !$debug ){
+				$this->query( $query );
+			} else {
+				$debug_str .= $query;
+			}
+			unset($query);
+			$step_breaks--;
+			$wk_step++;
+		}
+
+		return $debug_str;
+	}
+
+	public function multi_insert_old( $table, $head = false, $data = false, $arg = array() ){
 
 		$query 	= null;
 		$debug_str = null;

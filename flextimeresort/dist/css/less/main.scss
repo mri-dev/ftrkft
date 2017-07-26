@@ -1815,6 +1815,16 @@ body.ugyfelkapu-view{
           padding: 0;
         }
 
+        input[type=checkbox].ccb + label {
+          padding: 0 0 0 20px;
+        }
+
+        input, textarea, select{
+          color: #1d1d1d;
+          font-size: 0.95em;
+          border: 1px solid #e7e7e7;
+        }
+
         .row{
           margin-top: 5px;
           margin-bottom: 5px;

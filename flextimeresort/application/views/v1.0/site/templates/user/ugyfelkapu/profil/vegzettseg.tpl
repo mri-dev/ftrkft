@@ -22,7 +22,7 @@
     <div class="line"></div>
     <div class="clearfix"></div>
   </div>
-  <profil-modul group="vegzettseg" item="vegzettseg" multiparam="vegzettseg"></profil-modul>
+  <profil-modul group="vegzettseg" item="vegzettseg" mpkey="vegzettseg"></profil-modul>
 </div>
 <div class="group">
   <div class="title">
@@ -30,4 +30,5 @@
     <div class="line"></div>
     <div class="clearfix"></div>
   </div>
+  <profil-modul group="vegzettseg" item="kepesitesek" mpkey="kepesitesek"></profil-modul>
 </div>
