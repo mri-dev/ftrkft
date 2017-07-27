@@ -45,6 +45,7 @@ class ajax extends Controller  {
 					$data['terms']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
 					$data['terms']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
 					$data['terms']['iskolai_vegzettsegi_szintek'] = (int)$this->ME->getAccountData('iskolai_vegzettsegi_szintek');
+					$data['terms']['munkatapasztalat'] = (int)$this->ME->getAccountData('munkatapasztalat');
 
 					// Alapadatok
 					$data['alap']['name'] = $this->ME->getName();
@@ -60,6 +61,19 @@ class ajax extends Controller  {
 					$data['elerhetoseg']['social_url_facebook'] = $this->ME->getAccountData('social_url_facebook');
 					$data['elerhetoseg']['social_url_twitter'] = $this->ME->getAccountData('social_url_twitter');
 					$data['elerhetoseg']['social_url_linkedin'] = $this->ME->getAccountData('social_url_linkedin');
+
+					// Ismeretek
+					$data['ismeretek']['jogositvanyok'] = (array)$this->ME->getAccountData('jogositvanyok');
+					$data['ismeretek']['ismeretek_egyeb'] = $this->ME->getAccountData('ismeretek_egyeb');
+
+					// Elvárások
+					$data['elvarasok']['fizetesi_igeny'] = (int)$this->ME->getAccountData('fizetesi_igeny');
+					$data['elvarasok']['megyeaholdolgozok'] = (array)$this->ME->getAccountData('megyeaholdolgozok');
+					$data['elvarasok']['elvaras_munkateruletek'] = (array)$this->ME->getAccountData('elvaras_munkateruletek');					
+					$data['elvarasok']['igenyek_egyeb_munkakorok'] = $this->ME->getAccountData('igenyek_egyeb_munkakorok');
+					$data['elvarasok']['munkaba_allas_ideje'] = $this->ME->getAccountData('munkaba_allas_ideje');
+					$data['elvarasok']['igenyek_egyeb'] = $this->ME->getAccountData('igenyek_egyeb');
+
 
 					// Modul paraméterek
 					$data['moduls'] = $this->ME->getAccountModulData();
@@ -116,6 +130,16 @@ class ajax extends Controller  {
 					$profildetails['social_url_linkedin'] = $form['social_url_linkedin'];
 
 					$profildetails['iskolai_vegzettsegi_szintek'] = (int)$form['iskolai_vegzettsegi_szintek'];
+					$profildetails['jogositvanyok'] = (array)$form['jogositvanyok'];
+					$profildetails['ismeretek_egyeb'] = $form['ismeretek_egyeb'];
+					$profildetails['munkatapasztalat'] = (int)$form['munkatapasztalat'];
+
+					$profildetails['fizetesi_igeny'] = (int)$form['fizetesi_igeny'];
+					$profildetails['megyeaholdolgozok'] = (array)$form['megyeaholdolgozok'];
+					$profildetails['elvaras_munkateruletek'] = (array)$form['elvaras_munkateruletek'];
+					$profildetails['igenyek_egyeb_munkakorok'] = $form['igenyek_egyeb_munkakorok'];
+					$profildetails['munkaba_allas_ideje'] = $form['munkaba_allas_ideje'];
+					$profildetails['igenyek_egyeb'] = $form['igenyek_egyeb'];
 
 					if (isset($form['newprofilimg'])) {
 						$this->ME->changeProfilImg($form['newprofilimg']);
@@ -124,7 +148,7 @@ class ajax extends Controller  {
 					$re = $this->ME->saveProfil($profildata, $profildetails);
 
 					if (!empty($moduldatas)) {
-						$this->ME->saveProfilModulDatas($moduldatas);
+						$this->ME->saveProfilModulDatas($page, $moduldatas);
 					}
 
 					if (!empty($moduldelete)) {

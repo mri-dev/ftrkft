@@ -9,6 +9,7 @@ body{
   background-repeat: repeat;
   font-family: 'Roboto', sans-serif;
   font-size: 0.8em;
+  height: auto;
 }
 
 .page-width {
@@ -1940,6 +1941,32 @@ body.ugyfelkapu-view{
   .group{
     .row{
       margin: 20px 10px;
+    }
+    .divider{
+      margin: 10px 25px;
+      background-color: #f3f3f3;
+    }
+    .checkbox-list{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .cb-item{
+        flex-basis: 100%;
+        padding: 5px;
+      }
+
+      &.cols4 .cb-item{
+        flex-basis: calc(100%/4);
+      }
+      &.cols3 .cb-item{
+        flex-basis: calc(100%/3);
+      }
+      &.cols2 .cb-item{
+        flex-basis: calc(100%/2);
+      }
     }
     .title{
       position: relative;

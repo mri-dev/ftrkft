@@ -43,7 +43,7 @@
             <label for="">{lang text="Folyamatban"}</label>
           </div>
           <div class="col-md-8">
-          <input type="checkbox" class="ccb" id="folyamatban[[mpi]]" ng-checked="multiparam[mpkey][mpi].folyamatban" ng-model="multiparam[mpkey][mpi].folyamatban"> <label for="folyamatban[[mpi]]">{lang text="Igen"}</label>
+            <md-switch class="md-primary" id="folyamatban[[mpi]]" ng-model="multiparam[mpkey][mpi].folyamatban" ></md-switch>          
           </div>
         </div>
         <div class="row input-line">

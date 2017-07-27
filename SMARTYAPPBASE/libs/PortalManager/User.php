@@ -62,10 +62,14 @@ class User
 		extract($this->db->q($q));
 
 		// Details
-		$det = $this->db->query("SELECT nev, ertek FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE fiok_id = $account_id;")->fetchAll(\PDO::FETCH_ASSOC);
+		$det = $this->db->query("SELECT nev, ertek, datatype FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE fiok_id = $account_id;")->fetchAll(\PDO::FETCH_ASSOC);
 
 		foreach ($det as $d ) {
-			$data[$d['nev']] = $d['ertek'];
+			if($d['datatype'] == 'single') {
+				$data[$d['nev']] = $d['ertek'];
+			} else{
+				$data[$d['nev']][] = (is_numeric($d['ertek'])) ? (int)$d['ertek']: $d['ertek'];
+			}
 		}
 
 		return $data;
@@ -249,19 +253,24 @@ class User
 		}
 	}
 
-	public function saveProfilModulDatas( $data )
+	public function saveProfilModulDatas( $page, $data )
 	{
+		$module_access = array(
+			'vegzettseg' => array('vegzettseg', 'kepesitesek'),
+			'ismeretek' => array('nyelvismeret', 'szamitogepes'),
+			'munkatapasztalat' => array('munkatapasztalat'),
+		);
+		
 		if (!is_array($data) || empty($data)) {
 			return false;
 		}
 
 		$modulinsert = array();
 		foreach ((array)$data as $modulkey => $set) {
+			if(!in_array($modulkey, (array)$module_access[$page])) continue;
 			foreach ((array)$set as $i => $row) {
-				$grouphash = uniqid();
+				$grouphash = ($row['grouphash']) ? $row['grouphash'] : uniqid();
 				foreach ($row as $key => $value) {
-					$page = 'vegzettseg';
-
 					if (is_array($value)) {
 						foreach ($value as $vkey => $vvalue) {
 							if($key == 'grouphash') continue;
@@ -362,25 +371,47 @@ class User
 
 		if( !$account_id ) return false;
 
-		$check = $this->db->query("SELECT id FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE fiok_id = ".$account_id." and nev = '".$key."';");
+		if (is_array($value)) {
+			$check = $this->db->query("SELECT id FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE datatype = 'multi' and fiok_id = ".$account_id." and nev = '".$key."';");
 
-		if( $check->rowCount() !== 0 ) {
-			$this->db->update(
-				\PortalManager\Users::TABLE_DETAILS_NAME,
-				array(
-					'ertek' 			=> $value
-				),
-				sprintf( "fiok_id = %d and nev = '%s'", $account_id, $key)
-			);
+			if( $check->rowCount() !== 0 ) {
+				$this->db->query("DELETE FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE datatype = 'multi' and fiok_id = ".$account_id." and nev = '".$key."'");
+			}
+
+			foreach ((array)$value as $v) {
+				$this->db->insert(
+					\PortalManager\Users::TABLE_DETAILS_NAME,
+					array(
+						'datatype' => 'multi',
+						'fiok_id' 	=> $account_id,
+						'nev' 			=> $key,
+						'ertek' 		=> $v
+					)
+				);
+			}
+
 		} else {
-			$this->db->insert(
-				\PortalManager\Users::TABLE_DETAILS_NAME,
-				array(
-					'fiok_id' 	=> $account_id,
-					'nev' 			=> $key,
-					'ertek' 		=> $value
-				)
-			);
+			$check = $this->db->query("SELECT id FROM ".\PortalManager\Users::TABLE_DETAILS_NAME." WHERE datatype = 'single' and fiok_id = ".$account_id." and nev = '".$key."';");
+
+			if( $check->rowCount() !== 0 ) {
+				$this->db->update(
+					\PortalManager\Users::TABLE_DETAILS_NAME,
+					array(
+						'ertek' 			=> $value
+					),
+					sprintf( "fiok_id = %d and nev = '%s'", $account_id, $key)
+				);
+			} else {
+				$this->db->insert(
+					\PortalManager\Users::TABLE_DETAILS_NAME,
+					array(
+						'datatype' => 'single',
+						'fiok_id' 	=> $account_id,
+						'nev' 			=> $key,
+						'ertek' 		=> $value
+					)
+				);
+			}
 		}
 	}
 

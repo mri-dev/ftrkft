@@ -1,7 +1,22 @@
 // Ügyfélkapu profil módosító modul
-var pm = angular.module("profilModifier", [], function($interpolateProvider){
+var pm = angular.module("profilModifier", ['ngMaterial'], function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
+})
+.config(function($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.months = ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'];
+    $mdDateLocaleProvider.shortMonths = ['Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'];
+    //$mdDateLocaleProvider.days = ['dimanche', 'lundi', 'mardi', ...];
+    $mdDateLocaleProvider.shortDays = ['H', 'K', 'Sz', 'Cs', 'P', 'Szo', 'V'];
+
+    $mdDateLocaleProvider.formatDate = function(date) {
+      date = (typeof date === 'undefined') ? new Date() : date;
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+
+      return year +' / '+ (monthIndex + 1) + ' / '+ day;
+    };
 });
 
 pm.service('fileUploadService', function($http, $q){
@@ -76,7 +91,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   }
 
   $scope.validateUserData = function(user) {
-    //console.log(user);
+    console.log(user);
     // Pass
     $scope.form.name = user.alap.name;
     $scope.form.email = user.alap.email;
@@ -90,6 +105,17 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.social_url_facebook = user.elerhetoseg.social_url_facebook;
     $scope.form.social_url_twitter = user.elerhetoseg.social_url_twitter;
     $scope.form.social_url_linkedin = user.elerhetoseg.social_url_linkedin;
+
+    $scope.form.jogositvanyok = user.ismeretek.jogositvanyok;
+    $scope.form.ismeretek_egyeb = user.ismeretek.ismeretek_egyeb;
+
+    $scope.form.fizetesi_igeny = user.elvarasok.fizetesi_igeny;
+    $scope.form.igenyek_egyeb = user.elvarasok.igenyek_egyeb;
+    $scope.form.munkaba_allas_ideje = user.elvarasok.munkaba_allas_ideje;
+    $scope.form.igenyek_egyeb_munkakorok = user.elvarasok.igenyek_egyeb_munkakorok;
+    $scope.form.megyeaholdolgozok = user.elvarasok.megyeaholdolgozok;
+    $scope.form.elvaras_munkateruletek = user.elvarasok.elvaras_munkateruletek;
+    $scope.form.igenyek_egyeb = user.elvarasok.igenyek_egyeb;
 
     // List
     var termcicle = 0;
@@ -145,8 +171,63 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
           grouphash: false
         };
       break;
+      case 'nyelvismeret':
+        var data = {
+          nyelv: 0,
+          szobeli_szint: 0,
+          irasbeli_szint: 0,
+          grouphash: false
+        };
+      break;
+      case 'szamitogepes':
+        var data = {
+          szamitastechnikai_ismeret: 0,
+          tudasszint: 0,
+          tapasztalat_ev: 1,
+          grouphash: false
+        };
+      break;
+      case 'kepesitesek':
+        var data = {
+          megnevezes: '',
+          intezmeny: '',
+          keszsegek: '',
+          enddate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
+          grouphash: false
+        };
+      break;
+      case 'munkatapasztalat':
+        var data = {
+          munkakor: 0,
+          beosztas: null,
+          folyamatban: false,
+          startdate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
+          enddate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
+          ceg_neve: null,
+          munkavegzes_helye: null,
+          beosztasi_szint: 0,
+          feladatok: null,
+          grouphash: false
+        };
+      break;
       default:
         var data = {
+          megnevezes: '',
+          intezmeny: '',
+          keszsegek: '',
+          enddate: {
+            year: parseInt(new Date().getFullYear()),
+            month: 1
+          },
           grouphash: false
         };
       break;
@@ -175,8 +256,74 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
           grouphash: raw.grouphash
         });
       break;
+      case 'kepesitesek':
+        var data = angular.extend($scope.defaultModulData(modulkey), {
+          megnevezes: raw.megnevezes.value,
+          intezmeny: raw.intezmeny.value,
+          keszsegek: raw.keszsegek.value,
+          enddate: {
+            year: raw.enddate.year.value,
+            month: raw.enddate.month.value
+          },
+          grouphash: raw.grouphash
+        });
+      break;
+      case 'nyelvismeret':
+        var data = angular.extend($scope.defaultModulData(modulkey), {
+          nyelv: raw.nyelv.value,
+          szobeli_szint: raw.szobeli_szint.value,
+          irasbeli_szint: raw.irasbeli_szint.value,
+          grouphash: raw.grouphash
+        });
+      break;
+      case 'szamitogepes':
+        var data = angular.extend($scope.defaultModulData(modulkey), {
+          szamitastechnikai_ismeret: raw.szamitastechnikai_ismeret.value,
+          tudasszint: raw.tudasszint.value,
+          tapasztalat_ev: raw.tapasztalat_ev.value,
+          grouphash:  raw.grouphash
+        });
+      break;
+      case 'munkatapasztalat':
+        var data = angular.extend($scope.defaultModulData(modulkey), {
+          munkakor: raw.munkakor.value,
+          beosztas: raw.beosztas.value,
+          folyamatban: (raw.folyamatban.value == 0) ? false : true,
+          startdate: {
+            year: raw.startdate.year.value,
+            month: raw.startdate.month.value
+          },
+          enddate: {
+            year: raw.enddate.year.value,
+            month: raw.enddate.month.value
+          },
+          ceg_neve: raw.ceg_neve.value,
+          munkavegzes_helye: raw.munkavegzes_helye.value,
+          beosztasi_szint: raw.beosztasi_szint.value,
+          feladatok: raw.feladatok.value,
+          grouphash: raw.grouphash
+        });
+      break;
     }
     return data;
+  }
+
+  $scope.collectCheckboxData = function(group, id){
+    var group_arr = $scope.form[group];
+
+    if (typeof group_arr === 'undefined') {
+      group_arr = [];
+    }
+
+    if (group_arr.indexOf(id) === -1) {
+      group_arr.push(id);
+    } else {
+      group_arr.splice(group_arr.indexOf(id), 1);
+    }
+
+    $scope.form[group] = group_arr;
+
+    console.log($scope.form);
   }
 
   $scope.uploadProfil = function(callback){
@@ -202,7 +349,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     url: '/ajax/data',
     params: {
       type: 'lists',
-      lists: 'nem,megyek,allampolgarsag,csaladi_allapot,anyanyelv,iskolai_vegzettsegi_szintek,honapok,tanulmany_szakirany'
+      lists: 'nem,megyek,allampolgarsag,csaladi_allapot,anyanyelv,iskolai_vegzettsegi_szintek,honapok,tanulmany_szakirany,jogositvanyok,nyelvek,nyelvismeret,szamitastechnikai_ismeretek,tudasszintek,munkatapasztalat,munkakorok,beosztasi_szint'
     }
   }).then(function successCallback(response) {
     var d = response.data;
@@ -248,6 +395,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       angular.extend(delete_modul_group, $scope.multiparam_group_deletting);
 
       // Felhasználó adatok mentése
+      console.log($scope.form);
       $http({
         method: 'POST',
         url: '/ajax/data',
@@ -347,7 +495,6 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
  .directive('profilModul', function(){
    return {
     restrict: 'E',
-    replace: true,
     templateUrl: function(e,a){
       return 'modulview/'+a.group+'/'+a.item;
     },
@@ -367,6 +514,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 
       s.multiparam = s.$parent.multiparam;
       s.terms = s.$parent.terms;
+      s.form = s.$parent.form;
     }
    }
  });

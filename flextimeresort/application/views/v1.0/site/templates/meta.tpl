@@ -2,9 +2,10 @@
 <!-- Bootstrap 4.0.0 -->
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Ionicons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
 <!-- Theme style -->
 <link rel="stylesheet" href="/dist/css/main.css">
 <!-- DataTables -->
@@ -37,6 +38,10 @@
 <script src="/plugins/angular-ui-tinymce/dist/tinymce.min.js"></script>
 <script src="/dist/js/angular-modules/angular-nl2br.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
 <script type="text/javascript" src="/dist/js/ang.app.js"></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={$settings.GOOGLE_API_KEY}&libraries=places"></script>
 {if !$user}
