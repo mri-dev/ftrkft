@@ -4097,6 +4097,30 @@ ul.pagination {
   }
 }
 
+label.file-uploader{
+  float: left;
+  padding: 5px;
+  color: white !important;
+  padding: 6px 10px !important;
+}
+
+.file-info{
+  background: #f3f3f3;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 5px 0;
+
+  & > div {
+    line-height: 1.55;
+    &.valid{
+      color: green;
+    }
+    &.invalid{
+      color: $color-red;
+    }
+  }
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

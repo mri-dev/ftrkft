@@ -70,7 +70,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   };
   $scope.elvarasmunkakor_picked = [];
   $scope.collected_elvarasmunkakorok = [];
-
+  $scope.files = {};
   $scope.fromgroup = {
     alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
   }
@@ -335,9 +335,9 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   $scope.uploadProfil = function(callback){
     var file = $scope.fileinput;
     var uploadUrl = "/ajax/data/", //Url 1of webservice/api/server
-        promise = fileUploadService.uploadFileToUrl(file, uploadUrl, function(re){
-          callback(re);
-        });
+    promise = fileUploadService.uploadFileToUrl(file, uploadUrl, function(re){
+      callback(re);
+    });
   }
 
   $scope.selectListValue = function(key, id, text) {
@@ -493,6 +493,42 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     return years;
   }
 }])
+.directive('documentUploader', ['$parse', function ($parse) {
+  return {
+    link: function(scope, element, attr) {
+      element.bind("change", function(changeEvent) {
+        var docs = {};
+        var filetypeext = ['doc', 'docx', 'pdf', 'txt', 'rtf'];
+
+        if (typeof docs === 'undefined') {
+          scope.files[attr.root] = {};
+          var docs = scope.files[attr.root];
+        }
+
+        docs.raw = changeEvent.target.files[0];
+
+        docs.canuploadnow = false;
+        docs.name = docs.raw.name;
+        docs.ext = docs.raw.name.split('.').pop().toLowerCase();
+        docs.correct_ext = filetypeext.indexOf(docs.ext) > -1;
+        docs.size = docs.raw.size / 1024;
+        docs.correct_filesize = docs.raw.size > 4096;
+
+        scope.$apply(function() {
+          if (docs.correct_filesize && docs.correct_ext) {
+            docs.canuploadnow = true;
+            scope.cansavenow = true;
+          } else {
+            docs.canuploadnow = false;
+            scope.cansavenow = false;
+          }
+          scope.files[attr.root] = docs;
+        });
+
+      });
+    }
+  }
+ }])
 .directive('fileModel', ['$parse', function ($parse) {
   return {
     link: function(scope, element, attributes) {
@@ -500,7 +536,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         scope.fileinput = changeEvent.target.files[0];
 
         var ext = scope.fileinput.name.split('.').pop().toLowerCase();
-        var correct_ext = scope.allowProfilType.indexOf(ext) > -1
+        var correct_ext = scope.allowProfilType.indexOf(ext) > -1;
 
         scope.selectedprofilimg.type = ext;
         scope.selectedprofilimg.size = scope.fileinput.size / 1024;

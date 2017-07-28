@@ -14,6 +14,26 @@
       </div>
     </div>
   </div>
+  <div class="row input-line" style="align-items:flex-start;">
+    <div class="col-md-3">
+      <label>{lang text="Önéletrajz feltöltése"}</label>
+    </div>
+    <div class="col-md-9">
+      <div class="input-wrapper">
+        <input type="file" class="hide" id="oneletrajz" document-uploader root="oneletrajz">
+        <label class="file-uploader btn btn-primary" for="oneletrajz" data-toggle="tooltip" title="{lang text='Válassza ki a feltöltendő dokumentumot'}">{lang text="Fájl kiválasztása"} <i class="fa fa-folder-o"></i></label>
+        <div class="clearfix"></div>
+        <div ng-show="files.oneletrajz" class="file-info">
+          <div>{lang text="Fájlnév"}: <strong>[[files.oneletrajz.name]]</strong></div>
+          <div ng-class="(!files.oneletrajz.correct_ext)?'invalid':'valid'">{lang text="Fájltípus"}: <strong>[[files.oneletrajz.ext]]</strong></div>
+          <div ng-class="(!files.oneletrajz.correct_filesize)?'invalid':'valid'">{lang text="Fájlméret"}: <strong>[[files.oneletrajz.size]] Kb</strong></div>
+          <div ng-class="(!files.oneletrajz.canuploadnow)?'invalid':'valid'">{lang text="Státusz"}: <strong>[[(files.oneletrajz.canuploadnow)?'{lang text="Megfelelő fájl"}':'{lang text="Nem megfelelő fájl"}']]</strong></div>
+        </div>
+        <small>{lang text="Önéletrajz fájl leírás"}</small>
+      </div>
+    </div>
+  </div>
+
 </div>
 <div class="group">
   <div class="title">
@@ -21,4 +41,5 @@
     <div class="line"></div>
     <div class="clearfix"></div>
   </div>
+  <profil-modul group="dokumentumok" item="dokumentum" mpkey="dokumentum"></profil-modul>
 </div>
