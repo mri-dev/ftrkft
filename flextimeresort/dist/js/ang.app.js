@@ -65,6 +65,11 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   };
   $scope.multiparam = [];
   $scope.multiparam_group_deletting = [];
+  $scope.elvarasmunkakor = {
+    selectedmain: false
+  };
+  $scope.elvarasmunkakor_picked = [];
+  $scope.collected_elvarasmunkakorok = [];
 
   $scope.fromgroup = {
     alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
@@ -117,6 +122,8 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.elvaras_munkateruletek = user.elvarasok.elvaras_munkateruletek;
     $scope.form.igenyek_egyeb = user.elvarasok.igenyek_egyeb;
 
+    $scope.elvarasmunkakor_picked = user.elvarasok.elvaras_munkakorok;
+
     // List
     var termcicle = 0;
     angular.forEach($scope.terms, function(v, k){
@@ -146,9 +153,9 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       });
     }
 
-    if(termcicle == 0) {
-      window.location.reload();
-    }
+    $scope.collectElvarasMunkakor();
+
+    $scope.dataloaded = true;
   };
 
   $scope.defaultModulData = function(modulkey){
@@ -323,7 +330,6 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 
     $scope.form[group] = group_arr;
 
-    console.log($scope.form);
   }
 
   $scope.uploadProfil = function(callback){
@@ -353,23 +359,22 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     }
   }).then(function successCallback(response) {
     var d = response.data;
-
     angular.forEach(d.lists, function(v, k){
       $scope.terms[v.termkey] = d.terms[v.termkey];
     });
-  }, function errorCallback(response) {});
 
-  // Felhasználó adatok
-  $http({
-    method: 'POST',
-    url: '/ajax/data',
-    params: {
-      type: 'me'
-    }
-  }).then(function successCallback(response) {
-    var d = response.data;
-    $scope.dataloaded = true;
-    $scope.validateUserData(d);
+    // Felhasználó adatok
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'me'
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.validateUserData(d);
+    }, function errorCallback(response) {});
+
   }, function errorCallback(response) {});
 
   $scope.save = function(next){
@@ -395,7 +400,6 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       angular.extend(delete_modul_group, $scope.multiparam_group_deletting);
 
       // Felhasználó adatok mentése
-      console.log($scope.form);
       $http({
         method: 'POST',
         url: '/ajax/data',
@@ -431,17 +435,51 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   }
 
   $scope.newModulVariable = function(key) {
-
     if (typeof $scope.multiparam[key] === 'undefined') {
         $scope.multiparam[key] = [];
         $scope.multiparam[key].push($scope.defaultModulData(key));
     } else {
       $scope.multiparam[key].push($scope.defaultModulData(key));
     }
-
-    console.log($scope.multiparam);
   }
 
+  $scope.collectElvarasMunkakor = function(parent, id) {
+    var c = $scope.elvarasmunkakor_picked;
+
+    if (typeof parent === 'undefined' && typeof id === 'undefined') {
+      angular.forEach(c, function(v,k){
+        $scope.collected_elvarasmunkakorok[k] = {
+          value: $scope.terms.munkakorok[':'+v].value,
+          parent: $scope.terms.munkakorok[':'+$scope.terms.munkakorok[':'+v].parent].value,
+          parent_id: $scope.terms.munkakorok[':'+v].parent,
+          id: v,
+          text: $scope.terms.munkakorok[':'+$scope.terms.munkakorok[':'+v].parent].value + ' > '+ $scope.terms.munkakorok[':'+v].value.substr(2)
+        };
+      });
+    } else {
+      if (c.indexOf(id) === -1) {
+        c.push(id);
+        $scope.collected_elvarasmunkakorok.push(id);
+        $scope.collected_elvarasmunkakorok[c.indexOf(id)] = {
+          value: $scope.terms.munkakorok[':'+id].value,
+          parent: $scope.terms.munkakorok[':'+$scope.terms.munkakorok[':'+id].parent].value,
+          parent_id: $scope.terms.munkakorok[':'+id].parent,
+          id: id,
+          text: $scope.terms.munkakorok[':'+$scope.terms.munkakorok[':'+id].parent].value + ' > '+ $scope.terms.munkakorok[':'+id].value.substr(2)
+        };
+      } else {
+        c.splice(c.indexOf(id), 1);
+        angular.forEach($scope.collected_elvarasmunkakorok, function(v,k){
+          if(v.id == id) {
+            $scope.collected_elvarasmunkakorok.splice(k, 1);
+          }
+        });
+      }
+    }
+
+    $scope.elvarasmunkakor_picked = c;
+    $scope.form.elvaras_munkakor = c;
+  }
 
   $scope.yearGenerator = function(min_year){
     var years = new Array();
@@ -492,7 +530,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     }
   }
  }])
- .directive('profilModul', function(){
+ .directive('profilModul', ['$timeout', function($timeout){
    return {
     restrict: 'E',
     templateUrl: function(e,a){
@@ -502,22 +540,30 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
       mpkey: '@'
     },
     link: function(s, e, a){
-      s.newModulVariable = function(mpkey){
-          return s.$parent.newModulVariable(mpkey);
-      }
-      s.yearGenerator = function(y){
-          return s.$parent.yearGenerator(y);
-      }
-      s.modulVariableRemover = function(a, b, c){
-          return s.$parent.modulVariableRemover(a, b, c);
-      }
+      $timeout(function () {
+        s.newModulVariable = function(mpkey){
+            return s.$parent.newModulVariable(mpkey);
+        }
+        s.yearGenerator = function(y){
+            return s.$parent.yearGenerator(y);
+        }
+        s.modulVariableRemover = function(a, b, c){
+            return s.$parent.modulVariableRemover(a, b, c);
+        }
 
-      s.multiparam = s.$parent.multiparam;
-      s.terms = s.$parent.terms;
-      s.form = s.$parent.form;
+        s.collectElvarasMunkakor = function(a,b){
+          return s.$parent.collectElvarasMunkakor(a, b);
+        }
+        s.multiparam = s.$parent.multiparam;
+        s.terms = s.$parent.terms;
+        s.form = s.$parent.form;
+        s.elvarasmunkakor = s.$parent.elvarasmunkakor;
+        s.elvarasmunkakor_picked = s.$parent.elvarasmunkakor_picked;
+        s.collected_elvarasmunkakorok = s.$parent.collected_elvarasmunkakorok;
+      }, 800);
     }
    }
- });
+ }]);
 
 /**
 * Ügyfélkapu üzenetváltó modul
@@ -878,7 +924,6 @@ ads.controller( "Request", ['$scope', '$http', '$timeout', function($scope, $htt
         id: adid
       }
     }).then(function successCallback(response) {
-      console.log(response.data);
       var d = response.data;
       $scope.inprogress = false;
       $scope.not_requested = false;
@@ -982,7 +1027,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         }
       }).then(function successCallback(response) {
         var d = response.data;
-        console.log(d);
         if (d.success) {
           $scope.loaded_allas = d.data;
           $scope.prepareEditAdToView();
@@ -1123,7 +1167,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.tematic_list = $scope.tematics;
     $scope.allas.munkakorok = $scope.selectedlist.munkakorok;
 
-    console.log($scope.allas);
 
     // Adatok mentése, látrehozása
     /* */
@@ -1141,7 +1184,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
       var d = response.data;
       $scope.creator_in_progress = false;
 
-      console.log(d);
 
       if(d.success) {
         if ($scope.settings.edit_ad_id == 0) {

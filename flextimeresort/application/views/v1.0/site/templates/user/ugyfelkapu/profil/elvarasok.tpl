@@ -48,11 +48,11 @@
   <div class="divider lined"></div>
   <div class="row input-line">
     <div class="col-md-3">
-      <label>{lang text="Betölteni kívánt munkakörök"}:</label>
+      <label>{lang text="Betölteni kívánt munkakörök"}:<br><small>{lang text="Betölteni kívánt munkakörök_TEXT"}</small> </label>
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        {lang text="Betölteni kívánt munkakörök_TEXT"}
+        <profil-modul group="elvarasok" item="munkakorselector" mpkey="munkakorselector"></profil-modul>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
     </div>
     <div class="col-md-4">
       <div class="input-wrapper">
-        <md-datepicker ng-model="form.munkaba_allas_ideje" md-placeholder="{lang text='Válasszon'}"></md-datepicker>        
+        <md-datepicker ng-model="form.munkaba_allas_ideje" md-placeholder="{lang text='Válasszon'}"></md-datepicker>
         <div ng-class="'form-helper ' + ( (form.munkaba_allas_ideje) ? 'valid' : 'invalid')"></div>
       </div>
     </div>

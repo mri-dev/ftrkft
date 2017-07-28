@@ -13,23 +13,31 @@
 </div>
 
 <div class="profil-changer-container" ng-app="profilModifier" ng-controller="formValidor" ng-init="settings('{$subprofil}')">
-  {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
-  <div class="buttons" ng-show="dataloaded && cansavenow">
+  <div ng-show="!dataloaded" class="md-progress a-center">
+    <div layout="row" layout-sm="column" layout-align="space-around">
+      <md-progress-circular class="md-accent" md-diameter="50" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    {lang text="Profil adatok betöltése."}
+  </div>
+  <div ng-show="dataloaded">
+    {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
+    <div class="buttons" ng-show="dataloaded && cansavenow">
 
-    <div ng-show="profilimguploadprogress" class="alert alert-warning">
-      <i class="fa fa-spin fa-spinner"></i> {lang text="Profilkép feltöltése folyamatban..."}
-    </div>
-    <div ng-show="successfullsaved && !saveinprogress" class="alert alert-success">
-      <i class="fa fa-check-circle"></i> {lang text="Sikeresen elmentette a változásokat."}
-    </div>
-    <div ng-show="saveinprogress" class="alert alert-warning">
-      <i class="fa fa-spin fa-spinner"></i> {lang text="Változások mentése folyamatban. Kis türelmét kérjük."}
-    </div>
-    <div ng-show="!dataloaded" class="alert alert-warning">
-      <i class="fa fa-spin fa-spinner"></i> {lang text="Adatok betöltése folyamatban."}
-    </div>
+      <div ng-show="profilimguploadprogress" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Profilkép feltöltése folyamatban..."}
+      </div>
+      <div ng-show="successfullsaved && !saveinprogress" class="alert alert-success">
+        <i class="fa fa-check-circle"></i> {lang text="Sikeresen elmentette a változásokat."}
+      </div>
+      <div ng-show="saveinprogress" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Változások mentése folyamatban. Kis türelmét kérjük."}
+      </div>
+      <div ng-show="!dataloaded" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Adatok betöltése folyamatban."}
+      </div>
 
-    <button ng-show="!saveinprogress" class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
-    <button ng-show="!saveinprogress" class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
+      <button ng-show="!saveinprogress" class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
+      <button ng-show="!saveinprogress" class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
+    </div>
   </div>
 </div>

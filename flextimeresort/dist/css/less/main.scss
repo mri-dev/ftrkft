@@ -84,6 +84,13 @@ body{
 .modal-body{
   line-height: 1.3;
 }
+.md-progress{
+  padding: 25px;
+
+  &.a-center{
+    text-align: center;
+  }
+}
 
 .error-msg{
   color: $color-red;
@@ -2019,6 +2026,12 @@ body.ugyfelkapu-view{
         color: black;
         padding-left: 25px;
         margin: 0;
+
+        small {
+          margin-top: 5px;
+          color:#777777;
+          display: block;
+        }
       }
 
       .input-wrapper{
@@ -3981,6 +3994,104 @@ ul.pagination {
     &.status-unwatched{
       & > .ico {
         background: orange;
+      }
+    }
+  }
+}
+
+.multipanel-selector-holder{
+  overflow: hidden;
+
+  .collected{
+    .header{
+      color: black;
+      font-weight: bold;
+      padding: 5px 0;
+      line-height: 1.2;
+    }
+
+    .no-items{
+      padding: 8px 0;
+      color: $color-red;
+    }
+
+    .items{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 10px 0;
+
+      .item{
+        border-radius: 20px;
+        padding: 7px 10px;
+        line-height: 1.2;
+        margin: 3px;
+        background: $color-primary-light;
+        color: white;
+        font-size: 0.9em;
+
+        i{
+          margin-left: 5px;
+          line-height: 14px;
+          width: 14px;
+          text-align: center;
+          padding: 0;
+          -webkit-border-radius: 30px;
+          -moz-border-radius: 30px;
+          border-radius: 30px;
+
+          &:hover{
+            background: white;
+            color: black;
+          }
+        }
+      }
+    }
+
+  }
+
+  .wrapper{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: flex-start;
+
+    .header{
+      font-size: 0.8em;
+    }
+    .panel-main, .panel-sec {
+      & > div {
+        padding: 3px 6px;
+        border-bottom: 1px solid #eaeaea;
+
+        &:hover,
+        &.active{
+          background: $color-primary-light;
+          color: white;
+        }
+
+        &.header{
+          padding: 2px 6px;
+          color: #acacac;
+          background: transparent;
+        }
+      }
+    }
+    .panel-main{
+      background: #f7f7f7;
+      flex-basis: 50%;
+    }
+    .panel-sec{
+      background: #efefef;
+      flex-basis: 50%;
+      & > div.active,
+      & > div:hover{
+        background: #87ca94 !important;
+      }
+      & > div.header{
+        background: transparent !important;
       }
     }
   }
