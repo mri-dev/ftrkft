@@ -165,6 +165,41 @@ class User
 		$this->editAccountDetail('profil_img', $img);
 	}
 
+	public function getOneletrajz()
+	{
+		$data = $this->db->query("SELECT * FROM documents WHERE fiok_id = ".$this->getID()." and groupkey = 'oneletrajz'")->fetch(\PDO::FETCH_ASSOC);
+		if (empty($data)) {
+			return false;
+		}
+		$data['file_size'] = number_format((float)$data['file_size'] / 1024, 2, ".", " ");
+		$data['file_type'] = str_replace(array('application/'), '', $data['file_type']);
+		return $data;
+	}
+
+	public function updateOneletrajz($path, $filedata = array())
+	{
+		$docs = array();
+
+		// previous delete
+		$prev_file = $this->db->query("SELECT filepath FROM documents WHERE fiok_id = ".$this->getID()." and groupkey = 'oneletrajz'")->fetchColumn();
+		if (!empty($prev_file)) {
+			unlink(REALPATH_APP.substr($prev_file, 1));
+		}
+
+		$hash = md5('oneletrajz_'.$this->getID());
+		$type = ($filedata['type']) ? $filedata['type'] : NULL;
+		$docs[] = array($hash, $this->getID(), 'Önéletrajz', $path, 'oneletrajz', (float)$filedata['size'], $type);
+
+		$this->db->multi_insert(
+			'documents',
+			array('hashkey', 'fiok_id', 'name', 'filepath', 'groupkey', 'file_size', 'file_type'),
+			$docs,
+			array(
+				'duplicate_keys' => array('hashkey', 'filepath', 'file_size', 'file_type')
+			)
+		);
+	}
+
 	public function profilPercent()
 	{
 		$dataset = $this->user['data'];
@@ -260,7 +295,7 @@ class User
 			'ismeretek' => array('nyelvismeret', 'szamitogepes'),
 			'munkatapasztalat' => array('munkatapasztalat'),
 		);
-		
+
 		if (!is_array($data) || empty($data)) {
 			return false;
 		}

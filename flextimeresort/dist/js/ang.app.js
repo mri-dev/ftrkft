@@ -41,6 +41,27 @@ pm.service('fileUploadService', function($http, $q){
         callback(response.data);
       });
   }
+  this.uploadDocs = function (file, uploadUrl, callback) {
+      var fileFormData = new FormData();
+      fileFormData.append('file', file);
+      var deffered = $q.defer();
+
+      $http({
+        method: 'POST',
+        url: uploadUrl,
+        params: {
+          type: 'uploadDocuments'
+        },
+        data: fileFormData,
+        headers: {
+           'Content-Type': undefined
+        },
+      }).then(function successCallback(response) {
+        callback(response.data);
+      }, function errorCallback(response) {
+        callback(response.data);
+      });
+  }
 });
 
 pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',  function($scope, $http, $timeout, fileUploadService) {
@@ -71,6 +92,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   $scope.elvarasmunkakor_picked = [];
   $scope.collected_elvarasmunkakorok = [];
   $scope.files = {};
+  $scope.oneletrajz = {};
   $scope.fromgroup = {
     alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
   }
@@ -123,6 +145,10 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.igenyek_egyeb = user.elvarasok.igenyek_egyeb;
 
     $scope.elvarasmunkakor_picked = user.elvarasok.elvaras_munkakorok;
+
+    if (user.oneletrajz) {
+      $scope.oneletrajz = user.oneletrajz;
+    }
 
     // List
     var termcicle = 0;
@@ -340,6 +366,17 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     });
   }
 
+  $scope.uploadDocuments = function(src, callback){
+    if (typeof src == 'undefined') {
+      callback(false);
+      return;
+    }
+    var uploadUrl = "/ajax/data/", //Url 1of webservice/api/server
+    promise = fileUploadService.uploadDocs(src, uploadUrl, function(re){
+      callback(re);
+    });
+  }
+
   $scope.selectListValue = function(key, id, text) {
     $scope.selectedlist[key] = {
       id: id,
@@ -393,37 +430,54 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
         $scope.form.newprofilimg = re.uploaded_path;
       }
 
-      var multiparamdata = {};
-      angular.extend(multiparamdata,$scope.multiparam);
+      if (typeof $scope.files.oneletrajz === 'undefined') {
+        $scope.files.oneletrajz = {};
+        $scope.files.oneletrajz.raw = false;
+      }
 
-      var delete_modul_group = {};
-      angular.extend(delete_modul_group, $scope.multiparam_group_deletting);
+      $scope.uploadDocuments($scope.files.oneletrajz.raw, function(re){
+        var multiparamdata = {};
+        angular.extend(multiparamdata,$scope.multiparam);
 
-      // Felhasználó adatok mentése
-      $http({
-        method: 'POST',
-        url: '/ajax/data',
-        params: {
-          type: 'profilsave',
-          form: $scope.form,
-          moduldatas: multiparamdata,
-          moduldelete: delete_modul_group,
-          page: $scope.step
+        var delete_modul_group = {};
+        angular.extend(delete_modul_group, $scope.multiparam_group_deletting);
+
+        // Önéletrajz uploaded
+        if (re.FILE && !re.error && re.uploaded_path) {
+          $scope.form.uploaded_oneletrajz = re;
+          $scope.oneletrajz.name = 'Önéletrajz';
+          $scope.oneletrajz.file_size = re.FILE.size;
+          $scope.oneletrajz.file_type = re.FILE.type;
+          $scope.oneletrajz.filepath = re.uploaded_path;
         }
-      }).then(function successCallback(response) {
-        $scope.saveinprogress = false;
-        $scope.successfullsaved = true;
 
-        var d = response.data;
-        console.log(d);
-        if(next) {
-          document.location = '/ugyfelkapu/profil/'+d.nextpage;
-        } else {
-          $timeout(function(){
-            $scope.successfullsaved = false;
-          }, 3000);
-        }
-      }, function errorCallback(response) {});
+        // Felhasználó adatok mentése
+        $http({
+          method: 'POST',
+          url: '/ajax/data',
+          params: {
+            type: 'profilsave',
+            form: $scope.form,
+            moduldatas: multiparamdata,
+            moduldelete: delete_modul_group,
+            page: $scope.step
+          }
+        }).then(function successCallback(response) {
+          $scope.saveinprogress = false;
+          $scope.successfullsaved = true;
+          $scope.files = {};
+
+          var d = response.data;
+          console.log(d);
+          if(next) {
+            document.location = '/ugyfelkapu/profil/'+d.nextpage;
+          } else {
+            $timeout(function(){
+              $scope.successfullsaved = false;
+            }, 3000);
+          }
+        }, function errorCallback(response) {});
+      });
     });
   }
 

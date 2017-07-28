@@ -4970,7 +4970,21 @@ label.file-uploader {
   padding: 6px 10px !important;
 }
 
-/* line 4107, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4106, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+.uploaded-file {
+  background: #f1f1f1;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+
+/* line 4110, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+.uploaded-file a {
+  display: block;
+  padding: 8px 12px;
+  line-height: 1.4;
+}
+
+/* line 4116, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .file-info {
   background: #f3f3f3;
   padding: 8px;
@@ -4978,68 +4992,68 @@ label.file-uploader {
   margin: 5px 0;
 }
 
-/* line 4113, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4122, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .file-info > div {
   line-height: 1.55;
 }
 
-/* line 4115, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4124, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .file-info > div.valid {
   color: green;
 }
 
-/* line 4118, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4127, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 .file-info > div.invalid {
   color: #f44e5e;
 }
 
-/* line 4124, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4133, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 4128, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4137, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 4132, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4141, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 4137, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4146, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 4140, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4149, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 4143, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4152, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 4148, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4157, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 4151, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4160, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 4154, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
+/* line 4163, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/dist/css/less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

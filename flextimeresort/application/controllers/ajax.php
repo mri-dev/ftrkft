@@ -76,6 +76,8 @@ class ajax extends Controller  {
 
 					$data['elvarasok']['elvaras_munkakorok'] = (array)$this->ME->getAccountData('elvaras_munkakorok');
 
+					$data['oneletrajz'] = $this->ME->getOneletrajz();
+
 					// Modul paraméterek
 					$data['moduls'] = $this->ME->getAccountModulData();
 				break;
@@ -96,6 +98,24 @@ class ajax extends Controller  {
 						// give callback to your angular code with the image src name
 						$data['filename'] = $newfilename;
 						$data['uploaded_path'] = '/store/images/profils/' . $newfilename;
+						$data['error'] = false;
+					} else {
+						$data['error'] = false;
+					}
+
+					$data['FILE'] = $_FILES['file'];
+				break;
+				case 'uploadDocuments':
+					if (isset($_FILES['file']) && $_FILES['file']['error'] == 0)
+					{
+						// uploads image in the folder images
+				    $temp = explode(".", $_FILES["file"]["name"]);
+				    $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+				    move_uploaded_file($_FILES['file']['tmp_name'], 'store/docs/users/' . $newfilename);
+
+						// give callback to your angular code with the image src name
+						$data['filename'] = $newfilename;
+						$data['uploaded_path'] = '/store/docs/users/' . $newfilename;
 						$data['error'] = false;
 					} else {
 						$data['error'] = false;
@@ -156,6 +176,11 @@ class ajax extends Controller  {
 
 					if (!empty($moduldelete)) {
 						$this->ME->removeModulDatas($moduldelete);
+					}
+
+					if (isset($form['uploaded_oneletrajz'])) {
+						$uploaded_oneletrajz = $form['uploaded_oneletrajz'];
+						$this->ME->updateOneletrajz($uploaded_oneletrajz['uploaded_path'], $uploaded_oneletrajz['FILE']);
 					}
 
 					$data['form'] = $form;

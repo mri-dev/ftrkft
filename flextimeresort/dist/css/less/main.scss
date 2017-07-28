@@ -4103,7 +4103,16 @@ label.file-uploader{
   color: white !important;
   padding: 6px 10px !important;
 }
-
+.uploaded-file{
+  background: #f1f1f1;
+  margin: 5px 0;
+  border-radius: 3px;
+  a{
+    display: block;
+    padding: 8px 12px;
+    line-height: 1.4;
+  }
+}
 .file-info{
   background: #f3f3f3;
   padding: 8px;
