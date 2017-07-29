@@ -20,8 +20,8 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <div class="uploaded-file" ng-show="oneletrajz">
-          <a href="[[oneletrajz.filepath]]"><strong>[[oneletrajz.name]]</strong> ([[oneletrajz.file_size]] Kb., [[oneletrajz.file_type]])</a>
+        <div class="uploaded-file" ng-show="oneletrajz.name">
+          <a href="[[oneletrajz.filepath]]"><i class="fa fa-file"></i> <strong>[[oneletrajz.name]]</strong> ([[oneletrajz.file_size]] Kb., [[oneletrajz.file_type]])</a>
         </div>
         <input type="file" class="hide" id="oneletrajz" document-uploader root="oneletrajz">
         <label class="file-uploader btn btn-primary" for="oneletrajz" data-toggle="tooltip" title="{lang text='Válassza ki a feltöltendő dokumentumot'}">{lang text="Fájl kiválasztása"} <i class="fa fa-folder-o"></i></label>

@@ -41,26 +41,35 @@ pm.service('fileUploadService', function($http, $q){
         callback(response.data);
       });
   }
-  this.uploadDocs = function (file, uploadUrl, callback) {
-      var fileFormData = new FormData();
-      fileFormData.append('file', file);
-      var deffered = $q.defer();
+  this.uploadDocs = function (file, uploadUrl, callback)
+  {
+    var fileFormData = new FormData();
 
-      $http({
-        method: 'POST',
-        url: uploadUrl,
-        params: {
-          type: 'uploadDocuments'
-        },
-        data: fileFormData,
-        headers: {
-           'Content-Type': undefined
-        },
-      }).then(function successCallback(response) {
-        callback(response.data);
-      }, function errorCallback(response) {
-        callback(response.data);
+    if (typeof file[0] === 'undefined') {
+      fileFormData.append('file', file);
+    } else {
+      angular.forEach(file, function(v,k){
+        fileFormData.append('file[]', v.raw);
       });
+    }
+
+    var deffered = $q.defer();
+
+    $http({
+      method: 'POST',
+      url: uploadUrl,
+      params: {
+        type: 'uploadDocuments'
+      },
+      data: fileFormData,
+      headers: {
+         'Content-Type': undefined
+      },
+    }).then(function successCallback(response) {
+      callback(response.data);
+    }, function errorCallback(response) {
+      callback(response.data);
+    });
   }
 });
 
@@ -93,9 +102,12 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   $scope.collected_elvarasmunkakorok = [];
   $scope.files = {};
   $scope.oneletrajz = {};
+  $scope.documents = {};
   $scope.fromgroup = {
     alap: ['name', 'email', 'nem', 'allampolgarsag', 'csaladi_allapot', 'anyanyelv', 'iskolai_vegzettseg']
-  }
+  };
+  $scope.docs_uploading = false;
+  $scope.docs_uploaded = false;
 
   $scope.tglList = function(l){
     angular.forEach($scope.fromgroup, function(v, k){
@@ -148,6 +160,9 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 
     if (user.oneletrajz) {
       $scope.oneletrajz = user.oneletrajz;
+    }
+    if (user.documents) {
+      $scope.documents = user.documents;
     }
 
     // List
@@ -451,32 +466,46 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
           $scope.oneletrajz.filepath = re.uploaded_path;
         }
 
-        // Felhasználó adatok mentése
-        $http({
-          method: 'POST',
-          url: '/ajax/data',
-          params: {
-            type: 'profilsave',
-            form: $scope.form,
-            moduldatas: multiparamdata,
-            moduldelete: delete_modul_group,
-            page: $scope.step
-          }
-        }).then(function successCallback(response) {
-          $scope.saveinprogress = false;
-          $scope.successfullsaved = true;
-          $scope.files = {};
+        if ($scope.files.dokumentum) {
+          $scope.docs_uploading = true;
+        }
 
-          var d = response.data;
-          console.log(d);
-          if(next) {
-            document.location = '/ugyfelkapu/profil/'+d.nextpage;
-          } else {
-            $timeout(function(){
-              $scope.successfullsaved = false;
-            }, 3000);
+        $scope.uploadDocuments($scope.files.dokumentum, function(re){
+          $scope.docs_uploading = false;
+
+          if ($scope.files.dokumentum && re.FILE) {
+            $scope.form.uploaded_docs = re;
+            $scope.form.uploaded_docs_info = $scope.files.dokumentum;
+            $scope.docs_uploaded = true;
           }
-        }, function errorCallback(response) {});
+
+          // Felhasználó adatok mentése
+          $http({
+            method: 'POST',
+            url: '/ajax/data',
+            params: {
+              type: 'profilsave',
+              form: $scope.form,
+              moduldatas: multiparamdata,
+              moduldelete: delete_modul_group,
+              page: $scope.step
+            }
+          }).then(function successCallback(response) {
+            $scope.saveinprogress = false;
+            $scope.successfullsaved = true;
+            $scope.files = {};
+
+            var d = response.data;
+            console.log(d);
+            if(next) {
+              document.location = '/ugyfelkapu/profil/'+d.nextpage;
+            } else {
+              $timeout(function(){
+                $scope.successfullsaved = false;
+              }, 3000);
+            }
+          }, function errorCallback(response) {});
+        });
       });
     });
   }
@@ -546,17 +575,61 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 
     return years;
   }
+
+  $scope.fileItemAdder = function(key) {
+    if (typeof $scope.files[key] === 'undefined') {
+      $scope.files[key] = [];
+    }
+    $scope.files[key].push({
+      raw: null,
+      name: null
+    });
+  }
+
+  $scope.fileItemRemover = function(key,index) {
+    $scope.files[key].splice(index, 1);
+  }
+
+  $scope.uploadedDocumentRemover = function(i, hashkey){
+    $scope.documents[i].delettingnow = true;
+
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'documentsRemover',
+        hashkey: hashkey
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+
+      if (d.success) {
+        $scope.documents.splice(i, 1);
+      } else {
+        $scope.documents[i].delettingnow = false;
+      }
+    }, function errorCallback(response) {});
+
+  }
+
 }])
 .directive('documentUploader', ['$parse', function ($parse) {
   return {
     link: function(scope, element, attr) {
       element.bind("change", function(changeEvent) {
         var docs = {};
+        var is_docsupload = false;
         var filetypeext = ['doc', 'docx', 'pdf', 'txt', 'rtf'];
 
         if (typeof docs === 'undefined') {
           scope.files[attr.root] = {};
-          var docs = scope.files[attr.root];
+
+          if (typeof attr.docindex !== 'undefined') {
+            is_docsupload = true;
+            var docs = scope.files[attr.root][attr.docindex];
+          } else {
+            var docs = scope.files[attr.root];
+          }
         }
 
         docs.raw = changeEvent.target.files[0];
@@ -576,7 +649,12 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
             docs.canuploadnow = false;
             scope.cansavenow = false;
           }
-          scope.files[attr.root] = docs;
+
+          if (typeof attr.docindex !== 'undefined') {
+            scope.files[attr.root][attr.docindex] = docs;
+          }else{
+            scope.files[attr.root] = docs;
+          }
         });
 
       });
@@ -632,24 +710,35 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     link: function(s, e, a){
       $timeout(function () {
         s.newModulVariable = function(mpkey){
-            return s.$parent.newModulVariable(mpkey);
+          return s.$parent.newModulVariable(mpkey);
         }
         s.yearGenerator = function(y){
-            return s.$parent.yearGenerator(y);
+          return s.$parent.yearGenerator(y);
         }
         s.modulVariableRemover = function(a, b, c){
-            return s.$parent.modulVariableRemover(a, b, c);
+          return s.$parent.modulVariableRemover(a, b, c);
         }
-
         s.collectElvarasMunkakor = function(a,b){
           return s.$parent.collectElvarasMunkakor(a, b);
         }
+        s.fileItemAdder = function(a){
+          return s.$parent.fileItemAdder(a);
+        }
+        s.fileItemRemover = function(a,b){
+          return s.$parent.fileItemRemover(a,b);
+        }
+        s.uploadedDocumentRemover = function(a, b){
+          return s.$parent.uploadedDocumentRemover(a, b);
+        }
+
         s.multiparam = s.$parent.multiparam;
         s.terms = s.$parent.terms;
         s.form = s.$parent.form;
+        s.files = s.$parent.files;
         s.elvarasmunkakor = s.$parent.elvarasmunkakor;
         s.elvarasmunkakor_picked = s.$parent.elvarasmunkakor_picked;
         s.collected_elvarasmunkakorok = s.$parent.collected_elvarasmunkakorok;
+        s.documents = s.$parent.documents;
       }, 800);
     }
    }

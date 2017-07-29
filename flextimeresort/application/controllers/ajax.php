@@ -77,6 +77,7 @@ class ajax extends Controller  {
 					$data['elvarasok']['elvaras_munkakorok'] = (array)$this->ME->getAccountData('elvaras_munkakorok');
 
 					$data['oneletrajz'] = $this->ME->getOneletrajz();
+					$data['documents'] = $this->ME->getDocuments();
 
 					// Modul paraméterek
 					$data['moduls'] = $this->ME->getAccountModulData();
@@ -106,22 +107,62 @@ class ajax extends Controller  {
 					$data['FILE'] = $_FILES['file'];
 				break;
 				case 'uploadDocuments':
-					if (isset($_FILES['file']) && $_FILES['file']['error'] == 0)
-					{
-						// uploads image in the folder images
-				    $temp = explode(".", $_FILES["file"]["name"]);
-				    $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
-				    move_uploaded_file($_FILES['file']['tmp_name'], 'store/docs/users/' . $newfilename);
+					if (isset($_FILES['file'])) {
+						if (is_array($_FILES['file']['error'])) {
+							// Multi upload
+							foreach ((array)$_FILES['file']['tmp_name'] as $i => $tmp) {
+								// uploads image in the folder images
+						    $temp = explode(".", $_FILES["file"]["name"][$i]);
+						    $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+						    move_uploaded_file($_FILES['file']['tmp_name'][$i], 'store/docs/users/' . $newfilename);
 
-						// give callback to your angular code with the image src name
-						$data['filename'] = $newfilename;
-						$data['uploaded_path'] = '/store/docs/users/' . $newfilename;
-						$data['error'] = false;
-					} else {
-						$data['error'] = false;
+								// give callback to your angular code with the image src name
+								$data['filename'][$i] = $newfilename;
+								$data['uploaded_path'][$i] = '/store/docs/users/' . $newfilename;
+								$data['error'][$i] = false;
+								$data['multiupload'] = true;
+							}
+						} else {
+							// Simple upload
+							// uploads image in the folder images
+					    $temp = explode(".", $_FILES["file"]["name"]);
+					    $newfilename = substr(md5(time()), 0, 10) . '.' . end($temp);
+					    move_uploaded_file($_FILES['file']['tmp_name'], 'store/docs/users/' . $newfilename);
+
+							// give callback to your angular code with the image src name
+							$data['filename'] = $newfilename;
+							$data['uploaded_path'] = '/store/docs/users/' . $newfilename;
+							$data['error'] = false;
+						}
 					}
 
 					$data['FILE'] = $_FILES['file'];
+				break;
+				case 'documentsRemover':
+					$err = false;
+					$success = true;
+
+					if (!$err && empty($params['hashkey'])) {
+						$msg = 'Hiányzik a törlendő dokumentum egyedi azonosítója.';
+						$err = true;
+					}
+
+					if ($err) {
+						$success = false;
+					} else {
+						$prev_file = $this->db->query("SELECT filepath FROM documents WHERE fiok_id = ".$this->ME->getID()." and hashkey = '".$params['hashkey']."'")->fetchColumn();
+						if (!empty($prev_file)) {
+							if (file_exists(REALPATH_APP.substr($prev_file, 1))) {
+								$deleted = unlink(REALPATH_APP.substr($prev_file, 1));
+								if ($deleted) {
+									$this->db->query("DELETE FROM documents WHERE fiok_id = ".$this->ME->getID()." and hashkey = '".$params['hashkey']."'");
+								}
+							}
+						}
+					}
+
+					$data['hashkey'] = $params['hashkey'];
+					$data['success'] = $success;
 				break;
 				case 'profilsave':
 					$nextpages = array(
@@ -181,6 +222,11 @@ class ajax extends Controller  {
 					if (isset($form['uploaded_oneletrajz'])) {
 						$uploaded_oneletrajz = $form['uploaded_oneletrajz'];
 						$this->ME->updateOneletrajz($uploaded_oneletrajz['uploaded_path'], $uploaded_oneletrajz['FILE']);
+					}
+
+					if (isset($form['uploaded_docs'])) {
+						$uploaded_docs = $form['uploaded_docs'];
+						$this->ME->multipleDocsUploadRegister($uploaded_docs['uploaded_path'], $uploaded_docs['FILE'], $form['uploaded_docs_info']);
 					}
 
 					$data['form'] = $form;

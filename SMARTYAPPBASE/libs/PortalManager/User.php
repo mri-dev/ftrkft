@@ -176,6 +176,47 @@ class User
 		return $data;
 	}
 
+	public function getDocuments()
+	{
+		$data = $this->db->query("SELECT * FROM documents WHERE fiok_id = ".$this->getID()." and groupkey = 'dokumentum' ORDER BY upload_at DESC")->fetchAll(\PDO::FETCH_ASSOC);
+		if (empty($data)) {
+			return false;
+		}
+
+		$b = array();
+		foreach ((array)$data as $d) {
+			$d['file_type'] = \PortalManager\Formater::extensionFormater($d['file_type']);
+			$d['upload_at'] = \PortalManager\Formater::dateFormat($d['upload_at'], 'Y. m. d. H:i');
+			$d['file_size'] = \PortalManager\Formater::filesizeFormater((float)$d['file_size']);
+
+			$b[] = $d;
+		}
+		unset($data);
+
+		return $b;
+	}
+
+	public function multipleDocsUploadRegister($paths, $filedatas = array(), $infos = array() )
+	{
+		$docs = array();
+		foreach ((array)$paths as $i => $path) {
+			$hash = md5('docs_'.$filedatas['tmp_name'][$i].'_'.$this->getID());
+			$type = ($filedatas['type'][$i]) ? $filedatas['type'][$i] : NULL;
+			$docs[] = array($hash, $this->getID(), $infos[$i]['name'], $path, 'dokumentum', (float)$filedatas['size'][$i], $type);
+		}
+
+		if (!empty($docs)) {
+			$this->db->multi_insert(
+				'documents',
+				array('hashkey', 'fiok_id', 'name', 'filepath', 'groupkey', 'file_size', 'file_type'),
+				$docs,
+				array(
+					'duplicate_keys' => array('hashkey', 'filepath', 'file_size', 'file_type')
+				)
+			);
+		}
+	}
+
 	public function updateOneletrajz($path, $filedata = array())
 	{
 		$docs = array();
@@ -183,7 +224,9 @@ class User
 		// previous delete
 		$prev_file = $this->db->query("SELECT filepath FROM documents WHERE fiok_id = ".$this->getID()." and groupkey = 'oneletrajz'")->fetchColumn();
 		if (!empty($prev_file)) {
-			unlink(REALPATH_APP.substr($prev_file, 1));
+			if (file_exists(REALPATH_APP.substr($prev_file, 1))) {
+				unlink(REALPATH_APP.substr($prev_file, 1));
+			}
 		}
 
 		$hash = md5('oneletrajz_'.$this->getID());

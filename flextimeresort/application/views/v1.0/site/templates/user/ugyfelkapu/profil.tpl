@@ -22,9 +22,14 @@
   <div ng-show="dataloaded">
     {include file=$template_root|cat:"user/ugyfelkapu/profil/"|cat:$subprofil|cat:".tpl"}
     <div class="buttons" ng-show="dataloaded && cansavenow">
-
+      <div ng-show="docs_uploading" class="alert alert-warning">
+        <i class="fa fa-spin fa-spinner"></i> {lang text="Dokumentumok feltöltése folyamatban..."}
+      </div>
       <div ng-show="profilimguploadprogress" class="alert alert-warning">
         <i class="fa fa-spin fa-spinner"></i> {lang text="Profilkép feltöltése folyamatban..."}
+      </div>
+      <div ng-show="!docs_uploading && docs_uploaded" class="alert alert-success">
+        <i class="fa fa-check-circle"></i> {lang text="Dokumentumok sikeresen feltöltve."}
       </div>
       <div ng-show="successfullsaved && !saveinprogress" class="alert alert-success">
         <i class="fa fa-check-circle"></i> {lang text="Sikeresen elmentette a változásokat."}
@@ -35,7 +40,6 @@
       <div ng-show="!dataloaded" class="alert alert-warning">
         <i class="fa fa-spin fa-spinner"></i> {lang text="Adatok betöltése folyamatban."}
       </div>
-
       <button ng-show="!saveinprogress" class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
       <button ng-show="!saveinprogress" class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
     </div>
