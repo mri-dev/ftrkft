@@ -135,14 +135,50 @@
 				{$iskolai_vegzettseg.neve}
 			</div>
 		</div>
-		<div class="sub-group cv-row">
+		<div class="sub-group cv-row cv-a-top">
 			<div class="cv-col c3">
 				<div class="title">
 					{lang text="Végzettségek"}
 				</div>
 			</div>
 			<div class="cv-col c7">
-
+				{assign var=vegzettsegek value=$cv->getModul('vegzettseg', 'vegzettseg')}
+				<div class="modul-groups">
+				{foreach from=$vegzettsegek item=vegzettseg}
+					<div class="cv-row modul-group-item cv-a-top">
+						<div class="label">
+							{lang text="Év"}
+						</div>
+						<div class="value">
+							{$vegzettseg.startdate.year.value} &mdash; {$vegzettseg.enddate.year.value}
+						</div>
+					</div>
+					<div class="cv-row modul-group-item cv-a-top">
+						<div class="label">
+							{lang text="Végzettség szintje"}
+						</div>
+						<div class="value">
+							{$vegzettseg.vegzettseg_szint.value}
+						</div>
+					</div>
+					<div class="cv-row modul-group-item">
+						<div class="label">
+							{lang text="Terület / Szakirányzat"}
+						</div>
+						<div class="value">
+							{$vegzettseg.szakirany.value}
+						</div>
+					</div>
+					<div class="cv-row modul-group-item">
+						<div class="label">
+							{lang text="Intézmény neve"}
+						</div>
+						<div class="value">
+							{$vegzettseg.intezmeny.value}
+						</div>
+					</div>
+				{/foreach}
+				</div>
 			</div>
 		</div>
 		<div class="sub-group cv-row">

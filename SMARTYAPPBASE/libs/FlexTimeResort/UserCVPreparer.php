@@ -23,6 +23,8 @@ class UserCVPreparer
 			$this->smarty = $this->controller->smarty;
 		}
 
+    $this->loadModulDatas();
+
 		return $this;
   }
 
@@ -109,7 +111,7 @@ class UserCVPreparer
       $where = " and ID = '".$values."'";
     }
     $data = $this->db->query($iq = "SELECT ID, neve, langkey FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
-    
+
     if (count($data) == 1) {
       $text = $data[0];
     } elseif(count($data) > 1) {
@@ -122,6 +124,53 @@ class UserCVPreparer
     return $text;
   }
 
+  public function loadModulDatas()
+  {
+    $this->moduldatas = $this->user->getAccountModulData();
+
+    return $this;
+  }
+
+  public function getModul($page, $group)
+  {
+    return $this->prepareModulForOutput($group, $this->moduldatas[$page][$group]);
+  }
+
+  private function prepareModulForOutput($group, $list = array())
+  {
+    $output = array();
+    $term_groups = array(
+      'vegzettseg_szint' => 'iskolai_vegzettsegi_szintek',
+      'szakirany' => 'tanulmany_szakirany'
+    );
+
+    switch ($group) {
+      case 'vegzettseg':
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
+              case 'vegzettseg_szint':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+              case 'szakirany':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+
+            }
+
+            $output[$index][$key] = $value;
+          }
+
+        }
+      break;
+    }
+
+    return $output;
+  }
 
   public function __destruct()
 	{
