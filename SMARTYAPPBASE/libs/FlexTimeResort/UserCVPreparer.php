@@ -103,6 +103,17 @@ class UserCVPreparer
     return $v;
   }
 
+  public function IsmeretekEgyeb()
+  {
+    $v = $this->user->getValue('ismeretek_egyeb');
+
+    if (empty($v)) {
+      return false;
+    }
+
+    return $v;
+  }
+
   public function getTermValues($term, $values)
   {
     if (is_array($values)) {
@@ -141,7 +152,12 @@ class UserCVPreparer
     $output = array();
     $term_groups = array(
       'vegzettseg_szint' => 'iskolai_vegzettsegi_szintek',
-      'szakirany' => 'tanulmany_szakirany'
+      'szakirany' => 'tanulmany_szakirany',
+      'nyelv' => 'nyelvek',
+      'szobeli_szint' => 'nyelvismeret',
+      'irasbeli_szint' => 'nyelvismeret',
+      'tudasszint' => 'tudasszintek',
+      'szamitastechnikai_ismeret' => 'szamitastechnikai_ismeretek'
     );
 
     switch ($group) {
@@ -160,6 +176,75 @@ class UserCVPreparer
                 $value['value'] = $term['neve'];
               break;
 
+            }
+
+            $output[$index][$key] = $value;
+          }
+
+        }
+      break;
+      case 'kepesitesek':
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
+            }
+
+            $output[$index][$key] = $value;
+          }
+
+        }
+      break;
+      case 'nyelvismeret':
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
+              case 'nyelv':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+              case 'szobeli_szint':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+              case 'irasbeli_szint':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+            }
+
+            $output[$index][$key] = $value;
+          }
+
+        }
+      break;
+      case 'szamitogepes':
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
+              case 'tudasszint':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+              case 'szamitastechnikai_ismeret':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+              break;
+            }
+
+            $output[$index][$key] = $value;
+          }
+        }
+      break;
+
+      default:
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
             }
 
             $output[$index][$key] = $value;

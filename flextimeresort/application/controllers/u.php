@@ -46,6 +46,9 @@ class u extends Controller
     $output_vars['social_twitter'] = $cv->Social('twitter');
     $output_vars['social_linkedin'] = $cv->Social('linkedin');
 
+		// Ismeretek
+		$output_vars['ismeretek_egyeb'] = $cv->IsmeretekEgyeb();
+
     //////////////
     // Output vars
     $this->out('cv', $cv);
