@@ -1,5 +1,6 @@
 <?
 use PortalManager\User;
+use FlexTimeResort\UserCVPreparer;
 
 class u extends Controller
 {
@@ -24,6 +25,34 @@ class u extends Controller
       'controller' => $this->ctrl
     ));
     $this->out( 'u', $this->user );
+
+    // CV
+    $output_vars = array();
+    $cv = new UserCVPreparer($this->user, array(
+      'controller' => $this->ctrl
+    ));
+
+    // Személyes
+    $output_vars['nev'] = $cv->Name();
+    $output_vars['szuletett'] = $cv->BirthDate();
+    $output_vars['cim'] = $cv->Address();
+
+    // Kapcsolat
+    $output_vars['email'] = $cv->Email();
+    $output_vars['telefon'] = $cv->Phone();
+
+    // Social
+    $output_vars['social_facebook'] = $cv->Social('facebook');
+    $output_vars['social_twitter'] = $cv->Social('twitter');
+    $output_vars['social_linkedin'] = $cv->Social('linkedin');
+
+    //////////////
+    // Output vars
+    $this->out('cv', $cv);
+    foreach ((array)$output_vars as $key => $value) {
+      if(!$value || empty($value)) continue;
+      $this->out('cv_'.$key, $value);
+    }
 
 		// SEO Információk
 		$SEO = null;

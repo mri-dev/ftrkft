@@ -70,8 +70,9 @@ body.profil-view{
     align-items: center;
 
     .data-title{
-      margin: 10px 0 5px 0;
+      margin: 20px 0 10px 0;
     }
+
     &.cv-a-top{
       align-items: flex-start;
     }
@@ -93,7 +94,7 @@ body.profil-view{
     }
 
     & > div.label {
-      flex-basis: 100px;
+      flex-basis: 120px;
       text-align: right;
       color: #777777;
       font-weight: 300;
@@ -106,7 +107,7 @@ body.profil-view{
       font-weight: bold;
       color: black;
       padding: 5px 5px 5px 25px;
-      flex-basis: calc(100% - 100px);
+      flex-basis: calc(100% - 120px);
     }
   }
 
@@ -116,4 +117,51 @@ body.profil-view{
       width: 100%;
     }
   }
+}
+
+.data-group{
+  margin: 20px 0;
+
+  .cv-title{
+    text-align: left !important;
+    border-top: 2px solid #e2e2e2;
+    padding: 15px 0 !important;
+
+    h2{
+      font-size: 1.15em !important;
+      color: black !important;
+    }
+  }
+}
+
+.socials{
+  a.social {
+    border-radius: 30px;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    margin: 0 5px;
+    background: #444444;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    color: white;
+
+    &.social-twitter {
+      background: #02d0ff;
+    }
+
+    &.social-facebook {
+      background: #3b5998;
+    }
+
+    &.social-linkedin {
+      background: #4099C8;
+    }
+  }
+}
+
+.show-on-print{
+  display: none;
 }
