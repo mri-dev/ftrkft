@@ -1,10 +1,29 @@
 <?
-class u extends Controller  {
+use PortalManager\User;
+
+class u extends Controller
+{
 	private $user = false;
+	private $temp = '';
+  public $ctrl = false;
+
 	function __construct()
   {
-		parent::__construct();
-    $this->out('hide_home_top', true);
+    $this->ctrl = parent::__construct( array(
+			'root' => 'onlinecv'
+		) );
+
+  	$this->root = '/'.__CLASS__.'/';
+		$this->out( 'root', $this->root );
+		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
+
+    ///////////////////
+
+    $uid = (int)$_GET['uid'];
+    $this->user = new User($uid, array(
+      'controller' => $this->ctrl
+    ));
+    $this->out( 'u', $this->user );
 
 		// SEO Információk
 		$SEO = null;
@@ -23,10 +42,10 @@ class u extends Controller  {
 	}
 
 	function __destruct(){
-		// RENDER OUTPUT
-		parent::bodyHead();	#HEADER
-		$this->displayView( __CLASS__.'/index', true ); #CONTENT
-		parent::__destruct(); #FOOTER
+    // RENDER OUTPUT
+    parent::bodyHead();					# HEADER
+    $this->displayView('index', true );		# CONTENT
+    parent::__destruct();				# FOOTER
 	}
 }
 

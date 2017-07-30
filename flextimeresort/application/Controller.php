@@ -422,6 +422,8 @@ class Controller
 
     $templateDir = $this->smarty->getTemplateDir();
 
+		//echo $templateDir[0] . $folder . $tpl.'.tpl'. '<br>';
+
 		if( !file_exists( $templateDir[0] . $folder . $tpl.'.tpl') ) {
 			if( $this->subfolder == 'site/' ) {
 				$folder = '';

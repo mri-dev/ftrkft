@@ -75,6 +75,11 @@ class User
 		return $data;
 	}
 
+	public function getBirthDate()
+	{
+		return $this->user['data']['szuletesi_datum'];
+	}
+
 	public function getUserGroup()
 	{
 		return (int)$this->user['data']['user_group'];
@@ -149,6 +154,25 @@ class User
 		return $this->user['data']['telefon'];
 	}
 
+	public function getAddress()
+	{
+		$addr = '';
+
+		if (!empty($this->user['data']['lakcim_irsz'])) {
+			$addr .= $this->user['data']['lakcim_irsz']." ";
+		}
+
+		if (!empty($this->user['data']['lakcim_city'])) {
+			$addr .= $this->user['data']['lakcim_city'];
+		}
+
+		if (!empty($this->user['data']['lakcim_uhsz'])) {
+			$addr .= ", ".$this->user['data']['lakcim_uhsz'];
+		}
+
+		return $addr;
+	}
+
 	public function getProfilImg()
 	{
 		return $this->getAccountData('profil_img');
@@ -163,6 +187,11 @@ class User
 		}
 
 		$this->editAccountDetail('profil_img', $img);
+	}
+
+	public function getTermValues($term, $values)
+	{
+		var_dump($values);
 	}
 
 	public function getOneletrajz()

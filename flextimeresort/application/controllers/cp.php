@@ -38,7 +38,7 @@ class cp extends Controller {
 			'view' => $this->getAllVars()
 		));
 		$this->admin = $this->admins->get();
-  		$this->root = '/'.__CLASS__.'/';
+  	$this->root = '/'.__CLASS__.'/';
 
 		$this->out( 'admin', $this->admin );
 		$this->out( 'root', $this->root );

@@ -85,6 +85,11 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^allasok(/)?([0-9]+)?(/)?$ index.php?tag=allasok_lista&page=$2 [NC,QSA,L]
 
+# Online CV
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^u/([0-9]+)/(.+)?$ index.php?tag=u&uid=$1&nameslug=$2 [NC,QSA,L]
+
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php?tag=$1 [QSA,L]

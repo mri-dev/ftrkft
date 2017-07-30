@@ -1,0 +1,28 @@
+
+/* FONTS */
+$font-main: 'Roboto', sans-serif;;
+$font-bold-small : Arial, sans-serif;
+$font-din-comp: 'Din Comp', sans-serif;
+$font-din-cond: 'Din Cond', sans-serif;
+$font-bold-round: 'Fredoka One', cursive;
+$font-awesome: 'FontAwesome', sans-serif;
+
+/* COLORS */
+$color-primary: #006534;
+$color-primary-light: #39ac4f;
+$color-grey: #5b5b5b;
+$color-bg-light: #eff7f4;
+$color-red: #f44e5e;
+
+@mixin rotate($rotate) {
+  -webkit-transform: rotate($rotate);
+      -ms-transform: rotate($rotate);
+          transform: rotate($rotate);
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}

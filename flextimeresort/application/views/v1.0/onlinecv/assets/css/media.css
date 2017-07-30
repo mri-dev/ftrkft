@@ -1,0 +1,152 @@
+/* FONTS */
+/* COLORS */
+/* line 3, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body, html {
+  background: #efefef;
+  color: #454545;
+}
+
+/* line 8, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view {
+  background-repeat: repeat;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.05em;
+  height: auto;
+}
+
+/* line 14, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header {
+  background: transparent;
+  padding: 10px 0;
+}
+
+/* line 18, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header .hwrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+}
+
+/* line 24, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header .hwrapper .action-buttons {
+  flex-basis: 50%;
+  text-align: right;
+}
+
+/* line 27, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header .hwrapper .action-buttons a {
+  color: #222222;
+  margin: 0 5px;
+  font-size: 14px;
+}
+
+/* line 33, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header .hwrapper .company-copy {
+  text-align: left;
+  flex-basis: 50%;
+}
+
+/* line 37, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view header .hwrapper .company-copy img.logo {
+  height: 45px;
+  max-height: 45px;
+}
+
+/* line 45, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-title {
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* line 48, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-title h1 {
+  text-transform: uppercase;
+  color: black;
+}
+
+/* line 54, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .inside {
+  background: #ffffff;
+  padding: 25px;
+}
+
+/* line 58, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .name-pop {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #39ac4f !important;
+}
+
+/* line 64, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* line 72, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row .data-title {
+  margin: 10px 0 5px 0;
+}
+
+/* line 75, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row.cv-a-top {
+  align-items: flex-start;
+}
+
+/* line 79, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.c8 {
+  flex-basis: 80%;
+}
+
+/* line 82, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.c7 {
+  flex-basis: 70%;
+}
+
+/* line 85, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.c5 {
+  flex-basis: 50%;
+}
+
+/* line 88, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.c3 {
+  flex-basis: 30%;
+}
+
+/* line 91, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.c2 {
+  flex-basis: 20%;
+}
+
+/* line 95, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.label {
+  flex-basis: 100px;
+  text-align: right;
+  color: #777777;
+  font-weight: 300;
+  padding: 5px;
+  font-size: 0.65em;
+  text-transform: uppercase;
+}
+
+/* line 104, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .cv-row > div.value {
+  text-align: left;
+  font-weight: bold;
+  color: black;
+  padding: 5px 5px 5px 25px;
+  flex-basis: calc(100% - 100px);
+}
+
+/* line 114, /Users/MolnarIstvan/Documents/Munka/Flextimeresort/git/ftrkft/flextimeresort/application/views/v1.0/onlinecv/assets/css/scss/media.scss */
+body.profil-view .profil-img img {
+  max-width: 100%;
+  width: 100%;
+}
+
+/*# sourceMappingURL=../media.map */
