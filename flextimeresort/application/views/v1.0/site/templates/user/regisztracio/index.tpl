@@ -35,6 +35,16 @@
 								<input type="text" class="form-control" name="data[name]" id="name" value="{if $form}{$formposts.data.name}{/if}">
 							</div>
 							<div class="divider"></div>
+							{if $as == 'munkavallalo'}
+							<div class="col-md-12 {if $form && $form->hasError(1, 'szakma_text')}input-error{/if}">
+								<label for="szakma_text">{lang text="Foglalkozás / Szakma"} *</label>
+								<input type="text" class="form-control" name="data[szakma_text]" id="szakma_text" value="{if $form}{$formposts.data.szakma_text}{/if}">
+								<div class="infotext" ng-style="(szakma_text==true ? texthintfocusstyle : '')">
+				          {lang text="Pl.: Rendszergazda, Programtervező informatikus, Szakács, Épületgépés, stb."}
+				        </div>
+							</div>
+							<div class="divider"></div>
+							{/if}
 							<div class="col-md-6 {if $form && $form->hasError(1, 'email')}input-error{/if}">
 								<label for="email">{lang text="EMAIL"} *</label>
 								<input type="text" class="form-control" name="data[email]" id="email" value="{if $form}{$formposts.data.email}{/if}">

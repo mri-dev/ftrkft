@@ -504,6 +504,12 @@ class Users
 			$err_code[] = 'name';
 		}
 
+		if( empty($data['szakma_text']) ){
+			$error = true;
+			$err .= '- ' . $this->controller->lang('FORM_USER_REG_SZAKMA_TEXT_HIANYZIK') . '<br/>';
+			$err_code[] = 'szakma_text';
+		}
+
 		if( empty($data['email']) ){
 			$error = true;
 			$err .= '- ' . $this->controller->lang('FORM_USER_REG_EMAIL_HIANYZIK') . '<br/>';
@@ -567,6 +573,7 @@ class Users
 		// Új regisztrált felhasználó ID-ka
 		$uid = $this->db->lastInsertId();
 		$this->addAccountDetail( $uid, 'telefon', $data['details']['telefon']);
+		$this->addAccountDetail( $uid, 'szakma_text', $data['szakma_text']);
 
 		// Aktiváló e-mail kiküldése
 		$this->sendActivationEmail( $data['email'], $user_group );

@@ -49,6 +49,7 @@ class ajax extends Controller  {
 
 					// Alapadatok
 					$data['alap']['name'] = $this->ME->getName();
+					$data['alap']['szakma_text'] = $this->ME->getAccountData('szakma_text');
 					$data['alap']['email'] = $this->ME->getEmail();
 					$data['alap']['profil_kep'] = $this->ME->getProfilImg();
 					$data['alap']['szuletesi_datum'] = $this->ME->getAccountData('szuletesi_datum');
@@ -183,6 +184,7 @@ class ajax extends Controller  {
 					$profildata['name'] = $form['name'];
 					$profildetails['szuletesi_datum'] = $form['szuletesi_datum'];
 					$profildetails['anyanyelv'] = (int)$form['anyanyelv'];
+					$profildetails['szakma_text'] = $form['szakma_text'];
 					$profildetails['nem'] = (int)$form['nem'];
 					$profildetails['allampolgarsag'] = (int)$form['allampolgarsag'];
 					$profildetails['csaladi_allapot'] = (int)$form['csaladi_allapot'];

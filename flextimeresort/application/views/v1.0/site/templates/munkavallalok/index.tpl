@@ -35,18 +35,91 @@
               <div class="items">
                 {foreach from=$lista.data item=u}
                   <div class="user">
+                    {assign var="pp" value=$u->profilPercent()}
+                    <div data-toggle="tooltip" title="{lang text='Profil kitöltöttségi állapot'}" data-placement="top" class="profil-percent st-{if $pp > 0 && $pp< 30}red{elseif $pp>=30 && $pp<50}orange{elseif $pp >=50 && $pp < 80}lightgreen{elseif $pp >= 80}green{/if}">
+                      {$pp}%
+                    </div>
                     <div class="wrapper">
                       <div class="profilimg">
                         <img src="{$u->getProfilImg()}" alt="{$u->getName()}">
                       </div>
                       <div class="dataset">
                         <div class="name">
-                          <a href="{$u->getCVUrl()}">{$u->getName()}</a>
+                          <a href="{$u->getCVUrl()}">{$u->getName()} </a>
                         </div>
                         <div class="szakma">
                           {$u->getSzakmaText()}
                         </div>
+                        {assign var="city" value=$u->cv()->City()}
+                        {if !empty($city)}
+                          <div class="subline">
+                            <span class="city">{$city}</span>
+                          </div>
+                        {/if}
                       </div>
+                    </div>
+                    <div class="extras">
+                      {assign var=iskolai_vegzettseg value=$u->cv()->getTermValues('iskolai_vegzettsegi_szintek', $u->getValue('iskolai_vegzettsegi_szintek'))}
+                      {if !empty($iskolai_vegzettseg)}
+                      <div class="group">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="title">
+                              {lang text="Legmagasabb végzettség"}
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="data">
+                      				{$iskolai_vegzettseg.neve}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/if}
+                      {assign var=munkatapasztalat value=$u->cv()->getTermValues('munkatapasztalat', $u->getValue('munkatapasztalat'))}
+                      {if !empty($munkatapasztalat)}
+                      <div class="group">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="title">
+                              {lang text="Munkatapasztalat"}
+                            </div>
+                          </div>
+                          <div class="col-md-8">
+                            <div class="data">
+                        			{$munkatapasztalat.neve}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/if}
+                      {assign var=elvaras_munkateruletek value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'))}
+                      {if !empty($elvaras_munkateruletek)}
+                        <div class="group g-listed">
+                          <div class="title">
+                            {lang text="Munkaterületek"}
+                          </div>
+                          <div class="data">
+                            {foreach from=$elvaras_munkateruletek item=munkateruletek}
+                              <div class="simple-list-item">{$munkateruletek.neve}</div>
+                            {/foreach}
+                          </div>
+                        </div>
+                      {/if}
+
+                      {assign var=elvaras_munkakorok value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'))}
+                      {if !empty($elvaras_munkakorok)}
+                        <div class="group g-listed">
+                          <div class="title">
+                            {lang text="Munkakörök"}
+                          </div>
+                          <div class="data">
+                            {foreach from=$elvaras_munkakorok item=imk}
+                              <div class="simple-list-item">{$imk.parent.neve} / <strong>{$imk.neve}</strong></div>
+                            {/foreach}
+                          </div>
+                        </div>
+                      {/if}
                     </div>
                   </div>
                 {/foreach}

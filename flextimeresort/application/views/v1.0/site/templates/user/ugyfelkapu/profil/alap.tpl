@@ -19,6 +19,21 @@
 
   <div class="row input-line">
     <div class="col-md-3">
+      <label for="default_szakma_text">{lang text="Foglalkozás / Szakma"} *</label>
+    </div>
+    <div class="col-md-9">
+      <div class="input-wrapper">
+        <input type="text" id="default_szakma_text" ng-focus="szakma_text=true" ng-blur="szakma_text=false" class="form-control" required="required" maxlength="50" ng-model="form.szakma_text">
+        <div class="form-helper"></div>
+        <div class="infotext" ng-style="(szakma_text==true ? texthintfocusstyle : '')">
+          {lang text="Pl.: Rendszergazda, Programtervező informatikus, Szakács, Épületgépés, stb."}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row input-line">
+    <div class="col-md-3">
       <label>{lang text="Nem"} *</label>
     </div>
     <div class="col-md-9">

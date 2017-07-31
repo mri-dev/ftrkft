@@ -4498,7 +4498,7 @@ label.file-uploader {
 }
 /* line 4200, less/main.scss */
 .munkavallalok-view .tophead .wrapper .pages-info {
-  flex-basis: 60%;
+  flex-basis: 80%;
 }
 /* line 4203, less/main.scss */
 .munkavallalok-view .tophead .wrapper .pages-info .result-num {
@@ -4508,10 +4508,18 @@ label.file-uploader {
 }
 /* line 4209, less/main.scss */
 .munkavallalok-view .tophead .wrapper .order {
-  flex-basis: 40%;
+  flex-basis: 20%;
   font-size: 0.7em;
+  text-align: right;
 }
-/* line 4217, less/main.scss */
+/* line 4214, less/main.scss */
+.munkavallalok-view .tophead .wrapper .order select {
+  font-size: 1.2em;
+  padding: 5px;
+  line-height: 1;
+  height: 27px;
+}
+/* line 4225, less/main.scss */
 .munkavallalok-view .user-list > .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4519,25 +4527,56 @@ label.file-uploader {
   flex-wrap: wrap;
   align-items: flex-start;
 }
-/* line 4224, less/main.scss */
+/* line 4232, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista {
   flex-basis: 70%;
 }
-/* line 4226, less/main.scss */
+/* line 4234, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin: 0 -10px;
+  margin: 15px -10px;
 }
-/* line 4234, less/main.scss */
+/* line 4242, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user {
   flex-basis: 50%;
   padding: 10px;
+  position: relative;
 }
-/* line 4237, less/main.scss */
+/* line 4246, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: #d8d8d8;
+  font-size: 0.8em;
+  line-height: 1;
+  padding: 4px;
+}
+/* line 4255, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent.st-red {
+  background: #fdb6bd;
+  color: white;
+}
+/* line 4259, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent.st-orange {
+  background: #e8d27b;
+  color: white;
+}
+/* line 4263, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent.st-lightgreen {
+  background: #bdd88b;
+  color: white;
+}
+/* line 4267, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent.st-green {
+  background: #79d08a;
+  color: white;
+}
+/* line 4272, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper {
   width: 100%;
   display: -webkit-box;
@@ -4548,7 +4587,7 @@ label.file-uploader {
   padding: 8px;
   background: #f1f1f1;
 }
-/* line 4247, less/main.scss */
+/* line 4282, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .profilimg {
   flex-basis: 80px;
   width: 80px;
@@ -4561,7 +4600,7 @@ label.file-uploader {
   background: white;
   border: 3px solid #39ac4f;
 }
-/* line 4259, less/main.scss */
+/* line 4294, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .profilimg img {
   position: absolute;
   max-height: 110%;
@@ -4570,46 +4609,121 @@ label.file-uploader {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-/* line 4269, less/main.scss */
+/* line 4304, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .dataset {
   flex-basis: calc(100% - 80px);
   padding: 0 0 0 10px;
+  line-height: 1.7;
 }
-/* line 4272, less/main.scss */
+/* line 4309, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .dataset .subline {
+  font-size: 0.85em;
+}
+/* line 4313, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .dataset .name {
   font-size: 1.2em;
 }
-/* line 4274, less/main.scss */
+/* line 4315, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .dataset .name a {
   color: black;
   font-weight: bold;
 }
-/* line 4284, less/main.scss */
+/* line 4321, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user > .wrapper .dataset .szakma {
+  color: #a2a2a2;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  font-style: italic;
+}
+/* line 4330, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras {
+  display: none;
+  background: rgba(24, 24, 24, 0.8);
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  z-index: 1000;
+  color: #f1f1f1;
+  font-size: 0.8em;
+  padding: 5px 8px;
+}
+/* line 4341, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .row {
+  align-items: center;
+}
+/* line 4345, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group {
+  line-height: 1.3;
+  margin: 4px 0;
+  padding: 4px 0 6px 0;
+  border-bottom: 1px solid rgba(101, 101, 101, 0.72);
+}
+/* line 4351, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group .title {
+  color: #39ac4f;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+/* line 4357, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group .data {
+  color: white;
+}
+/* line 4362, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group.g-listed .title {
+  margin-bottom: 5px;
+}
+/* line 4366, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group.g-listed .data {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/* line 4373, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user .extras .group.g-listed .data > .simple-list-item {
+  background: #39ac4f;
+  color: white;
+  padding: 4px;
+  line-height: 1;
+  margin: 2px;
+}
+/* line 4386, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user:hover .extras {
+  display: block;
+}
+/* line 4390, less/main.scss */
+.munkavallalok-view .user-list > .wrapper .lista .items .user:hover .wrapper {
+  -webkit-box-shadow: 0 2px 14px -4px black;
+  -moz-box-shadow: 0 2px 14px -4px black;
+  box-shadow: 0 2px 14px -4px black;
+}
+/* line 4400, less/main.scss */
 .munkavallalok-view .user-list > .wrapper .filters {
   flex-basis: 30%;
 }
-/* line 4290, less/main.scss */
+/* line 4406, less/main.scss */
 .munkavallalok-view.landing-page {
   padding: 50px 0;
 }
-/* line 4293, less/main.scss */
+/* line 4409, less/main.scss */
 .munkavallalok-view.landing-page .header {
   text-align: center;
   margin-bottom: 60px;
 }
-/* line 4297, less/main.scss */
+/* line 4413, less/main.scss */
 .munkavallalok-view.landing-page .header h1 {
   color: black;
   margin: 0 0 15px 0;
   font-size: 3em;
   font-weight: bold;
 }
-/* line 4304, less/main.scss */
+/* line 4420, less/main.scss */
 .munkavallalok-view.landing-page .header .subtitle {
   color: #888;
   font-size: 1.4em;
 }
-/* line 4310, less/main.scss */
+/* line 4426, less/main.scss */
 .munkavallalok-view.landing-page .about-abs {
   font-size: 1.2em;
   color: #444444;
@@ -4617,31 +4731,31 @@ label.file-uploader {
   margin-bottom: 25px;
   font-weight: bold;
 }
-/* line 4319, less/main.scss */
+/* line 4435, less/main.scss */
 .munkavallalok-view.landing-page .why-we h2 {
   color: #39ac4f;
   font-size: 1.7em;
   font-weight: bold;
   margin: 0 0 10px 0;
 }
-/* line 4326, less/main.scss */
+/* line 4442, less/main.scss */
 .munkavallalok-view.landing-page .why-we .content {
   font-size: 0.8em;
   color: #5b5b5b;
   line-height: 1.5;
 }
-/* line 4331, less/main.scss */
+/* line 4447, less/main.scss */
 .munkavallalok-view.landing-page .why-we .content ul, .munkavallalok-view.landing-page .why-we .content li {
   padding: 0;
   margin: 0;
   list-style: none;
 }
-/* line 4338, less/main.scss */
+/* line 4454, less/main.scss */
 .munkavallalok-view.landing-page .why-we .content ul li {
   position: relative;
   padding-left: 40px;
 }
-/* line 4342, less/main.scss */
+/* line 4458, less/main.scss */
 .munkavallalok-view.landing-page .why-we .content ul li:before {
   content: "\f058";
   font-family: 'FontAwesome';
@@ -4650,7 +4764,7 @@ label.file-uploader {
   position: absolute;
   left: 10px;
 }
-/* line 4355, less/main.scss */
+/* line 4471, less/main.scss */
 .munkavallalok-view.landing-page .reg-instruction {
   background: #eaeaea;
   padding: 20px;
@@ -4659,60 +4773,60 @@ label.file-uploader {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 4363, less/main.scss */
+/* line 4479, less/main.scss */
 .munkavallalok-view.landing-page .reg-instruction .text {
   line-height: 1.4;
   margin: 10px 0 30px 0;
   display: block;
 }
 
-/* line 4372, less/main.scss */
+/* line 4488, less/main.scss */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-/* line 4376, less/main.scss */
+/* line 4492, less/main.scss */
 ::-webkit-scrollbar-button {
   width: 0px;
   height: 0px;
 }
 
-/* line 4380, less/main.scss */
+/* line 4496, less/main.scss */
 ::-webkit-scrollbar-thumb {
   background: #39ac4f;
   border: 0px none #ffffff;
   border-radius: 50px;
 }
 
-/* line 4385, less/main.scss */
+/* line 4501, less/main.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #39ac4f;
 }
 
-/* line 4388, less/main.scss */
+/* line 4504, less/main.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #2c863d;
 }
 
-/* line 4391, less/main.scss */
+/* line 4507, less/main.scss */
 ::-webkit-scrollbar-track {
   background: #eaeaea;
   border: 0px none #ffffff;
   border-radius: 10px;
 }
 
-/* line 4396, less/main.scss */
+/* line 4512, less/main.scss */
 ::-webkit-scrollbar-track:hover {
   background: #eaeaea;
 }
 
-/* line 4399, less/main.scss */
+/* line 4515, less/main.scss */
 ::-webkit-scrollbar-track:active {
   background: #eaeaea;
 }
 
-/* line 4402, less/main.scss */
+/* line 4518, less/main.scss */
 ::-webkit-scrollbar-corner {
   background: transparent;
 }

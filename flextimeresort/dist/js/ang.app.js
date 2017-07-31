@@ -133,6 +133,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     console.log(user);
     // Pass
     $scope.form.name = user.alap.name;
+    $scope.form.szakma_text = user.alap.szakma_text;
     $scope.form.email = user.alap.email;
     $scope.form.szuletesi_datum = user.alap.szuletesi_datum;
     $scope.profilpreview = user.alap.profil_kep;

@@ -70,6 +70,17 @@ class UserCVPreparer
     return $v;
   }
 
+  public function City()
+  {
+    $v = $this->user->getValue('lakcim_city');
+
+    if (empty($v)) {
+      return false;
+    }
+
+    return $v;
+  }
+
   public function Address()
   {
     $irsz = $this->user->getValue('lakcim_irsz');

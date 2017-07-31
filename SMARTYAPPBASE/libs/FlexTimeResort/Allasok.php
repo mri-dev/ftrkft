@@ -312,7 +312,9 @@ class Allasok
         $hval = (int)$arg['show_history'];
       }
       $idset_orderby = $this->getVisitedIDS($history_row, $hval);
-      $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+      if(!empty($idset_orderby)){
+        $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+      }
     }
     if(isset($arg['show_requests'])){
       $idset_orderby = array();
