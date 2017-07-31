@@ -21,6 +21,7 @@
       <div class="hwrapper">
         <div class="company-copy">
           <a href="/"><img class="logo" src="{$smarty.const.IMG}logo-single-horizontal.svg" alt="{$settings.page_title|strip_tags}"></a>
+          &nbsp; {$settings.slogan}
         </div>
         <div class="action-buttons">
           <a href=""><i class="fa fa-envelope"></i></a>

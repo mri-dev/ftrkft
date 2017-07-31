@@ -158,6 +158,8 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
 
     $scope.elvarasmunkakor_picked = user.elvarasok.elvaras_munkakorok;
 
+    $scope.form.kulso_oneletrajz_url = user.dokumentumok.kulso_oneletrajz_url;
+
     if (user.oneletrajz) {
       $scope.oneletrajz = user.oneletrajz;
     }

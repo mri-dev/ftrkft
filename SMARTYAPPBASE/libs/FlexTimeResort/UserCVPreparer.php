@@ -38,6 +38,11 @@ class UserCVPreparer
     return $this->user->getValue('name');
   }
 
+  public function SzakmaText()
+  {
+    return $this->user->getValue('szakma_text');
+  }
+
   public function Email()
   {
     return $this->user->getValue('email');
@@ -114,6 +119,49 @@ class UserCVPreparer
     return $v;
   }
 
+  public function IgenyekEgyeb()
+  {
+    $v = $this->user->getValue('igenyek_egyeb');
+
+    if (empty($v)) {
+      return false;
+    }
+
+    return $v;
+  }
+
+  public function IgenyekEgyebMunkakorok()
+  {
+    $v = $this->user->getValue('igenyek_egyeb_munkakorok');
+
+    if (empty($v)) {
+      return false;
+    }
+
+    return $v;
+  }
+
+  public function KulsoOneletrajzUrl()
+  {
+    $v = $this->user->getValue('kulso_oneletrajz_url');
+
+    if (empty($v)) {
+      return false;
+    }
+
+    return $v;
+  }
+
+  public function Documents()
+  {
+    return $this->user->getDocuments();
+  }
+
+  public function UploadedCV()
+  {
+    return $this->user->getOneletrajz();
+  }
+
   public function getTermValues($term, $values)
   {
     if (is_array($values)) {
@@ -121,13 +169,26 @@ class UserCVPreparer
     } else {
       $where = " and ID = '".$values."'";
     }
-    $data = $this->db->query($iq = "SELECT ID, neve, langkey FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
+    $data = $this->db->query($iq = "SELECT ID, neve, langkey, szulo_id FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
 
     if (count($data) == 1) {
+      if(!is_null($data[0]['szulo_id'])) {
+        $parent = $this->getTermValues($term, (int)$data[0]['szulo_id']);
+      }
+      if($parent){
+         $data[0]['parent'] = $parent;
+      }
       $text = $data[0];
     } elseif(count($data) > 1) {
       $text = array();
       foreach ((array)$data as $d) {
+        if(!is_null($d['szulo_id'])) {
+          $parent = $this->getTermValues($term, (int)$d['szulo_id']);
+        }
+        if($parent){
+           $d['parent'] = $parent;
+        }
+
         $text[$d['ID']] = $d;
       }
     }
@@ -157,7 +218,9 @@ class UserCVPreparer
       'szobeli_szint' => 'nyelvismeret',
       'irasbeli_szint' => 'nyelvismeret',
       'tudasszint' => 'tudasszintek',
-      'szamitastechnikai_ismeret' => 'szamitastechnikai_ismeretek'
+      'szamitastechnikai_ismeret' => 'szamitastechnikai_ismeretek',
+      'munkakor' => 'munkakorok',
+      'beosztasi_szint' => 'beosztasi_szint'
     );
 
     switch ($group) {
@@ -174,6 +237,9 @@ class UserCVPreparer
                 $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
                 $value['termid'] = (int)$value['value'];
                 $value['value'] = $term['neve'];
+                if ($term['parent']) {
+                  $value['value'] = $term['parent']['neve'] .' / ' . $term['neve'];
+                }
               break;
 
             }
@@ -233,7 +299,38 @@ class UserCVPreparer
                 $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
                 $value['termid'] = (int)$value['value'];
                 $value['value'] = $term['neve'];
+                if ($term['parent']) {
+                  $value['value'] = $term['parent']['neve'] .' / ' . $term['neve'];
+                }
               break;
+            }
+
+            $output[$index][$key] = $value;
+          }
+        }
+      break;
+
+      case 'munkatapasztalat':
+        foreach ((array)$list as $index => $l) {
+          foreach ($l as $key => $value) {
+            switch ($key) {
+              case 'munkakor':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+                if ($term['parent']) {
+                  $value['value'] = $term['parent']['neve'] .' / ' . $term['neve'];
+                }
+              break;
+              case 'beosztasi_szint':
+                $term = $this->getTermValues($term_groups[$key], (int)$value['value']);
+                $value['termid'] = (int)$value['value'];
+                $value['value'] = $term['neve'];
+                if ($term['parent']) {
+                  $value['value'] = $term['parent']['neve'] .' / ' . $term['neve'];
+                }
+              break;
+
             }
 
             $output[$index][$key] = $value;

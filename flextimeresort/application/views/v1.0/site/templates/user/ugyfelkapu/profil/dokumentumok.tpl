@@ -10,7 +10,7 @@
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
-        <input type="text" class="form-control" ng-model="form.oneletrajz_link">
+        <input type="text" class="form-control" ng-model="form.kulso_oneletrajz_url">
       </div>
     </div>
   </div>

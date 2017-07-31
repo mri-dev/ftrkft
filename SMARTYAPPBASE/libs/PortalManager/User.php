@@ -4,6 +4,7 @@ namespace PortalManager;
 use TransactionManager\Transaction;
 use MailManager\Mails;
 use ExceptionManager\RedirectException;
+use FlexTimeResort\UserCVPreparer;
 /**
  * class Users
  *
@@ -13,9 +14,9 @@ class User
 	private $db = null;
 	public $controller = null;
 	public $smarty = null;
-
 	public $id 	= false;
 	public $user = false;
+	public $cvHandler = false;
 
 	function __construct( $user_id, $arg = array() ){
 		$this->id = $user_id;
@@ -29,8 +30,14 @@ class User
 
 		$this->user = $this->get();
 
+
+		if (isset($arg['includeCVHandler']) && $arg['includeCVHandler'] === true) {
+			$this->cvHandler = new UserCVPreparer($this, array('controller' => $this->controller));
+		}
+
 		return $this;
 	}
+
 
 	private function get( $arg = array() )
 	{
@@ -48,6 +55,16 @@ class User
 	{
 		return ($this->user) ? true : false;
 	}
+
+	public function cv()
+	{
+		if ($this->cvHandler) {
+			return $this->cvHandler;
+		}
+
+		return false;
+	}
+
 
 	private function getData( $account_id, $db_by = 'email' ){
 		if($account_id == '') return false;
@@ -90,6 +107,11 @@ class User
 		$ug = (int)$this->user['data']['user_group'];
 	}
 
+	public function getCVUrl()
+	{
+		return '/u/'.$this->getID().'/'.\Helper::makeSafeUrl($this->getName());
+	}
+
 	public function getValue( $key )
 	{
 		$v = $this->user['data'][$key];
@@ -107,6 +129,11 @@ class User
 			return true;
 		}
 		return false;
+	}
+
+	public function getSzakmaText()
+	{
+		return $this->user['data']['szakma_text'];
 	}
 
 	public function isUser()
@@ -173,9 +200,33 @@ class User
 		return $addr;
 	}
 
+	public function getNeme( $re = 'neve' )
+	{
+			$term = $this->getTermValues('nem', (int)$this->getValue('nem'));
+
+			return $term[$re];
+	}
+
 	public function getProfilImg()
 	{
-		return $this->getAccountData('profil_img');
+		$profil = $this->getAccountData('profil_img');
+
+		$neme = (int)$this->getValue('nem');
+
+		switch ($neme) {
+			default: case 16:
+				$gender = 'male';
+			break;
+			case 17:
+				$gender = 'female';
+			break;
+		}
+
+		if ($profil) {
+			return $this->getAccountData('profil_img');
+		} else {
+			return IMG.'no-profil-'.$gender.'.svg';
+		}
 	}
 
 	public function changeProfilImg($img)
@@ -190,9 +241,38 @@ class User
 	}
 
 	public function getTermValues($term, $values)
-	{
-		var_dump($values);
-	}
+  {
+    if (is_array($values)) {
+      $where = " and ID IN(".implode($values,',').")";
+    } else {
+      $where = " and ID = '".$values."'";
+    }
+    $data = $this->db->query($iq = "SELECT ID, neve, langkey, szulo_id FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
+
+    if (count($data) == 1) {
+      if(!is_null($data[0]['szulo_id'])) {
+        $parent = $this->getTermValues($term, (int)$data[0]['szulo_id']);
+      }
+      if($parent){
+         $data[0]['parent'] = $parent;
+      }
+      $text = $data[0];
+    } elseif(count($data) > 1) {
+      $text = array();
+      foreach ((array)$data as $d) {
+        if(!is_null($d['szulo_id'])) {
+          $parent = $this->getTermValues($term, (int)$d['szulo_id']);
+        }
+        if($parent){
+           $d['parent'] = $parent;
+        }
+
+        $text[$d['ID']] = $d;
+      }
+    }
+
+    return $text;
+  }
 
 	public function getOneletrajz()
 	{

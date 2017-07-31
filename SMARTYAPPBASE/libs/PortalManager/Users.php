@@ -24,6 +24,7 @@ class Users
 
 	private $db = null;
 	private $is_cp = false;
+	public $returnType = 'array';
 	public $lang = array();
 	public $smarty = null;
 	public $controller = null;
@@ -64,6 +65,12 @@ class Users
 			$this->db = $arg['controller']->db;
 			$this->settings = $arg['controller']->settings;
 			$this->smarty = $arg['controller']->smarty;
+		}
+
+		if (isset($arg['returnType'])) {
+			if (in_array($arg['returnType'], array('array', 'object'))) {
+				$this->returnType = $arg['returnType'];
+			}
 		}
 
 		$this->is_cp 		= $arg['admin'];
@@ -1146,9 +1153,18 @@ class Users
 
 		$B = array();
 		foreach($data as $d){
-			$d[details] 		= $this->getAccountDetails( $d['ID'] );
-
-			$B[] = $d;
+			if ($this->returnType == 'array') {
+				$d[details] 		= $this->getAccountDetails( $d['ID'] );
+				$B[] = $d;
+			} else if($this->returnType == 'object'){
+				$B[] = new User(
+					(int)$d['ID'],
+					array(
+						'controller' => $this->controller,
+						'includeCVHandler' => isset($this->arg['includeCVHandler'])
+					)
+				);
+			}
 		}
 
 		$ret[data] = $B;

@@ -26,6 +26,10 @@ class u extends Controller
     ));
     $this->out( 'u', $this->user );
 
+		if (!$this->user->getID()) {
+			\Helper::reload('/');
+		}
+
     // CV
     $output_vars = array();
     $cv = new UserCVPreparer($this->user, array(
@@ -34,6 +38,7 @@ class u extends Controller
 
     // Személyes
     $output_vars['nev'] = $cv->Name();
+		$output_vars['szakma_text'] = $cv->SzakmaText();
     $output_vars['szuletett'] = $cv->BirthDate();
     $output_vars['cim'] = $cv->Address();
 
@@ -49,6 +54,13 @@ class u extends Controller
 		// Ismeretek
 		$output_vars['ismeretek_egyeb'] = $cv->IsmeretekEgyeb();
 
+		// Igények
+		$output_vars['igenyek_egyeb'] = $cv->IgenyekEgyeb();
+		$output_vars['igenyek_egyeb_munkakorok'] = $cv->IgenyekEgyebMunkakorok();
+
+		// Dokumentumok
+		$output_vars['kulso_oneletrajz_url'] = $cv->KulsoOneletrajzUrl();
+
     //////////////
     // Output vars
     $this->out('cv', $cv);
@@ -56,6 +68,10 @@ class u extends Controller
       if(!$value || empty($value)) continue;
       $this->out('cv_'.$key, $value);
     }
+
+		$this->out('documents', $cv->Documents());
+		$this->out('mycv', $cv->UploadedCV());
+
 
 		// SEO Információk
 		$SEO = null;

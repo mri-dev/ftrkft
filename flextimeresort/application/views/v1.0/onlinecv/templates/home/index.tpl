@@ -12,6 +12,11 @@
 			<div class="datalines">
 				<div class="name-pop">
 					{$cv_nev}
+					{if !empty($cv_szakma_text)}					
+					<div class="szakma_text">
+						{$cv_szakma_text}
+					</div>
+					{/if}
 				</div>
 				<div class="cv-row cv-a-top">
 					<div class="cv-col c5">
@@ -426,10 +431,317 @@
 	<div class="cv-title">
 		<h2>{lang text="Munkatapasztalatok"}</h2>
 	</div>
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Megszerzett munkatapasztalat"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=munkatapasztalat value=$cv->getTermValues('munkatapasztalat', $u->getValue('munkatapasztalat'))}
+			{if !$munkatapasztalat}
+				<span class="no-data-setted">(!) {lang text="Hiányzó adat."}</span>
+			{else}
+				{$munkatapasztalat.neve}
+			{/if}
+		</div>
+	</div>
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Munkatapasztalatok, korábbi munkahelyek"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=munkatapasztalatok value=$cv->getModul('munkatapasztalat', 'munkatapasztalat')}
+			{foreach from=$munkatapasztalatok item=mk}
+			<div class="modul-groups">
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Év"}
+					</div>
+					<div class="value">
+						{$mk.startdate.year.value} &mdash; {$mk.enddate.year.value}
+					</div>
+				</div>
+
+				{if !empty($mk.munkakor.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Szakterület/Munkakör"}
+					</div>
+					<div class="value">
+						{$mk.munkakor.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.beosztas.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Beosztás megnevezése"}
+					</div>
+					<div class="value">
+						{$mk.beosztas.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.feladatok.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Beosztásban végzett feladatok"}
+					</div>
+					<div class="value">
+						{$mk.feladatok.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.munkavegzes_helye.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Munkavégzés helye"}
+					</div>
+					<div class="value">
+						{$mk.munkavegzes_helye.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.ceg_neve.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Cég neve"}
+					</div>
+					<div class="value">
+						{$mk.ceg_neve.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.beosztasi_szint.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Beosztás szintje"}
+					</div>
+					<div class="value">
+						{$mk.beosztasi_szint.value}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.startdate.year.value)}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Kezdés ideje"}
+					</div>
+					<div class="value">
+						{$mk.startdate.year.value}{if !empty($mk.startdate.month.value)}/{$mk.startdate.month.value}. {lang text="hó"}{/if}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.enddate.year.value) && $mk.folyamatban.value == '0'}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Befejezés ideje"}
+					</div>
+					<div class="value">
+						{$mk.enddate.year.value}{if !empty($mk.enddate.month.value)}/{$mk.enddate.month.value}. {lang text="hó"}{/if}
+					</div>
+				</div>
+				{/if}
+				{if !empty($mk.folyamatban.value) && $mk.folyamatban.value == '1'}
+				<div class="cv-row modul-group-item">
+					<div class="label">
+						{lang text="Folyamatban"}
+					</div>
+					<div class="value">
+						{lang text="Igen"}
+					</div>
+				</div>
+				{/if}
+			</div>
+			{/foreach}
+		</div>
+	</div>
 </div>
 <div class="data-group">
 	<div class="cv-title">
 		<h2>{lang text="Elvárások és igények"}</h2>
 	</div>
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Bérigény (bruttó)"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=igeny_brutto value=$u->getValue('fizetesi_igeny')}
+			{if !$igeny_brutto}
+				<span class="no-data-setted">(!) {lang text="Hiányzó adat."}</span>
+			{else}
+				{$igeny_brutto|number_format:0:"":" "} HUF
+			{/if}
+		</div>
+	</div>
+	{if !empty($u->getValue('megyeaholdolgozok'))}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Megyék, ahol munkát vállalna"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=megyeaholdolgozok value=$cv->getTermValues('megyek', $u->getValue('megyeaholdolgozok'))}
+			{foreach from=$megyeaholdolgozok item=megye_dolgoz}
+				<div class="simple-list-item">{$megye_dolgoz.neve}</div>
+			{/foreach}
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	{/if}
+	{if !empty($u->getValue('elvaras_munkateruletek'))}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Munkaterületek, ahol munkát vállalna"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=elvaras_munkateruletek value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'))}
+			{foreach from=$elvaras_munkateruletek item=munkateruletek}
+				<div class="simple-list-item">{$munkateruletek.neve}</div>
+			{/foreach}
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	{/if}
+	{if !empty($u->getValue('elvaras_munkakorok'))}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Lehetséges munkakörök"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{assign var=elvaras_munkakorok value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'))}
+			{foreach from=$elvaras_munkakorok item=imk}
+				<div class="simple-list-item">{$imk.parent.neve} / <strong>{$imk.neve}</strong></div>
+			{/foreach}
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	{/if}
+	{if !empty($cv_igenyek_egyeb_munkakorok) && $cv_igenyek_egyeb_munkakorok}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Egyéb munkakörök"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{$cv_igenyek_egyeb_munkakorok}
+		</div>
+	</div>
+	{/if}
+	{assign var=munkaba_allas_ideje value=$u->getValue('munkaba_allas_ideje')}
+	{if $munkaba_allas_ideje}
+		<div class="sub-group cv-row cv-a-top">
+			<div class="cv-col c3">
+				<div class="title">
+					<div class="t">
+						{lang text="Lehetséges munkába állás ideje"}
+					</div>
+				</div>
+			</div>
+			<div class="cv-col c7">
+				{$munkaba_allas_ideje|date_format:"%Y. %m. %d."}
+			</div>
+		</div>
+	{else}
+		<span class="no-data-setted">(!) {lang text="Hiányzó adat."}</span>
+	{/if}
+	{if !empty($cv_igenyek_egyeb) && $cv_igenyek_egyeb}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Egyéb"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			{$cv_igenyek_egyeb}
+		</div>
+	</div>
+	{/if}
 </div>
-<pre>{$u->user|print_r}</pre>
+
+<div class="data-group">
+	<div class="cv-title">
+		<h2>{lang text="Dokumentumok"}</h2>
+	</div>
+	{if !empty($cv_kulso_oneletrajz_url) && $cv_kulso_oneletrajz_url}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Külső önéletrajz linkje"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			<a href="{$cv_kulso_oneletrajz_url}" target="_blank"><i class="fa fa-external-link"></i> {$cv_kulso_oneletrajz_url}</a>
+		</div>
+	</div>
+	{/if}
+	{if !empty($mycv)}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Letölthető egyéb önéletrajz"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			<a href="{$mycv.filepath}" target="_blank"><i class="fa fa-download"></i> <strong>{$cv_nev} {$mycv.name}</strong> <small>(.{$mycv.file_type}, {$mycv.file_size} KB)</small></a>
+		</div>
+	</div>
+	{/if}
+	{if !empty($documents)}
+	<div class="sub-group cv-row cv-a-top">
+		<div class="cv-col c3">
+			<div class="title">
+				<div class="t">
+					{lang text="Egyéb dokumentumok"}
+				</div>
+			</div>
+		</div>
+		<div class="cv-col c7">
+			<div class="documents">
+				{foreach from=$documents item=docs}
+					<a href="{$docs.filepath}" target="_blank"><i class="fa fa-file-o"></i> <strong>{$docs.name}</strong> <small>(.{$docs.file_type}, {$docs.file_size})</small></a>
+				{/foreach}
+			</div>
+		</div>
+	</div>
+	{/if}
+</div>
+<div class="footer-copy">
+	<div class="copy">
+		{lang text="Az önéletrajz a(z) %page% rendszerével készült" page=$settings.page_title}
+	</div>
+	<div class="url">
+		{$settings.page_url}/u/{$smarty.get.uid}/{$smarty.get.nameslug}
+	</div>
+</div>

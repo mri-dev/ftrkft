@@ -76,6 +76,10 @@ class ajax extends Controller  {
 
 					$data['elvarasok']['elvaras_munkakorok'] = (array)$this->ME->getAccountData('elvaras_munkakorok');
 
+					$data['dokumentumok']['kulso_oneletrajz_url'] = $this->ME->getAccountData('kulso_oneletrajz_url');
+
+
+
 					$data['oneletrajz'] = $this->ME->getOneletrajz();
 					$data['documents'] = $this->ME->getDocuments();
 
@@ -204,6 +208,9 @@ class ajax extends Controller  {
 					$profildetails['igenyek_egyeb'] = $form['igenyek_egyeb'];
 
 					$profildetails['elvaras_munkakorok'] = (array)$form['elvaras_munkakor'];
+
+					$profildetails['kulso_oneletrajz_url'] = $form['kulso_oneletrajz_url'];
+
 
 					if (isset($form['newprofilimg'])) {
 						$this->ME->changeProfilImg($form['newprofilimg']);
