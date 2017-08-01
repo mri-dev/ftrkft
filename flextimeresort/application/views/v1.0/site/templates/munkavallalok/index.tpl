@@ -10,14 +10,6 @@
             <span class="result-num">{$lista.info.total_num} {lang text="találat"}</span>
             <span class="current">{$lista.info.pages.current}. {lang text="oldal"}</span> / {$lista.info.pages.max} {lang text="oldal"}
           </div>
-          <div class="order">
-            <label for="sorter"><i class="fa fa-sort-amount-desc"></i> {lang text="Rendezés"}</label>
-            <div class="order-select">
-              <select class="form-control" id="sorter" name="order">
-                <option value="">{lang text="Legújabb állások"}</option>
-              </select>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -125,9 +117,6 @@
                 {/foreach}
               </div>
               {$pagination}
-            </div>
-            <div class="filters">
-              filters
             </div>
           </div>
         {/if}

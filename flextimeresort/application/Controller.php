@@ -110,6 +110,31 @@ class Controller
 		$this->out( 'munkakorok', $munkakorok);
 		$this->out( 'selected_munkakor', ($_GET['mk'] == '') ? array() : explode(",", $_GET['mk']));
 
+		// Kereső munkatapasztalat
+		$munkatapasztalat = new Categories(false, array('controller' => $this));
+		$munkatapasztalat->getTree('munkatapasztalat');
+		$this->out( 'munkatapasztalat', $munkatapasztalat);
+		$this->out( 'selected_munkatapasztalat', ($_GET['mt'] == '') ? array() : explode(",", $_GET['mt']));
+
+		// Kereső legmagasabb végzettség
+		$legmagasabbvegzettseg = new Categories(false, array('controller' => $this));
+		$legmagasabbvegzettseg->getTree('iskolai_vegzettsegi_szintek');
+		$this->out( 'legmagasabbvegzettseg', $legmagasabbvegzettseg);
+		$this->out( 'selected_legmagasabbvegzettseg', ($_GET['lv'] == '') ? array() : explode(",", $_GET['lv']));
+
+		// Kereső legmagasabb végzettség
+		$megyek = new Categories(false, array('controller' => $this));
+		$megyek->getTree('megyek');
+		$this->out( 'munkamegye', $megyek);
+		$this->out( 'selected_munkamegye', ($_GET['megye'] == '') ? array() : explode(",", $_GET['megye']));
+
+		// Kereső nemek
+		$nemek = new Categories(false, array('controller' => $this));
+		$nemek->getTree('nem');
+		$this->out( 'nem', $nemek);
+		$this->out( 'selected_nem', ($_GET['nem'] == '') ? array() : explode(",", $_GET['nem']));
+
+
 		// Alerts
 		$this->ALERTS = new Alerts(array(
 			'controller' => $this

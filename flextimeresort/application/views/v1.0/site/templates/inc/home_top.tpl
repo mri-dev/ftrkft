@@ -3,7 +3,12 @@
   {if !$hide_searcher}
   <div class="home-searcher">
     <div class="page-width">
-      {include file='inc/kereso.tpl'}
+      {if ($me && $me->logged() &&$me->isMunkaado())}
+        {include file='inc/kereso_munkavallalok.tpl'}
+      {else}
+        {include file='inc/kereso.tpl'}
+      {/if}
+
     </div>
   </div>
   {/if}

@@ -1,6 +1,7 @@
 <?
 use PortalManager\Users;
 use PortalManager\Pagination;
+use DesignCreator\FormDesigns;
 
 class munkavallalok extends Controller  {
 	private $user = false;
@@ -8,8 +9,11 @@ class munkavallalok extends Controller  {
 	function __construct(){
 		$this->ctrl = parent::__construct();
 
-    $this->out('hidehometop', true);
+    $this->out('hide_login_instruction', true);
+		$this->out('hide_home_instruction', true);
 
+
+		$formdesign = new FormDesigns();
     $users = new Users(array(
         "controller" => $this->ctrl,
         'returnType' => 'object',
@@ -20,7 +24,7 @@ class munkavallalok extends Controller  {
     $filters = array();
 
     $arg['filters'] = $filters;
-    $arg['limit'] = 20;
+    $arg['limit'] = 30;
     $arg['page'] = ($_GET[page] != '') ? (int)$_GET['page'] : 1;
 
     $list = $users->getUserList( $arg, $usergroup );
@@ -32,6 +36,7 @@ class munkavallalok extends Controller  {
       'lang' => $this->LANGUAGES->texts
     )))->render());
     $this->out( 'lista', $list );
+		$this->out('formdesigns', $formdesign);
 
 		// SEO Információk
 		$SEO = null;

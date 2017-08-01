@@ -730,6 +730,15 @@ input[type=checkbox].ccb:checked + label:before {
   background-size: contain;
 
   .home-searcher{
+    .header{
+      text-align: center;
+      h2{
+        color: $color-primary-light;
+        margin: 0 0 20px 0;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+    }
     padding: 40px 0 20px 0;
     .input-holder{
       display: -webkit-box;
@@ -843,6 +852,35 @@ input[type=checkbox].ccb:checked + label:before {
         &.inp-order{
           flex-basis: 20%;
           order: 7;
+        }
+      }
+
+      &.for-munkavallalok{
+        .inp{
+          &.inp-munkakor{
+            flex-basis: 50%;
+            order: 1;
+          }
+          &.inp-tapasztalat{
+            flex-basis: 25%;
+            order: 4;
+          }
+          &.inp-vegzettsegszint{
+            flex-basis: 25%;
+            order: 5;
+          }
+          &.inp-button-search{
+            flex-basis: 20%;
+            order: 3;
+          }
+          &.inp-megye{
+            flex-basis: 30%;
+            order: 2;
+          }
+          &.inp-nem{
+            flex-basis: 30%;
+            order: 7;
+          }
         }
       }
     }
@@ -4230,7 +4268,7 @@ label.file-uploader{
       align-items: flex-start;
 
       .lista{
-        flex-basis: 70%;
+        flex-basis: 100%;
         .items{
           display: -webkit-box;
           display: -ms-flexbox;
@@ -4240,7 +4278,7 @@ label.file-uploader{
           margin: 15px -10px;
 
           .user{
-            flex-basis: 50%;
+            flex-basis: calc(100%/3);
             padding: 10px;
             position: relative;
             .profil-percent{
@@ -4379,6 +4417,10 @@ label.file-uploader{
                     }
                   }
                 }
+
+                &:last-child{
+                  border-bottom: none;
+                }
               }
             }
 
@@ -4396,9 +4438,6 @@ label.file-uploader{
             }
           }
         }
-      }
-      .filters{
-        flex-basis: 30%;
       }
     }
   }
