@@ -70,18 +70,6 @@
 
   <div class="row input-line">
     <div class="col-md-3">
-      <label>{lang text="Családi állapot"} *</label>
-    </div>
-    <div class="col-md-9">
-      <div class="input-wrapper">
-        {$formdesigns->singleSelector('csaladi_allapot', 'csaladi_allapot')}
-        <div ng-class="'form-helper ' + ( (form.csaladi_allapot) ? 'valid' : 'invalid')"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="row input-line">
-    <div class="col-md-3">
       <label for="default_email">{lang text="EMAIL_ADDRESS"} *</label>
     </div>
     <div class="col-md-9">

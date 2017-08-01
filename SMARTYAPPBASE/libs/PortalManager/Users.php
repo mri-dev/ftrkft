@@ -1120,6 +1120,9 @@ class Users
 		// WHERE
 		$q .= " WHERE 1=1 ";
 
+		if (!$this->is_cp) {
+			$q .= " and f.aktivalva IS NOT NULL and f.engedelyezve = 1";
+		}
 
 		if( $user_group != -1 ) {
 			$q .= " and f.user_group = ".$user_group;
@@ -1143,6 +1146,42 @@ class Users
 						case 'emailname':
 							$q .= " and (f.name LIKE '%".$v."%' or f.email LIKE '%".$v."%') ";
 						break;
+						case 'details':
+							foreach ((array)$v as $dkey => $dv) {
+								if($dkey == 'nem') {
+									$q .= " and (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'nem') IN(".implode($dv,",").")";
+								}
+								if($dkey == 'iskolai_vegzettsegi_szintek') {
+									$q .= " and (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'iskolai_vegzettsegi_szintek') IN(".implode($dv,",").")";
+								}
+								if($dkey == 'iskolai_vegzettsegi_szintek') {
+									$q .= " and (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'iskolai_vegzettsegi_szintek') IN(".implode($dv,",").")";
+								}
+								if($dkey == 'munkatapasztalat') {
+									$q .= " and (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'munkatapasztalat') IN(".implode($dv,",").")";
+								}
+								if($dkey == 'elvaras_munkateruletek') {
+									$q .= " and (";
+										$sqv = "";
+										foreach ((array)$dv as $pv) {
+											$sqv .= $pv." IN (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'elvaras_munkateruletek') or ";
+										}
+										$sqv = rtrim($sqv, " or ");
+										$q .= $sqv;
+									$q .= ")";
+								}
+								if($dkey == 'megyeaholdolgozok') {
+									$q .= " and (";
+										$sqv = "";
+										foreach ((array)$dv as $pv) {
+											$sqv .= $pv." IN (SELECT ertek FROM ".self::TABLE_DETAILS_NAME." as d WHERE d.fiok_id = f.ID and d.nev = 'megyeaholdolgozok') or ";
+										}
+										$sqv = rtrim($sqv, " or ");
+										$q .= $sqv;
+									$q .= ")";
+								}
+							}
+						break;
 						default:
 							$q .= " and ".$key." = '".$v."' ";
 						break;
@@ -1151,9 +1190,15 @@ class Users
 			}
 		}
 
-		$q .= "
-		ORDER BY f.register_date DESC
-		";
+		if (!$this->is_cp) {
+			$q .= "
+				ORDER BY f.last_login_date DESC
+			";
+		} else{
+			$q .= "
+				ORDER BY f.register_date DESC
+			";
+		}
 
 		$arg[multi] = "1";
 		extract($this->db->q($q, $arg));

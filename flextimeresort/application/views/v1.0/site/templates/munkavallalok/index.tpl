@@ -17,9 +17,10 @@
       <div class="user-list">
         {if $lista.info.total_num == 0}
           <div class="no-user">
-            <i class="fa fa-info-circle"></i>
+            <i class="fa fa-address-book "></i>
             <h2>{lang text="Nincs találat"}</h2>
             <small>{lang text="Nem találtunk a keresési feltételek alapján munkavállalót"}.</small>
+            <div><a class="filterremover" href="{$settings.munkavallalo_search_slug}">{lang text="szűrőfeltételek törlése"} <i class="fa fa-refresh"></i></a></div>
           </div>
         {else}
           <div class="wrapper">

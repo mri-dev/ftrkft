@@ -4260,6 +4260,34 @@ label.file-uploader{
   }
 
   .user-list{
+    .no-user{
+      text-align: center;
+      font-size: 1.3em;
+      padding: 80px 0;
+
+      & > i{
+        font-size: 64px;
+        color: $color-primary-light;
+        margin: 0 0 20px 0;
+      }
+
+      h2{
+        font-size: 1.8em;
+        color: black;
+      }
+
+      small {
+        font-size: $color-grey;
+      }
+
+      a.filterremover{
+        font-size: 0.8em;
+        background: #dadada;
+        padding: 5px 10px;
+        border-radius: 16px;
+        color: #4e4b4b;
+      }
+    }
     & > .wrapper{
       display: -webkit-box;
       display: -ms-flexbox;

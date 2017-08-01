@@ -85,6 +85,12 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^allasok(/)?([0-9]+)?(/)?$ index.php?tag=allasok_lista&page=$2 [NC,QSA,L]
 
+# Munkavállalók lista
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^munkavallalok(/)?([0-9]+)?(/)?$ index.php?tag=munkavallalok&page=$2 [NC,QSA,L]
+
+
 # Online CV
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

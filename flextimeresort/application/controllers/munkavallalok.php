@@ -12,27 +12,50 @@ class munkavallalok extends Controller  {
     $this->out('hide_login_instruction', true);
 		$this->out('hide_home_instruction', true);
 
-
 		$formdesign = new FormDesigns();
     $users = new Users(array(
         "controller" => $this->ctrl,
         'returnType' => 'object',
         'includeCVHandler' => true
     ));
-
     $usergroup = $this->settings['USERS_GROUP_USER'];
     $filters = array();
+
+		if (isset($_GET['nem']) && !empty($_GET['nem'])) {
+			$filters['details']['nem'] = explode(",",$_GET['nem']);
+		}
+
+		if (isset($_GET['mt']) && !empty($_GET['mt'])) {
+			$filters['details']['munkatapasztalat'] = explode(",",$_GET['mt']);
+		}
+
+		if (isset($_GET['lv']) && !empty($_GET['lv'])) {
+			$filters['details']['iskolai_vegzettsegi_szintek'] = explode(",",$_GET['lv']);
+		}
+
+		if (isset($_GET['mk']) && !empty($_GET['mk'])) {
+			$filters['details']['elvaras_munkateruletek'] = explode(",",$_GET['mk']);
+		}
+
+		if (isset($_GET['megye']) && !empty($_GET['megye'])) {
+			$filters['details']['megyeaholdolgozok'] = explode(",",$_GET['megye']);
+		}
 
     $arg['filters'] = $filters;
     $arg['limit'] = 30;
     $arg['page'] = ($_GET[page] != '') ? (int)$_GET['page'] : 1;
 
     $list = $users->getUserList( $arg, $usergroup );
+
+		$sget = $_GET;
+		unset($sget['tag']);
+		unset($sget['page']);
+
     $this->out( 'pagination', (new Pagination(array(
       'max' => $list[info][pages][max],
       'current' => $list[info][pages][current],
       'root' => substr($this->settings['munkavallalo_search_slug'], 0, -1),
-      'after' => '?'.http_build_query($filters),
+      'after' => '?'.http_build_query($sget),
       'lang' => $this->LANGUAGES->texts
     )))->render());
     $this->out( 'lista', $list );
