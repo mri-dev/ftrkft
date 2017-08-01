@@ -42,6 +42,9 @@
       </div>
       <button ng-show="!saveinprogress" class="btn btn-success" ng-click="save(false)">{lang text="Mentés"}</button>
       <button ng-show="!saveinprogress" class="btn btn-danger btn-redhigh" ng-click="save(true)">{lang text="Mentés és tovább"}</button>
+      {if $me && $me->isUser()}
+        <a target="_blank" href="{$settings.page_url}{$me->getCVUrl()}" class="btn btn-default pull-right">{lang text="Önéletrajz megtekintése"} <i class="fa fa-file-text-o"></i></a>
+      {/if}
     </div>
   </div>
 </div>

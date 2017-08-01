@@ -23,9 +23,9 @@
           <a href="/"><img class="logo" src="{$smarty.const.IMG}logo-single-horizontal.svg" alt="{$settings.page_title|strip_tags}"></a>
           &nbsp; {$settings.slogan}
         </div>
-        <div class="action-buttons">
-          <a href=""><i class="fa fa-envelope"></i></a>
-          <a href=""><i class="fa fa-print"></i></a>
+        <div class="action-buttons hide-on-print">
+          <a href="mailto:?subject={$cv->Name()} munkavállaló online önéletrajza&body=Ajánlom Neked {$cv->Name()} ({$cv->SzakmaText()}) önéletrajzát, melyet a következő linken elérhetsz: {$settings.page_url|cat:$u->getCVUrl()}"><i class="fa fa-envelope"></i></a>
+          <a href="javascript:window.print();"><i class="fa fa-print"></i></a>
         </div>
       </div>
     </div>

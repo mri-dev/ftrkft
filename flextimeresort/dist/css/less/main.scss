@@ -432,6 +432,22 @@ header {
               border-right:  1px solid #c5c5c5;
             }
           }
+
+          &.cv-link{
+            background: $color-primary-light;
+            -webkit-transform: skewX(-35deg);
+            transform: skewX(-35deg);
+
+            a{
+              padding: 0 15px;
+              -webkit-transform: skewX(35deg);
+              transform: skewX(35deg);
+            }
+
+            &:hover{
+              background: $color-red;
+            }
+          }
         }
 
         &:before {
@@ -1218,11 +1234,21 @@ input[type=checkbox].ccb:checked + label:before {
                 }
               }
             }
+
+            &.cv-link{
+              a{
+                background: #353535;
+                color: white;
+              }
+            }
           }
 
           .ico {
             text-align: center;
             margin: 0 8px 0 4px;
+            i{
+              width: 16px;
+            }
           }
         }
       }

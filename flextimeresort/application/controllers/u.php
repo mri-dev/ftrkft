@@ -1,4 +1,6 @@
 <?
+
+use PortalManager\Admins;
 use PortalManager\User;
 use FlexTimeResort\UserCVPreparer;
 
@@ -19,6 +21,13 @@ class u extends Controller
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
 
     ///////////////////
+
+		$this->admins = new Admins( array(
+			'db' => $this->db,
+			'smarty' => $this->smarty,
+			'view' => $this->getAllVars()
+		));
+		$this->admin = $this->admins->get();
 
     $uid = (int)$_GET['uid'];
     $this->user = new User($uid, array(
@@ -61,6 +70,7 @@ class u extends Controller
 		// Dokumentumok
 		$output_vars['kulso_oneletrajz_url'] = $cv->KulsoOneletrajzUrl();
 
+
     //////////////
     // Output vars
     $this->out('cv', $cv);
@@ -71,6 +81,24 @@ class u extends Controller
 
 		$this->out('documents', $cv->Documents());
 		$this->out('mycv', $cv->UploadedCV());
+
+
+		/**
+		* Kapcsolat adatok hozzáférése
+		**/
+		$has_access_contact = false;
+		// ha adminként be vannak lépve
+		// ha a saját adatlapját tekinti meg
+		// ha munkaadó és kérelmezte a a hozzáférést és meg is kapta
+		if (
+				$this->admin ||
+				($this->ME && $this->ME->getID() == $uid) ||
+				($this->ME && $this->ME->isUser() && $cv->accessGrantedCheck($this->ME->getID()))
+		) {
+			$has_access_contact = true;
+		}
+
+		$this->out('has_access_contact', $has_access_contact);
 
 
 		// SEO Információk

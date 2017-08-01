@@ -10,7 +10,10 @@
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'apps'}active{/if}"><a href="/ugyfelkapu/apps"><span class="ico"><i class="fa fa-handshake-o"></i></span> {lang text="Jelentkezéseim"}</a></li>
       {/if}
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'beallitasok'}active{/if}"><a href="/ugyfelkapu/beallitasok"><span class="ico"><i class="fa fa-gear"></i></span> {lang text="BEALLITASOK"}</a></li>
-      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>      
+      {if $me && $me->isUser()}
+      <li class="cv-link"><a target="_blank" href="{$me->getCVUrl()}"><span class="ico"><i class="fa fa-file-text"></i></span> {lang text="ONLINE_ONELETRAJZOM"}</a></li>
+      {/if}
       {if $me && $me->isMunkaado()}
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'hirdetesek'}active{/if}"><a href="/ugyfelkapu/hirdetesek"><span class="ico"><i class="fa fa-file-text"></i></span> {lang text="Hirdetések"}</a></li>
       {/if}

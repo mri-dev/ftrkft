@@ -355,11 +355,11 @@ class User
 	public function profilPercent()
 	{
 		$dataset = $this->user['data'];
-		$req = array('email', 'name', 'szakma_text', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'nem', 'profil_img', 'telefon', 'lakcim_irsz', 'lakcim_city',	'social');
+		$req = array('email', 'name', 'szakma_text', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'nem', 'profil_img', 'telefon', 'lakcim_irsz', 'lakcim_city',	'social', 'iskolai_vegzettsegi_szintek','munkatapasztalat','fizetesi_igeny','megyeaholdolgozok','elvaras_munkateruletek','elvaras_munkakorok');
 		$has = array();
 		$current = 0;
 
-		//
+		// User details
 		foreach ($req as $k ) {
 			$d = $dataset[$k];
 
@@ -379,8 +379,27 @@ class User
 			}
 		}
 
-		$total = count($req);
-		$current = count($has);
+		// Moduls
+		$modul_req = 2;
+		$modul_has = 0;
+
+		$moduls = $this->getAccountModulData();
+
+		// Végzettség
+		$mdi = $moduls['vegzettseg']['vegzettseg'];
+
+		if(count($mdi) != 0) {
+			$modul_has++;
+		}
+
+		$mdi = $moduls['munkatapasztalat']['munkatapasztalat'];
+
+		if(count($mdi) != 0) {
+			$modul_has++;
+		}
+
+		$total = count($req)+$modul_req;
+		$current = count($has)+$modul_has;
 
 		if($current == 0) return 0;
 

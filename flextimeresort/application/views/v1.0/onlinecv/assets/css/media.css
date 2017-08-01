@@ -229,3 +229,71 @@ body.profil-view {
 /* line 262, scss/media.scss */
 .show-on-print {
   display: none; }
+
+/* line 266, scss/media.scss */
+.restrict-access {
+  margin: 5px 0;
+  padding: 5px 14px;
+  line-height: 1.4;
+  font-size: 0.65em;
+  color: #f36d6d; }
+
+/* line 273, scss/media.scss */
+.no-data-setted {
+  margin: 5px 0;
+  padding: 5px 14px;
+  line-height: 1.4;
+  font-size: 0.65em;
+  color: #888888;
+  font-style: italic; }
+
+@media print {
+  /* line 2, scss/_print.scss */
+  body, html, body.profil-view {
+    font-family: 'Arial',Times,serif; }
+
+  /* line 6, scss/_print.scss */
+  body {
+    font-family: 'Arial',serif;
+    background: transparent !important;
+    background-color: #ffffff !important; }
+
+  /* line 12, scss/_print.scss */
+  header {
+    border-bottom: 5px solid #39ac4f; }
+
+  /* line 15, scss/_print.scss */
+  body.profil-view .inside .footer-copy {
+    background-color: transparent;
+    color: black;
+    border-top: 5px solid #acacac;
+    margin-top: 40px; }
+
+  /* line 21, scss/_print.scss */
+  body.profil-view .inside .footer-copy .url {
+    color: #555555; }
+
+  /* line 24, scss/_print.scss */
+  body.profil-view .inside {
+    box-shadow: none; }
+
+  /* line 29, scss/_print.scss */
+  .socials .show-on-print {
+    font-size: 0.8em !important; }
+    /* line 32, scss/_print.scss */
+    .socials .show-on-print strong {
+      color: black !important;
+      font-size: 1.2em !important; }
+
+  /* line 39, scss/_print.scss */
+  .hide-on-print {
+    display: none; }
+
+  /* line 42, scss/_print.scss */
+  .show-on-print {
+    display: block; }
+
+  /* line 46, scss/_print.scss */
+  ::first-letter {
+    margin: 0 !important;
+    padding: 0 !important; } }

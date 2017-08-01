@@ -173,7 +173,14 @@ class UserCVPreparer
     return $this->user->getOneletrajz();
   }
 
-  public function getTermValues($term, $values)
+  public function accessGrantedCheck($uid)
+  {
+    $granted = false;
+
+    return $granted;
+  }
+
+  public function getTermValues($term, $values, $cast_multi_arr = false)
   {
     if (is_array($values)) {
       $where = " and ID IN(".implode($values,',').")";
@@ -182,7 +189,7 @@ class UserCVPreparer
     }
     $data = $this->db->query($iq = "SELECT ID, neve, langkey, szulo_id FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
 
-    if (count($data) == 1) {
+    if (count($data) == 1 && !$cast_multi_arr) {
       if(!is_null($data[0]['szulo_id'])) {
         $parent = $this->getTermValues($term, (int)$data[0]['szulo_id']);
       }
@@ -190,7 +197,7 @@ class UserCVPreparer
          $data[0]['parent'] = $parent;
       }
       $text = $data[0];
-    } elseif(count($data) > 1) {
+    } elseif(count($data) > 1 || $cast_multi_arr) {
       $text = array();
       foreach ((array)$data as $d) {
         if(!is_null($d['szulo_id'])) {

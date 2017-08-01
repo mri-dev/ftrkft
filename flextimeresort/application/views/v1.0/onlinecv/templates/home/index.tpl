@@ -12,7 +12,7 @@
 			<div class="datalines">
 				<div class="name-pop">
 					{$cv_nev}
-					{if !empty($cv_szakma_text)}					
+					{if !empty($cv_szakma_text)}
 					<div class="szakma_text">
 						{$cv_szakma_text}
 					</div>
@@ -76,7 +76,13 @@
 								{lang text="E-mail cím"}
 							</div>
 							<div class="value">
-								{$cv_email}
+								{if $has_access_contact}
+									{$cv_email}
+								{else}
+									<span class="restrict-access">
+										*** {lang text="Hozzáférés szükséges"} ***
+									</span>
+								{/if}
 							</div>
 						</div>
 						{/if}
@@ -86,7 +92,13 @@
 								{lang text="Telefonszám"}
 							</div>
 							<div class="value">
-								{$cv_telefon}
+								{if $has_access_contact}
+									{$cv_telefon}
+								{else}
+									<span class="restrict-access">
+										*** {lang text="Hozzáférés szükséges"} ***
+									</span>
+								{/if}
 							</div>
 						</div>
 						{/if}
@@ -94,37 +106,43 @@
 							{lang text="Közösségi oldalak"}
 						</div>
 						<div class="socials">
-							<div class="show-on-print">
-								{if $cv_social_facebook}
-								<div class="social-item-print">
-									{lang text="Facebook"}:
-									<div><strong>{$cv_social_facebook}</strong></div>
+							{if $has_access_contact}
+								<div class="show-on-print">
+									{if $cv_social_facebook}
+									<div class="social-item-print">
+										{lang text="Facebook"}:
+										<div><strong>{$cv_social_facebook}</strong></div>
+									</div>
+									{/if}
+									{if $cv_social_twitter}
+									<div class="social-item-print">
+										{lang text="Twitter"}:
+										<div><strong>{$cv_social_twitter}</strong></div>
+									</div>
+									{/if}
+									{if $cv_social_linkedin}
+									<div class="social-item-print">
+										{lang text="LinkedIn"}:
+										<div><strong>{$cv_social_linkedin}</strong></div>
+									</div>
+									{/if}
 								</div>
-								{/if}
-								{if $cv_social_twitter}
-								<div class="social-item-print">
-									{lang text="Twitter"}:
-									<div><strong>{$cv_social_twitter}</strong></div>
+								<div class="hide-on-print">
+									{if $cv_social_facebook}
+									<a target="_blank" class="social social-facebook" href="{$cv_social_facebook}"><i class="fa fa-facebook"></i></a>
+									{/if}
+									{if $cv_social_twitter}
+									<a target="_blank" class="social social-twitter" href="{$cv_social_twitter}"><i class="fa fa-twitter"></i></a>
+									{/if}
+									{if $cv_social_linkedin}
+									<a target="_blank" class="social social-linkedin" href="{$cv_social_linkedin}"><i class="fa fa-linkedin"></i></a>
+									{/if}
 								</div>
-								{/if}
-								{if $cv_social_linkedin}
-								<div class="social-item-print">
-									{lang text="LinkedIn"}:
-									<div><strong>{$cv_social_linkedin}</strong></div>
-								</div>
-								{/if}
-							</div>
-							<div class="hide-on-print">
-								{if $cv_social_facebook}
-								<a target="_blank" class="social social-facebook" href="{$cv_social_facebook}"><i class="fa fa-facebook"></i></a>
-								{/if}
-								{if $cv_social_twitter}
-								<a target="_blank" class="social social-twitter" href="{$cv_social_twitter}"><i class="fa fa-twitter"></i></a>
-								{/if}
-								{if $cv_social_linkedin}
-								<a target="_blank" class="social social-linkedin" href="{$cv_social_linkedin}"><i class="fa fa-linkedin"></i></a>
-								{/if}
-							</div>
+							{else}
+								<span class="restrict-access">
+									*** {lang text="Hozzáférés szükséges"} ***
+								</span>
+							{/if}
 						</div>
 					</div>
 				</div>
@@ -160,6 +178,9 @@
 			</div>
 			<div class="cv-col c7">
 				{assign var=vegzettsegek value=$cv->getModul('vegzettseg', 'vegzettseg')}
+				{if empty($vegzettsegek)}
+				<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+				{else}
 				{foreach from=$vegzettsegek item=vegzettseg}
 				<div class="modul-groups">
 					<div class="cv-row modul-group-item">
@@ -242,6 +263,7 @@
 					{/if}
 				</div>
 				{/foreach}
+				{/if}
 			</div>
 		</div>
 		<div class="sub-group cv-row cv-a-top">
@@ -254,6 +276,9 @@
 			</div>
 			<div class="cv-col c7">
 				{assign var=kepesitesek value=$cv->getModul('vegzettseg', 'kepesitesek')}
+				{if empty($kepesitesek)}
+				<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+				{else}
 				{foreach from=$kepesitesek item=kepesites}
 				<div class="modul-groups">
 					<div class="cv-row modul-group-item">
@@ -296,6 +321,7 @@
 					{/if}
 				</div>
 				{/foreach}
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -314,10 +340,14 @@
 				</div>
 			</div>
 			<div class="cv-col c7">
-				{assign var=jogositvanyok value=$cv->getTermValues('jogositvanyok', $u->getValue('jogositvanyok'))}
+				{assign var=jogositvanyok value=$cv->getTermValues('jogositvanyok', $u->getValue('jogositvanyok'), true)}
+				{if empty($jogositvanyok)}
+				<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+				{else}
 				{foreach from=$jogositvanyok item=jogositvany}
 					<div class="simple-list-item">{$jogositvany.neve}</div>
 				{/foreach}
+				{/if}
 				<div class="clearfix"></div>
 			</div>
 		</div>
@@ -331,40 +361,44 @@
 			</div>
 			<div class="cv-col c7">
 				{assign var=szamitogepismeretek value=$cv->getModul('ismeretek', 'szamitogepes')}
-				{foreach from=$szamitogepismeretek item=szgi}
-				<div class="modul-groups">
-					{if !empty($szgi.szamitastechnikai_ismeret.value)}
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Szakterület"}
+				{if empty($szamitogepismeretek)}
+				<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+				{else}
+					{foreach from=$szamitogepismeretek item=szgi}
+					<div class="modul-groups">
+						{if !empty($szgi.szamitastechnikai_ismeret.value)}
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Szakterület"}
+							</div>
+							<div class="value">
+								{$szgi.szamitastechnikai_ismeret.value}
+							</div>
 						</div>
-						<div class="value">
-							{$szgi.szamitastechnikai_ismeret.value}
+						{/if}
+						{if !empty($szgi.tudasszint.value)}
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Tudásszint"}
+							</div>
+							<div class="value">
+								{$szgi.tudasszint.value}
+							</div>
 						</div>
+						{/if}
+						{if !empty($szgi.tapasztalat_ev.value)}
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Tapasztalat"}
+							</div>
+							<div class="value">
+								{$szgi.tapasztalat_ev.value} {lang text="év"}
+							</div>
+						</div>
+						{/if}
 					</div>
-					{/if}
-					{if !empty($szgi.tudasszint.value)}
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Tudásszint"}
-						</div>
-						<div class="value">
-							{$szgi.tudasszint.value}
-						</div>
-					</div>
-					{/if}
-					{if !empty($szgi.tapasztalat_ev.value)}
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Tapasztalat"}
-						</div>
-						<div class="value">
-							{$szgi.tapasztalat_ev.value} {lang text="év"}
-						</div>
-					</div>
-					{/if}
-				</div>
-				{/foreach}
+					{/foreach}
+				{/if}
 			</div>
 		</div>
 		<div class="sub-group cv-row cv-a-top">
@@ -377,38 +411,42 @@
 			</div>
 			<div class="cv-col c7">
 				{assign var=nyelvismeretek value=$cv->getModul('ismeretek', 'nyelvismeret')}
-				{foreach from=$nyelvismeretek item=nyelv}
-				<div class="modul-groups">
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Nyelv"}
+				{if empty($nyelvismeretek)}
+					<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+				{else}
+					{foreach from=$nyelvismeretek item=nyelv}
+					<div class="modul-groups">
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Nyelv"}
+							</div>
+							<div class="value">
+								{$nyelv.nyelv.value}
+							</div>
 						</div>
-						<div class="value">
-							{$nyelv.nyelv.value}
+						{if !empty($nyelv.szobeli_szint.value)}
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Szóbeli készség szintje"}
+							</div>
+							<div class="value">
+								{$nyelv.szobeli_szint.value}
+							</div>
 						</div>
+						{/if}
+						{if !empty($nyelv.irasbeli_szint.value)}
+						<div class="cv-row modul-group-item">
+							<div class="label">
+								{lang text="Írásbeli készség szintje"}
+							</div>
+							<div class="value">
+								{$nyelv.irasbeli_szint.value}
+							</div>
+						</div>
+						{/if}
 					</div>
-					{if !empty($nyelv.szobeli_szint.value)}
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Szóbeli készség szintje"}
-						</div>
-						<div class="value">
-							{$nyelv.szobeli_szint.value}
-						</div>
-					</div>
-					{/if}
-					{if !empty($nyelv.irasbeli_szint.value)}
-					<div class="cv-row modul-group-item">
-						<div class="label">
-							{lang text="Írásbeli készség szintje"}
-						</div>
-						<div class="value">
-							{$nyelv.irasbeli_szint.value}
-						</div>
-					</div>
-					{/if}
-				</div>
-				{/foreach}
+					{/foreach}
+				{/if}
 			</div>
 		</div>
 		{if !empty($cv_ismeretek_egyeb) && $cv_ismeretek_egyeb}
@@ -442,7 +480,7 @@
 		<div class="cv-col c7">
 			{assign var=munkatapasztalat value=$cv->getTermValues('munkatapasztalat', $u->getValue('munkatapasztalat'))}
 			{if !$munkatapasztalat}
-				<span class="no-data-setted">(!) {lang text="Hiányzó adat."}</span>
+				<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
 			{else}
 				{$munkatapasztalat.neve}
 			{/if}
@@ -458,6 +496,9 @@
 		</div>
 		<div class="cv-col c7">
 			{assign var=munkatapasztalatok value=$cv->getModul('munkatapasztalat', 'munkatapasztalat')}
+			{if empty($munkatapasztalatok)}
+			<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+			{else}
 			{foreach from=$munkatapasztalatok item=mk}
 			<div class="modul-groups">
 				<div class="cv-row modul-group-item">
@@ -561,6 +602,7 @@
 				{/if}
 			</div>
 			{/foreach}
+			{/if}
 		</div>
 	</div>
 </div>
@@ -595,10 +637,14 @@
 			</div>
 		</div>
 		<div class="cv-col c7">
-			{assign var=megyeaholdolgozok value=$cv->getTermValues('megyek', $u->getValue('megyeaholdolgozok'))}
-			{foreach from=$megyeaholdolgozok item=megye_dolgoz}
-				<div class="simple-list-item">{$megye_dolgoz.neve}</div>
-			{/foreach}
+			{assign var=megyeaholdolgozok value=$cv->getTermValues('megyek', $u->getValue('megyeaholdolgozok'),true)}
+			{if empty($megyeaholdolgozok)}
+			<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+			{else}
+				{foreach from=$megyeaholdolgozok item=megye_dolgoz}
+					<div class="simple-list-item">{$megye_dolgoz.neve}</div>
+				{/foreach}
+			{/if}
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -613,10 +659,14 @@
 			</div>
 		</div>
 		<div class="cv-col c7">
-			{assign var=elvaras_munkateruletek value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'))}
+			{assign var=elvaras_munkateruletek value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'),true)}
+			{if empty($elvaras_munkateruletek)}
+			<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+			{else}
 			{foreach from=$elvaras_munkateruletek item=munkateruletek}
 				<div class="simple-list-item">{$munkateruletek.neve}</div>
 			{/foreach}
+			{/if}
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -631,10 +681,14 @@
 			</div>
 		</div>
 		<div class="cv-col c7">
-			{assign var=elvaras_munkakorok value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'))}
+			{assign var=elvaras_munkakorok value=$cv->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'),true)}
+			{if empty($elvaras_munkakorok)}
+			<span class="no-data-setted">(!) {lang text="Az adat nem lett megadva."}</span>
+			{else}
 			{foreach from=$elvaras_munkakorok item=imk}
 				<div class="simple-list-item">{$imk.parent.neve} / <strong>{$imk.neve}</strong></div>
 			{/foreach}
+			{/if}
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -715,6 +769,9 @@
 		</div>
 		<div class="cv-col c7">
 			<a href="{$mycv.filepath}" target="_blank"><i class="fa fa-download"></i> <strong>{$cv_nev} {$mycv.name}</strong> <small>(.{$mycv.file_type}, {$mycv.file_size} KB)</small></a>
+			<div class="show-on-print">
+				({$settings.page_url|cat:$mycv.filepath})
+			</div>
 		</div>
 	</div>
 	{/if}
@@ -731,6 +788,9 @@
 			<div class="documents">
 				{foreach from=$documents item=docs}
 					<a href="{$docs.filepath}" target="_blank"><i class="fa fa-file-o"></i> <strong>{$docs.name}</strong> <small>(.{$docs.file_type}, {$docs.file_size})</small></a>
+					<div class="show-on-print">
+						({$settings.page_url|cat:$docs.filepath})
+					</div>
 				{/foreach}
 			</div>
 		</div>

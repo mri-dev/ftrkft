@@ -1,0 +1,50 @@
+@media print{
+  body, html, body.profil-view {
+     font-family:'Arial',Times,serif;
+  }
+
+  body{
+    font-family:'Arial',serif;
+    background: transparent !important;
+    background-color: #ffffff !important;
+  }
+
+  header{
+    border-bottom: 5px solid $color-primary-light;
+  }
+  body.profil-view .inside .footer-copy{
+    background-color: transparent;
+    color: black;
+    border-top: 5px solid #acacac;
+    margin-top: 40px;
+  }
+  body.profil-view .inside .footer-copy .url{
+    color: #555555;
+  }
+  body.profil-view .inside{
+    box-shadow: none;
+  }
+
+  .socials{
+    .show-on-print{
+      font-size: 0.8em !important;
+
+      strong {
+        color: black !important;
+        font-size: 1.2em !important;
+      }
+    }
+  }
+
+  .hide-on-print{
+    display: none;
+  }
+  .show-on-print{
+    display: block;
+  }
+
+  ::first-letter{
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
