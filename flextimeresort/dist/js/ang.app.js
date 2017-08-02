@@ -1426,6 +1426,7 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
     }).then(function successCallback(response) {
       var d = response.data;
       $scope.loaded = true;
+      console.log(d);
 
       if (d.success) {
         $scope.allas_db = d.data.length;

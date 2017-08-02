@@ -30,7 +30,6 @@ class User
 
 		$this->user = $this->get();
 
-
 		if (isset($arg['includeCVHandler']) && $arg['includeCVHandler'] === true) {
 			$this->cvHandler = new UserCVPreparer($this, array('controller' => $this->controller));
 		}

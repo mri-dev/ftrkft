@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="allasok">
-      <div class="allas" ng-if="{if !empty($smarty.get.hlad)}allas.ID == {$smarty.get.hlad}{/if}" ng-repeat="allas in allasok">
+      <div class="allas" ng-if="{if !empty($smarty.get.hlad)}allas.ID == {$smarty.get.hlad}{else}true{/if}" ng-repeat="allas in allasok">
         <div class="datarow">
           <span class="type" ng-show="allas.tipus_name" data-toggle="tooltip" title="{lang text='Hirdetés típusa'}"><i class="fa fa-database"></i>  [[allas.tipus_name]]</span>
           <span class="cat" ng-show="allas.cat_name" data-toggle="tooltip" title="{lang text='Hirdetés kategóriája'}"><i class="fa fa-user"></i> [[allas.cat_name]]</span>

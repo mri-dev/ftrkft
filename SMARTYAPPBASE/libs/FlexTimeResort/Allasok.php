@@ -463,6 +463,7 @@ class Allasok
           $top_cat[$meta['kulcs']] = $meta['value'];
         }
       }
+      $top_cat['requestedUsers'] = $this->requestedUsersForAd($top_cat['ID']);
       $top_cat['tipus_name'] = $this->getTermName($top_cat['hirdetes_tipus']);
       $top_cat['cat_name'] = $this->getTermName($top_cat['hirdetes_kategoria']);
       $top_cat['megye_name'] = $this->getTermName($top_cat['megye_id']);
@@ -472,6 +473,63 @@ class Allasok
 		$this->tree = $tree;
 		return $this;
 	}
+  public function requestedUsersForAd( $id )
+  {
+    $users = array(
+      'total' => 0,
+      'untouched' => 0,
+      'granted' => 0,
+      'disabled' => 0,
+      'data' => array()
+    );
+
+    $data = $this->db->query(sprintf("SELECT
+      ur.ID, ur.access_granted, ur.admin_id, ur.feedback, ur.granted_date_at, ur.user_id
+    FROM ".self::DB_USERREQUEST_USERS." as ur
+    WHERE 1=1 and
+    ur.ad_id = %d
+    ", $id ));
+
+    if ($data->rowCount() != 0) {
+      $dataset = $data->fetchAll(\PDO::FETCH_ASSOC);
+      foreach ((array)$dataset as $d) {
+        $d['access_granted'] = ((int)$d['access_granted'] == 1) ? true : false;
+        $d['feedback'] = ((int)$d['feedback']);
+        $d['user_id'] = ((int)$d['user_id']);
+
+        $user = new User($d['user_id'], array('controller' => $this->controller));
+        $d['user'] = array(
+          'ID' => (int)$user->getID(),
+          'name' => $user->getName(),
+          'profilimg' => $this->settings['page_url'].$user->getProfilImg(),
+          'szakma' => $user->getAccountData('szakma_text'),
+          'url' => $user->getCVUrl(),
+          'gender' => array(
+            'ID' => (int)$user->getNeme('ID'),
+            'name' => $user->getNeme()
+          ),
+          'profilpercent' => (float)$user->profilPercent(),
+          'city' => $user->getAccountData('lakcim_city')
+        );
+
+        if($d['access_granted']) {
+          $users['granted']++;
+        }
+
+        if(!$d['access_granted'] && $d['feedback'] === -1) {
+          $users['untouched']++;
+        }
+
+        if($d['feedback'] === 0) {
+          $users['disabled']++;
+        }
+
+        $users['data'][$d['ID']] = $d;
+      }
+    }
+
+    return $users;
+  }
   public function getVisitedIDS($by = 'ID', $val = 0, $limit = 10)
   {
     $ids = array();
