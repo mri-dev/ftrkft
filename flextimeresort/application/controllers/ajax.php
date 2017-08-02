@@ -43,7 +43,6 @@ class ajax extends Controller  {
 					$data['terms']['anyanyelv'] = (int)$this->ME->getAccountData('anyanyelv');
 					$data['terms']['nem'] = (int)$this->ME->getAccountData('nem');
 					$data['terms']['allampolgarsag'] = (int)$this->ME->getAccountData('allampolgarsag');
-					$data['terms']['csaladi_allapot'] = (int)$this->ME->getAccountData('csaladi_allapot');
 					$data['terms']['iskolai_vegzettsegi_szintek'] = (int)$this->ME->getAccountData('iskolai_vegzettsegi_szintek');
 					$data['terms']['munkatapasztalat'] = (int)$this->ME->getAccountData('munkatapasztalat');
 
@@ -85,6 +84,10 @@ class ajax extends Controller  {
 
 					$data['dokumentumok']['kulso_oneletrajz_url'] = $this->ME->getAccountData('kulso_oneletrajz_url');
 
+					$data['ceges']['ceges_alapitas_ev'] = (int)$this->ME->getAccountData('ceges_alapitas_ev');
+					$data['ceges']['ceges_foglalkoztatottak_szama'] = (int)$this->ME->getAccountData('ceges_foglalkoztatottak_szama');
+					$data['ceges']['ceges_megyek'] = (array)$this->ME->getAccountData('ceges_megyek');
+					$data['ceges']['ceges_munkateruletek'] = (array)$this->ME->getAccountData('ceges_munkateruletek');
 
 
 					$data['oneletrajz'] = $this->ME->getOneletrajz();
@@ -176,9 +179,25 @@ class ajax extends Controller  {
 					$data['success'] = $success;
 				break;
 				case 'profilsave':
-					$nextpages = array(
-						'alap' => 'elerhetoseg'
-					);
+					if ($this->ME && $this->ME->isUser()) {
+						$nextpages = array(
+							'alap' => 'elerhetoseg',
+							'elerhetoseg' => 'vegzettseg',
+							'vegzettseg' => 'ismeretek',
+							'ismeretek' => 'munkatapasztalat',
+							'munkatapasztalat' => 'elvarasok',
+							'elvarasok' => 'dokumentumok',
+							'dokumentumok' => 'alap'
+						);
+					} else if($this->ME && $this->ME->isMunkaado()){
+						$nextpages = array(
+							'alap' => 'elerhetoseg',
+							'elerhetoseg' => 'ceges',
+							'ceges' => 'dokumentumok',
+							'dokumentumok' => 'alap'
+						);
+					}
+
 					$form = json_decode($params['form'], true);
 					$moduldatas = json_decode($params['moduldatas'], true);
 					$moduldelete = json_decode($params['moduldelete'], true);
@@ -206,10 +225,11 @@ class ajax extends Controller  {
 					$profildetails['social_url_twitter'] = $form['social_url_twitter'];
 					$profildetails['social_url_linkedin'] = $form['social_url_linkedin'];
 
-
 					$profildetails['ceges_kapcsolat_nev'] = $form['ceges_kapcsolat_nev'];
 					$profildetails['ceges_kapcsolat_email'] = $form['ceges_kapcsolat_email'];
 					$profildetails['ceges_kapcsolat_telefon'] = $form['ceges_kapcsolat_telefon'];
+					$profildetails['ceges_alapitas_ev'] = $form['ceges_alapitas_ev'];
+					$profildetails['ceges_foglalkoztatottak_szama'] = $form['ceges_foglalkoztatottak_szama'];
 
 					$profildetails['iskolai_vegzettsegi_szintek'] = (int)$form['iskolai_vegzettsegi_szintek'];
 					$profildetails['jogositvanyok'] = (array)$form['jogositvanyok'];
@@ -227,6 +247,8 @@ class ajax extends Controller  {
 
 					$profildetails['kulso_oneletrajz_url'] = $form['kulso_oneletrajz_url'];
 
+					$profildetails['ceges_megyek'] = (array)$form['ceges_megyek'];
+					$profildetails['ceges_munkateruletek'] = (array)$form['ceges_munkateruletek'];
 
 					if (isset($form['newprofilimg'])) {
 						$this->ME->changeProfilImg($form['newprofilimg']);

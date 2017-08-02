@@ -2,6 +2,7 @@
 use PortalManager\Users;
 use PortalManager\Pagination;
 use DesignCreator\FormDesigns;
+use FlexTimeResort\Allasok;
 
 class munkavallalok extends Controller  {
 	private $user = false;
@@ -11,6 +12,19 @@ class munkavallalok extends Controller  {
 
     $this->out('hide_login_instruction', true);
 		$this->out('hide_home_instruction', true);
+
+		if (isset($_POST['requestUserforAd'])) {
+			if(isset($_POST['ad'])){
+				$adForRequest = (new Allasok(array(
+					'controller' => $this->ctrl
+				)))->load($_POST['ad']);
+				$ad_author = $adForRequest->getAuthorData('ID');
+
+				if ($ad_author == $this->ME->getID()) {
+					$adForRequest->registerUserRequestToAd($this->ME->getID(), $_POST['ad'], $_POST)
+				}
+			}
+		}
 
 		$formdesign = new FormDesigns();
     $users = new Users(array(
@@ -46,6 +60,17 @@ class munkavallalok extends Controller  {
     $arg['page'] = ($_GET[page] != '') ? (int)$_GET['page'] : 1;
 
     $list = $users->getUserList( $arg, $usergroup );
+		$useridssession = false;
+
+		if (!empty($list['info']['query']['result_ids'])) {
+			$usession_arr = array();
+			$usession_arr['target_users'] = (array)$list['info']['query']['result_ids'];
+			$usession_arr['requester_id'] = $this->ME->getID();
+			$usession_arr['timestemp'] = microtime();
+
+			$useridssession = base64_encode(json_encode($usession_arr, JSON_UNESCAPED_UNICODE));
+			$this->out('useridssession', $useridssession);
+		}
 
 		$sget = $_GET;
 		unset($sget['tag']);

@@ -149,6 +149,10 @@ class Allasok
     }
     return $id;
   }
+  public function registerUserRequestToAd($uid, $adid, $post)
+  {
+
+  }
   public function checkRequestAd($uid, $adid)
   {
     $adid = (int)$adid;

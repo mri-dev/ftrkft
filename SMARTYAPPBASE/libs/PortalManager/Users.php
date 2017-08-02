@@ -1114,7 +1114,7 @@ class Users
 
 	public function getUserList( $arg = array(), $user_group = -1 )
 	{
-		$q = "
+		$qq = "
 		SELECT 			f.*
 		FROM 			".self::TABLE_NAME." as f";
 		// WHERE
@@ -1200,8 +1200,10 @@ class Users
 			";
 		}
 
+		$qq .= $q;
+
 		$arg[multi] = "1";
-		extract($this->db->q($q, $arg));
+		extract($this->db->q($qq, $arg));
 
 		$B = array();
 		foreach($data as $d){
@@ -1218,6 +1220,15 @@ class Users
 				);
 			}
 		}
+
+		$idset = $this->db->query("SELECT f.ID FROM ".self::TABLE_NAME." as f ".$q)->fetchAll(\PDO::FETCH_COLUMN);
+
+		if (count($idset) > 0) {
+			foreach ((array)$idset as $pid) {
+				$ret['info']['query']['result_ids'][] = $pid;
+			}
+		}
+
 
 		$ret[data] = $B;
 

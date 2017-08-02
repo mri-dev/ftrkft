@@ -153,6 +153,9 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.ceges_kapcsolat_email = user.elerhetoseg.ceges_kapcsolat_email;
     $scope.form.ceges_kapcsolat_telefon = user.elerhetoseg.ceges_kapcsolat_telefon;
 
+    $scope.form.ceges_alapitas_ev = user.ceges.ceges_alapitas_ev;
+    $scope.form.ceges_foglalkoztatottak_szama = user.ceges.ceges_foglalkoztatottak_szama;
+
     $scope.form.jogositvanyok = user.ismeretek.jogositvanyok;
     $scope.form.ismeretek_egyeb = user.ismeretek.ismeretek_egyeb;
 
@@ -167,6 +170,9 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.elvarasmunkakor_picked = user.elvarasok.elvaras_munkakorok;
 
     $scope.form.kulso_oneletrajz_url = user.dokumentumok.kulso_oneletrajz_url;
+
+    $scope.form.ceges_megyek = user.ceges.ceges_megyek;
+    $scope.form.ceges_munkateruletek = user.ceges.ceges_munkateruletek;
 
     if (user.oneletrajz) {
       $scope.oneletrajz = user.oneletrajz;
@@ -1093,7 +1099,7 @@ admmsg.directive('focusMe', function($timeout) {
 /**
 * Hirdetés létrehozó
 **/
-var ads = angular.module("Ads", ['ui.tinymce'], function($interpolateProvider){
+var ads = angular.module("Ads", ['ui.tinymce', 'ngMaterial'], function($interpolateProvider){
   $interpolateProvider.startSymbol('[[');
   $interpolateProvider.endSymbol(']]');
 });

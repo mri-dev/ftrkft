@@ -355,7 +355,15 @@ class User
 	public function profilPercent()
 	{
 		$dataset = $this->user['data'];
-		$req = array('email', 'name', 'szakma_text', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'nem', 'profil_img', 'telefon', 'lakcim_irsz', 'lakcim_city',	'social', 'iskolai_vegzettsegi_szintek','munkatapasztalat','fizetesi_igeny','megyeaholdolgozok','elvaras_munkateruletek','elvaras_munkakorok');
+
+		if ($this->isUser()) {
+			$req = array('email', 'name', 'szakma_text', 'szuletesi_datum', 'allampolgarsag', 'anyanyelv', 'nem', 'profil_img', 'telefon', 'lakcim_irsz', 'lakcim_city',	'social', 'iskolai_vegzettsegi_szintek','munkatapasztalat','fizetesi_igeny','megyeaholdolgozok','elvaras_munkateruletek','elvaras_munkakorok');
+		}
+
+		if ($this->isMunkaado()) {
+			$req = array('email', 'name', 'szakma_text', 'profil_img', 'telefon', 'szekhely_irsz', 'szekhely_city', 'szekhely_uhsz',	'social','ceges_kapcsolat_nev', 'ceges_kapcsolat_email', 'ceges_kapcsolat_telefon','ceges_foglalkoztatottak_szama','ceges_alapitas_ev','elvaras_munkakorok','ceges_megyek','ceges_munkateruletek');
+		}
+
 		$has = array();
 		$current = 0;
 
@@ -380,22 +388,23 @@ class User
 		}
 
 		// Moduls
-		$modul_req = 2;
-		$modul_has = 0;
-
 		$moduls = $this->getAccountModulData();
 
-		// Végzettség
-		$mdi = $moduls['vegzettseg']['vegzettseg'];
+		if ($this->isUser()) {
+			$modul_req = 2;
+			$modul_has = 0;
+			// Végzettség
+			$mdi = $moduls['vegzettseg']['vegzettseg'];
 
-		if(count($mdi) != 0) {
-			$modul_has++;
-		}
+			if(count($mdi) != 0) {
+				$modul_has++;
+			}
 
-		$mdi = $moduls['munkatapasztalat']['munkatapasztalat'];
+			$mdi = $moduls['munkatapasztalat']['munkatapasztalat'];
 
-		if(count($mdi) != 0) {
-			$modul_has++;
+			if(count($mdi) != 0) {
+				$modul_has++;
+			}
 		}
 
 		$total = count($req)+$modul_req;

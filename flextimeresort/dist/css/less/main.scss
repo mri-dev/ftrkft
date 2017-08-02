@@ -2345,6 +2345,16 @@ body.ugyfelkapu-view{
   background: #f3f3f3;
   border: 1px solid #e1e1e1;
 
+  &.munkaado-line{
+    width: 50%;
+    margin: 0 auto;
+    ul{
+      li{
+        flex-basis: calc(100%/4);
+      }
+    }
+  }
+
   ul, li {
     margin: 0;
     padding: 0;
@@ -4291,6 +4301,63 @@ label.file-uploader{
     }
   }
 
+  .request-user-for-ad{
+    background: #394b3c;
+    color: #a6baa9;
+    padding: 10px 0;
+    -webkit-box-shadow: inset 0 5px 14px -6px black;
+    -moz-box-shadow: inset 0 5px 14px -6px black;
+    box-shadow: inset 0 5px 14px -6px black;
+
+    label{
+      font-size: 1.2em;
+      color: $color-primary-light;
+      margin: 10px 0 0 0;
+    }
+
+    strong {
+      color: white;
+    }
+
+    .modal {
+      color: #444444;
+
+      strong {
+        color: black;
+      }
+    }
+
+    .wrapper{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .ico{
+        flex-basis: 100px;
+          text-align: center;
+
+        i{
+          font-size: 60px;
+          color: $color-primary-light;
+        }
+      }
+
+      .text{
+        flex-basis: calc(60% - 50px);
+        h3 {
+          color: white;
+        }
+      }
+
+      .button{
+        text-align: center;
+        flex-basis: calc(40% - 50px);
+      }
+    }
+  }
+
   .user-list{
     .no-user{
       text-align: center;
@@ -4387,7 +4454,9 @@ label.file-uploader{
                 -moz-border-radius: 80px;
                 border-radius: 80px;
                 background: white;
-                border: 3px solid $color-primary-light;
+                border-width: 3px;
+                border-style: solid;
+                border-color: #adbeb0;
 
                 img {
                   position: absolute;
@@ -4427,7 +4496,7 @@ label.file-uploader{
 
             .extras{
               display: none;
-              background: rgba(24, 24, 24, 0.8);
+              background: rgba(24, 24, 24, 0.81);
               position: absolute;
               left: 10px;
               right: 10px;
@@ -4495,6 +4564,22 @@ label.file-uploader{
                 box-shadow: 0 2px 14px -4px #000000;
               }
 
+            }
+            // Férfi
+            &.gender16{
+              & > .wrapper{
+                .profilimg {
+                  border-color: #89c7eb;
+                }
+              }
+            }
+            // Nő
+            &.gender17{
+              & > .wrapper{
+                .profilimg {
+                  border-color: #f3b1df;
+                }
+              }
             }
           }
         }

@@ -13,6 +13,59 @@
         </div>
       </div>
     </div>
+    {if !empty($lista.info.input.arg.filters) &&  !empty($lista.info.query.result_ids)}
+      <div class="request-user-for-ad">
+        <div class="page-width">
+          <div class="wrapper">
+            <div class="ico">
+              <i class="fa fa-user-plus"></i>
+            </div>
+            <div class="text">
+              <h3>{lang text="TISZTELT_NAME" name=$me->getName()}</h3>
+              <div class="text">
+                {lang text="MUNKAVALLALO_KERESO_REQUEST_USER_FOR_AD_TEXT" db=$lista.info.total_num}
+              </div>
+            </div>
+            <div class="button">
+              <button type="button" data-toggle="modal" data-target="#usersrequests" class="btn btn-primary">{lang text="Érdekelnek a listában szereplő munkavállalók"}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="usersrequests" tabindex="-1" role="dialog" aria-labelledby="userrequestLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <form class="" action="" method="post">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userrequestLabel">{lang text="Munkavállalói adat lekérés"}</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <strong>{lang text="Munkavállalói adat lekérés modal text"}</strong>
+                  <br>
+                  <div class="form">
+                      <input type="hidden" name="session" value="{$useridssession}">
+                      <label for="userrequest_ad">{lang text="Mely hirdetéséhez keres munkavállalókat?"}</label>
+                      <div ng-app="Ads" ng-controller="Listing" ng-init="init()">
+                        <select class="form-control" name="ad">
+                          <option value="">--{lang text="válasszon"}--</option>
+                          <option ng-if="allas.active == '1'" value="[[allas.ID]]" ng-repeat="allas in allasok">[[allas.short_desc]] ([[allas.tipus_name]] / [[allas.cat_name]] @ [[allas.city]])</option>
+                        </select>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">{lang text="Mégse"}</button>
+                  <button type="submit" name="requestUserforAd" value="1" class="btn btn-primary">{lang text="Kérelem küldése"}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    {/if}
     <div class="page-width">
       <div class="user-list">
         {if $lista.info.total_num == 0}
@@ -27,7 +80,7 @@
             <div class="lista">
               <div class="items">
                 {foreach from=$lista.data item=u}
-                  <div class="user">
+                  <div class="user gender{$u->getNeme('ID')}">
                     {assign var="pp" value=$u->profilPercent()}
                     <div data-toggle="tooltip" title="{lang text='Profil kitöltöttségi állapot'}" data-placement="top" class="profil-percent st-{if $pp > 0 && $pp< 30}red{elseif $pp>=30 && $pp<50}orange{elseif $pp >=50 && $pp < 80}lightgreen{elseif $pp >= 80}green{/if}">
                       {$pp}%
@@ -86,7 +139,7 @@
                         </div>
                       </div>
                       {/if}
-                      {assign var=elvaras_munkateruletek value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'))}
+                      {assign var=elvaras_munkateruletek value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkateruletek'), true)}
                       {if !empty($elvaras_munkateruletek)}
                         <div class="group g-listed">
                           <div class="title">
@@ -100,7 +153,7 @@
                         </div>
                       {/if}
 
-                      {assign var=elvaras_munkakorok value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'))}
+                      {assign var=elvaras_munkakorok value=$u->cv()->getTermValues('munkakorok', $u->getValue('elvaras_munkakorok'), true)}
                       {if !empty($elvaras_munkakorok)}
                         <div class="group g-listed">
                           <div class="title">
