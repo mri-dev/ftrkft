@@ -13,6 +13,7 @@
         </div>
       </div>
     </div>
+    <a name="rqu"></a>
     {if !empty($lista.info.input.arg.filters) &&  !empty($lista.info.query.result_ids)}
       <div class="request-user-for-ad">
         <div class="page-width">
@@ -34,7 +35,7 @@
 
         <div class="modal fade" id="usersrequests" tabindex="-1" role="dialog" aria-labelledby="userrequestLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
-            <form class="" action="" method="post">
+            <form class="" action="#rqu" method="post">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="userrequestLabel">{lang text="Munkavállalói adat lekérés"}</h5>
@@ -65,6 +66,15 @@
           </div>
         </div>
       </div>
+
+      {if $requestuserad_err}
+      <div class="request-user-for-ad-error">
+        <div class="page-width">
+          {$requestuserad_err}
+        </div>
+      </div>
+      {/if}
+      
     {/if}
     <div class="page-width">
       <div class="user-list">

@@ -4358,6 +4358,13 @@ label.file-uploader{
     }
   }
 
+  .request-user-for-ad-error{
+    background: $color-red;
+    padding: 15px 0;
+    font-size: 1.3em;
+    color: white;
+  }
+
   .user-list{
     .no-user{
       text-align: center;

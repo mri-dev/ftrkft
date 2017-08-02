@@ -14,15 +14,22 @@ class munkavallalok extends Controller  {
 		$this->out('hide_home_instruction', true);
 
 		if (isset($_POST['requestUserforAd'])) {
-			if(isset($_POST['ad'])){
+			if(isset($_POST['ad']) && !empty($_POST['ad'])){
 				$adForRequest = (new Allasok(array(
 					'controller' => $this->ctrl
 				)))->load($_POST['ad']);
 				$ad_author = $adForRequest->getAuthorData('ID');
 
 				if ($ad_author == $this->ME->getID()) {
-					$adForRequest->registerUserRequestToAd($this->ME->getID(), $_POST['ad'], $_POST)
+					try {
+						$adForRequest->registerUserRequestToAd($this->ME->getID(), $_POST['ad'], $_POST);
+						\Helper::reload('/ugyfelkapu/hirdetesek/?hlad='.$_POST['ad'].'&showUserRequests=1&successUserRequest=1');
+					} catch (\Exception $e) {
+						$this->out('requestuserad_err', $e->getMessage());
+					}
 				}
+			} else{
+				$this->out('requestuserad_err', $this->ctrl->lang('MUNKAVALLALOI_ADAT_LEKERES_FORM_UNSELECTED_AD'));
 			}
 		}
 

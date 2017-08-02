@@ -13,6 +13,8 @@ class Allasok
   const DB_TERM_RELATIONS_ITEM = 'allasok_x_terms_item';
   const DB_REQUEST_X = 'user_accept_x_allasok';
   const DB_LOG_VIEW = 'user_allasok_view';
+  const DB_USERREQUEST = 'allasok_x_user_cvrequests';
+  const DB_USERREQUEST_USERS = 'allasok_x_user_cvrequests_users';
 
   public $db = null;
   public $controller = null;
@@ -149,9 +151,55 @@ class Allasok
     }
     return $id;
   }
-  public function registerUserRequestToAd($uid, $adid, $post)
+  public function registerUserRequestToAd($uid, $adid = false, $post)
   {
+    $dsession = json_decode(base64_decode($post['session']), true);
 
+    if (!is_array($dsession) || !isset($dsession['target_users']) || !isset($dsession['requester_id']) ) {
+      throw new \Exception($this->controller->lang('Hibás kérelem. Hiányzik a biztonsági session.'));
+    }
+
+    if (!isset($adid) || empty($adid) || !$adid) {
+      throw new \Exception($this->controller->lang('MUNKAVALLALOI_ADAT_LEKERES_FORM_UNSELECTED_AD'));
+    }
+
+    // users check
+    $already_ids = array();
+    $data = $this->db->query("SELECT user_id FROM ".self::DB_USERREQUEST_USERS." WHERE ad_id = {$adid}")->fetchAll(\PDO::FETCH_ASSOC);
+    foreach ((array)$data as $d) {
+      $already_ids[] = (int)$d['user_id'];
+    }
+
+    foreach ((array)$dsession['target_users'] as $tu) {
+      if (in_array((int)$tu, $already_ids)) {
+        unset($dsession['target_users'][array_search((int)$tu, $dsession['target_users'])]);
+      }
+    }
+
+    if (!empty($dsession['target_users'])) {
+      $this->db->insert(
+        self::DB_USERREQUEST,
+        array(
+          'hashkey' => uniqid(),
+          'user_id' => $dsession['requester_id'],
+          'ad_id' => $adid,
+          'reqister_raw_key' => $post['session']
+        )
+      );
+
+      $session_id = $this->db->lastInsertId();
+
+      foreach ((array)$dsession['target_users']as $iu) {
+        $this->db->insert(
+          self::DB_USERREQUEST_USERS,
+          array(
+            'request_id' => $session_id,
+            'user_id' => $iu,
+            'ad_id' => $adid
+          )
+        );
+      }
+    }
   }
   public function checkRequestAd($uid, $adid)
   {
