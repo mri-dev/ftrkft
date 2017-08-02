@@ -173,7 +173,13 @@ a:hover {
 }
 
 body:not(.admin) aside {
-  margin-top: -138px;
+  margin-top: -155px;
+  &.user-munkavallalo {
+    margin-top: -99px;
+  }
+  &.user-munkaado {
+    margin-top: -132px;
+  }
 
   .facebook-box{
     margin-top: 15px;

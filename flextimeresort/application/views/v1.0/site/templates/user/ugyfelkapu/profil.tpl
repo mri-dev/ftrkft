@@ -1,13 +1,24 @@
 {include file=$template_root|cat:"user/parts/profil_progress.tpl"}
 
-<div class="profil-changer-nav">
+<div class="profil-changer-nav {if $me && $me->isMunkaado()}munkaado-line{/if}">
   <ul>
     <li class="ico-user {if $subprofil == 'alap'}active{/if}"><a href="/ugyfelkapu/profil"><div class="ico"></div>{lang text="Személyes adatok"}</a></li>
     <li class="ico-mobil {if $subprofil == 'elerhetoseg'}active{/if}"><a href="/ugyfelkapu/profil/elerhetoseg"><div class="ico"></div>{lang text="Elérhetőség"}</a></li>
+    {if $me && $me->isMunkaado()}
+    <li class="ico-idcard {if $subprofil == 'ceges'}active{/if}"><a href="/ugyfelkapu/profil/ceges"><div class="ico"></div>{lang text="Céges adatok"}</a></li>
+    {/if}
+    {if $me && $me->isUser()}
     <li class="ico-idcard {if $subprofil == 'vegzettseg'}active{/if}"><a href="/ugyfelkapu/profil/vegzettseg"><div class="ico"></div>{lang text="Végzettség Szakképzettség"}</a></li>
+    {/if}
+    {if $me && $me->isUser()}
     <li class="ico-document {if $subprofil == 'ismeretek'}active{/if}"><a href="/ugyfelkapu/profil/ismeretek"><div class="ico"></div>{lang text="Ismeretek"}</a></li>
+    {/if}
+    {if $me && $me->isUser()}
     <li class="ico-briefcase {if $subprofil == 'munkatapasztalat'}active{/if}"><a href="/ugyfelkapu/profil/munkatapasztalat"><div class="ico"></div>{lang text="Munkatapasztalat"}</a></li>
+    {/if}
+    {if $me && $me->isUser()}
     <li class="ico-target {if $subprofil == 'elvarasok'}active{/if}"><a href="/ugyfelkapu/profil/elvarasok"><div class="ico"></div>{lang text="Elvárások"}</a></li>
+    {/if}
     <li class="ico-download {if $subprofil == 'dokumentumok'}active{/if}"><a href="/ugyfelkapu/profil/dokumentumok"><div class="ico"></div>{lang text="Dokumentum feltöltés"}</a></li>
   </ul>
 </div>

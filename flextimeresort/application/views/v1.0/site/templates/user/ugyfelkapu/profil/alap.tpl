@@ -19,19 +19,33 @@
 
   <div class="row input-line">
     <div class="col-md-3">
-      <label for="default_szakma_text">{lang text="Foglalkozás / Szakma"} *</label>
+      {if $me && $me->isUser()}
+        <label for="default_szakma_text">{lang text="Foglalkozás / Szakma"} *</label>
+      {/if}
+      {if $me && $me->isMunkaado()}
+        <label for="default_szakma_text">{lang text="A cég gazdasági szakterülete"} *</label>
+      {/if}
     </div>
     <div class="col-md-9">
       <div class="input-wrapper">
         <input type="text" id="default_szakma_text" ng-focus="szakma_text=true" ng-blur="szakma_text=false" class="form-control" required="required" maxlength="50" ng-model="form.szakma_text">
         <div class="form-helper"></div>
+        {if $me && $me->isUser()}
         <div class="infotext" ng-style="(szakma_text==true ? texthintfocusstyle : '')">
           {lang text="Pl.: Rendszergazda, Programtervező informatikus, Szakács, Épületgépés, stb."}
         </div>
+        {/if}
+        {if $me && $me->isMunkaado()}
+        <div class="infotext" ng-style="(szakma_text==true ? texthintfocusstyle : '')">
+          {lang text="Pl.: Szoftver fejlesztés, Vegyipari anyag gyártás, Pékség, Grafikus stúdió, stb..."}
+        </div>
+        {/if}
+
       </div>
     </div>
   </div>
 
+  {if $me && $me->isUser()}
   <div class="row input-line">
     <div class="col-md-3">
       <label>{lang text="Nem"} *</label>
@@ -43,7 +57,9 @@
       </div>
     </div>
   </div>
+  {/if}
 
+  {if $me && $me->isUser()}
   <div class="row input-line">
     <div class="col-md-3">
       <label>{lang text="Állampolgárság"} *</label>
@@ -55,7 +71,9 @@
       </div>
     </div>
   </div>
+  {/if}
 
+  {if $me && $me->isUser()}
   <div class="row input-line">
     <div class="col-md-3">
       <label>{lang text="Anyanyelv"} *</label>
@@ -67,6 +85,7 @@
       </div>
     </div>
   </div>
+  {/if}
 
   <div class="row input-line">
     <div class="col-md-3">
@@ -80,6 +99,7 @@
     </div>
   </div>
 
+  {if $me && $me->isUser()}
   <div class="row input-line">
     <div class="col-md-3">
       <label for="default_birthday">{lang text="Születési dátum"} *</label>
@@ -94,6 +114,8 @@
       </div>
     </div>
   </div>
+  {/if}
+
   {if true}
   <div class="row input-line vert-top">
     <div class="col-md-3">

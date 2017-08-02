@@ -59,9 +59,15 @@ class ajax extends Controller  {
 					$data['elerhetoseg']['lakcim_irsz'] = (int)$this->ME->getAccountData('lakcim_irsz');
 					$data['elerhetoseg']['lakcim_city'] = $this->ME->getAccountData('lakcim_city');
 					$data['elerhetoseg']['lakcim_uhsz'] = $this->ME->getAccountData('lakcim_uhsz');
+					$data['elerhetoseg']['szekhely_irsz'] = (int)$this->ME->getAccountData('szekhely_irsz');
+					$data['elerhetoseg']['szekhely_city'] = $this->ME->getAccountData('szekhely_city');
+					$data['elerhetoseg']['szekhely_uhsz'] = $this->ME->getAccountData('szekhely_uhsz');
 					$data['elerhetoseg']['social_url_facebook'] = $this->ME->getAccountData('social_url_facebook');
 					$data['elerhetoseg']['social_url_twitter'] = $this->ME->getAccountData('social_url_twitter');
 					$data['elerhetoseg']['social_url_linkedin'] = $this->ME->getAccountData('social_url_linkedin');
+					$data['elerhetoseg']['ceges_kapcsolat_telefon'] = (int)$this->ME->getAccountData('ceges_kapcsolat_telefon');
+					$data['elerhetoseg']['ceges_kapcsolat_nev'] = $this->ME->getAccountData('ceges_kapcsolat_nev');
+					$data['elerhetoseg']['ceges_kapcsolat_email'] = $this->ME->getAccountData('ceges_kapcsolat_email');
 
 					// Ismeretek
 					$data['ismeretek']['jogositvanyok'] = (array)$this->ME->getAccountData('jogositvanyok');
@@ -193,9 +199,17 @@ class ajax extends Controller  {
 					$profildetails['lakcim_irsz'] = $form['lakcim_irsz'];
 					$profildetails['lakcim_uhsz'] = $form['lakcim_uhsz'];
 					$profildetails['lakcim_city'] = $form['lakcim_city'];
+					$profildetails['szekhely_irsz'] = $form['szekhely_irsz'];
+					$profildetails['szekhely_uhsz'] = $form['szekhely_uhsz'];
+					$profildetails['szekhely_city'] = $form['szekhely_city'];
 					$profildetails['social_url_facebook'] = $form['social_url_facebook'];
 					$profildetails['social_url_twitter'] = $form['social_url_twitter'];
 					$profildetails['social_url_linkedin'] = $form['social_url_linkedin'];
+
+
+					$profildetails['ceges_kapcsolat_nev'] = $form['ceges_kapcsolat_nev'];
+					$profildetails['ceges_kapcsolat_email'] = $form['ceges_kapcsolat_email'];
+					$profildetails['ceges_kapcsolat_telefon'] = $form['ceges_kapcsolat_telefon'];
 
 					$profildetails['iskolai_vegzettsegi_szintek'] = (int)$form['iskolai_vegzettsegi_szintek'];
 					$profildetails['jogositvanyok'] = (array)$form['jogositvanyok'];

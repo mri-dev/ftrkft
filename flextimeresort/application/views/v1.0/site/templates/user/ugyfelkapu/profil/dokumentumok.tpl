@@ -1,3 +1,4 @@
+{if $me && $me->isUser()}
 <div class="group">
   <div class="title">
     <h3><i class="fa fa-file-text-o"></i> {lang text="Önéletrajz"}</h3>
@@ -36,11 +37,17 @@
       </div>
     </div>
   </div>
-
 </div>
+{/if}
+
 <div class="group">
   <div class="title">
-    <h3><i class="fa fa-files-o"></i> {lang text="További dokumentumok"}</h3>
+    {if $me && $me->isUser()}
+      <h3><i class="fa fa-files-o"></i> {lang text="További dokumentumok"}</h3>
+    {/if}
+    {if $me && $me->isMunkaado()}
+      <h3><i class="fa fa-files-o"></i> {lang text="Dokumentumok"}</h3>
+    {/if}
     <div class="line"></div>
     <div class="clearfix"></div>
   </div>

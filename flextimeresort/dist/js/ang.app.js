@@ -142,9 +142,16 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.lakcim_irsz = user.elerhetoseg.lakcim_irsz;
     $scope.form.lakcim_city = user.elerhetoseg.lakcim_city;
     $scope.form.lakcim_uhsz = user.elerhetoseg.lakcim_uhsz;
+    $scope.form.szekhely_irsz = user.elerhetoseg.szekhely_irsz;
+    $scope.form.szekhely_city = user.elerhetoseg.szekhely_city;
+    $scope.form.szekhely_uhsz = user.elerhetoseg.szekhely_uhsz;
     $scope.form.social_url_facebook = user.elerhetoseg.social_url_facebook;
     $scope.form.social_url_twitter = user.elerhetoseg.social_url_twitter;
     $scope.form.social_url_linkedin = user.elerhetoseg.social_url_linkedin;
+
+    $scope.form.ceges_kapcsolat_nev = user.elerhetoseg.ceges_kapcsolat_nev;
+    $scope.form.ceges_kapcsolat_email = user.elerhetoseg.ceges_kapcsolat_email;
+    $scope.form.ceges_kapcsolat_telefon = user.elerhetoseg.ceges_kapcsolat_telefon;
 
     $scope.form.jogositvanyok = user.ismeretek.jogositvanyok;
     $scope.form.ismeretek_egyeb = user.ismeretek.ismeretek_egyeb;
