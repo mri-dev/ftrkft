@@ -757,7 +757,9 @@ input[type=checkbox].ccb:checked + label:before{
   }
 }
 
-.allas-requests{
+.allas-requests,
+.user-request
+{
   .item-status{
     font-size: 1.2em;
     margin-bottom: 10px;
@@ -1092,6 +1094,115 @@ input[type=checkbox].ccb:checked + label:before{
       }
     }
 
+  }
+}
+
+.user-request{
+  .requests{
+    .user{
+      margin: 4px 0;
+      & > .wrapper{
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .profilimg{
+          flex-basis: 80px;
+          width: 80px;
+          height: 80px;
+          position: relative;
+          overflow: hidden;
+          -webkit-border-radius: 80px;
+          -moz-border-radius: 80px;
+          border-radius: 80px;
+          background: white;
+          border-width: 3px;
+          border-style: solid;
+          border-color: #adbeb0;
+
+          img {
+            position: absolute;
+            max-height: 110%;
+            height: 110%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+
+        .dataset{
+          flex-basis: calc(100% - 50% - 80px);
+          padding: 0 0 0 10px;
+          line-height: 1.7;
+
+          .subline{
+            font-size: 0.85em;
+          }
+
+          .name {
+            font-size: 1.2em;
+            a{
+              color: black;
+              font-weight: bold;
+            }
+          }
+
+          .szakma{
+            color: #a2a2a2;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            font-style: italic;
+          }
+        }
+
+        .status {
+          flex-basis: 50%;
+          font-size: 0.9em;
+          line-height: 1.4;
+          text-align: left;
+
+          .user-decide{
+            .accept{
+              color: $color-primary-light;
+            }
+            .inprogress{
+              color: orange;
+            }
+            .declined{
+              color: $color-red;
+            }
+          }
+          .access-granted{
+            .yes{
+                color: $color-primary-light;
+            }
+            .no{
+              color: $color-red;
+            }
+          }
+        }
+      }
+
+      // Férfi
+      &.gender16{
+        & > .wrapper{
+          .profilimg {
+            border-color: #89c7eb;
+          }
+        }
+      }
+      // Nő
+      &.gender17{
+        & > .wrapper{
+          .profilimg {
+            border-color: #f3b1df;
+          }
+        }
+      }
+    }
   }
 }
 

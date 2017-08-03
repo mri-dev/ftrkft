@@ -16,6 +16,7 @@ use MailManager\Mailer;
 use DesignCreator\FormDesigns;
 use FlexTimeResort\Allasok;
 use FlexTimeResort\Requests;
+use FlexTimeResort\UserRequests;
 
 class cp extends Controller {
 	private $admin;
@@ -136,6 +137,24 @@ class cp extends Controller {
 				}
 			break;
 		}
+	}
+
+	public function userRequestAd()
+	{
+		$filter_arr = $_GET;
+		unset($filter_arr['tag']);
+
+		$requests = new UserRequests(array(
+			'controller' => $this->ctrl
+		));
+		$filters = array();
+
+		$arg = array();
+		$arg['filters'] = $filters;
+
+		$requests->getTree($arg);
+		$this->out( 'requests', $requests);
+		$this->out( 'filter_arr', $filter_arr);
 	}
 
 	public function messanger()
@@ -296,10 +315,6 @@ class cp extends Controller {
 		}
 	}
 
-	public function requests()
-	{
-		# code...
-	}
 
 	public function terms()
 	{
