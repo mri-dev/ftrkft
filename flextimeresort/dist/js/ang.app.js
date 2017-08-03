@@ -1409,9 +1409,20 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
   $scope.allas_db = 0;
   $scope.loaded = false;
   $scope.error = false;
+  $scope.requestUserShow = [];
 
   $scope.init = function(){
     $scope.loadData();
+  }
+
+  $scope.requestUserShowToggler = function(aid){
+    if (typeof aid !== 'undefined') {
+      if (typeof $scope.requestUserShow[aid]  === 'undefined' || $scope.requestUserShow[aid] === false) {
+        $scope.requestUserShow[aid] = true;
+      } else {
+        $scope.requestUserShow[aid] = false;
+      }
+    }
   }
 
   $scope.loadData = function(){

@@ -173,9 +173,39 @@ class UserCVPreparer
     return $this->user->getOneletrajz();
   }
 
-  public function accessGrantedCheck($uid)
+  public function accessGrantedCheck( $uid = 0 )
   {
-    $granted = false;
+    $granted = array(
+      'granted' => false,
+      'granted_to_date' => 0
+    );
+    $max_date = false;
+    $granted_c = 0;
+
+    $target_user = (int)$this->user->getID();
+
+    $checks = $this->db->query(sprintf("SELECT
+      ur.ID,
+      ur.access_granted,
+      ur.granted_date_at
+    FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as ur
+    LEFT OUTER JOIN ".\FlexTimeResort\Allasok::DB_USERREQUEST." as r ON r.ID = ur.request_id
+    WHERE
+      ur.user_id = %d and
+      r.user_id", $target_user, $uid))->fetchAll(\PDO::FETCH_ASSOC);
+
+    foreach ((array)$checks as $c) {
+      $mdate = strtotime($c['granted_date_at']);
+      if($mdate != 0 && $mdate > $max_date) $max_date = $mdate;
+      if($c['access_granted'] == '1') $granted_c++;
+    }
+
+    $extra_date = strtotime('+'.$this->settings['USERREQUEST_ACCESS_GRANTED_DATEDIFF'].' days', $max_date);
+
+    if (time() <= $extra_date) {
+      $granted['granted'] = true;
+      $granted['granted_to_date'] = date('Y-m-d H:i:s', $extra_date);
+    }
 
     return $granted;
   }

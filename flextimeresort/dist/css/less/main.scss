@@ -1915,7 +1915,7 @@ body.ugyfelkapu-view{
     padding: 25px 0;
 
     .header {
-      margin: 0 -10px 15px -10px;
+      margin: 0 -10px 15px 0;
 
       h2 {
         font-weight: bold;
@@ -1926,13 +1926,16 @@ body.ugyfelkapu-view{
 
     .allasok {
       .allas {
-        background: #f6f6f6;
-        padding: 4px 10px;
-        border: 1px solid #eaeaea;
         margin: 5px 0;
-        border-radius: 5px;
         overflow: hidden;
         position: relative;
+
+        & >.wrapper{
+          background: #f6f6f6;
+          padding: 4px 10px;
+          border: 1px solid #eaeaea;
+          border-radius: 5px;
+        }
 
         .datarow{
           font-size: 1.2em;
@@ -1990,8 +1993,137 @@ body.ugyfelkapu-view{
             margin-right: 10px;
           }
 
+          & > span.requested-users{
+            float: right;
+            margin-right: 0;
+            background: $color-red;
+            line-height: 1.3;
+            padding: 6px;
+            color: white;
+            border-radius: 5px;
+          }
+
           .time {
             color: #adadad;
+          }
+        }
+
+        .user-requests{
+          .list-wrapper{
+            padding: 0 15px 15px 15px;
+            h3{
+              font-size: 1em;
+              margin: 5px 0;
+            }
+            .user{
+              margin: 4px 0;
+              & > .wrapper{
+                width: 100%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                padding: 8px;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                background: #f8f8f8;
+                border: 1px solid #ececec;
+
+                .profilimg{
+                  flex-basis: 80px;
+                  width: 80px;
+                  height: 80px;
+                  position: relative;
+                  overflow: hidden;
+                  -webkit-border-radius: 80px;
+                  -moz-border-radius: 80px;
+                  border-radius: 80px;
+                  background: white;
+                  border-width: 3px;
+                  border-style: solid;
+                  border-color: #adbeb0;
+
+                  img {
+                    position: absolute;
+                    max-height: 110%;
+                    height: 110%;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                  }
+                }
+
+                .dataset{
+                  flex-basis: calc(100% - 50% - 80px);
+                  padding: 0 0 0 10px;
+                  line-height: 1.7;
+
+                  .subline{
+                    font-size: 0.85em;
+                  }
+
+                  .name {
+                    font-size: 1.2em;
+                    a{
+                      color: black;
+                      font-weight: bold;
+                    }
+                  }
+
+                  .szakma{
+                    color: #a2a2a2;
+                    line-height: 1.2;
+                    margin-bottom: 4px;
+                    font-style: italic;
+                  }
+                }
+
+                .status {
+                  flex-basis: 50%;
+                  font-size: 0.9em;
+                  line-height: 1.4;
+
+                  .user-decide{
+                    .accept{
+                      color: $color-primary-light;
+                    }
+                    .inprogress{
+                      color: orange;
+                    }
+                    .declined{
+                      color: $color-red;
+                    }
+                  }
+                  .access-granted{
+                    .yes{
+                        color: $color-primary-light;
+                    }
+                    .no{
+                      color: $color-red;
+                    }
+                  }
+                }
+              }
+
+              // Férfi
+              &.gender16{
+                & > .wrapper{
+                  .profilimg {
+                    border-color: #89c7eb;
+                  }
+                }
+              }
+              // Nő
+              &.gender17{
+                & > .wrapper{
+                  .profilimg {
+                    border-color: #f3b1df;
+                  }
+                }
+              }
+            }
           }
         }
 
@@ -3292,7 +3424,7 @@ ul.pagination {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -10px;
+  margin: 0 -10px 0 0;
 
   .allas{
     flex-basis: 100%;
@@ -4005,6 +4137,20 @@ ul.pagination {
 
 .ertesito-kozpont{
   padding: 25px 0;
+  .no-alerts{
+    font-size: 1.4em;
+    text-align: center;
+    padding: 50px 0;
+    color: $color-grey;
+    h2{
+      color: #333333;
+    }
+
+    & > i {
+      font-size: 64px;
+      color: $color-primary-light;
+    }
+  }
   .item{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4441,6 +4587,7 @@ label.file-uploader{
                 color: white;
               }
             }
+
             & > .wrapper{
               width: 100%;
               display: -webkit-box;

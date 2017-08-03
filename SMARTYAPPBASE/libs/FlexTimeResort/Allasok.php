@@ -484,10 +484,13 @@ class Allasok
     );
 
     $data = $this->db->query(sprintf("SELECT
-      ur.ID, ur.access_granted, ur.admin_id, ur.feedback, ur.granted_date_at, ur.user_id
+      ur.ID, ur.access_granted, ur.admin_id, ur.feedback, ur.granted_date_at, ur.user_id,
+      r.requested_at
     FROM ".self::DB_USERREQUEST_USERS." as ur
+    LEFT OUTER JOIN ".self::DB_USERREQUEST." as r ON r.ID = ur.request_id
     WHERE 1=1 and
     ur.ad_id = %d
+    ORDER BY ur.feedback DESC
     ", $id ));
 
     if ($data->rowCount() != 0) {
@@ -496,6 +499,7 @@ class Allasok
         $d['access_granted'] = ((int)$d['access_granted'] == 1) ? true : false;
         $d['feedback'] = ((int)$d['feedback']);
         $d['user_id'] = ((int)$d['user_id']);
+        $d['grant_date_expired'] = ($d['access_granted']) ? date('Y-m-d H:i:s', strtotime($d['granted_date_at'].' +'.$this->settings['USERREQUEST_ACCESS_GRANTED_DATEDIFF'].' days')) : null;
 
         $user = new User($d['user_id'], array('controller' => $this->controller));
         $d['user'] = array(
@@ -511,6 +515,8 @@ class Allasok
           'profilpercent' => (float)$user->profilPercent(),
           'city' => $user->getAccountData('lakcim_city')
         );
+
+        $users['total']++;
 
         if($d['access_granted']) {
           $users['granted']++;

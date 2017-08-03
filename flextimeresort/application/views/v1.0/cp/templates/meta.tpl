@@ -44,7 +44,13 @@
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
 <script type="text/javascript" src="/plugins/fancybox/jquery.fancybox.js"></script>
 <script type="text/javascript" src="/plugins/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+
 <script src="/plugins/angular-ui-tinymce/dist/tinymce.min.js"></script>
 <script src="/dist/js/angular-modules/angular-nl2br.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>

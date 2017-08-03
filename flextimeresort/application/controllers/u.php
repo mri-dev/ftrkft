@@ -90,10 +90,12 @@ class u extends Controller
 		// ha adminként be vannak lépve
 		// ha a saját adatlapját tekinti meg
 		// ha munkaadó és kérelmezte a a hozzáférést és meg is kapta
+		$cv_grant_check = $cv->accessGrantedCheck($this->ME->getID());
+
 		if (
 				$this->admin ||
 				($this->ME && $this->ME->getID() == $uid) ||
-				($this->ME && $this->ME->isUser() && $cv->accessGrantedCheck($this->ME->getID()))
+				($this->ME && $this->ME->isMunkaado() && ($cv_grant_check && $cv_grant_check['granted']))
 		) {
 			$has_access_contact = true;
 		}
