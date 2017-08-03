@@ -50,8 +50,10 @@ class UserRequests
         ur.access_granted,
         ur.feedback,
         ur.user_id,
+        ur.admin_id,
         r.requested_at,
-        ur.granted_date_at
+        ur.granted_date_at,
+        ap.name as pick_admin_name
       FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as ur
       LEFT OUTER JOIN ".\FlexTimeResort\Allasok::DB_USERREQUEST." as r ON r.ID = ur.request_id
       LEFT OUTER JOIN admin as ap ON ap.ID = ur.admin_id
@@ -59,7 +61,9 @@ class UserRequests
 
     // Filterek
     if (isset($filters) && !empty($filters)) {
-
+      if (isset($filters['ad_ids'])) {
+        $qry .= " and ur.ad_id IN(".implode(",",$filters['ad_ids']).")";
+      }
     }
 
     // Order
@@ -153,6 +157,29 @@ class UserRequests
 
     //$this->current_category = $this->walk_step;
     $this->current_category = $this->tree_steped_item[$this->walk_step];
+
+    return true;
+  }
+
+  public function pick($admin = false, $id = null)
+  {
+    if (!$admin || is_null($id)) {
+      return false;
+    }
+
+    $cs = (int)$this->db->query("SELECT admin_id FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." WHERE ID = '{$id}'")->fetchColumn();
+
+    if ( $cs !== 0) {
+      throw new \Exception("Időközben már felvette egy adminisztrátor a kérelem kezelését.");
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
+      array(
+        'admin_id' => $admin
+      ),
+      sprintf("ID = '%s'", $id)
+    );
 
     return true;
   }

@@ -147,7 +147,47 @@ class cp extends Controller {
 		$requests = new UserRequests(array(
 			'controller' => $this->ctrl
 		));
+
+		if (isset($_GET['pickrequest'])) {
+			$id = $_GET['pickrequest'];
+			try {
+				$requests->pick($this->admin->getID(), $id);
+				\Helper::reload($this->getVar('root') . 'userRequestAd/?opened='.$id.'&hlad='.$_GET['hlad']);
+			} catch (Exception $e) {
+				$this->out("requestError", $e->getMessage());
+				$this->out("link_back_list", true);
+			}
+		}
+
 		$filters = array();
+
+		if (isset($_GET['accepts'])) {
+			$filters['accepted'] = (int)$_GET['accepts'];
+		}
+
+		if (isset($_GET['onlyunpicked'])) {
+			$filters['onlyunpicked'] = true;
+		}
+
+		if (isset($_GET['undown'])) {
+			$filters['undown'] = true;
+		}
+
+		if (isset($_GET['onlyaccepted'])) {
+			$filters['onlyaccepted'] = true;
+		}
+
+		if (isset($_GET['onlydeclined'])) {
+			$filters['onlydeclined'] = true;
+		}
+
+		if (isset($_GET['ownpicked'])) {
+			$filters['onlypickedby'] = (int)$this->admin->getID();
+		}
+
+		if (isset($_GET['hlad'])) {
+			$filters['ad_ids'] = (array)$_GET['hlad'];
+		}
 
 		$arg = array();
 		$arg['filters'] = $filters;

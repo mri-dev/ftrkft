@@ -1100,7 +1100,39 @@ input[type=checkbox].ccb:checked + label:before{
 .user-request{
   .requests{
     .user{
-      margin: 4px 0;
+      border-left-width: 50px;
+      border-left-style: solid;
+      border-left-color: #f3f3f3;
+      position: relative;
+      .status-ico{
+        position: absolute;
+        top: 50%;
+        left: -33px;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        transform: translateY(-50%);
+        i {
+          font-size: 23px;
+        }
+      }
+      &.status-unallowed{
+        border-left-color: orange;
+        i{
+          color: white;
+        }
+      }
+      &.status-allowed{
+        border-left-color: $color-primary-light;
+        i{
+          color: white;
+        }
+      }
+      &.status-declined{
+        border-left-color: #f1081f;
+        i{
+          color: white;
+        }
+      }
       & > .wrapper{
         width: 100%;
         display: -webkit-box;
@@ -1140,6 +1172,14 @@ input[type=checkbox].ccb:checked + label:before{
 
           .subline{
             font-size: 0.85em;
+
+            & > span {
+              margin-right: 8px;
+
+              a{
+                color: $color-red;
+              }
+            }
           }
 
           .name {
