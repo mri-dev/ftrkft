@@ -1,4 +1,4 @@
-<h1>Munkavállaló adatigénylés</h1>
+<h1 style="margin: 10px 0 5px 0;">Munkavállaló adatigénylés</h1>
 <div class="subtitle">
   Az alábbi listában szerepelnek azok az igénylések, melyet a munkavállalók adtak le egy állásajánlatuk kapcsán munkavállalók személyes adatai iránt.
 </div>
@@ -10,9 +10,134 @@
 {/if}
 
 <div class="user-request">
-  {if isset($smarty.get.hlad)}
+  <div class="filters">
+    <fieldset>
+      <legend>Szűrők</legend>
+      <ul>
+        {assign var="filter_qry" value=http_build_query($filter_arr)}
+        <li><a class="btn btn-sm btn-{if isset($smarty.get.ownpicked)}success{else}default{/if}" href="{$root}userRequestAd/?{array_query_toggler from=$filter_arr item='ownpicked'}">Felvett jelölések</a></li>
+        <li><a class="btn btn-sm btn-{if isset($smarty.get.undown)}success{else}default{/if}" href="{$root}userRequestAd/?{array_query_toggler from=$filter_arr item='undown'}">Felvett, befejezettlen jelölések <i class="fa fa-retweet"></i></a></li>
+        <li class="sep">|</li>
+        <li class="hl hl-orange"><a class="btn btn-sm btn-{if isset($smarty.get.onlyunpicked)}success{else}default{/if}" href="{$root}userRequestAd/?{array_query_toggler from=$filter_arr item='onlyunpicked'}">Feldolgozatlan jelölések <i class="fa fa-question-circle-o"></i></a></li>
+        <li class="hl hl-green"><a class="btn btn-sm btn-{if isset($smarty.get.onlyaccepted)}success{else}default{/if}" href="{$root}userRequestAd/?{array_query_toggler from=$filter_arr item='onlyaccepted'}">Pozitívan visszajelzet<i class="fa fa-check-circle"></i></a></li>
+        <li class="hl hl-red"><a class="btn btn-sm btn-{if isset($smarty.get.onlydeclined)}success{else}default{/if}" href="{$root}userRequestAd/?{array_query_toggler from=$filter_arr item='onlydeclined'}">Negatívan visszajelzett <i class="fa fa-minus-circle"></i></a></li>
+      </ul>
+      <div class="divider lined"></div>
+      <form class="" action="{$root}userRequestAd" method="get" id="filter_search">
+        {if !empty($form_pre_filter)}
+          {foreach from=$form_pre_filter item=item key=key}
+            <input type="hidden" name="{$key}" value="{$item}">
+          {/foreach}
+        {/if}
+        <div class="row">
+          <div class="col-md-1">
+            <label for="munkaado_id">Munkaadó ID</label>
+            <input class="form-control" type="text" id="munkaado_id" name="requester_id" value="{$smarty.get.requester_id}">
+          </div>
+          <div class="col-md-1">
+            <label for="munkavallalo_id">Munkavállaló ID</label>
+            <input class="form-control" type="text" id="munkavallalo_id" name="tuid" value="{$smarty.get.tuid}">
+          </div>
+          <div class="col-md-4">
+            <label for="kereses">Keresés &mdash; Név / Email</label>
+            <input class="form-control" type="text" id="kereses" name="search" value="{$smarty.get.search}">
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </fieldset>
+  </div>
+
+  {if !empty($applied_filter)}
+    <div class="applied-filters">
+      {if isset($smarty.get.requester_id) && $applied_filter['requester']}
+      <span><i class="fa fa-filter"></i> Szűrve: <strong>{$applied_filter['requester']->getName()}</strong> munkaadó általi igénylések</span>
+      {/if}
+      {if isset($smarty.get.tuid) && $applied_filter['target_user']}
+      <span><i class="fa fa-filter"></i> Szűrve: <strong>{$applied_filter['target_user']->getName()}</strong> munkavállaló adatinak igénylései</span>
+      {/if}
+    </div>
+  {/if}
+
+  {if isset($smarty.get.hlad) || isset($smarty.get.requester_id)}
     <a href="{$root}userRequestAd" class="btn btn-default btn-sm backurl"> <i class="fa fa-long-arrow-left"></i> vissza a teljes listára</a>
   {/if}
+
+  {if isset($smarty.get.setdecline)}
+    <div class="request-action-panel panel-decline">
+      <form class="" action="" method="post">
+        <input type="hidden" name="requestAction" value="decline">
+        <div class="info">
+          <h2>A felhasználó NEGATÍV irányban jelzett vissza a kapcsolatfelvétel során?</h2>
+          Negatív: a felhasználó elmondása szerint nem érdekli az ajánlat.
+        </div>
+        <div class="buttons">
+          <a href="{$root}userRequestAd/?opened={$smarty.get.setdecline}&hlad={$smarty.get.hlad}" class="btn btn-danger">vissza</a>
+          <button type="submit" name="yes" class="btn btn-success" value="1">Negatívan jelzett vissza! <i class="fa fa-times"></i></button>
+        </div>
+      </form>
+    </div>
+  {/if}
+
+  {if isset($smarty.get.setallow)}
+    <div class="request-action-panel panel-allower">
+      <form class="" action="" method="post">
+        <input type="hidden" name="requestAction" value="setallow">
+        <div class="info">
+          <h2>A felhasználó POZITÍV irányban jelzett vissza a kapcsolatfelvétel során?</h2>
+          Pozitív: a felhasználó elmondása szerint érdekli az ajánlat.
+        </div>
+        <div class="buttons">
+          <div class="options">
+            <strong>Opcionális beállítások:</strong><br>
+            <input type="checkbox" {if isset($smarty.get.grant_access) == '1'}checked="checked"{/if} name="access_granting" id="access_granting" value="1"> <label for="access_granting">Személyes kapcsolat adatok (telefonszám, e-mail cím, közösségi oldalak) hozzáférése a munkáltató részére a munkavállaló önéletrajzán.</label>
+          </div>
+          <a href="{$root}userRequestAd/?opened={$smarty.get.setallow}&hlad={$smarty.get.hlad}" class="btn btn-danger">vissza</a>
+          <button type="submit" name="yes" class="btn btn-success" value="1">Pozitívan jelzett vissza <i class="fa fa-check-circle"></i></button>
+        </div>
+      </form>
+    </div>
+  {/if}
+
+  {if isset($smarty.get.setgranted)}
+    <div class="request-action-panel panel-allower">
+      <form class="" action="" method="post">
+        <input type="hidden" name="requestAction" value="setgranted">
+        <div class="info">
+          <h2>Munkavállaló önéletrajz személyes adatok (e-mail, telefonszám, közösségi oldalak) biztosítása a munkavállaló részére?</h2>
+          A hozzáférés megadásától számított {$settings.USERREQUEST_ACCESS_GRANTED_DATEDIFF} napon keresztül érheti el a munkaadó a munkavállaló személyes adatait.
+        </div>
+        <div class="buttons">
+          <a href="{$root}userRequestAd/?opened={$smarty.get.setallow}&hlad={$smarty.get.hlad}" class="btn btn-danger">vissza</a>
+          <button type="submit" name="yes" class="btn btn-success" value="1">Hozzáférés biztosítása <i class="fa fa-check-circle"></i></button>
+        </div>
+      </form>
+    </div>
+  {/if}
+
+  {if $requests->total_items != 0}
+
+  <div class="item-status">
+    <span class="total"><strong>{$requests->total_items} db</strong> adatigénylés</span> |
+    {if $requests->infos.requests.finished != 0}
+    <span class="finished">{$requests->infos.requests.finished} lezárt</span>
+    {/if}
+
+    {if $requests->infos.requests.untouched != 0}
+    <span class="unaccepted">{$requests->infos.requests.untouched} kapcsolatfelvételre vár</span>
+    {/if}
+
+    {if $requests->infos.requests.accepted != 0}
+    <span class="accepted">{$requests->infos.requests.accepted} pozitív visszajelzés</span>
+    {/if}
+
+    {if $requests->infos.requests.declined != 0}
+    <span class="declined">{$requests->infos.requests.declined} negatív visszajelzés</span>
+    {/if}
+  </div>
+
   {while $requests->walk()}
     {assign var="item" value=$requests->get()}
     <div class="allas id{$item.ID}">
@@ -22,6 +147,7 @@
           {assign var="author" value=$item.data->getAuthorData('author')}
           <span class="creator">Létrehozta: <strong>{$creator.name}</strong> <span class="by by-{$creator.by}">{$creator.by}</span></span>
           <span class="author">Hirdető: {if is_null($author->getName())}<em>- nincs hirdető adat -</em>{else}<strong>{$author->getName()}</strong>{/if}</span>
+          <span class="id">#Felh.ID: <strong>{$author->getID()}</strong></span>
         </div>
         <div class="desc">
           <a title="Hirdetés adatlap" href="{$item.data->getURL()}?atoken={$admin->getToken()}&showfull=1" target="_blank">{$item.data->shortDesc()}</a>
@@ -59,7 +185,7 @@
             </div>
             <div class="dataset">
               <div class="name">
-                <a href="{$settings.page_url}{$u.user->getCVURL()}" target="_blank">{$u.user->getName()}</a>
+                <a href="{$settings.page_url}{$u.user->getCVURL()}" target="_blank">{$u.user->getName()} <em>(#{$u.user->getID()})</em></a>
               </div>
               <div class="szakma">
                 {$u.user->getAccountData('szakma_text')}
@@ -104,6 +230,15 @@
                   <span class="accept">Kapcsolat felvéve: ajánlat érdekli.</span>
                   {/if}
                 </strong>
+                <div class="">
+                  {if !is_null($u.admin_id) && $u.finished == 0}
+                      {if $admin->getID() == $u.admin_id && $u.feedback == -1}
+                        <a href="{$root}userRequestAd/?setdecline={$u.ID}&opened={$u.ID}&hlad={$item.ID}" class="btn btn-sm btn-danger">NEGATÍV: Nem érdekli</a>
+                        <a href="{$root}userRequestAd/?setallow={$u.ID}&hlad={$item.ID}" class="btn  btn-sm btn-warning" style="color: white;">POZITÍV: Érdekli</a>
+                        <a href="{$root}userRequestAd/?setallow={$u.ID}&grant_access=1&hlad={$item.ID}" class="btn  btn-sm btn-success">POZITÍV + Hozzéférés megadása</a>
+                      {/if}
+                  {/if}
+                </div>
               </div>
               <div class="access-granted">
                 {lang text="Teljes hozzáférés megadva"}:
@@ -115,6 +250,15 @@
                   <span ng-if="!u.access_granted" class="no">{lang text="Nem"}</span>
                   {/if}
                 </strong>
+                {if !is_null($u.admin_id) && $u.feedback != -1}
+                <div class="">
+                  {if !is_null($u.admin_id) && $u.finished == 0}
+                      {if $admin->getID() == $u.admin_id && $u.feedback == 1 && $u.access_granted == 0 }
+                        <a href="{$root}userRequestAd/?setgranted={$u.ID}&opened={$u.ID}&hlad={$item.ID}" class="btn btn-sm btn-success">Hozzáférés megadása</a>
+                      {/if}
+                  {/if}
+                </div>
+                {/if}
               </div>
               {/if}
             </div>
@@ -124,6 +268,13 @@
       </div>
     </div>
   {/while}
+  {else}
+  <div class="no-result">
+    <i class="fa fa-flag-checkered"></i>
+    <h3>Nincs találat</h3>
+    A keresési feltételek alapján nincsennek adatigénylés kérelmek.
+  </div>
+  {/if}
 </div>
 {literal}
   <script type="text/javascript">

@@ -92,6 +92,7 @@
         <li class="sub {if $GETS[2] == 'editor'}active{/if}"><a href="{$root}ads/editor"><i class="fa fa-plus-circle"></i> <span class="text">Új hirdetés</span></a></li>
       {/if}
       <li class="{if $GETS[2] == 'requests'}active{/if}"><a href="{$root}ads/requests"><i class="fa fa-mouse-pointer"></i> <span class="text">Jelentkezések</span><span class="notify pull-right waiting_ad_applicant_ntf"></span></a></li>
+      <li class="{if $GETS[1] == 'userRequestAd'}active{/if}"><a href="{$root}userRequestAd"><i class="fa fa-mouse-pointer"></i> <span class="text">MV. Adatigénylés</span><span class="notify pull-right waiting_userequest__ntf"></span></a></li>
       <li class="{if $GETS[1] == 'messanger'}active{/if}"><a href="{$root}messanger/outbox"><i class="fa fa-comments-o"></i> <span class="text">Üzenetek</span><span class="notify pull-right unwatched_messages_ntf"></span></a></li>
       <li class="{if $GETS[1] == 'users'}active{/if}"><a href="{$root}users"><i class="fa fa-users"></i> <span class="text">Felhasználók</span></a></li>
       <li class="{if $GETS[1] == 'oldalak'}active{/if}"><a href="{$root}oldalak"><i class="fa fa-file-o"></i> <span class="text">Oldalak</span></a></li>

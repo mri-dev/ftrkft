@@ -12,6 +12,12 @@ body.admin {
 	-moz-osx-font-smoothing: grayscale;
   background: #f3f3f3;
 
+  h1 + .subtitle{
+    font-size: 1.3em;
+    color: $color-grey;
+    margin: 0 0 25px 0;
+  }
+
   .row.np{
     margin-left: -30px !important;
     margin-right: -30px !important;
@@ -771,6 +777,10 @@ input[type=checkbox].ccb:checked + label:before{
       color: $color-primary-light;
       margin: 0 5px;
     }
+    .finished{
+      color: #3c9d4e;
+      margin: 0 5px;
+    }
     .unaccepted{
       color: orange;
       margin: 0 5px;
@@ -1098,6 +1108,16 @@ input[type=checkbox].ccb:checked + label:before{
 }
 
 .user-request{
+  .applied-filters{
+    padding: 20px 0;
+    span {
+      background: $color-primary-light;
+      padding: 8px;
+      margin: 4px;
+      border-radius: 8px;
+      color: white;
+    }
+  }
   .requests{
     .user{
       border-left-width: 50px;

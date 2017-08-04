@@ -798,7 +798,8 @@ class ajax extends Controller  {
 					$params = array();
 					$output = array(
 						'waiting_ad_applicant' => 0,
-						'unwatched_messages' => 0
+						'unwatched_messages' => 0,
+						'waiting_userequest__ntf' => 1
 					);
 
 					$msg = $this->db->query("SELECT
@@ -810,6 +811,9 @@ class ajax extends Controller  {
 
 					$app = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r WHERE r.finished = 0 and r.admin_pick IS NULL")->fetchColumn();
 					$output['waiting_ad_applicant'] = (int)$app;
+
+					$app = $this->db->query("SELECT count(r.ID) FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as r WHERE r.admin_id IS NULL")->fetchColumn();
+					$output['waiting_userequest__ntf'] = (int)$app;
 
 					echo json_encode( $output );
 				break;

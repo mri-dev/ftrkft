@@ -29,6 +29,73 @@ class Messanger
 		return $this;
   }
 
+  public function collectAllUnreadedMessagesForEmailAlert( $useradmin = 'user', $delay_in_min = 60 )
+  {
+    $datas = array(
+      'total_items' => 0,
+      'user_ids' => array(),
+      'data' => false
+    );
+
+    $gets = $this->db->query("
+    SELECT
+      m.ID,
+      m.sessionid,
+      m.send_at,
+      m.user_to_id as user_id,
+      m.from_admin,
+      m.message,
+      mg.subject,
+      mg.allas_id,
+      TIMESTAMPDIFF(MINUTE, m.send_at, now()) as minafter
+    FROM ".self::DBTABLE_MESSAGES." as m
+    LEFT OUTER JOIN ".self::DBTABLE." as mg ON mg.sessionid = m.sessionid
+    WHERE 1=1 and
+    {$useradmin}_alerted = 0 and {$useradmin}_readed_at IS NULL and TIMESTAMPDIFF(MINUTE, m.send_at, now()) > {$delay_in_min}");
+
+    if ($gets->rowCount() != 0) {
+      $gets = $gets->fetchAll(\PDO::FETCH_ASSOC);
+
+      foreach ((array)$gets as $d) {
+        if (!isset($datas['data'][$d['user_id']]['userid'])) {
+          $datas['data'][$d['user_id']]['user_id'] = $d['user_id'];
+          $user = new User($d['user_id'], array('controller' => $this->controller));
+          $datas['data'][$d['user_id']]['user'] = array(
+            'name' => $user->getName(),
+            'email' => $user->getEmail()
+          );
+        }
+
+        if (!isset($datas['data'][$d['user_id']][items][$d['sessionid']])) {
+          $datas['data'][$d['user_id']][items][$d['sessionid']]['allas_id'] = $d['allas_id'];
+          $datas['data'][$d['user_id']][items][$d['sessionid']]['subject'] = $d['subject'];
+
+          $allas = (new Allasok(array('controller' => $this->controller)))->load($d['allas_id']);
+          $datas['data'][$d['user_id']][items][$d['sessionid']]['allas'] = array(
+            'url' => $this->settings['page_url'].$allas->getUrl(),
+            'desc' => $allas->ShortDesc(),
+            'cat_name' => $allas->get('cat_name'),
+            'tipus_name' => $allas->get('tipus_name'),
+            'author' => array(
+              'name' => $allas->getAuthorData(),
+              'ID' => $allas->getAuthorData('ID')
+            )
+          );
+        }
+
+        if (!in_array($d['user_id'], $datas['user_ids'])) {
+          $datas['user_ids'][] = $d['user_id'];
+        }
+
+        $datas['data'][$d['user_id']][items][$d['sessionid']]['items'][] = $d;
+        $datas['data'][$d['user_id']]['total_unreaded']++;
+
+        $datas['total_items']++;
+      }
+    }
+    return $datas;
+  }
+
   public function readInfos( $uid = false )
   {
     $datas = array();

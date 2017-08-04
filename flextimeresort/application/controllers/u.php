@@ -16,6 +16,7 @@ class u extends Controller
 			'root' => 'onlinecv'
 		) );
 
+
   	$this->root = '/'.__CLASS__.'/';
 		$this->out( 'root', $this->root );
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
@@ -82,6 +83,10 @@ class u extends Controller
 		$this->out('documents', $cv->Documents());
 		$this->out('mycv', $cv->UploadedCV());
 
+		parent::$pageTitle = $this->ctrl->lang('SEO_TITLE_CV_XYZ', array(
+			'nev' => $cv->Name()
+		));
+
 
 		/**
 		* Kapcsolat adatok hozzáférése
@@ -106,15 +111,25 @@ class u extends Controller
 		// SEO Információk
 		$SEO = null;
 		// Site info
-		$SEO .= $this->addMeta('description', '');
-		$SEO .= $this->addMeta('keywords', '');
+		$SEO .= $this->addMeta('description', $cv->SzakmaText().' - '.$this->ctrl->lang('SEO_DESC_CV_XYZ', array(
+			'nev' => $cv->Name(),
+			'page' => $this->settings['page_title']
+		)));
+		$SEO .= $this->addMeta('keywords', $this->ctrl->lang('SEO_KEYWORDS_CV'));
 		$SEO .= $this->addMeta('revisit-after','3 days');
 
 		// FB info
 		$SEO .= $this->addOG('type','website');
-		$SEO .= $this->addOG('url', $this->settings['page_url']);
-		$SEO .= $this->addOG('image','');
-		$SEO .= $this->addOG('site_name',$this->title);
+		$SEO .= $this->addOG('title', parent::$pageTitle);
+		$SEO .= $this->addOG('description', $cv->SzakmaText().' - '.$this->ctrl->lang('SEO_DESC_CV_XYZ', array(
+			'nev' => $cv->Name(),
+			'page' => $this->settings['page_title']
+		)));
+		$SEO .= $this->addOG('url', $this->settings['page_url'].$this->user->getCVUrl());
+		$SEO .= $this->addOG('image',$this->settings['page_url'].$cv->ProfilImg());
+		$SEO .= $this->addOG('image:alt',$cv->Name());
+		$SEO .= $this->addOG('site_name',$this->settings['page_title']);
+
 
 		$this->out( 'SEOSERVICE', $SEO );
 	}

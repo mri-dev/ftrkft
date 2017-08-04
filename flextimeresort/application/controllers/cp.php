@@ -142,6 +142,7 @@ class cp extends Controller {
 	public function userRequestAd()
 	{
 		$filter_arr = $_GET;
+		$applied_filter = array();
 		unset($filter_arr['tag']);
 
 		$requests = new UserRequests(array(
@@ -156,6 +157,45 @@ class cp extends Controller {
 			} catch (Exception $e) {
 				$this->out("requestError", $e->getMessage());
 				$this->out("link_back_list", true);
+			}
+		}
+
+		if (isset($_POST['requestAction'])) {
+			switch ($_POST['requestAction']) {
+				case 'decline':
+					$id = $_GET['setdecline'];
+					$status = $requests->setDecline($this->admin->getID(), $id);
+					if ($status) {
+						\Helper::reload($this->root.'userRequestAd/?ownpicked=1');
+					}
+				break;
+				case 'setallow':
+					$id = $_GET['setallow'];
+					$access_granting = (isset($_POST['access_granting'])) ? true : false;
+					$status = $requests->setAllow($this->admin->getID(), $id, $access_granting);
+					if ($status) {
+						\Helper::reload($this->root.'userRequestAd/?opened='.$id.'&hlad='.$_GET['hlad']);
+					}
+				break;
+				case 'setgranted':
+					$id = $_GET['setgranted'];
+					$status = $requests->setGranted($this->admin->getID(), $id);
+					if ($status) {
+						\Helper::reload($this->root.'userRequestAd/?opened='.$id.'&hlad='.$_GET['hlad']);
+					}
+				break;
+				case 'createMessanger':
+					$messanger = new Messanger(array('controller' => $this->ctrl));
+					try {
+						$session = $messanger->createSession( $_POST );
+
+						if ($session) {
+							\Helper::reload($this->root.'messanger/session/'.$session.'/?justcreated=1'); exit;
+						}
+					} catch (\Exception $e) {
+						$this->out("requestError", $e->getMessage());
+					}
+				break;
 			}
 		}
 
@@ -185,6 +225,26 @@ class cp extends Controller {
 			$filters['onlypickedby'] = (int)$this->admin->getID();
 		}
 
+		if (isset($_GET['requester_id']) && !empty($_GET['requester_id'])) {
+			$requester_user =  new User((int)$_GET['requester_id'], array('controller' => $this->ctrl));
+			if ($requester_user->getID() && $requester_user->isMunkaado()) {
+				$applied_filter['requester'] =$requester_user;
+				$filters['requester_id'] = (array)$_GET['requester_id'];
+			}
+		}
+
+		if (isset($_GET['tuid']) && !empty($_GET['tuid'])) {
+			$target_user =  new User((int)$_GET['tuid'], array('controller' => $this->ctrl));
+			if ($target_user->getID() && $target_user->isUser()) {
+				$applied_filter['target_user'] = $target_user;
+				$filters['target_user'] = (array)$_GET['tuid'];
+			}
+		}
+
+		if (isset($_GET['search']) && !empty($_GET['search'])) {
+			$filters['search'] = $_GET['search'];
+		}
+
 		if (isset($_GET['hlad'])) {
 			$filters['ad_ids'] = (array)$_GET['hlad'];
 		}
@@ -193,8 +253,16 @@ class cp extends Controller {
 		$arg['filters'] = $filters;
 
 		$requests->getTree($arg);
+
+		$form_pre_filter = $filter_arr;
+		unset($form_pre_filter['search']);
+		unset($form_pre_filter['tuid']);
+		unset($form_pre_filter['requester_id']);
+
 		$this->out( 'requests', $requests);
 		$this->out( 'filter_arr', $filter_arr);
+		$this->out( 'applied_filter', $applied_filter);
+		$this->out( 'form_pre_filter', $form_pre_filter);
 	}
 
 	public function messanger()

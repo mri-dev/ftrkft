@@ -7,6 +7,7 @@
   <link rel="canonical" href="{if $canonical_url}{$canonical_url}{else}{$settings.page_url|cat:$smarty.server.REQUEST_URI}{/if}" />
   {$SEOSERVICE}
   {include file='meta.tpl'}
+  <meta property="fb:app_id" content="{$settings.FACEBOOK_APP_ID}" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

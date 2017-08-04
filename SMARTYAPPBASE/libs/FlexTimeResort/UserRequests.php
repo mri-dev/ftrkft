@@ -57,6 +57,8 @@ class UserRequests
       FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as ur
       LEFT OUTER JOIN ".\FlexTimeResort\Allasok::DB_USERREQUEST." as r ON r.ID = ur.request_id
       LEFT OUTER JOIN admin as ap ON ap.ID = ur.admin_id
+      LEFT OUTER JOIN ".\PortalManager\Users::TABLE_NAME." as ma ON ma.ID = r.user_id
+      LEFT OUTER JOIN ".\PortalManager\Users::TABLE_NAME." as mv ON mv.ID = ur.user_id
       WHERE 1=1 ";
 
     // Filterek
@@ -64,10 +66,36 @@ class UserRequests
       if (isset($filters['ad_ids'])) {
         $qry .= " and ur.ad_id IN(".implode(",",$filters['ad_ids']).")";
       }
+      if (isset($filters['requester_id'])) {
+        $qry .= " and r.user_id IN(".implode(",",$filters['requester_id']).")";
+      }
+      if (isset($filters['onlypickedby'])) {
+        $qry .= " and ur.admin_id = ".$filters['onlypickedby'];
+      }
+      if (isset($filters['undown']) && $filters['undown'] === true) {
+        $qry .= " and (ur.admin_id IS NOT NULL && ur.feedback = -1)";
+      }
+      if (isset($filters['onlyunpicked']) && $filters['onlyunpicked'] === true) {
+        $qry .= " and (ur.admin_id IS NULL && ur.feedback = -1)";
+      }
+      if (isset($filters['onlyaccepted']) && $filters['onlyaccepted'] === true) {
+        $qry .= " and (ur.feedback = 1)";
+      }
+      if (isset($filters['onlydeclined']) && $filters['onlydeclined'] === true) {
+        $qry .= " and (ur.feedback = 0)";
+      }
+      if (isset($filters['target_user'])) {
+        $qry .= " and ur.user_id IN(".implode(",",$filters['target_user']).")";
+      }
+      if (isset($filters['search'])) {
+        $filters['search'] = trim($filters['search']);
+        $qry .= " and (ma.name LIKE '%".$filters['search']."%' || ma.email LIKE '%".$filters['search']."%' || mv.name LIKE '%".$filters['search']."%' || mv.email LIKE '%".$filters['search']."%')";
+      }
+
     }
 
     // Order
-    $qry .= " ORDER BY r.requested_at DESC ";
+    $qry .= " ORDER BY ur.admin_id ASC, ur.feedback DESC, r.requested_at DESC ";
 
     // Limit
     $limit = $this->getLimit($arg);
@@ -97,6 +125,11 @@ class UserRequests
       } else if($top_cat['access_granted'] == '0' && $top_cat['feedback'] == '0') {
         $this->infos['requests']['declined']++;
         $this->request_info[$top_cat['allas_id']]['requests']['declined']++;
+      }
+
+      if($top_cat['feedback'] == '1'){
+        $this->request_info[$top_cat['allas_id']]['requests']['accepted']++;
+        $this->infos['requests']['accepted']++;
       }
 
       if($top_cat['access_granted'] == '1' || $top_cat['feedback'] != '-1'){
@@ -177,6 +210,60 @@ class UserRequests
       \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
       array(
         'admin_id' => $admin
+      ),
+      sprintf("ID = '%s'", $id)
+    );
+
+    return true;
+  }
+
+  public function setGranted($admin = false, $id = null)
+  {
+    if (!$admin || is_null($id)) {
+      return false;
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
+      array(
+        'access_granted' => 1,
+        'granted_date_at' => NOW
+      ),
+      sprintf("ID = '%s'", $id)
+    );
+
+    return true;
+  }
+
+  public function setDecline($admin = false, $id = null)
+  {
+    if (!$admin || is_null($id)) {
+      return false;
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
+      array(
+        'feedback' => 0
+      ),
+      sprintf("ID = '%s'", $id)
+    );
+
+    return true;
+  }
+
+  public function setAllow($admin = false, $id = null, $access_granted = false)
+  {
+    if (!$admin || is_null($id)) {
+      return false;
+    }
+
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
+      array(
+        'feedback' => 1,
+        'access_granted' => ($access_granted) ? 1 : 0,
+        'granted_date_at' => ($access_granted) ? NOW : NULL
       ),
       sprintf("ID = '%s'", $id)
     );

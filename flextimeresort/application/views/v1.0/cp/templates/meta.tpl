@@ -139,6 +139,12 @@
       } else{
         $('.waiting_ad_applicant_ntf').show(0).text(d.waiting_ad_applicant);
       }
+
+      if (d.waiting_userequest__ntf == 0) {
+        $('.waiting_userequest__ntf').hide(0);
+      } else{
+        $('.waiting_userequest__ntf').show(0).text(d.waiting_userequest__ntf);
+      }
     },
       "json"
     );
