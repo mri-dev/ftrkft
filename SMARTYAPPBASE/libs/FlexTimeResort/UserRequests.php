@@ -39,6 +39,20 @@ class UserRequests
     }
     return $this;
   }
+  public function getRequestItemData($id)
+  {
+    return $this->db->query(sprintf("SELECT * FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." WHERE ID = %d", $id))->fetch(\PDO::FETCH_ASSOC);
+  }
+  public function saveComment( $id, $comment )
+  {
+    $this->db->update(
+      \FlexTimeResort\Allasok::DB_USERREQUEST_USERS,
+      array(
+        'admin_comment' => $comment
+      ),
+      sprintf("ID = %d", $id)
+    );
+  }
   public function getTree( $arg = array() )
   {
     $tree = array();
@@ -51,6 +65,7 @@ class UserRequests
         ur.feedback,
         ur.user_id,
         ur.admin_id,
+        ur.admin_comment,
         r.requested_at,
         ur.granted_date_at,
         ap.name as pick_admin_name
@@ -86,6 +101,9 @@ class UserRequests
       }
       if (isset($filters['target_user'])) {
         $qry .= " and ur.user_id IN(".implode(",",$filters['target_user']).")";
+      }
+      if (isset($filters['target_allas'])) {
+        $qry .= " and ur.ad_id IN(".implode(",",$filters['target_allas']).")";
       }
       if (isset($filters['search'])) {
         $filters['search'] = trim($filters['search']);
@@ -192,6 +210,112 @@ class UserRequests
     $this->current_category = $this->tree_steped_item[$this->walk_step];
 
     return true;
+  }
+
+  public function getUnalertedItems( $by = 'user' )
+  {
+    $datas = array(
+      'total_items' => 0,
+      'user_ids' => array(),
+      'data' => false
+    );
+    $dmins = (int)$this->settings['ALERTS_USERREQUEST_ITEM_NOTIFY_EMAIL'];
+    $qry = "SELECT
+      ru.ID,
+      ru.ad_id,
+      ru.user_id,
+      ru.request_id,
+      ru.feedback,
+      ru.access_granted,
+      ru.granted_date_at,
+      ru.admin_id,
+      a.name as admin_name,
+      a.user as admin_email,
+      r.requested_at,
+      r.user_id as requester_id
+    FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as ru
+    LEFT OUTER JOIN ".\FlexTimeResort\Allasok::DB_USERREQUEST." as r ON r.ID = ru.request_id
+    LEFT OUTER JOIN admin as a ON a.ID = ru.admin_id
+    WHERE 1=1 and
+    {$by}_alerted = 0 and
+    TIMESTAMPDIFF(MINUTE, r.requested_at, now()) > {$dmins}
+    ";
+
+    if ($by == 'requester') {
+      $qry .= " and ru.admin_id IS NOT NULL and ru.feedback != -1";
+    }
+
+    $data = $this->db->query($qry);
+
+    if ($data->rowCount() != 0) {
+      $data = $data->fetchAll(\PDO::FETCH_ASSOC);
+
+      $datas['raw'] = $data;
+
+      foreach ((array)$data as $d) {
+        $target_user_id = $d['user_id'];
+
+        if ($by == 'requester') {
+          $target_user_id = $d['requester_id'];
+        }
+
+        if (!isset($datas['data'][$target_user_id]['userid'])) {
+          $datas['data'][$target_user_id]['user_id'] = $target_user_id;
+          $user = new User($target_user_id, array('controller' => $this->controller));
+
+          $datas['data'][$target_user_id]['user'] = array(
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'phone' => ($user->getPhone()) ? $user->getPhone() : '--'
+          );
+        }
+
+        if (!isset($datas['data'][$target_user_id][items][$d['ad_id']])) {
+          $datas['data'][$target_user_id][items][$d['ad_id']]['allas_id'] = $d['ad_id'];
+
+          if (!empty($d['admin_name'])) {
+            $datas['data'][$target_user_id][items][$d['ad_id']]['admin'] = array(
+              'name' => $d['admin_name'],
+              'email' => $d['admin_email'],
+            );
+          }
+
+          $allas = (new Allasok(array('controller' => $this->controller)))->load($d['ad_id']);
+          $datas['data'][$target_user_id][items][$d['ad_id']]['allas'] = array(
+            'url' => $this->settings['page_url'].$allas->getUrl(),
+            'desc' => $allas->ShortDesc(),
+            'cat_name' => $allas->get('cat_name'),
+            'tipus_name' => $allas->get('tipus_name'),
+            'author' => array(
+              'name' => $allas->getAuthorData(),
+              'ID' => $allas->getAuthorData('ID')
+            )
+          );
+        }
+
+        if (!in_array($target_user_id, $datas['user_ids'])) {
+          $datas['user_ids'][] = $target_user_id;
+        }
+
+        if ($by == 'requester') {
+          $ruser = new User($d['user_id'], array('controller' => $this->controller));
+          $d['user'] = array(
+            'name' => $ruser->getName(),
+            'szakma' => $ruser->getAccountData('szakma_text'),
+            'profilimg' => $this->settings["page_url"].$ruser->getProfilImg(),
+            'city' => $ruser->getAccountData('lakcim_city'),
+            'url' => $this->settings["page_url"].$ruser->getCVUrl()
+          );
+        }
+
+        $datas['data'][$target_user_id][items][$d['ad_id']]['data'][] = $d;
+        $datas['data'][$target_user_id]['total_unreaded']++;
+
+        $datas['total_items']++;
+      }
+    }
+
+    return $datas;
   }
 
   public function pick($admin = false, $id = null)

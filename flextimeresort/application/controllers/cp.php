@@ -160,8 +160,18 @@ class cp extends Controller {
 			}
 		}
 
+		if (isset($_GET['editComments']) && !empty($_GET['editComments'])) {
+			$sel_r = $requests->getRequestItemData((int)$_GET['editComments']);
+			$this->out('picked_item', $sel_r);
+		}
+
 		if (isset($_POST['requestAction'])) {
 			switch ($_POST['requestAction']) {
+				case 'editComments':
+					$id = $_GET['editComments'];
+					$status = $requests->saveComment($id, $_POST['admin_comment']);
+					\Helper::reload();
+				break;
 				case 'decline':
 					$id = $_GET['setdecline'];
 					$status = $requests->setDecline($this->admin->getID(), $id);
@@ -238,6 +248,14 @@ class cp extends Controller {
 			if ($target_user->getID() && $target_user->isUser()) {
 				$applied_filter['target_user'] = $target_user;
 				$filters['target_user'] = (array)$_GET['tuid'];
+			}
+		}
+
+		if (isset($_GET['aid']) && !empty($_GET['aid'])) {
+			$target_allas =  (new Allasok(array('controller' => $this->ctrl)))->load($_GET['aid']);
+			if ($target_allas->getID()) {
+				$applied_filter['target_allas'] = $target_allas;
+				$filters['target_allas'] = (array)$_GET['aid'];
 			}
 		}
 

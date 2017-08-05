@@ -38,11 +38,15 @@
             <label for="munkavallalo_id">Munkavállaló ID</label>
             <input class="form-control" type="text" id="munkavallalo_id" name="tuid" value="{$smarty.get.tuid}">
           </div>
+          <div class="col-md-1">
+            <label for="allas_id">Állás ID</label>
+            <input class="form-control" type="text" id="allas_id" name="aid" value="{$smarty.get.aid}">
+          </div>
           <div class="col-md-4">
             <label for="kereses">Keresés &mdash; Név / Email</label>
             <input class="form-control" type="text" id="kereses" name="search" value="{$smarty.get.search}">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-5">
             <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
           </div>
         </div>
@@ -57,6 +61,9 @@
       {/if}
       {if isset($smarty.get.tuid) && $applied_filter['target_user']}
       <span><i class="fa fa-filter"></i> Szűrve: <strong>{$applied_filter['target_user']->getName()}</strong> munkavállaló adatinak igénylései</span>
+      {/if}
+      {if isset($smarty.get.aid) && $applied_filter['target_allas']}
+      <span><i class="fa fa-filter"></i> Szűrve: <strong>#{$applied_filter['target_allas']->getID()}</strong> állás igénylései</span>
       {/if}
     </div>
   {/if}
@@ -96,6 +103,24 @@
           </div>
           <a href="{$root}userRequestAd/?opened={$smarty.get.setallow}&hlad={$smarty.get.hlad}" class="btn btn-danger">vissza</a>
           <button type="submit" name="yes" class="btn btn-success" value="1">Pozitívan jelzett vissza <i class="fa fa-check-circle"></i></button>
+        </div>
+      </form>
+    </div>
+  {/if}
+
+  {if isset($smarty.get.editComments)}
+    <div class="request-action-panel panel-allower">
+      <form class="" action="" method="post">
+        <input type="hidden" name="requestAction" value="editComments">
+        <div class="info">
+          <h2>Kapcsolatfelvételi jegyzőkönyv</h2>
+          A kapcsolatfelvétel során szóbajött fontosabb információk jegyzete.
+        </div>
+        <div class="buttons">
+          <textarea name="admin_comment" style="min-height:200px;" class="form-control" id="">{$picked_item.admin_comment}</textarea>
+          <br><br>
+          <a href="{$root}userRequestAd/" class="btn btn-danger">vissza</a>
+          <button type="submit" name="yes" class="btn btn-success" value="1">Jegyzőkönyv mentése <i class="fa fa-save"></i></button>
         </div>
       </form>
     </div>
@@ -261,6 +286,17 @@
                 {/if}
               </div>
               {/if}
+              <div class="comment">
+                <div class="title">
+                  Jegyzőkönyv:
+                </div>
+                <div class="">
+                  {$u.admin_comment|nl2br}
+                </div>
+                <div class="b">
+                  <a href="{$root}userRequestAd/?editComments={$u.ID}&opened={$u.ID}&hlad={$item.ID}" class="">szerkesztés <i class="fa fa-pencil"></i></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
