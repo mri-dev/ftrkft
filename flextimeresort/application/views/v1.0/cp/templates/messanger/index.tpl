@@ -41,7 +41,7 @@
         <li class="{if $smarty.get.sub == 'outbox'}active{/if}"><a href="{$root}messanger/outbox"><i class="fa fa-envelope-open"></i> {lang text="Ajánlat céljából nyitott üzenetek"} {if $messangerinfo.outbox_unreaded != 0}
           <span class="badge">{$messangerinfo.outbox_unreaded}</span>
         {/if}</a></li>
-        <li class="{if $smarty.get.sub == 'inbox'}active{/if}"><a href="{$root}messanger/inbox"><i class="fa fa-inbox"></i> {lang text="Beérkezett üzenetek"} {if $messangerinfo.inbox_unreaded != 0}
+        <li class="{if $smarty.get.sub == 'inbox'}active{/if}"><a href="{$root}messanger/inbox"><i class="fa fa-inbox"></i> {lang text="Beérkezett üzenetek"} {if $messangerinfo.inbox_unreaded != 0 && 1==0}
           <span class="badge">{$messangerinfo.inbox_unreaded}</span>
         {/if}</a></li>
         <li class="{if $smarty.get.sub == 'archiv'}active{/if}"><a href="{$root}messanger/archiv"><i class="fa fa-archive"></i> {lang text="Arhivált üzenetek"}</a></li>

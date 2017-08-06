@@ -83,7 +83,7 @@
     <div class="conversations-header">
       [[messages['{$msgsession}'].msg.length]] {lang text='db'} {lang text="üzenet"}
     </div>
-    <div class="conversation" ng-class="(conv.from_id == {$admin->getID()} )?'from-me':'from-sender'" ng-repeat="conv in messages['{$msgsession}'].msg">
+    <div class="conversation" ng-class="(conv.from_admin)?'from-me':'from-sender'" ng-repeat="conv in messages['{$msgsession}'].msg">
       <div class="bubble">
         <div class="text" ng-bind-html="conv.msg|nl2br"></div>
       </div>
