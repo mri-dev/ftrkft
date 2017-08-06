@@ -44,20 +44,6 @@ class Users
 		10 => 'MUNKALTATO'
 	);
 
-	public $user_datails = array(
-		'default' => array(
-			'szuletesi_datum' => array(
-				'lang' => 'SZULETESI_DATUM',
-				'required' => true
-			)
-		),
-		0 => array(
-
-		),
-		10 => array(
-		)
-	);
-
 	function __construct( $arg = array() )
 	{
 		if (isset($arg['controller'])) {
@@ -432,8 +418,6 @@ class Users
 			$this->error( $e->getMessage() );
 		}
 
-
-
 		if(!$this->isActivated($data[email])){
 			$this->error( $this->controller->lang('AZ_ON_FIOKJA_MEG_NINCS_AKTIVALVA') );
 		}
@@ -461,6 +445,7 @@ class Users
 	{
 		\Session::kill( 'loginsession_id' );
 		\Session::kill( 'loginsession_ug' );
+		\Session::kill( 'loginsession_by_admin' );
 	}
 
 	public function getUserGroup( $account_id )

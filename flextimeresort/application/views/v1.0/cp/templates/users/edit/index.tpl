@@ -42,16 +42,6 @@
                 </select>
               </div>
             </div>
-            <br>
-            <h3>Egyéb kiegészítő adatok</h3>
-            <div class="row">
-              {foreach from=$userdetails item=ud key=key}
-              <div class="col-md-6 {if $form && $form->hasError(1, $key)}input-error{/if}">
-                <label for="details_{$key}">{lang text=$ud.text}{if $ud.required == '1'}*{/if}</label>
-                <input type="text" id="details_{$key}" name="details[{$key}]" value="{if $form && $formposts}{$formposts.details[$key]}{else}{$user->getAccountData($key)}{/if}" class="form-control">
-              </div>
-              {/foreach}
-            </div>
             <div class="row">
               <div class="divider"></div>
               <div class="col-md-6 left">
@@ -68,6 +58,9 @@
       </div>
     </div>
     <div class="col-md-4">
+    <div class="box">
+      <a href="{$root}users/?loginas={$user->getID()}" target="_blank" class="btn form-control btn-primary" style="color: white;">Bejelentkezés, mint <strong>{$user->getName()}</strong> <i class="fa fa-sign-in"></i></a>
+    </div>
       <div class="box">
         <a name="password"></a>
         <h3><i class="fa fa-lock"></i> Új jelszó beállítás</h3>

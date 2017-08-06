@@ -22,6 +22,7 @@
         <div class="content-text">
           {$allas->getContent()}
         </div>
+        {include file='inc/sharer.tpl'}
         {if $requested_data.show_author_info == 1 || $admin_access}
           {assign var="author_obj" value=$allas->getAuthorData('author')}
           {if !is_null($author_obj->getID())}
@@ -49,9 +50,27 @@
         <div class="content-text">
           {$allas->getPreContent()}
         </div>
+        {include file='inc/sharer.tpl'}
         {/if}
+        <div class="show-on-print print-details">
+          &mdash;&mdash;
+          <div class="">
+            {lang text="Ajánlat azonosító"}: <strong>#{$allas->getID()}</strong>
+          </div>
+          <div class="">
+            {lang text="Hirdető azonosító"}: <strong>#{$allas->getAuthorData('ID')}</strong>
+          </div>
+          <div class="">
+            {lang text="Ajánlat URL"}: <strong>{$settings.page_url}{$allas->getUrl()}</strong>
+          </div>
+        </div>
       </div>
       <div class="info-side">
+        <div class="e print">
+          <div class="">
+            <a href="javascript:void(0);" onclick="window.print();"><i class="fa fa-print"></i> {lang text="Nyomtatás"}</a>
+          </div>
+        </div>
         <div class="e">
           <div class="title">{lang text="Megye / Város"}</div>
           <div class="val">

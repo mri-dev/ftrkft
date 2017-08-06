@@ -541,6 +541,16 @@ class cp extends Controller {
 
 		$sub = $_GET['sub'];
 
+		if (isset($_GET['loginas']) && !empty($_GET['loginas'])) {
+			$us = new User($_GET['loginas'], array('controller' => $this));
+			if ($us->getID()) {
+				\Session::set( 'loginsession_id', $us->getID() );
+				\Session::set( 'loginsession_ug', $us->getUserGroup() );
+				\Session::set( 'loginsession_by_admin', 1 );
+				Helper::reload($this->settings['page_url'].'/ugyfelkapu/profil');
+			}
+		}
+
 		switch ($sub)
 		{
 			// Szerkesztés
@@ -549,7 +559,6 @@ class cp extends Controller {
 				$user = new User($_GET[id], array('controller' => $this));
 
 				$this->out('usergroups', $this->USERS->user_groups);
-				$this->out('userdetails', $this->USERS->getUserDetails($user->getUserGroup()));
 				$this->out('user', $user);
 			break;
 

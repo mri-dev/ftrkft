@@ -1,0 +1,50 @@
+@media print {
+  ::first-letter{
+    margin: 0;
+    padding: 0;
+  }
+  .show-on-print{
+    display: block;
+  }
+
+  body.allas-page-view{
+    background: #ffffff;
+    font-size: 0.8em;
+
+    .page-width{
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    header .top,
+    header nav,
+    .header-searcher-container,
+    .accept-for-ad,
+    footer,
+    .sharing,
+    .e.print,
+    .allas-view .access-granted{
+      display: none;
+    }
+    .allas-view .header h1{
+      font-size: 1.75em;
+      color: black;
+    }
+    .allas-view .allas-wrapper{
+      width: 100%;
+      padding: 25px 0;
+    }
+    .print-details{
+      line-height: 1.5;
+      color:#888888;
+      font-size: 11px;
+    }
+    .allas-view .allas-wrapper .content-side .author{
+      border-radius: 0;
+      padding: 10px;
+      font-size: 0.9em;
+      background: #ffffff;
+    }
+  }
+}

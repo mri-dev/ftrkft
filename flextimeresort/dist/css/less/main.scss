@@ -12,6 +12,10 @@ body{
   height: auto;
 }
 
+.show-on-print{
+  display: none;
+}
+
 .page-width {
   max-width: $page-width;
   width: $page-width;
@@ -494,7 +498,7 @@ body.resetpassword .content-holder{
 }
 
 section.content-header{
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.41);
   padding: 0;
 }
 
@@ -1502,6 +1506,7 @@ footer {
           &.btn-darker {
             background-color: lighten($color-grey, 10%);
             border-color: lighten($color-grey, 15%);
+            color: white;
 
             &:hover {
               background-color: lighten($color-grey, 5%);
@@ -1611,7 +1616,7 @@ footer {
   &.user-login,
   &.user-resetpassword{
     section.info {
-      background-color: rgba(245, 245, 245, 0.64);
+      background-color: rgba(245, 245, 245, 0.65);
       background-image: url(/dist/img/worldmap.svg);
       background-position: center top;
       background-repeat: no-repeat;
@@ -3974,6 +3979,21 @@ ul.pagination {
     .info-side {
       flex-basis: 25%;
 
+      .print{
+        a{
+          background: #eceaea;
+          font-size: 0.8em;
+          padding: 8px 10px;
+          color: #ed4c5d;
+          border-radius: 3px;
+
+          i {
+            color: black;
+            margin-right: 8px;
+          }
+        }
+      }
+
       .keywords,
       .term-value{
         a{
@@ -4822,6 +4842,8 @@ label.file-uploader{
     }
   }
 }
+
+@import 'print';
 
 ::-webkit-scrollbar {
   width: 10px;

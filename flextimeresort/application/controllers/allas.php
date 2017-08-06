@@ -13,8 +13,9 @@ class allas extends Controller{
 		$allasok = new Allasok(array(
 			'controller' => $this
 		));
+    $this->out( 'allas', $allasok->load($id));
 
-    $this->out( 'allas', $allasok->load($id) );
+		parent::$pageTitle = $allasok->get('tipus_name').', '.$allasok->get('cat_name').' '.$allasok->getCity().' '.$this->lang('területén');
 
 		if ( $this->ME->logged() && $this->ME->isMunkaado() && $this->ME->getID() != $allasok->getAuthorData('ID') ) {
 			Helper::reload($this->settings['page_url'].$this->settings['munkavallalo_search_slug']);
@@ -50,18 +51,23 @@ class allas extends Controller{
 		$this->out( 'access_granted', $access_granted );
 		$this->out( 'admin_access', $adminAccess );
 
+		$author_obj = $allasok->getAuthorData('author');
+
+		$this->out('bodyclass', 'allas-page-view');
 		// SEO Információk
 		$SEO = null;
 		// Site info
-		$SEO .= $this->addMeta('description','');
-		$SEO .= $this->addMeta('keywords','');
+		$SEO .= $this->addMeta('description', $this->lang('Állásajánlat').': '.$allasok->ShortDesc());
+		$SEO .= $this->addMeta('keywords', $allasok->getKeywords(false));
 		$SEO .= $this->addMeta('revisit-after','3 days');
 
 		// FB info
-		$SEO .= $this->addOG('type','website');
-		$SEO .= $this->addOG('url','');
-		$SEO .= $this->addOG('image','');
-		$SEO .= $this->addOG('site_name',parent::$pageTitle);
+		$SEO .= $this->addOG('title',parent::$pageTitle);
+		$SEO .= $this->addOG('description',$this->lang('Állásajánlat').': '.$allasok->ShortDesc());
+		$SEO .= $this->addOG('type','article');
+		$SEO .= $this->addOG('url', $this->settings['page_url'].$allasok->getUrl());
+		$SEO .= $this->addOG('image', $this->settings['page_url'].$author_obj->getProfilImg());
+		$SEO .= $this->addOG('site_name', $this->settings['page_title']);
 
 		$this->out( 'SEOSERVICE', $SEO );
 	}
