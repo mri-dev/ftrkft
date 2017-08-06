@@ -94,6 +94,27 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box profil-dataset">
+        <h3>Adatok</h3>
+        <div class="row">
+          {foreach from=$user->user.data item=ud key=uda}
+          {if $uda == 'password'}{continue}{/if}
+          <div class="col-md-3">
+            <div class="wrapper">
+              <label class="pfa_{$uda}">{lang text=$uda}</label>
+              <div class="data-value">
+                {$user->convertProfilRAWData($uda, $ud)}
+              </div>
+            </div>
+          </div>
+          {/foreach}
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript">
   function randString(e){
     var dataSet = e.attr('data-character-set').split(',');

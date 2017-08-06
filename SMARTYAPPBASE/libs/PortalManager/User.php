@@ -64,6 +64,11 @@ class User
 		return false;
 	}
 
+	public function convertProfilRAWData($key, $data = false)
+	{
+	
+		return $data;
+	}
 
 	private function getData( $account_id, $db_by = 'email' ){
 		if($account_id == '') return false;
