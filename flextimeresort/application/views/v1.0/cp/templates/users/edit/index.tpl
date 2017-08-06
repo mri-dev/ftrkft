@@ -115,6 +115,57 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box profil-dataset">
+        {assign var="ucv" value=$user->getOneletrajz()}
+        {if !empty($ucv)}
+          <h3>Külső önéeltrajz</h3>
+          <a href="{$ucv.filepath}">{$ucv.name} >></a>
+          <br><br>
+        {/if}
+
+        <h3>Dokumentumok</h3>
+        {assign var="docs" value=$user->getDocuments()}
+        {if empty($docs)}
+          Nincsennek dokumentumok feltöltve.
+        {else}
+          <div class="row" style="font-weight:bold;">
+            <div class="col-md-6">
+              Dokumentum elnevezése
+            </div>
+            <div class="col-md-2 center">
+              Fájl típusa
+            </div>
+            <div class="col-md-2 center">
+              Fájl mérete
+            </div>
+            <div class="col-md-2 center">
+              Feltöltés ideje
+            </div>
+          </div>
+          <br>
+          {foreach from=$docs item=doc}
+            <div class="row">
+              <div class="col-md-6">
+                <a href="{$doc.filepath}">{$doc.name}</a>
+              </div>
+              <div class="col-md-2 center">
+                {$doc.file_type}
+              </div>
+              <div class="col-md-2 center">
+                {$doc.file_size}
+              </div>
+              <div class="col-md-2 center">
+                {$doc.upload_at}
+              </div>
+            </div>
+          {/foreach}
+        {/if}
+      </div>
+    </div>
+  </div>
+
   <script type="text/javascript">
   function randString(e){
     var dataSet = e.attr('data-character-set').split(',');

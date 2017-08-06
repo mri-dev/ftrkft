@@ -171,7 +171,7 @@
           {assign var="creator" value=$item.data->createdBy()}
           {assign var="author" value=$item.data->getAuthorData('author')}
           <span class="creator">Létrehozta: <strong>{$creator.name}</strong> <span class="by by-{$creator.by}">{$creator.by}</span></span>
-          <span class="author">Hirdető: {if is_null($author->getName())}<em>- nincs hirdető adat -</em>{else}<strong>{$author->getName()}</strong>{/if}</span>
+          <span class="author">Hirdető: {if is_null($author->getName())}<em>- nincs hirdető adat -</em>{else}<strong><a href="{$root}users/edit/{$author->getID()}" target="_blank">{$author->getName()}</a></strong>{/if}</span>
           <span class="id">#Felh.ID: <strong>{$author->getID()}</strong></span>
         </div>
         <div class="desc">
@@ -223,6 +223,9 @@
                 {else}
                 <span class="Telefon"><i class="fa fa-phone"></i> Telefonszám hiányzik</span>
                 {/if}
+                <div class="">
+                  <a href="{$root}users/edit/{$u.user->getID()}" target="_blank"><i class="fa fa-user"></i> admin adatlap</a>
+                </div>
               </div>
             </div>
             <div class="status">

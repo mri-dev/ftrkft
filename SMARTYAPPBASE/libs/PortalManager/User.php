@@ -66,7 +66,80 @@ class User
 
 	public function convertProfilRAWData($key, $data = false)
 	{
-	
+		//echo $key;
+		switch ($key) {
+			case 'user_group':
+				$data = (int)$data;
+				switch ($data) {
+					case $this->settings['USERS_GROUP_USER']:
+						$data = $this->controller->lang('Munkavállaló');
+					break;
+					case $this->settings['USERS_GROUP_MUNKAADO']:
+						$data = $this->controller->lang('Munkaadó');
+					break;
+				}
+			break;
+			case 'engedelyezve':
+				$data = ((int)$data === 1) ? $this->controller->lang('Igen') : $this->controller->lang('Nem');
+			break;
+			case 'profil_img':
+				$data = "<a href='".$data."'><img style='max-height: 50px;' src='".$data."' /></a>";
+			break;
+			case 'fizetesi_igeny':
+				if (!empty($data) && $data != 0) {
+					$data = number_format((int)$data, 0, ""," "). ' HUF ('.$this->controller->lang('bruttó').')';
+				}
+			break;
+			case 'social_url_twitter':
+			case 'social_url_linkedin':
+			case 'social_url_facebook':
+				$data = '<a target="_blank" href="'.$data.'">'.$data.'</a>';
+			break;
+			case 'jogositvanyok':
+			case 'elvaras_munkateruletek':
+			case 'elvaras_munkakorok':
+			case 'megyeaholdolgozok':
+			case 'munkatapasztalat':
+			case 'anyanyelv':
+			case 'nem':
+			case 'allampolgarsag':
+			case 'iskolai_vegzettsegi_szintek':
+
+				switch ($key) {
+					case 'elvaras_munkateruletek':
+					case 'elvaras_munkakorok':
+						$key = 'munkakorok';
+					break;
+					case 'megyeaholdolgozok':
+						$key = 'megyek';
+					break;
+				}
+
+				if (is_array($data)) {
+					$termv = $this->getTermValues($key, $data, true);
+
+					if ($termv) {
+						$data = '';
+						foreach ((array)$termv as $t) {
+							$data .= $t['neve'].', ';
+						}
+						$data = rtrim($data,', ');
+					}
+				} else if(is_numeric($data)) {
+					$termv = $this->getTermValues($key, (int)$data);
+
+					if ($termv) {
+						$data = $termv['neve'];
+					}
+				}
+			break;
+		}
+
+
+		if ($data !== 0 && ($data == '' || empty($data))) {
+			$data = '--';
+		}
+
 		return $data;
 	}
 
@@ -244,7 +317,7 @@ class User
 		$this->editAccountDetail('profil_img', $img);
 	}
 
-	public function getTermValues($term, $values)
+	public function getTermValues($term, $values, $must_multiple = false)
   {
     if (is_array($values)) {
       $where = " and ID IN(".implode($values,',').")";
@@ -253,7 +326,7 @@ class User
     }
     $data = $this->db->query($iq = "SELECT ID, neve, langkey, szulo_id FROM terms WHERE groupkey = '".$term."'".$where)->fetchAll(\PDO::FETCH_ASSOC);
 
-    if (count($data) == 1) {
+    if (count($data) == 1 && !$must_multiple) {
       if(!is_null($data[0]['szulo_id'])) {
         $parent = $this->getTermValues($term, (int)$data[0]['szulo_id']);
       }
@@ -261,7 +334,7 @@ class User
          $data[0]['parent'] = $parent;
       }
       $text = $data[0];
-    } elseif(count($data) > 1) {
+    } elseif(count($data) > 1 || $must_multiple) {
       $text = array();
       foreach ((array)$data as $d) {
         if(!is_null($d['szulo_id'])) {

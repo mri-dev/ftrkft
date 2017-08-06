@@ -80,7 +80,7 @@
 				{$lista->getID()}
 			</div>
 			<div class="col-md-4">
-				{$lista->shortDesc()}
+				<a target="_blank" href="{$lista->getUrl()}?atoken={$admin->getToken()}&showfull=1">{$lista->shortDesc()}</a>
 				<div class="evt-grp">
 					<span data-toggle="tooltip" title="Jelentkezések erre a hirdetésre"><i class="fa fa-mouse-pointer"></i> <a href="{$root}ads/requests/?hlad={$lista->getID()}" target="_blank">{$lista->getApplicantCount()}</a></span>
 					<span data-toggle="tooltip" title="Kapcsolódó jelentkezői aktív üzenetváltások"><i class="fa fa-comments-o"></i> <a href="{$root}messanger/outbox/?ad={$lista->getID()}" target="_blank">{$lista->getApplicantMessangerCount()}</a></span>
@@ -92,7 +92,11 @@
 			<div class="col-md-2 center">
 				{assign var="creator" value=$lista->createdBy()}
 				<div>
+					{if $creator.by == 'user'}
+					<strong><a target="_blank" href="{$root}users/edit/{$creator.ID}">{$creator.name}</a> </strong> ({$creator.by})
+					{else}
 					<strong>{$creator.name}</strong> ({$creator.by})
+					{/if}
 				</div>
 				<em title="Létrehozás ideje">{$lista->createDate('Y. m. d. H:i')}</em>
 			</div>

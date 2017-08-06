@@ -118,7 +118,7 @@
         {assign var="creator" value=$item.data->createdBy()}
         {assign var="author" value=$item.data->getAuthorData('author')}
         <span class="creator">Létrehozta: <strong>{$creator.name}</strong> <span class="by by-{$creator.by}">{$creator.by}</span></span>
-        <span class="author">Hirdető: {if is_null($author->getName())}<em>- nincs hirdető adat -</em>{else}<strong>{$author->getName()}</strong>{/if}</span>
+        <span class="author">Hirdető: {if is_null($author->getName())}<em>- nincs hirdető adat -</em>{else}<strong><a href="{$root}users/edit/{$author->getID()}" target="_blank">{$author->getName()}</a></strong>{/if}</span>
       </div>
       <div class="desc">
         <a title="Hirdetés adatlap" href="{$item.data->getURL()}?atoken={$admin->getToken()}&showfull=1" target="_blank">{$item.data->shortDesc()}</a>
@@ -151,7 +151,7 @@
             <i title="{if $request.finished == 1 && $request.accepted == 1}Engedélyezve{elseif $request.finished == 1 && $request.declined == 1}Elutsítva{elseif !is_null($request.admin_pick)}Még nem feldolgozva{/if}" class="fa {if $request.finished == 1 && $request.accepted == 1}fa-check-circle{elseif $request.finished == 1 && $request.declined == 1}fa-minus-circle{elseif !is_null($request.admin_pick)}fa-hourglass-half{else}fa-question-circle-o{/if}"></i>
           </div>
           <div class="text">
-            <strong>{$request.user->getName()}</strong> jelentkezett <strong>{$request.request_at}</strong> időponttal. {if $request.accepted == 1}<small>&mdash; <em><strong>{$request.admin_name}</strong> admin engedélyt adott ekkor: <strong>{$request.accepted_at}</strong>.</em></small>{/if}
+            <strong><a href="{$root}users/edit/{$request.user->getID()}" target="_blank">{$request.user->getName()}</a></strong> jelentkezett <strong>{$request.request_at}</strong> időponttal. {if $request.accepted == 1}<small>&mdash; <em><strong>{$request.admin_name}</strong> admin engedélyt adott ekkor: <strong>{$request.accepted_at}</strong>.</em></small>{/if}
           </div>
           <div class="actions">
             {if is_null($request.admin_pick)}
