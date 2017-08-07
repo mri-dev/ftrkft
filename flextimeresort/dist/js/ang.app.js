@@ -1410,6 +1410,7 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
   $scope.loaded = false;
   $scope.error = false;
   $scope.requestUserShow = [];
+  $scope.requestsShow = [];
 
   $scope.init = function(){
     $scope.loadData();
@@ -1421,6 +1422,16 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
         $scope.requestUserShow[aid] = true;
       } else {
         $scope.requestUserShow[aid] = false;
+      }
+    }
+  }
+
+  $scope.requestsShowToggler = function(aid){
+    if (typeof aid !== 'undefined') {
+      if (typeof $scope.requestsShow[aid]  === 'undefined' || $scope.requestsShow[aid] === false) {
+        $scope.requestsShow[aid] = true;
+      } else {
+        $scope.requestsShow[aid] = false;
       }
     }
   }

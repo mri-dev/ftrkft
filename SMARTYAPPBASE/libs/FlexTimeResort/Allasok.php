@@ -4,6 +4,8 @@ namespace FlexTimeResort;
 use ExceptionManager\RedirectException;
 use PortalManager\User;
 use AlertsManager\Alerts;
+use MailManager\Mailer;
+use FlexTimeResort\Requests;
 
 class Allasok
 {
@@ -251,6 +253,41 @@ class Allasok
             'allas_id' => $adid,
           )
       );
+
+      $author = $this->getAuthorData('author');
+      $requestedUser = new User($uid, array('controller' => $this->controller));
+
+      // e-mail értesítés
+      $mail = new Mailer(
+        $this->settings['page_title'],
+        $this->settings['email_noreply_address'],
+        $this->settings['mail_sender_mode']
+      );
+      $mail->add( $this->getAuthorData('email') );
+
+      $this->smarty->assign( 'allas', $this );
+      $this->smarty->assign( 'user', $requestedUser );
+      $this->smarty->assign( 'author', $author );
+      $this->smarty->assign( 'hashkey', $hashkey );
+      $this->smarty->assign( 'request_at', NOW );
+
+      $mail->setSubject( $this->controller->lang('MAIL_SUBJECT_REQUESTS_ALERT_TO_AD_AUTHOR') );
+
+      $mail->setMsg( $this->smarty->fetch( 'mails/'.$this->controller->LANGUAGES->getCurrentLang().'/request_user_to_author.tpl' ) );
+      $re = $mail->sendMail();
+
+      (new Alerts(array('controller' => $this->controller)))->add(
+        $uid,
+        'allas_jelentkezes_sikeres',
+        $adid
+      );
+
+      (new Alerts(array('controller' => $this->controller)))->add(
+        $author->getID(),
+        'allas_request_to_own',
+        $uid
+      );
+
       return $hashkey;
     } else {
       return true;
@@ -373,7 +410,13 @@ class Allasok
       $history_row = 'user_id';
       $hval = (int)$arg['show_requests'];
       $idset_orderby = $this->getRequestsIDS($history_row, $hval);
-      $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+
+      if(!empty($idset_orderby)){
+        $qry .= " and a.ID IN (".implode(",",$idset_orderby).")";
+      } else {
+        $qry .= " and a.ID IN (0)";
+      }
+
     }
     // Filterek
     if (isset($filters) && !empty($filters)) {
@@ -464,15 +507,64 @@ class Allasok
         }
       }
       $top_cat['requestedUsers'] = $this->requestedUsersForAd($top_cat['ID']);
+      $top_cat['requests'] = $this->requestsForAd($top_cat['ID']);
       $top_cat['tipus_name'] = $this->getTermName($top_cat['hirdetes_tipus']);
       $top_cat['cat_name'] = $this->getTermName($top_cat['hirdetes_kategoria']);
       $top_cat['megye_name'] = $this->getTermName($top_cat['megye_id']);
+
+      $url = \Helper::makeSafeURL($top_cat['city'],'');
+      $url .= '/'.\Helper::makeSafeURL($top_cat['oauthor_name'],'');
+      $curl = $this->settings['page_url'].$this->settings['allas_page_slug'] . $url . '_'.$top_cat['ID'];
+      $top_cat['url'] = $curl;
 			$this->tree_steped_item[] = $top_cat;
 			$tree[] = $top_cat;
 		}
 		$this->tree = $tree;
 		return $this;
 	}
+  public function requestsForAd( $id = 0 )
+  {
+    $data = array();
+
+    $qry = "SELECT
+      ru.*
+    FROM ".self::DB_REQUEST_X." as ru
+    WHERE 1=1 and
+    ru.allas_id = {$id}
+    ";
+
+    $q = $this->db->query($qry);
+
+    if ($q->rowCount() != 0) {
+      $q = $q->fetchAll(\PDO::FETCH_ASSOC);
+      foreach ((array)$q as $r) {
+        $user = new User((int)$r['user_id'], array('controller' => $this->controller));
+        $ins = array(
+          'request_at' => $r['request_at'],
+          'user_id' => (int)$r['user_id'],
+          'accepted' => ($r['accepted'] == '1') ? true : false,
+          'declined' => ($r['declined'] == '1') ? true : false,
+          'accepted_at' => ($r['accepted'] == '1') ? $r['accepted_at'] : false,
+          'declined_at' => ($r['declined'] == '1') ? $r['declined_at'] : false,
+          'finished' => ($r['finished'] == '1') ? true : false,
+          'admin_picked' => ($r['admin_pick']) ? (int)$r['admin_pick'] : false,
+          'user' => array(
+            'name' => $user->getName(),
+            'szakma' => $user->getAccountData('szakma_text'),
+            'city' => $user->getAccountData('lakcim_city'),
+            'profilimg' => $this->settings['page_url'].$user->getProfilImg(),
+            'url' => $this->settings['page_url'].$user->getCVUrl(),
+            'gender' => array(
+              'ID' => $user->getNeme('ID')
+            )
+          )
+        );
+        $data[] = $ins;
+      }
+    }
+
+    return $data;
+  }
   public function requestedUsersForAd( $id )
   {
     $users = array(

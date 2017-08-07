@@ -43,6 +43,27 @@ class UserRequests
   {
     return $this->db->query(sprintf("SELECT * FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." WHERE ID = %d", $id))->fetch(\PDO::FETCH_ASSOC);
   }
+
+  public function checkRequest($uid, $adid)
+  {
+    $adid = (int)$adid;
+    $uid = (int)$uid;
+    if ($uid == 0 || $adid == 0) {
+      return false;
+    }
+    $check = $this->db->query("SELECT
+      ur.ID,
+      ur.access_granted,
+      ur.feedback,
+      ur.granted_date_at,
+      a.name as admin_name
+    FROM ".\FlexTimeResort\Allasok::DB_USERREQUEST_USERS." as ur
+    LEFT OUTER JOIN admin AS a ON a.ID = ur.admin_id
+    WHERE ur.ad_id = {$adid} and
+    ur.user_id = {$uid}")->fetch(\PDO::FETCH_ASSOC);
+    return (!empty($check)) ? (array)$check : false;
+  }
+
   public function saveComment( $id, $comment )
   {
     $this->db->update(

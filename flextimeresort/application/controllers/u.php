@@ -96,7 +96,7 @@ class u extends Controller
 		// ha a saját adatlapját tekinti meg
 		// ha munkaadó és kérelmezte a a hozzáférést és meg is kapta
 		$cv_grant_check = $cv->accessGrantedCheck($this->ME->getID());
-
+		
 		if (
 				$this->admin ||
 				($this->ME && $this->ME->getID() == $uid) ||

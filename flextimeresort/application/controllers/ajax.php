@@ -10,9 +10,9 @@ use FlexTimeResort\Allasok;
 class ajax extends Controller  {
 		private $root = 'index';
 		private $path = '';
-
+		public $ctrl = null;
 		function __construct(){
-			parent::__construct();
+			$this->ctrl = parent::__construct();
 			parent::$pageTitle = '';
 
 			// SEO Információk
@@ -98,7 +98,7 @@ class ajax extends Controller  {
 				break;
 				case 'user':
 					$user = new User($params['id'], array(
-						'controller' => $this
+						'controller' => $this->ctrl,
 					));
 					$data = $user->user;
 				break;
@@ -285,7 +285,7 @@ class ajax extends Controller  {
 					if(isset($params['lists'])){
 						$lists = explode(",", $params['lists']);
 						foreach ((array)$lists as $list) {
-							$cat = new Categories(false, array('controller' => $this));
+							$cat = new Categories(false, array('controller' => $this->ctrl));
 							$ld = $cat->getList($list);
 							$terms = $cat->getTree($list);
 							$data[lists][$list] = $ld;
@@ -308,12 +308,12 @@ class ajax extends Controller  {
 						}
 					} else {
 						$filters = (array)json_decode($params['filters'], true);
-						$cat = new Categories(false, array('controller' => $this));
+						$cat = new Categories(false, array('controller' => $this->ctrl));
 						$termlist = $cat->getTermList($filters);
 						$terms = array();
 						foreach ((array)$termlist as $t) {
 							$list = $t[termkey];
-							$cat = new Categories(false, array('controller' => $this));
+							$cat = new Categories(false, array('controller' => $this->ctrl));
 							$ld = $cat->getList($list);
 							$terms = $cat->getTree($list);
 							$data[lists][$list] = $ld;
@@ -339,7 +339,7 @@ class ajax extends Controller  {
 					$arg = array();
 
 					$allasok = new Allasok(array(
-						'controller' => $this,
+						'controller' => $this->ctrl,
 						'admin' => true
 					));
 
@@ -360,9 +360,10 @@ class ajax extends Controller  {
 					$userid = $this->ME->getID();
 
 					$allasok = new Allasok(array(
-						'controller' => $this,
+						'controller' => $this->ctrl,
 						'admin' => true
 					));
+					$allasok->load($id);
 
 					$request = $allasok->requestAd($userid, $id);
 
@@ -399,7 +400,7 @@ class ajax extends Controller  {
 					}
 
 					$allasok = new Allasok(array(
-						'controller' => $this,
+						'controller' => $this->ctrl,
 						'admin' => true
 					));
 
@@ -440,7 +441,7 @@ class ajax extends Controller  {
 					}
 
 					$allasok = new Allasok(array(
-						'controller' => $this,
+						'controller' => $this->ctrl,
 						'admin' => true
 					));
 					$allasok->getTree($arg);
@@ -827,6 +828,7 @@ class ajax extends Controller  {
 				$this->displayView( __CLASS__.'/'.$this->path.'/'.$this->root, true );		# CONTENT
 			}
 			parent::__destruct();														# FOOTER
+			$this->ctrl = null;
 		}
 	}
 

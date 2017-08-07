@@ -162,6 +162,7 @@ class Requests
 			$this->tree_steped_item[$top_cat[allas_id]][items][] = $top_cat;
 			$tree[$top_cat[allas_id]][items][] = $top_cat;
 		}
+    unset($top_cat_data);
 		$this->tree = $tree;
 		return $this;
 	}
@@ -192,7 +193,7 @@ class Requests
     $this->db->update(
       \FlexTimeResort\Allasok::DB_REQUEST_X,
       array(
-        'admin_pick' => 1
+        'admin_pick' => $admin
       ),
       sprintf("hashkey = '%s'", $hashkey)
     );
@@ -214,6 +215,20 @@ class Requests
         'finished' => 1
       ),
       sprintf("hashkey = '%s'", $hashkey)
+    );
+
+    $requestDatas = $this->db->query("SELECT allas_id, user_id, request_at, accepted_at FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." WHERE hashkey = '{$hashkey}'")->fetch(\PDO::FETCH_ASSOC);
+    $allas = (new Allasok(array('controller' => $this->controller)))->load($requestDatas['allas_id']);
+
+    // Tulaj fiók belső üzenet
+    (new Alerts(array('controller' => $this->controller)))->add(
+      $allas->getAuthorData('ID'),
+      'allas_jelentkezes_hozzaferes_engedelyezes_tulajnak',
+      $requestDatas['allas_id'],
+      array(
+        'uid' => (int)$requestDatas['user_id'],
+        'status' => 0
+      )
     );
 
     return true;
@@ -239,6 +254,8 @@ class Requests
       sprintf("hashkey = '%s'", $hashkey)
     );
 
+
+
     $requestDatas = $this->db->query("SELECT allas_id, user_id, request_at, accepted_at FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." WHERE hashkey = '{$hashkey}'")->fetch(\PDO::FETCH_ASSOC);
     $allas = (new Allasok(array('controller' => $this->controller)))->load($requestDatas['allas_id']);
 
@@ -254,6 +271,17 @@ class Requests
       $requestDatas['user_id'],
       'allas_jelentkezes_hozzaferes_engedelyezes',
       $requestDatas['allas_id']
+    );
+
+    // Tulaj fiók belső üzenet
+    (new Alerts(array('controller' => $this->controller)))->add(
+      $allas->getAuthorData('ID'),
+      'allas_jelentkezes_hozzaferes_engedelyezes_tulajnak',
+      $requestDatas['allas_id'],
+      array(
+        'uid' => (int)$requestDatas['user_id'],
+        'status' => 1
+      )
     );
 
     // e-mail értesítés
@@ -274,6 +302,8 @@ class Requests
 
 		$mail->setMsg( $this->smarty->fetch( 'mails/'.$lang.'/request_user_accept.tpl' ) );
 		$re = $mail->sendMail();
+
+
 
     return true;
   }

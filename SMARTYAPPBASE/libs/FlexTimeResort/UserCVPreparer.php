@@ -207,6 +207,30 @@ class UserCVPreparer
       $granted['granted_to_date'] = date('Y-m-d H:i:s', $extra_date);
     }
 
+    if (!$granted['granted']) {
+      $checks = $this->db->query(sprintf("SELECT
+        r.ID,
+        r.accepted_at as granted_date_at,
+        r.accepted as access_granted
+      FROM ".\FlexTimeResort\Allasok::DB_REQUEST_X." as r
+      WHERE
+        r.user_id = %d and
+        r.accepted = 1 and
+        r.finished = 1
+      ORDER BY r.accepted_at DESC", $target_user))->fetch(\PDO::FETCH_ASSOC);
+
+      if ($checks) {
+        $mdate = strtotime($checks['granted_date_at']);
+        if($mdate != 0 && $mdate > $max_date) $max_date = $mdate;
+        $extra_date = strtotime('+'.$this->settings['USERREQUEST_ACCESS_GRANTED_DATEDIFF'].' days', $max_date);
+
+        if (time() <= $extra_date) {
+          $granted['granted'] = true;
+          $granted['granted_to_date'] = date('Y-m-d H:i:s', $extra_date);
+        }
+      }
+    }
+
     return $granted;
   }
 

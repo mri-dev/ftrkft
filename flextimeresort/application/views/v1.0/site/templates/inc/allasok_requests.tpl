@@ -1,4 +1,11 @@
 {if $allasok}
+  {if $allasok->Count() == 0}
+    <div class="no-data">
+      <i class="fa fa-file-text-o"></i>
+      <h2>{lang text="Nincs jelentkezés"}</h2>
+      {lang text="Ön még nem jelentkezett egy állásajánlatra se."}
+    </div>
+  {/if}
   {while $allasok->walk()}
   <article class="allas">
     <div class="wrapper">

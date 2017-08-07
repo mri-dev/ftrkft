@@ -2,6 +2,7 @@
 namespace AlertsManager;
 
 use FlexTimeResort\Allasok;
+use PortalManager\User;
 
 class Alerts
 {
@@ -49,7 +50,7 @@ class Alerts
 					'groupkey' => $groupkey,
 					'user_id' => $uid,
 					'itemid' => (int)$itemid,
-					'vars' => (empty($vars)) ? NULL : json_encode($vars)
+					'vars' => (empty($vars)) ? NULL : json_encode($vars, \JSON_UNESCAPED_UNICODE)
 				)
 			);
 
@@ -220,9 +221,25 @@ class Alerts
 		return $this->current_category['fa_ico'];
 	}
 
+	public function getVars()
+	{
+		return json_decode($this->current_category['vars'], true);
+	}
+
 	public function getMessage()
 	{
-		$msg = $this->controller->lang('ALERTMANAGER_MSG_'.$this->current_category['groupkey']);
+		$vars = array();
+		$store_vars = $this->getVars();
+		switch ($this->current_category['groupkey']) {
+			case 'allas_jelentkezes_hozzaferes_engedelyezes_tulajnak':
+				if ($store_vars['uid']) {
+					$user = new User($store_vars['uid'], array('controller' => $this->controller));
+					$vars['user'] = $user->getName();
+					$vars['status'] = ($store_vars['status'] == '1') ? '<span style="color:#4cb561;">'.$this->controller->lang('Engedélyezve').'</span>' : '<span style="color:#ef6363;">'.$this->controller->lang('Elutasítva').'</span>';
+				}
+			break;
+		}
+		$msg = $this->controller->lang('ALERTMANAGER_MSG_'.$this->current_category['groupkey'], $vars);
 
 		return $msg;
 	}
@@ -257,6 +274,26 @@ class Alerts
 					);
 				}
 			break;
+			case 'allas_request_to_own':
+			if($itemid != 0){
+				$user = new User($itemid, array('controller' => $this->controller));
+				$button = array(
+					'text' => $this->controller->lang('%name% munkavállaló önéletrajza',array('name' => $user->getName())),
+					'url' => $this->settings['page_url'].$user->getCVUrl(),
+					'msg' => $this->controller->lang('%name% jelentkezett az Ön egyik állásajánlatára', array('name' => $user->getName()))
+				);
+			}
+			break;
+			case 'allas_jelentkezes_hozzaferes_engedelyezes_tulajnak':
+				$allas = (new Allasok(array('controller' => $this->controller)))->load($itemid);
+				$button = array(
+					'text' => $this->controller->lang('Kérelem lista mutatása'),
+					'url' => $this->settings['page_url'].'/ugyfelkapu/hirdetesek?hlad='.$itemid.'&requestsShow=1',
+					'msg' => $allas->shortDesc()
+				);
+			break;
+
+			//ugyfelkapu/hirdetesek?hlad=9&requestsShow=1
 		}
 
 		return $button;

@@ -78,7 +78,9 @@
 			</div>
 			<div class="col-md-4">
 				<div><strong>{$user.name}</strong></div>
-				{$user.email}
+				{$user.email}{if $user.user_group == $settings.USERS_GROUP_USER}
+					| <a target="_blank" href="{$settings.page_url}/u/{$user.ID}/">Önéletrajz</a>
+				{/if}
 			</div>
 			<div class="col-md-1 center">
 				{lang text=$usergroups[$user.user_group]}

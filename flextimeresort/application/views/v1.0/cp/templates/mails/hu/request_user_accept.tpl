@@ -5,7 +5,7 @@
 <h4>Állásajánlat:</h4>
 <div style="padding: 10px; margin: 5px 0 10px 0; background-color: #e8e8e8;">
   <div class="">
-    <a href="{$allas->getURL()}">{$allas->shortDesc()}</a>
+    <a href="{$settings.page_url}{$allas->getURL()}">{$allas->shortDesc()}</a>
   </div>
   <div class="">
     {$allas->get('tipus_name')} / {$allas->get('cat_name')} @ {$allas->getCity()}

@@ -31,7 +31,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="shortdesc">
-            [[allas.short_desc]]
+            <a href="[[allas.url]]">[[allas.short_desc]]</a> 
           </div>
           <div class="afterinfo">
             <span class="status">
@@ -39,7 +39,52 @@
               <span class="status-inaktiv" ng-show="(allas.active == '0')?true:false"><i class="fa fa-eye-slash"></i> {lang text="Inaktív"}</span>
             </span>
             <span class="time" data-toggle="tooltip" title="{lang text='Hirdetés közzététel ideje'}"><i class="fa fa-clock-o"></i> [[allas.publish_after]]</span>
+
             <span data-toggle="tooltip" title="{lang text='Lista megtekintése'}" ng-if="allas.requestedUsers.total!=0" ng-click="requestUserShowToggler(allas.ID)" class="requested-users"><strong>[[allas.requestedUsers.total]] {lang text="db"}</strong> {lang text="igényelt munkavállaló"}</span>
+            <span data-toggle="tooltip" title="{lang text='Lista megtekintése'}" ng-if="allas.requests.length!=0" ng-click="requestsShowToggler(allas.ID)" class="requests"><strong>[[allas.requests.length]] {lang text="db"}</strong> {lang text="jelentkező"}</span>
+          </div>
+        </div>
+        <div class="user-requests" ng-show="requestsShow[allas.ID]{if isset($smarty.get.requestsShow)} || true{/if}">
+          <div class="list-wrapper">
+            <h3>{lang text="Munkavállalói jelentkezések"}</h3>
+            <div class="user gender[[u.user.gender.ID]]" ng-repeat="u in allas.requests">
+              <div class="wrapper">
+                <div class="profilimg">
+                  <img src="[[u.user.profilimg]]" alt="[[u.user.name]]">
+                </div>
+                <div class="dataset">
+                  <div class="name">
+                    <a href="[[u.user.url]]" target="_blank">[[u.user.name]]</a>
+                  </div>
+                  <div class="szakma">
+                    [[u.user.szakma]]
+                  </div>
+                  <div class="subline">
+                    <span class="city">[[u.user.city]]</span>
+                  </div>
+                </div>
+                <div class="status">
+                  <div class="date">
+                    {lang text="Jelentkezett"}: <strong>[[u.request_at]]</strong>
+                  </div>
+                  <div class="user-decide">
+                    {lang text="Státusz"}:
+                    <strong>
+                    <span ng-if="u.admin_picked && !u.finished" class="inprogress">{lang text="Kapcsolatfelvétel alatt"}.</span>
+                    <span ng-if="!u.admin_picked && !u.finished" class="inprogress">{lang text="Feldolgozás alatt"}.</span>
+                    <span ng-if="u.accepted" class="accept">{lang text="Kérelem engedélyezve"}.</span>
+                    <span ng-if="u.declined" class="declined">{lang text="Kérelem elutasítva"}.</span>
+                    </strong>
+                  </div>
+                  <div class="access-granted" ng-if="u.finished">
+                    {lang text="Teljes hozzáférés megadva"}: <strong><span ng-if="u.accepted" class="yes">{lang text="Igen"}</span> <span  ng-if="u.deflined" class="no">{lang text="Nem"}</span></strong>
+                  </div>
+                  <div class="acess-date" ng-if="u.granted_date_at">
+                    {lang text="Hozzáférés lejárati ideje"}: <strong>[[u.grant_date_expired]]</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="user-requests" ng-show="requestUserShow[allas.ID]{if isset($smarty.get.showUserRequests)} || true{/if}">

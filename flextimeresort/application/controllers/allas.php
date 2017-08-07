@@ -1,19 +1,36 @@
 <?
 use FlexTimeResort\Allasok;
 use PortalManager\Admins;
+use FlexTimeResort\UserRequests;
 
 class allas extends Controller{
+	public $ctrl = null;
 	function __construct(){
-		parent::__construct();
+		$this->ctrl = parent::__construct();
 
 		$id = (int)end(explode("_", end($this->gets)));
     $this->out('hide_home_instruction', true);
     $this->out('hide_login_instruction', true);
 
 		$allasok = new Allasok(array(
-			'controller' => $this
+			'controller' => $this->ctrl
 		));
     $this->out( 'allas', $allasok->load($id));
+
+		$userRequests = new UserRequests(array(
+			'controller' => $this->ctrl
+		));
+
+		if ($this->ME->isUser()) {
+			$userRequestCheck = $userRequests->checkRequest($this->ME->getID(), $id);
+
+			if ($userRequestCheck) {
+				$user_request_in_progress = $userRequestCheck;
+				if ($userRequestCheck['access_granted'] == '1') {
+					$access_granted = true;
+				}
+			}
+		}
 
 		parent::$pageTitle = $allasok->get('tipus_name').', '.$allasok->get('cat_name').' '.$allasok->getCity().' '.$this->lang('területén');
 
@@ -24,7 +41,9 @@ class allas extends Controller{
 		$allasok->logVisit($this->ME->getID());
 		$request = $allasok->checkRequestAd($this->ME->getID(), $id);
 		$request_data = $allasok->getRequest($request);
-		$access_granted = ($request_data['accepted'] == 1) ? true : false;
+		if (!isset($access_granted)) {
+			$access_granted = (!isset($access_granted) && $request_data['accepted'] == 1) ? true : false;
+		}
 
 		// Admin view
 		if (isset($_GET['showfull']))
@@ -50,6 +69,7 @@ class allas extends Controller{
 		$this->out( 'requested_data', $request_data );
 		$this->out( 'access_granted', $access_granted );
 		$this->out( 'admin_access', $adminAccess );
+		$this->out( 'user_request_in_progress', $user_request_in_progress );
 
 		$author_obj = $allasok->getAuthorData('author');
 
@@ -77,6 +97,7 @@ class allas extends Controller{
 		parent::bodyHead();	#HEADER
 		$this->displayView( __CLASS__.'/index', true ); #CONTENT
 		parent::__destruct(); #FOOTER
+		$this->ctrl = null;
 	}
 }
 
