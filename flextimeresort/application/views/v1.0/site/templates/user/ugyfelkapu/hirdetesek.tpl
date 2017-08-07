@@ -31,12 +31,13 @@
             <div class="clearfix"></div>
           </div>
           <div class="shortdesc">
-            <a href="[[allas.url]]">[[allas.short_desc]]</a> 
+            <a href="[[allas.url]]">[[allas.short_desc]]</a>
           </div>
           <div class="afterinfo">
             <span class="status">
-              <span class="status-aktiv" ng-show="(allas.active == '1')?true:false"><i class="fa fa-eye"></i> {lang text="Aktív"}</span>
-              <span class="status-inaktiv" ng-show="(allas.active == '0')?true:false"><i class="fa fa-eye-slash"></i> {lang text="Inaktív"}</span>
+              <span class="status-aktiv" ng-if="allas.betoltott==0" ng-show="(allas.active == '1')?true:false"><i class="fa fa-eye"></i> {lang text="Aktív"}</span>
+              <span class="status-inaktiv" ng-if="allas.betoltott==0" ng-show="(allas.active == '0')?true:false"><i class="fa fa-eye-slash"></i> {lang text="Inaktív"}</span>
+              <span class="status-betoltott" ng-show="(allas.betoltott == '1')?true:false"><i class="fa fa-check-circle"></i> {lang text="Betöltött állás"}</span>
             </span>
             <span class="time" data-toggle="tooltip" title="{lang text='Hirdetés közzététel ideje'}"><i class="fa fa-clock-o"></i> [[allas.publish_after]]</span>
 

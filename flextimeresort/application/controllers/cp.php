@@ -327,6 +327,26 @@ class cp extends Controller {
 					}
 				}
 
+				if (isset($_GET['changedata'])) {
+					$requestHash = $_GET['opened'];
+					$v = $_GET['v'];
+
+					if ($v != '' && $_GET['changedata'] != '') {
+						$mod = array();
+						$mod[$_GET['changedata']] = $v;
+
+						print_r($mod);
+
+						$this->db->update(
+							\FlexTimeResort\Allasok::DB_REQUEST_X,
+							$mod,
+							sprintf("hashkey = '%s'", $requestHash)
+						);
+
+						\Helper::reload($this->getVar('root') . 'ads/requests/?opened='.$requestHash.'&hlad='.$_GET['hlad']);
+					}
+				}
+
 				if (isset($_POST['requestAction'])) {
 					switch ($_POST['requestAction']) {
 						case 'decline':

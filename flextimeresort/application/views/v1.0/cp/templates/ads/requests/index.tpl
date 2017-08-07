@@ -170,6 +170,13 @@
                 <span data-toggle="tooltip" data-placement="bottom" title="Telefonszám"><i class="fa fa-phone"></i> {$request.user->getPhone()}</span>
               {/if}
               <span data-toggle="tooltip" data-placement="bottom" title="E-mail cím"><i class="fa fa-envelope"></i> {$request.user->getEmail()}</span>
+              <span class="showinfo">
+                {if $request.accepted == '1' && $request.show_author_info == '0'}
+                <span>Kapcsolat adat közzétéve: <strong style="color:red;">NEM</strong> [<a href="{$root}ads/requests/?opened={$request.hashkey}&hlad={$item.ID}&changedata=show_author_info&v=1">engedélyez</a>]</span>
+                {elseif $request.accepted == '1' && $request.show_author_info == '1'}
+                <span>Kapcsolat adat közzétéve: <strong style="color:green;">IGEN</strong> [<a href="{$root}ads/requests/?opened={$request.hashkey}&hlad={$item.ID}&changedata=show_author_info&v=0">visszavon</a>]</span>
+                {/if}
+              </span>
               {if !is_null($request.admin_pick) && $request.admin_pick == $admin->getID() && $request.declined != 1}
               <span class="messanger">
                 {if $request.messanger}

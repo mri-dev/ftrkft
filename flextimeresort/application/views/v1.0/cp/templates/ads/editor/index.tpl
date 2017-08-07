@@ -19,6 +19,9 @@
         <div class="col-md-4">
           <input type="checkbox" ng-model="allas.active" ng-checked="allas.active" class="ccb" id="aktiv"><label for="aktiv">{lang text="Aktív"}</label>
         </div>
+        <div class="col-md-4">
+          <input type="checkbox" ng-model="allas.betoltott" ng-checked="allas.betoltott" class="ccb" id="betoltott"><label for="betoltott">{lang text="Betöltött pozíció"}</label>
+        </div>
       </div>
     </div>
 

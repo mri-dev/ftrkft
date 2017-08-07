@@ -61,7 +61,7 @@ class Allasok
       $metas = array();
 
       $updates['created_by_admin'] = (int)$data['created_by_admin'];
-      $updates['author_id'] = $data['author_id'];
+      $updates['author_id'] = ($updates['created_by_admin'] != 0) ? 1 : $data['author_id'];
       $updates['publish_after'] = (!isset($data['publish_now']) || $data['publish_now']) ? NOW : $data['publish_after'];
       $updates['keywords'] = $data['keywords'];
       $updates['megye_id'] = (int)$data['megye_id'];
@@ -75,6 +75,7 @@ class Allasok
       $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
       $updates['active'] = ($data['active']) ? 1 : 0;
+      $updates['betoltott'] = ($data['betoltott']) ? 1 : 0;
 
       // Metas
       $metas['hirdetes_kategoria'] = array(
@@ -124,6 +125,7 @@ class Allasok
       $updates['author_email'] = (isset($data['author_email']) && !empty($data['author_email'])) ? $data['author_email']:null;
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
       $updates['active'] = ($data['active']) ? 1 : 0;
+      $updates['betoltott'] = ($data['betoltott']) ? 1 : 0;
       // Metas
       $metas['hirdetes_kategoria'] = array(
         'value' => (int)$data['hirdetes_kategoria'],
@@ -380,7 +382,7 @@ class Allasok
       LEFT OUTER JOIN accounts as u ON u.ID = a.author_id
 			WHERE 1=1";
     if ( !$this->admin ) {
-        $qry .= " and a.active = 1";
+        $qry .= " and a.active = 1 and a.betoltott = 0 ";
     }
     if ( $this->edit_id !== false ) {
         $qry .= " and a.ID = ".$this->edit_id;
@@ -471,11 +473,12 @@ class Allasok
     if (isset($arg['active_in']) && is_array($arg['active_in'])) {
       $qry .= " and a.active IN(".implode(",", $arg['active_in']).")";
     }
+
 		if( !$this->o['orderby'] ) {
       if ($idset_orderby) {
         $qry .= " ORDER BY FIELD(a.ID, ".implode(",", (array)$idset_orderby).")";
       } else {
-        $qry .= " ORDER BY a.publish_after DESC";
+        $qry .= " ORDER BY a.betoltott ASC, a.active DESC, a.publish_after DESC";
       }
 		} else {
 			$qry .= " ORDER BY a.".$this->o['orderby']." ".$this->o['order'];

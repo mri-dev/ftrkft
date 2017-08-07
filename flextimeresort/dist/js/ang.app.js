@@ -1239,6 +1239,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.city = $scope.loaded_allas.city;
     $scope.allas.short_desc = $scope.loaded_allas.short_desc;
     $scope.allas.active = ($scope.loaded_allas.active == '1') ? true : false;
+    $scope.allas.betoltott = ($scope.loaded_allas.betoltott == '1') ? true : false;
     if ($scope.loaded_allas.short_desc) {
       $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
     }
@@ -1361,7 +1362,6 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.creator_in_progress = true;
     $scope.allas.tematic_list = $scope.tematics;
     $scope.allas.munkakorok = $scope.selectedlist.munkakorok;
-
 
     // Adatok mentése, látrehozása
     /* */
