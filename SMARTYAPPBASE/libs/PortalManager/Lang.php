@@ -26,16 +26,46 @@ class Lang {
     }
 	}
 
-  static public function getCurrentLang()
+	function switchTo($code = 'hu')
+	{
+		$avaiable = $this->avaiableLanguages();
+
+		if (in_array($code, $avaiable['avaiable_codes'])) {
+			setcookie('language', $code, time()+3600*24*90, '/');
+		}
+	}
+
+  public function getCurrentLang()
   {
       $lang = 'hu';
 
       if( isset( $_COOKIE['language'] ) ) {
-          $lang = $_COOKIE['language'];
+				$avaiable = $this->avaiableLanguages();
+				$clang = $_COOKIE['language'];
+
+				if (in_array($clang, $avaiable['avaiable_codes'])) {
+					$lang =  $_COOKIE['language'];
+				}
       }
 
       return $lang;
   }
+
+	public function avaiableLanguages()
+	{
+		$re = array();
+		$langs = $this->db->query("SELECT * FROM ".self::DB_TABLE_LANGUAGES)->fetchAll(\PDO::FETCH_ASSOC);
+
+		foreach ((array)$langs as $l) {
+			$re['all'][] = $l;
+			if ($l['active'] == 1) {
+				$re['avaiable'][$l['code']] = $l;
+				$re['avaiable_codes'][] = $l['code'];
+			}
+		}
+
+		return $re;
+	}
 
 	public function isDefaultLangNow()
 	{
@@ -48,9 +78,78 @@ class Lang {
 		return false;
 	}
 
+	public function saveText($lang = 'hu', $id = 0, $value, $parent = 0)
+	{
+		if (empty($value)) {
+			return false;
+		}
+
+		if ($id != 0) {
+			$this->db->update(
+				self::DB_TABLE_TRANSLATES,
+				array(
+					'textvalue' => $value
+				),
+				sprintf("lang = '%s' and ID = %d", $lang, $id)
+			);
+		} else {
+			$this->db->insert(
+				self::DB_TABLE_TRANSLATES,
+				array(
+					'textvalue' => $value,
+					'origin_id' => $parent,
+					'lang' => $lang
+				)
+			);
+		}
+
+		return true;
+	}
+
+	public function prepareForTranslator( $langkey = 'hu' )
+	{
+		$avaiable = $this->avaiableLanguages();
+
+		if (!in_array($langkey, $avaiable['avaiable_codes'])) {
+			$langkey = $this->language;
+		}
+
+		$texts = array();
+
+		if($this->settings['default_language'] == $langkey ){
+			$q = "SELECT ID, srcstr,textvalue FROM ".self::DB_TABLE_TRANSLATES." WHERE 1=1 ";
+			$q .= " and lang = '".$langkey."';";
+			$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
+
+
+			foreach ((array)$data as $d) {
+				$texts[$d['ID']] = $d;
+			}
+		} else {
+			$q = "SELECT
+				t.ID as parentID,
+				t.srcstr,
+				t.textvalue as origin_textvalue,
+				t2.textvalue,
+				t2.ID
+			FROM ".self::DB_TABLE_TRANSLATES." as t
+			LEFT OUTER JOIN ".self::DB_TABLE_TRANSLATES." as t2 ON t2.origin_id = t.ID and t2.lang = '{$langkey}'
+			WHERE 1=1 and t.lang = '{$this->settings['default_language']}'";
+			//echo $q.'<br>';
+			$data = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
+
+			foreach ((array)$data as $d) {
+				$d['parentID'] = (int)$d['parentID'];
+				$texts[] = $d;
+			}
+		}
+
+
+		return $texts;
+	}
+
 	public function loadTexts() {
 		$code = $this->getCurrentLang();
-		//$code = 'en';
 		$texts = array();
 
 		if($this->settings['default_language'] == $code ){
@@ -62,7 +161,9 @@ class Lang {
 				$texts[$txt['srcstr']] = $txt['textvalue'];
 			}
 		} else {
+
 			$q = "SELECT t.srcstr, IF(t2.ID IS NOT NULL, t2.textvalue, t.textvalue) as textvalue FROM ".self::DB_TABLE_TRANSLATES." as t LEFT OUTER JOIN ".self::DB_TABLE_TRANSLATES." as t2 ON t2.lang = '".$code."' and t2.origin_id = t.ID WHERE 1=1 and t.origin_id IS NULL";
+			//echo $q.'<br>';
 			$txts = $this->db->query($q)->fetchAll(\PDO::FETCH_ASSOC);
 
 			foreach($txts as $txt){

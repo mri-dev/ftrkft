@@ -6,6 +6,7 @@
           <h2>{lang text="Legújabb álláshirdetések"}</h2>
           <div class="line"></div>
         </div>
+
         <div class="allasok style-new-home">
           {include file='inc/allasok.tpl'}
         </div>

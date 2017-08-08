@@ -1461,3 +1461,87 @@ ads.controller("Listing", ['$scope', '$http', function($scope, $http){
     }, function errorCallback(response) {});
   }
 }]);
+
+var translator = angular.module("Translator", ['ngMaterial'], function($interpolateProvider){
+  $interpolateProvider.startSymbol('[[');
+  $interpolateProvider.endSymbol(']]');
+});
+
+translator.controller("Translate", ['$scope', '$http', function($scope, $http){
+  $scope.loaded = false;
+  $scope.lang_edit = 'en';
+  $scope.languages = [];
+  $scope.index_progress = 0;
+  $scope.index_saved = [];
+  $scope.filter_text = null;
+
+  $scope.languages.push({
+    'name' : 'Magyar',
+    'code' : 'hu'
+  });
+  $scope.texts = [];
+
+  $scope.languages.push({
+    'name' : 'English',
+    'code' : 'en'
+  });
+
+  $scope.init = function(){
+    $scope.loadData();
+  }
+
+  $scope.filterList = function(){
+    console.log($scope.filter_text);
+  }
+
+  $scope.saveText = function(id, text, parentid) {
+    if (id) {
+      $scope.index_progress = id;
+    }
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator_save_text',
+        lang: $scope.lang_edit,
+        id: id,
+        text: text,
+        parentid: parentid
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      if (id) {
+        $scope.index_saved.push(id);
+        $scope.index_progress = 0;
+      }
+    }, function errorCallback(response) {});
+  }
+
+  $scope.changeLang = function(lang) {
+    $scope.filter_text = null;
+    $scope.lang_edit = lang;
+    $scope.loadData();
+  }
+
+  $scope.loadData = function(){
+    $scope.loaded = false;
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator',
+        lang: $scope.lang_edit,
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.loaded = true;
+      console.log(d);
+
+      $scope.texts = d.texts;
+
+    }, function errorCallback(response) {});
+  }
+}]);

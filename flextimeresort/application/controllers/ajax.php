@@ -38,6 +38,16 @@ class ajax extends Controller  {
 			$data = array();
 
 			switch ( $params['type'] ) {
+				case 'translator':
+					$data['input'] = array(
+						'lang' => $params['lang']
+					);
+					$data['texts'] = $this->LANGUAGES->prepareForTranslator($params['lang']);
+				break;
+				case 'translator_save_text':
+					$data['success'] = $this->LANGUAGES->saveText($params['lang'], (int)$params['id'], $params['text'], (int)$params['parentid']);
+				break;
+
 				case 'me':
 					// Terms
 					$data['terms']['anyanyelv'] = (int)$this->ME->getAccountData('anyanyelv');

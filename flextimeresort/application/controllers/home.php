@@ -25,6 +25,7 @@ class home extends Controller  {
 		$allasok = new Allasok(array(
 			'controller' => $this
 		));
+
 		$arg = array();
 		$arg['limit'] = 10;
 		$arg['hide_inaktiv'] = true;
