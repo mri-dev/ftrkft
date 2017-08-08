@@ -10,6 +10,7 @@
 				<div class="form">
           <div class="row col-vertical-middle">
             <div class="col-md-6">
+						  {assign var="remembermehash" value=\Hash::loadRememberMeHash()}
               <form class="" action="/forms/auth" method="post">
     						<input type="hidden" name="return" value="{if isset($smarty.get.re)}{$smarty.get.re}{else}{$smarty.server.REQUEST_URI}{/if}">
                 <input type="hidden" name="form" value="1">
@@ -21,12 +22,12 @@
     						<div class="row col-vertical-middle">
     							<div class="col-md-12 {if $form && $form->hasError(1, 'email')}input-error{/if}">
     								<label for="email">{lang text="EMAIL"} *</label>
-    								<input type="text" class="form-control" name="email" id="email" value="">
+    								<input type="text" class="form-control" name="email" id="email" value="{if $remembermehash}{$remembermehash.email}{/if}">
     							</div>
                   <div class="divider"></div>
     							<div class="col-md-12">
     								<label for="password">{lang text="JELSZO"} *</label>
-    								<input type="password" class="form-control" name="password" id="password" value="">
+    								<input type="password" class="form-control" name="password" id="password" value="{if $remembermehash}{$remembermehash.password_hash}{/if}">
     							</div>
                   <div class="divider"></div>
                   <div class="col-md-6 actions">
@@ -35,7 +36,10 @@
                       <i class="fa fa-question fa-stack-1x"></i>
                     </span> {lang text="ELFELEJTETT_JELSZO"}</a>
     							</div>
-    							<div class="col-md-6 submit">
+									<div class="col-md-3 actions">
+                    <input type="checkbox" class="ccb" id="login_remember" {if $remembermehash}checked="checked"{/if} name="rememberme" value="1"><label for="login_remember">{lang text="JEGYEZZE_MEG"}</label>
+    							</div>
+    							<div class="col-md-3 submit">
     								<button type="submit" class="btn btn-success">{lang text="BELEPES"} <i class="fa fa-sign-in"></i></button>
     							</div>
     						</div>

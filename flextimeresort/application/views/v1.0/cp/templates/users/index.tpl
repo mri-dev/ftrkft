@@ -86,7 +86,13 @@
 				{lang text=$usergroups[$user.user_group]}
 			</div>
 			<div class="col-md-1 center">
-				{if $user.engedelyezve}Engedélyezve{else}Nem{/if}
+				{if $user.askdeleted == 1}
+					<span style="color: red;">Törölve</span>
+				{elseif $user.inaktiv == 1}
+					<span style="color: orange;" title="A felhasználó sajtá maga inaktiválta a fiókját. Ők nem jelennek meg a listázásokban. Oka, hogy talált állást, vagy a munkáltató szünetelteti a hirdetést.">Befagyasztva</span> 
+				{else}
+						{if $user.engedelyezve}Engedélyezve{else}Nem{/if}
+				{/if}
 			</div>
 			<div class="col-md-2 center">
 				{$user.last_login_date}

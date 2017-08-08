@@ -81,6 +81,12 @@ class Controller
 			)
 		);
 
+		if ($this->ME && $this->ME->getID()) {
+			if ($this->ME->isDeleted() || !$this->ME->isAllowed()) {
+				$this->USERS->logout();
+			}
+		}
+
 		// Messanger
 		$this->MESSANGER = new Messanger(array(
 			'controller' => $this

@@ -16,7 +16,6 @@ class u extends Controller
 			'root' => 'onlinecv'
 		) );
 
-
   	$this->root = '/'.__CLASS__.'/';
 		$this->out( 'root', $this->root );
 		$this->out( 'admin_css', '/'.str_replace('templates/','',$this->smarty->getTemplateDir(0)).'assets/css/media.css');
@@ -32,7 +31,9 @@ class u extends Controller
 
     $uid = (int)$_GET['uid'];
     $this->user = new User($uid, array(
-      'controller' => $this->ctrl
+      'controller' => $this->ctrl,
+			'hide_inaktiv' => true,
+			'hide_deleted' => true
     ));
     $this->out( 'u', $this->user );
 
@@ -96,7 +97,7 @@ class u extends Controller
 		// ha a saját adatlapját tekinti meg
 		// ha munkaadó és kérelmezte a a hozzáférést és meg is kapta
 		$cv_grant_check = $cv->accessGrantedCheck($this->ME->getID());
-		
+
 		if (
 				$this->admin ||
 				($this->ME && $this->ME->getID() == $uid) ||

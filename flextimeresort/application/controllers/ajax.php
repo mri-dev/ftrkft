@@ -52,6 +52,7 @@ class ajax extends Controller  {
 					$data['alap']['email'] = $this->ME->getEmail();
 					$data['alap']['profil_kep'] = $this->ME->getProfilImg();
 					$data['alap']['szuletesi_datum'] = $this->ME->getAccountData('szuletesi_datum');
+					$data['alap']['inaktiv'] = (boolean)$this->ME->isInaktiv();
 
 					// Elérhetőségek
 					$data['elerhetoseg']['telefon'] = $this->ME->getAccountData('telefon');
@@ -207,6 +208,7 @@ class ajax extends Controller  {
 					$profildetails = array();
 
 					$profildata['name'] = $form['name'];
+					$profildata['inaktiv'] = ($form['inaktiv']) ? 1 : 0;
 					$profildetails['szuletesi_datum'] = $form['szuletesi_datum'];
 					$profildetails['anyanyelv'] = (int)$form['anyanyelv'];
 					$profildetails['szakma_text'] = $form['szakma_text'];

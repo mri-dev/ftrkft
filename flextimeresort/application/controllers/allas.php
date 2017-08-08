@@ -15,7 +15,11 @@ class allas extends Controller{
 		$allasok = new Allasok(array(
 			'controller' => $this->ctrl
 		));
-    $this->out( 'allas', $allasok->load($id));
+    $this->out( 'allas', $allasok->load($id, array('hide_inaktiv' => true)));
+
+		if (!$allasok->getID()) {
+			\Helper::reload('/');
+		}
 
 		$userRequests = new UserRequests(array(
 			'controller' => $this->ctrl

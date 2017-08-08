@@ -10,7 +10,7 @@
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'apps'}active{/if}"><a href="/ugyfelkapu/apps"><span class="ico"><i class="fa fa-handshake-o"></i></span> {lang text="Jelentkezéseim"}</a></li>
       {/if}
       <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'beallitasok'}active{/if}"><a href="/ugyfelkapu/beallitasok"><span class="ico"><i class="fa fa-gear"></i></span> {lang text="BEALLITASOK"}</a></li>
-      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>      
+      <li class="{if $smarty.get.tag == 'user/ugyfelkapu' && $smarty.get.p == 'profil'}active{/if}"><a href="/ugyfelkapu/profil"><span class="ico"><i class="fa fa-pencil"></i></span> {lang text="PROFIL_SZERKESZTES"}</a></li>
       {if $me && $me->isUser()}
       <li class="cv-link"><a target="_blank" href="{$me->getCVUrl()}"><span class="ico"><i class="fa fa-file-text"></i></span> {lang text="ONLINE_ONELETRAJZOM"}</a></li>
       {/if}
@@ -24,23 +24,24 @@
     </ul>
   </nav>
   {else}
+  {assign var="remembermehash" value=\Hash::loadRememberMeHash()}
   <form class="" action="/forms/auth" method="post">
     <input type="hidden" name="return" value="/belepes">
     <input type="hidden" name="form" value="1">
     <input type="hidden" name="session_path" value="/user/belepes">
     <div class="form-holder line">
       <img src="{$smarty.const.IMG}icons/circle/form-user.svg" alt="{lang text='EMAIL_ADDRESS'}">
-      <input type="text" name="email" class="form-control" placeholder="{lang text='EMAIL_ADDRESS'}" value="">
+      <input type="text" name="email" class="form-control" id="email" placeholder="{lang text='EMAIL_ADDRESS'}" value="{if $remembermehash}{$remembermehash.email}{/if}">
     </div>
     <div class="form-holder line">
       <img src="{$smarty.const.IMG}icons/circle/form-lock.svg" alt="">
-      <input type="password" name="password" class="form-control" value="">
+      <input type="password" id="password" name="password" class="form-control" value="{if $remembermehash}{$remembermehash.password_hash}{/if}">
     </div>
     <div class="actions">
       <div class="whattodo line">
         <div class="row">
           <div class="col-md-6">
-            <input type="checkbox" class="ccb" id="login_remember" name="rememberme" value="1"><label for="login_remember">{lang text="JEGYEZZE_MEG"}</label>
+            <input type="checkbox" class="ccb" id="login_remember" {if $remembermehash}checked="checked"{/if} name="rememberme" value="1"><label for="login_remember">{lang text="JEGYEZZE_MEG"}</label>
           </div>
           <div class="col-md-6">
             <a href="/elfelejtett-jelszo"><span class="fa-stack">

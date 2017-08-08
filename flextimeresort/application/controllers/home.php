@@ -27,6 +27,7 @@ class home extends Controller  {
 		));
 		$arg = array();
 		$arg['limit'] = 10;
+		$arg['hide_inaktiv'] = true;
 		$allasok->getTree($arg);
 		$this->out('allasok', $allasok);
 

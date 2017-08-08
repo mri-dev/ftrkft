@@ -297,14 +297,17 @@ class Allasok
   }
   public function logVisit($uid = false)
   {
-    $this->db->insert(
-        self::DB_LOG_VIEW,
-        array(
-          'ip' => $_SERVER['REMOTE_ADDR'],
-          'user_id' => ($uid) ? $uid : NULL,
-          'allas_id' => $this->getID()
-        )
-    );
+    if ($this->getID()) {
+      $this->db->insert(
+          self::DB_LOG_VIEW,
+          array(
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'user_id' => ($uid) ? $uid : NULL,
+            'allas_id' => $this->getID()
+          )
+      );
+    }
+
   }
   public function rebuildTermRelations( $id, $terms = array() )
   {
@@ -383,6 +386,9 @@ class Allasok
 			WHERE 1=1";
     if ( !$this->admin ) {
         $qry .= " and a.active = 1 and a.betoltott = 0 ";
+    }
+    if ( isset($arg['hide_inaktiv']) && $arg['hide_inaktiv'] === true ) {
+        $qry .= " and u.inaktiv = 0";
     }
     if ( $this->edit_id !== false ) {
         $qry .= " and a.ID = ".$this->edit_id;

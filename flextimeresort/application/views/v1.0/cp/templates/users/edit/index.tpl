@@ -19,7 +19,7 @@
             <div class="row">
               <div class="col-md-6 {if $form && $form->hasError(1, 'name')}input-error{/if}">
                 <label for="name">Név / Cégnév*</label>
-                <input type="text" id="name" name="data[name]" value="{if $form && $formposts}{$formposts.data.name}{else}{$user->getName()}{/if}" class="form-control">
+                <input type="text" id="name" name="data[name]" value="{if $form && $formposts}{$formposts.data.name}{else}{$user->getName(true)}{/if}" class="form-control">
               </div>
               <div class="col-md-6 {if $form && $form->hasError(1, 'email')}input-error{/if}">
                 <label for="email">E-mail cím*</label>
@@ -39,6 +39,14 @@
                 <select class="form-control" id="engedelyezve" name="data[engedelyezve]">
                   <option value="0" {if !$user->isAllowed()}selected="selected"{/if}>Tiltva</option>
                   <option value="1" {if $user->isAllowed()}selected="selected"{/if}>Engedélyezve</option>
+                </select>
+              </div>
+              <div class="divider"></div>
+              <div class="col-md-6">
+                <label for="askdeleted">Törlés kérelmezve</label>
+                <select class="form-control" id="askdeleted" name="data[askdeleted]">
+                  <option value="0" {if !$user->isDeleted()}selected="selected"{/if}>Nem</option>
+                  <option value="1" {if $user->isDeleted()}selected="selected"{/if}>Igen</option>
                 </select>
               </div>
             </div>

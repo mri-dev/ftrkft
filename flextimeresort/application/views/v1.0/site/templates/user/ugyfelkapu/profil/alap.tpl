@@ -1,3 +1,12 @@
+<md-switch ng-model="form.inaktiv" class="md-primary">
+  {if $me && $me->isUser()}
+    {lang text="Profilom inaktívvá tétele. (Nem keresek jelenleg munkát)"}
+  {/if}
+  {if $me && $me->isMunkaado()}
+    {lang text="Profilom inaktívvá tétele. Ajánlataim ne jelenjenek meg a listázásban."}
+  {/if}
+</md-switch>
+
 <div class="group">
   <div class="title">
     <h3><i class="fa fa-user"></i> {lang text="Személyes adatok megadása"}</h3>

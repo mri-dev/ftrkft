@@ -83,6 +83,14 @@
       }
     });
 
+    $('#login_remember').change(function(){
+      if (!$(this).is(':checked')) {
+        $('#password').val('');
+        $('#email').val('').focus();
+      }
+      console.log($(this).is(':checked'));
+    });
+
     tinymce.init({
       selector: "textarea.editor",
       editor_deselector : 'no-editor',

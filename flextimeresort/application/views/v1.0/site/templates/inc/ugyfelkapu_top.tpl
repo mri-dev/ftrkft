@@ -39,3 +39,16 @@
   </div>
   {/if}
 </div>
+{if $me && $me->isInaktiv()}
+<div class="profil-inaktiv-alert">
+  <div class="page-width">
+    <div class="ico">
+      <i class="fa fa-eye-slash"></i>
+    </div>
+    <div class="text">
+      {lang text="Az Ön fiókja jelenleg inaktív. Így nem jelenik meg a listázásban."} <br>
+      <a href="/ugyfelkapu/profil/alap">{lang text="Profil aktiválása"} <i class="fa fa-long-arrow-right"></i></a>
+    </div>    
+  </div>
+</div>
+{/if}

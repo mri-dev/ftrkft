@@ -401,21 +401,52 @@ class Users
 
 	function login($data){
 		$re 	= array();
+		$by_rememberme = false;
+
+		// Remember me
+		if (isset($data['rememberme'])) {
+			$by_rememberme = true;
+		}
 
 		if( empty($data['email']) || empty($data['password'])) {
 			$this->error( $this->controller->lang('HIANYZO_ADATOK') );
 		}
 
-		if(!$this->userExists('email',$data['email'])){
+		if(!$udata = $this->userExists('email',$data['email'])){
 			$this->error( $this->controller->lang('EZ_EZ_EMAIL_NINCS_REGISZTRALVA') );
 		}
 
-		try {
-			if(!$this->validUser($data['email'],$data['password'])){
+		if($this->userDeleted('email', $data['email'])){
+			$this->error( $this->controller->lang('LOGIN_THIS_USER_DELETED') );
+		}
+
+		if ($by_rememberme) {
+			$currentRememberHash = \Hash::loadRememberMeHash();
+			$remember_arr = array();
+			$remember_arr['email'] = $data['email'];
+			$remember_arr['password_hash'] = base64_encode(microtime().'-'.md5($udata['email'].'.'.$udata['ID'].'.'.$udata['password']).'-'.microtime());
+
+			$remember_str = base64_encode(json_encode($remember_arr));
+
+			setcookie('__arem', $remember_str, time()+3600*24*14, '/');
+		} else {
+			setcookie('__arem', null, time()-60, '/');
+		}
+
+		if ($currentRememberHash) {
+			$pwhash = $currentRememberHash['password_hash'];
+
+			if(!$this->validUserByRememberHash($data['email'], $pwhash)){
 				$this->error( $this->controller->lang('HIBAS_ADATOKAT_ADOTT_MEG') );
 			}
-		} catch (Exception $e) {
-			$this->error( $e->getMessage() );
+		} else {
+			try {
+				if(!$this->validUser($data['email'],$data['password'])){
+					$this->error( $this->controller->lang('HIBAS_ADATOKAT_ADOTT_MEG') );
+				}
+			} catch (Exception $e) {
+				$this->error( $e->getMessage() );
+			}
 		}
 
 		if(!$this->isActivated($data[email])){
@@ -995,7 +1026,23 @@ class Users
 	}
 
 	function userExists( $by = 'email', $val, $group = false ){
-		$q = "SELECT ID FROM ".self::TABLE_NAME." WHERE ".$by." = '".$val."' ";
+		$q = "SELECT ID, password, email FROM ".self::TABLE_NAME." WHERE ".$by." = '".$val."' ";
+
+		if( $group !== false ){
+			$q .= " and user_group = $group ";
+		}
+		$c = $this->db->query($q);
+
+		if($c->rowCount() == 0){
+			return false;
+		}else{
+			$d = $c->fetch(\PDO::FETCH_ASSOC);
+			return $d;
+		}
+	}
+
+	function userDeleted( $by = 'email', $val, $group = false ){
+		$q = "SELECT ID FROM ".self::TABLE_NAME." WHERE ".$by." = '".$val."' and askdeleted = 1 ";
 
 		if( $group !== false ){
 			$q .= " and user_group = $group ";
@@ -1072,6 +1119,30 @@ class Users
 		}
 	}
 
+	public function validUserByRememberHash($email, $hash)
+	{
+		$flag = false;
+
+		if (empty($hash)) {
+			return $flag;
+		}
+
+		$hash = explode("-", base64_decode($hash));
+		$store_pw = trim($hash[1]);
+
+		$q = "SELECT ID FROM ".self::TABLE_NAME." WHERE MD5(CONCAT(email,'.',ID,'.',password)) = '$store_pw'";
+
+		$c = $this->db->query($q);
+
+		if($c->rowCount() == 0){
+			$flag = false;
+		}else{
+			$flag = true;
+		}
+
+		return $flag;
+	}
+
 	public function getJobApplicantNum($acc_id, $user_group = false)
 	{
 		$num = 0;
@@ -1106,7 +1177,7 @@ class Users
 		$q .= " WHERE 1=1 ";
 
 		if (!$this->is_cp) {
-			$q .= " and f.aktivalva IS NOT NULL and f.engedelyezve = 1";
+			$q .= " and f.aktivalva IS NOT NULL and f.engedelyezve = 1 and f.inaktiv = 0 and f.askdeleted = 0";
 		}
 
 		if( $user_group != -1 ) {
@@ -1181,7 +1252,7 @@ class Users
 			";
 		} else{
 			$q .= "
-				ORDER BY f.register_date DESC
+				ORDER BY f.askdeleted ASC, f.inaktiv ASC, f.register_date DESC
 			";
 		}
 

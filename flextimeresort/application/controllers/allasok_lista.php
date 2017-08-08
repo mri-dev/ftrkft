@@ -18,6 +18,7 @@ class allasok_lista extends Controller  {
 		));
 		$arg = array();
 		$arg['limit'] = 20;
+		$arg['hide_inaktiv'] = true;
 		$arg['page'] = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 		$arg['filters']['search'] = (!empty($_GET['s'])) ? $_GET['s'] : false;
 		$arg['filters']['city'] = (!empty($_GET['c'])) ? $_GET['c'] : false;
@@ -65,7 +66,8 @@ class allasok_lista extends Controller  {
 		));
 		$latogatottak->getTree(array(
 			'show_history' => ($this->ME->getID()) ? $this->ME->getID() : true,
-			'limit' => 10
+			'limit' => 10,
+			'hide_inaktiv' => true
 		));
 		$this->out( 'history', $latogatottak );
 

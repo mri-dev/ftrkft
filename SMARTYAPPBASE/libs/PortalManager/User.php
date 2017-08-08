@@ -17,6 +17,8 @@ class User
 	public $id 	= false;
 	public $user = false;
 	public $cvHandler = false;
+	private $hide_inaktiv = false;
+	private $hide_deleted = false;
 
 	function __construct( $user_id, $arg = array() ){
 		$this->id = $user_id;
@@ -26,6 +28,13 @@ class User
 			$this->db = $this->controller->db;
 			$this->settings = $this->controller->settings;
 			$this->smarty = $this->controller->smarty;
+		}
+
+		if (isset($arg['hide_inaktiv']) && $arg['hide_inaktiv'] === true) {
+			$this->hide_inaktiv = true;
+		}
+		if (isset($arg['hide_deleted']) && $arg['hide_deleted'] === true) {
+			$this->hide_deleted = true;
 		}
 
 		$this->user = $this->get();
@@ -151,6 +160,14 @@ class User
 		FROM 			".\PortalManager\Users::TABLE_NAME." as u
 		WHERE 			1 = 1 ";
 
+		if ($this->hide_deleted) {
+			$q .= " and u.askdeleted = 0 ";
+		}
+
+		if ($this->hide_inaktiv) {
+			$q .= " and u.inaktiv = 0 ";
+		}
+
 		$q .= " and u.".$db_by." = '$account_id';";
 
 		extract($this->db->q($q));
@@ -167,6 +184,16 @@ class User
 		}
 
 		return $data;
+	}
+
+	public function isInaktiv()
+	{
+		return ($this->user['data']['inaktiv'] == 1) ? true : false;
+	}
+
+	public function isDeleted()
+	{
+		return ($this->user['data']['askdeleted'] == 1) ? true : false;
 	}
 
 	public function getBirthDate()
@@ -228,9 +255,17 @@ class User
 		return $this->user['data'][$key];
 	}
 
-	public function getName()
+	public function getName( $raw = false )
 	{
-		return $this->user['data']['name'];
+		if ( $raw ) {
+			return $this->user['data']['name'];
+		}
+
+		$after = '';
+		if ($this->isDeleted()) {
+			$after = ' ('.$this->controller->lang('Törölve').')';
+		}
+		return $this->user['data']['name'].$after;
 	}
 
 	public function getID()

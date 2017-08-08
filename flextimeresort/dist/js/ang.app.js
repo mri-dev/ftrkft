@@ -137,6 +137,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
     $scope.form.email = user.alap.email;
     $scope.form.szuletesi_datum = user.alap.szuletesi_datum;
     $scope.profilpreview = user.alap.profil_kep;
+    $scope.form.inaktiv = user.alap.inaktiv;
 
     $scope.form.telefon = user.elerhetoseg.telefon;
     $scope.form.lakcim_irsz = user.elerhetoseg.lakcim_irsz;
@@ -446,6 +447,7 @@ pm.controller("formValidor",['$scope', '$http', '$timeout', 'fileUploadService',
   }, function errorCallback(response) {});
 
   $scope.save = function(next){
+    console.log($scope.form);
     $scope.saveinprogress = true;
 
     if ($scope.fileinput) {

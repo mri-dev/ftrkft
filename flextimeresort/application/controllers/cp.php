@@ -5,6 +5,7 @@ use PortalManager\Form;
 use PortalManager\Categories;
 use PortalManager\Category;
 use PortalManager\UserList;
+use PortalManager\Users;
 use PortalManager\User;
 use PortalManager\Menus;
 use PortalManager\Articles;
@@ -557,7 +558,10 @@ class cp extends Controller {
 	{
 		$filters = array();
 		$arg = array();
-		$users = $this->USERS;
+		$users = new Users(array(
+			'controller' => $this->ctrl,
+			'admin' => true
+		));
 
 		$sub = $_GET['sub'];
 
