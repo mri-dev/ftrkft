@@ -105,6 +105,9 @@
         {/foreach}
       {/if}
       {if $admin && $admin->getPrivIndex() == 0}
+        <li class="{if $GETS[1] == 'translator'}active{/if}"><a href="{$root}translator"><i class="fa fa-language"></i> <span class="text">Nyelvi beállítások</span></a></li>
+      {/if}
+      {if $admin && $admin->getPrivIndex() == 0}
         <li class="{if $GETS[1] == 'settings'}active{/if}"><a href="{$root}settings"><i class="fa fa-gear"></i> <span class="text">Beállítások</span></a></li>
       {/if}
     </ul>

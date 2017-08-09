@@ -78,6 +78,68 @@ class Lang {
 		return false;
 	}
 
+	public function switchLangActivity($code, $to)
+	{
+		$this->db->update(
+			self::DB_TABLE_LANGUAGES,
+			array(
+				'active' => (int)$to
+			),
+			sprintf("code = '%s'", $code)
+		);
+	}
+
+	public function addLang($code = false, $name = false)
+	{
+		if (empty($code)) {
+			throw new \Exception("Nyelvi azonosító* megadása kötelező!");
+		}
+
+		if (empty($name)) {
+			throw new \Exception("Nyelv elnevezés megadása kötelező!");
+		}
+
+		$check = $this->db->query("SELECT ID FROM ".self::DB_TABLE_LANGUAGES." WHERE code = '{$code}'");
+
+		if ($check->rowCount() != 0) {
+			throw new \Exception($code . " azonosítójú nyelv már létezik.");
+		}
+
+		$this->db->insert(
+			self::DB_TABLE_LANGUAGES,
+			array(
+				'code' => $code,
+				'nametext' => trim($name),
+			)
+		);
+	}
+
+	public function addText($srcstr = '', $textvalue = '')
+	{
+		if (empty($srcstr)) {
+			throw new \Exception("Nyelvi szöveg azonosító kulcs megadása kötelező!");
+		}
+
+		if (empty($textvalue)) {
+			throw new \Exception("Megjelenő MAGYAR szöveg megadása kötelező!");
+		}
+
+		$check = $this->db->query("SELECT ID FROM ".self::DB_TABLE_TRANSLATES." WHERE lang = '{$this->settings['default_language']}' and srcstr = '{$srcstr}'");
+
+		if ($check->rowCount() != 0) {
+			throw new \Exception($srcstr . " azonosítójú kulccsal már van egy nyelvi rekord regisztrálva.");
+		}
+
+		$this->db->insert(
+			self::DB_TABLE_TRANSLATES,
+			array(
+				'lang' => $this->settings['default_language'],
+				'srcstr' => trim($srcstr),
+				'textvalue' => trim($textvalue)
+			)
+		);
+	}
+
 	public function saveText($lang = 'hu', $id = 0, $value, $parent = 0)
 	{
 		if (empty($value)) {

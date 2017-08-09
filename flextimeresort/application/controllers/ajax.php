@@ -47,6 +47,47 @@ class ajax extends Controller  {
 				case 'translator_save_text':
 					$data['success'] = $this->LANGUAGES->saveText($params['lang'], (int)$params['id'], $params['text'], (int)$params['parentid']);
 				break;
+				case 'translator_create':
+					$data = array(
+						'success' => false,
+						'error' => false
+					);
+
+					$create = json_decode($params['create'], true);
+
+					try {
+ 						$this->LANGUAGES->addText($create['srcstr'], $create['textvalue']);
+						$data['error'] = false;
+						$data['success'] = true;
+					} catch (\Exception $e) {
+						$data['error'] = $e->getMessage();
+						$data['success'] = false;
+					}
+
+				break;
+
+				case 'translator_addlang':
+					$data = array(
+						'success' => false,
+						'error' => false
+					);
+					$lang = json_decode($params['lang'], true);
+
+					try {
+						$this->LANGUAGES->addLang($lang['code'], $lang['nametext']);
+						$data['error'] = false;
+						$data['success'] = true;
+					} catch (\Exception $e) {
+						$data['error'] = $e->getMessage();
+						$data['success'] = false;
+					}
+				break;
+				case 'translator_langactivetgl':
+					$this->LANGUAGES->switchLangActivity($params['code'], $params['reg']);
+				break;
+				case 'translator_languages':
+					$data['langs'] = $this->LANGUAGES->avaiableLanguages();
+				break;
 
 				case 'me':
 					// Terms

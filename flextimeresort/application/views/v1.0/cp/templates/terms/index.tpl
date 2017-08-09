@@ -139,6 +139,8 @@
                 <span class="input-group-addon" style="font-size: 0.85em;">{$langkeyprefix}</span>
                 <input type="text" id="langkey" class="form-control" name="langkey" value="{if $check}{$check->getLangKey()|replace:$langkeyprefix:''}{else}{$form->getPost('langkey')}{/if}">
               </div>
+                <p class="comment">Hagyja üresen az automatikus meghatározáshoz.</p>
+
             </div>
           </div>
           <br>
@@ -146,7 +148,7 @@
             <div class="col-md-12">
               <label for="slug">SEO URL tag*</label>
               <input type="text" id="slug" class="form-control" name="slug" value="{if $check}{$check->getSlug()}{else}{$form->getPost('slug')}{/if}">
-              <p class="comment">Pl.: egyedi_azonosito_url</p>
+              <p class="comment">Pl.: egyedi_azonosito_url. Automatikusan kerül meghatározásra, ha üresen hagyja.</p>
             </div>
           </div>
           <br>

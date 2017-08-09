@@ -58,13 +58,14 @@ class Controller
     **/
 
     $this->LANGUAGES = new Lang( $this->smarty, array('db' => $this->db) );
+		$active_langs = $this->LANGUAGES->avaiableLanguages();
+		$this->out('active_langs', $active_langs['avaiable']);
+		$this->out('current_lang', $this->LANGUAGES->getCurrentLang());
 
 		if (isset($_GET['language']) && !empty($_GET['language'])) {
 			$this->LANGUAGES->switchTo($_GET['language']);
-			Helper::reload('/'); 
+			Helper::reload('/');
 		}
-
-
 		$this->LANGUAGES->loadTexts();
 
 		// SETTINGS

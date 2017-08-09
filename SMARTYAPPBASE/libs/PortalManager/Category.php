@@ -65,6 +65,12 @@ class Category extends \Controller
 
 		$langkey = strtoupper($langkey);
 
+		try {
+			$this->LANGUAGES->addText($langkey, $name);
+		} catch (Exception $e) {
+
+		}
+
 		if ($parent) {
 			$xparent 	= explode('_',$parent);
 			$parent 	= (int)$xparent[0];

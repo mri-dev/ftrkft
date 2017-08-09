@@ -115,6 +115,19 @@ class cp extends Controller {
 		print_r($re);
 	}
 
+	public function translator()
+	{
+		/*$t = "SELECT langkey, neve FROM terms WHERE (SELECT count(ID) FROM language_texts WHERE srcstr = langkey) = 0";
+
+		$q = $this->db->query($t)->fetchAll(\PDO::FETCH_ASSOC);
+
+		foreach ($q as $t) {
+			$this->LANGUAGES->addText($t['langkey'], $t['neve']);
+		}
+		*/
+
+	}
+
 	function forms() {
 		$this->hidePatern = true;
 

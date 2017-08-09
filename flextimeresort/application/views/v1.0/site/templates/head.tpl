@@ -21,6 +21,18 @@
     <div class="page-width">
       <nav>
         <ul class="navi">
+          <li class="languages">
+            {if !empty($active_langs) && count($active_langs) > 1}
+            <div class="selected">
+              {lang text="Nyelv"}: <strong>{$active_langs[$current_lang].nametext}</strong> <i class="fa fa-caret-down"></i>
+            </div>
+            <div class="list">
+              {foreach from=$active_langs item=lang}
+                <div class="{if $current_lang == $lang.code}current{/if}"><a href="{$settings.page_url}?language={$lang.code}">{$lang.nametext}</a></div>
+              {/foreach}
+            </div>
+            {/if}
+          </li>
           {if $me && $me->logged()}
           <li class="account"><a href="/ugyfelkapu">{lang text="BEJELENTKEZVE_MINT_XY" who=$me->getName()}</a></li>
           <li class="account account-logout"><a data-toggle="tooltip" data-placement="bottom" title="{lang text='KIJELENTKEZES'}" href="/ugyfelkapu/?logout=1"><i class="fa fa-sign-out"></i></a></li>

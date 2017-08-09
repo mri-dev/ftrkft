@@ -404,6 +404,19 @@ class Categories
 		return $row;
 	}
 
+	public function i18n()
+	{
+		$lang = $this->controller->LANGUAGES->getCurrentLang();
+		$default = $this->settings['default_language'];
+
+		if ($default == $lang) {
+			return $this->current_category['neve'];
+		} else{
+			$translated = $this->controller->lang($this->getLangKey());
+			return ($translated) ? $translated : $this->current_category['neve'];
+		}
+	}
+
 	/*===============================
 	=            GETTERS            =
 	===============================*/
@@ -415,7 +428,7 @@ class Categories
 
 	public function getName()
 	{
-		return $this->current_category['neve'];
+		return $this->i18n();
 	}
 
 	public function getDeep()

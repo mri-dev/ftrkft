@@ -430,6 +430,7 @@ body.admin {
 
       input + .comment,
       select + .comment,
+      div.input-group + .comment,
       textarea + .comment {
         color: #898989;
         font-size: 0.9em;
@@ -1463,6 +1464,19 @@ table.table{
 }
 
 .translator-page{
+  h2 {
+    color: $color-primary-light;
+    font-size: 1.5em;
+  }
+  .avaiable-langs{
+    table {
+      background: #ffffff;
+    }
+    button {
+      font-size: 1em;
+      padding: 5px;
+    }
+  }
   .language-chooser{
     ul, li {
       margin: 0;
@@ -1470,27 +1484,46 @@ table.table{
       list-style: none;
     }
 
+    button {
+      font-size: 1.1em;
+      padding: 6px 12px;
+    }
+
     ul {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       align-items: center;
-      margin: 5px 0;
 
       li {
-        border-width: 4px;
-        border-style: solid;
-        border-color: transparent;
+        background: #c6c6c6;
+        color: #888888;
         line-height: 1;
+        padding: 10px 15px;
+        border-radius: 5px 5px 0 0;
+        margin-right: 8px;
+
         img {
           max-height: 25px;
         }
 
         &.selected{
-          border-color: $color-primary-light;
+          background: #ffffff;
+          color: black;
+          font-weight: bold;
+        }
+
+        &.new {
+          background: #e7e7e7;
+          cursor: pointer;
         }
       }
     }
+  }
+
+  .language-container{
+    background: #ffffff;
+    padding: 10px;
   }
 
   .inprogress-text{
@@ -1510,9 +1543,28 @@ table.table{
 
     .text-filter-input{
       margin:  5px 0;
+      position: relative;
+
+      &:before {
+        content: "\f002";
+        font-family: 'FontAwesome';
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        font-size: 22px;
+        color: #b2b2b2;
+        transform: translateY(-50%);
+      }
 
       input{
         color: $color-red;
+        padding: 10px 15px;
+        background: #f3f3f3;
+        border-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: inset 0 5px 15px -9px black;
+        font-size: 1.8em;
+        padding-left: 44px;
       }
     }
     table{

@@ -1467,31 +1467,70 @@ var translator = angular.module("Translator", ['ngMaterial'], function($interpol
   $interpolateProvider.endSymbol(']]');
 });
 
-translator.controller("Translate", ['$scope', '$http', function($scope, $http){
+translator.controller("Translate", ['$scope', '$http', '$timeout', function($scope, $http, $timeout){
   $scope.loaded = false;
-  $scope.lang_edit = 'en';
+  $scope.loaded_langs = false;
+  $scope.lang_edit = 'hu';
   $scope.languages = [];
   $scope.index_progress = 0;
   $scope.index_saved = [];
   $scope.filter_text = null;
-
-  $scope.languages.push({
-    'name' : 'Magyar',
-    'code' : 'hu'
-  });
-  $scope.texts = [];
-
-  $scope.languages.push({
-    'name' : 'English',
-    'code' : 'en'
-  });
+  $scope.new_error = null;
+  $scope.new = {};
+  $scope.new_uploading  = false;
+  $scope.new_success = false;
+  $scope.newlang_error = null;
+  $scope.newlang = {};
+  $scope.newlang_uploading  = false;
+  $scope.newlang_success = false;
 
   $scope.init = function(){
+    $scope.loadLanguages();
     $scope.loadData();
   }
 
   $scope.filterList = function(){
-    console.log($scope.filter_text);
+  }
+
+  $scope.switchStatusLang = function(code, to){
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator_langactivetgl',
+        code: code,
+        reg: to
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.loadLanguages();
+      console.log(d);
+    }, function errorCallback(response) {});
+  }
+
+  $scope.createNewLang = function(){
+    $scope.newlang_uploading = true;
+    $scope.newlang_error = null;
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator_addlang',
+        lang: $scope.newlang
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.newlang_uploading = false;
+      if (d.success) {
+        $scope.newlang = {};
+        $scope.loadLanguages();
+      } else {
+        $scope.newlang_error = d.error;
+      }
+    }, function errorCallback(response) {});
   }
 
   $scope.saveText = function(id, text, parentid) {
@@ -1519,10 +1558,67 @@ translator.controller("Translate", ['$scope', '$http', function($scope, $http){
     }, function errorCallback(response) {});
   }
 
+  $scope.uploadNewText = function(){
+    $scope.new_uploading = true;
+    $scope.new_error = null;
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator_create',
+        create: $scope.new
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.new_uploading = false;
+      if (d.success) {
+        $scope.new_success = true;
+        $scope.filter_text = $scope.new.textvalue;
+        $scope.new = {};
+        $scope.loadData();
+
+        $timeout(function(){
+          $scope.new_success = false;
+        }, 5000);
+      } else {
+        $scope.new_error = d.error;
+      }
+    }, function errorCallback(response) {});
+  }
+
   $scope.changeLang = function(lang) {
     $scope.filter_text = null;
     $scope.lang_edit = lang;
     $scope.loadData();
+  }
+
+  $scope.loadLanguages = function(){
+    $scope.loaded_langs = false;
+    $scope.languages = [];
+
+    // Lista letöltése
+    $http({
+      method: 'POST',
+      url: '/ajax/data',
+      params: {
+        type: 'translator_languages',
+        lang: $scope.lang_edit,
+      }
+    }).then(function successCallback(response) {
+      var d = response.data;
+      $scope.loaded_langs = false;
+
+      angular.forEach(d.langs.all, function(k,v){
+        $scope.languages.push({
+          'name' : k.nametext,
+          'code' : k.code,
+          'default' : (k.default_lang == '1') ? true : false,
+          'active' :(  k.active == '1') ? true : false,
+        });
+      });
+    }, function errorCallback(response) {});
   }
 
   $scope.loadData = function(){
@@ -1538,10 +1634,7 @@ translator.controller("Translate", ['$scope', '$http', function($scope, $http){
     }).then(function successCallback(response) {
       var d = response.data;
       $scope.loaded = true;
-      console.log(d);
-
       $scope.texts = d.texts;
-
     }, function errorCallback(response) {});
   }
 }]);
