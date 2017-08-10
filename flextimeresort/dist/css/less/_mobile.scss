@@ -1,0 +1,126 @@
+@media screen and (max-width: 1100px) {
+  .page-width{
+    width: 960px;
+    max-width: 960px;
+  }
+  header .main.row .slogan{
+    font-size: 0.95em;
+  }
+  footer .buttons ul li a{
+    font-size: 0.7em;
+    letter-spacing: 0;
+  }
+  footer .row .slogan{
+    font-size: 1.2em;
+  }
+  .headerline.bold h2 {
+    font-size: 1.5em;
+  }
+  .header-searcher-container .login-instruction .buttons ul li a{
+    font-size: 0.6em;
+    letter-spacing: 0;
+  }
+  .articles article .desc em{
+    font-size: 0.8em;
+  }
+  .header-searcher-container .login-holder .login-container .actions .whattodo{
+    font-size: 0.65em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .page-width{
+    width: 100%;
+    max-width: 100%;
+  }
+  header .top nav{
+    float: none;
+    text-align: center;
+  }
+  header .main.row .slogan {
+      font-size: 0.8em;
+  }
+  header .main.row {
+    align-items: center;
+    padding: 20px;
+  }
+  header nav{
+    text-align: center;
+  }
+  ul.navi{
+    float: none !important;
+  }
+
+  ul.navi.sec-nav a{
+   font-size: 0.65em !important;
+  }
+  .header-searcher-container .home-instruction .instuction .info, .header-searcher-container .profil-instruction .instuction .info{
+    font-size: 1em;
+  }
+  body:not(.admin) aside .facebook-box{
+    overflow: hidden;
+  }
+  .allasok .allas > .wrapper .inside .footer .footer-holder > .button a{
+    font-size: 0.8em;
+  }
+  .headerline.bold h2 {
+    font-size: 1.3em;
+  }
+  .allasok.style-new-home .allas {
+    flex-basis: calc(100%/1);
+  }
+  .header-searcher-container .login-instruction .buttons ul li {
+    flex-basis: 100%;
+    padding: 5px;
+  }
+  .header-searcher-container .login-instruction .buttons ul li a {
+    font-size: 0.85em;
+  }
+  footer .buttons ul li{
+    width: 100%;
+    padding: 10px 0;
+  }
+  .header-searcher-container .home-searcher{
+    padding: 40px 20px 20px 20px;
+  }
+  .header-searcher-container .login-instruction{
+    padding: 10px 20px;
+  }
+  .header-searcher-container .home-instruction{
+    padding: 10px 20px;
+    .instuction {
+      padding: 0 0 0 20px !important;
+    }
+  }
+  .content-inside{
+    padding: 20px;
+  }
+  .header-searcher-container .login-holder .login-container.as-logged nav li.header,
+  .header-searcher-container .login-holder .login-container.as-logged nav li{
+    font-size: 0.9em;
+  }
+  footer .page-width{
+    padding: 0 20px;
+  }
+  footer .contacts{
+    line-height: 1.4;
+    ul.navi {
+      margin-top: 5px;
+      text-align: center;
+    }
+  }
+  footer .contacts strong{
+    display: block;
+    margin: 8px 0 4px 0;
+  }
+  .header-searcher-container .login-holder .login-container .actions .whattodo .row > div{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a{
+    text-align: left;
+  }
+}

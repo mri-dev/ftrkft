@@ -29,6 +29,7 @@ class home extends Controller  {
 		$arg = array();
 		$arg['limit'] = 10;
 		$arg['hide_inaktiv'] = true;
+		$arg['lang'] = $this->LANGUAGES->getCurrentLang();
 		$allasok->getTree($arg);
 		$this->out('allasok', $allasok);
 

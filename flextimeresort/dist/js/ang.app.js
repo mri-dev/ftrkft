@@ -6,7 +6,6 @@ var pm = angular.module("profilModifier", ['ngMaterial'], function($interpolateP
 .config(function($mdDateLocaleProvider) {
     $mdDateLocaleProvider.months = ['Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December'];
     $mdDateLocaleProvider.shortMonths = ['Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'];
-    //$mdDateLocaleProvider.days = ['dimanche', 'lundi', 'mardi', ...];
     $mdDateLocaleProvider.shortDays = ['H', 'K', 'Sz', 'Cs', 'P', 'Szo', 'V'];
 
     $mdDateLocaleProvider.formatDate = function(date) {
@@ -1224,6 +1223,7 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
         }
       }).then(function successCallback(response) {
         var d = response.data;
+        console.log(d);
         if (d.success) {
           $scope.loaded_allas = d.data;
           $scope.prepareEditAdToView();
@@ -1242,6 +1242,8 @@ ads.controller( "Creator", ['$scope', '$http', '$timeout', function($scope, $htt
     $scope.allas.short_desc = $scope.loaded_allas.short_desc;
     $scope.allas.active = ($scope.loaded_allas.active == '1') ? true : false;
     $scope.allas.betoltott = ($scope.loaded_allas.betoltott == '1') ? true : false;
+    $scope.allas.language = $scope.loaded_allas.language;
+
     if ($scope.loaded_allas.short_desc) {
       $scope.short_desc_length = 150 - $scope.loaded_allas.short_desc.length;
     }

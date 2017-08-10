@@ -25,6 +25,7 @@
             <span class="type" ng-show="allas.tipus_name" data-toggle="tooltip" title="{lang text='Hirdetés típusa'}"><i class="fa fa-database"></i>  [[allas.tipus_name]]</span>
             <span class="cat" ng-show="allas.cat_name" data-toggle="tooltip" title="{lang text='Hirdetés kategóriája'}"><i class="fa fa-user"></i> [[allas.cat_name]]</span>
             <span class="city"><i class="fa fa-map-marker"></i> [[allas.city]]</span>
+            <span class="lang">[[allas.language]]</span>
             <div class="edit">
               <a href="/ugyfelkapu/hirdetesek/mod/[[allas.ID]]" data-toggle="tooltip" title="{lang text='Hirdetés szerkesztése'}"><i class="fa fa-pencil"></i></a>
             </div>

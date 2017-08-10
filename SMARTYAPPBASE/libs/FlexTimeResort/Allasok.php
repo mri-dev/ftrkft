@@ -69,6 +69,7 @@ class Allasok
       $updates['short_desc'] = strip_tags($data['short_desc']);
       $updates['pre_content'] = $data['pre_content'];
       $updates['content'] = $data['content'];
+      $updates['language'] = $data['language'];
 
       $updates['author_name'] = (isset($data['author_name']) && !empty($data['author_name'])) ? $data['author_name']:null;
       $updates['author_phone'] = (isset($data['author_phone']) && !empty($data['author_phone'])) ? $data['author_phone']:null;
@@ -76,6 +77,7 @@ class Allasok
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
       $updates['active'] = ($data['active']) ? 1 : 0;
       $updates['betoltott'] = ($data['betoltott']) ? 1 : 0;
+
 
       // Metas
       $metas['hirdetes_kategoria'] = array(
@@ -126,6 +128,8 @@ class Allasok
       $updates['city_slug'] = \Helper::makeSafeURL($data['city']);
       $updates['active'] = ($data['active']) ? 1 : 0;
       $updates['betoltott'] = ($data['betoltott']) ? 1 : 0;
+      $updates['language'] = $data['language'];
+
       // Metas
       $metas['hirdetes_kategoria'] = array(
         'value' => (int)$data['hirdetes_kategoria'],
@@ -389,6 +393,9 @@ class Allasok
     }
     if ( isset($arg['hide_inaktiv']) && $arg['hide_inaktiv'] === true ) {
         $qry .= " and u.inaktiv = 0";
+    }
+    if ( isset($arg['lang']) && !empty($arg['lang']) ) {
+        $qry .= " and a.language = '{$arg['lang']}'";
     }
     if ( $this->edit_id !== false ) {
         $qry .= " and a.ID = ".$this->edit_id;
@@ -861,6 +868,17 @@ class Allasok
   public function getMegye()
   {
     return $this->current_category['megye_name'];
+  }
+  public function getLang($name = false)
+  {
+    if ($name) {
+      $langs = $this->controller->LANGUAGES->avaiableLanguages();
+
+
+      return $langs['avaiable'][$this->current_category['language']]['nametext'];
+    }
+
+    return $this->current_category['language'];
   }
   public function getCity()
   {

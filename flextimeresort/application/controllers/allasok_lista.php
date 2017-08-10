@@ -17,7 +17,8 @@ class allasok_lista extends Controller  {
 			'controller' => $this
 		));
 		$arg = array();
-		$arg['limit'] = 20;
+		$arg['limit'] = 20;		
+		$arg['lang'] = $this->LANGUAGES->getCurrentLang();
 		$arg['hide_inaktiv'] = true;
 		$arg['page'] = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 		$arg['filters']['search'] = (!empty($_GET['s'])) ? $_GET['s'] : false;

@@ -29,6 +29,24 @@
     <h3>{lang text="Hirdetés alapadatok"}</h3>
 
     <div class="row">
+      <div class="col-md-3">
+        <label for="allas_hirdetes_tipusok">{lang text="Állásajánlat nyelve"} *</label>
+        <div class="input-wrapper">
+          <select class="form-control" ng-model="allas.language" required="required">
+            {foreach from=$active_langs item=lang}
+              <option value="{$lang.code}">{$lang.nametext}</option>
+            {/foreach}
+          </select>
+          <div class="form-helper"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="infotext">
+      {lang text="ALLAS_LANGUAGE_SELECT_HINT"}
+    </div>
+
+    <div class="row">
       <div class="col-md-6">
         <label for="allas_hirdetes_tipusok">{lang text="Állás típusa"} *</label>
         <div class="input-wrapper">

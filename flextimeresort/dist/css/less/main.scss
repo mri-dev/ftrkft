@@ -681,6 +681,8 @@ input[type=checkbox].ccb:checked + label:before {
       left: 0;
       right: 0;
       display: block;
+      max-height: 250px;
+      overflow: auto;
       z-index: 9999;
       border-radius: 4px;
       border: 1px solid lightgrey;
@@ -1394,6 +1396,7 @@ input[type=checkbox].ccb:checked + label:before {
 
 .article-page {
   .keywords {
+    margin: 10px 0;
     a {
       background: #f1f1f1;
       padding: 3px 5px;
@@ -2045,6 +2048,13 @@ body.ugyfelkapu-view{
           .city{
             color: $color-red;
           }
+
+          .lang{
+            text-transform: uppercase;
+            color: #bababa;
+            font-size: 0.8em;
+          }
+
           .edit{
             position: absolute;
             right: 5px;
@@ -2822,6 +2832,7 @@ body.ugyfelkapu-view{
       a {
         background: #c5c6c6;
         color: white;
+        padding: 8px;
         display: block;
         margin:5px auto;
         width: 100%;
@@ -3793,6 +3804,13 @@ ul.pagination {
     margin: 10px 0 5px 0;
   }
 
+  .infotext{
+    font-size: 0.9em;
+    color: #888888;
+    line-height: 1.2;
+    margin: 5px 0 10px 0;
+  }
+
   .row {
     margin-bottom: 20px;
     margin-top: 10px;
@@ -3800,14 +3818,6 @@ ul.pagination {
     label {
       font-size: 1em;
     }
-
-    .infotext{
-      font-size: 0.9em;
-      color: #888888;
-      line-height: 1.2;
-      margin: 5px 0 10px 0;
-    }
-
     .input-wrapper{
       padding-right: 50px;
       position: relative;
@@ -4979,6 +4989,7 @@ label.file-uploader{
 }
 
 @import 'print';
+@import 'mobile';
 
 ::-webkit-scrollbar {
   width: 10px;
