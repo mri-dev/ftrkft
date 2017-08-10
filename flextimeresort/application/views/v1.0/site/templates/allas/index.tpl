@@ -1,4 +1,4 @@
-0<div class="allas-view">
+<div class="allas-view">
   <div class="header">
     <div class="page-width">
       <h1>{$allas->shortDesc()}</h1>

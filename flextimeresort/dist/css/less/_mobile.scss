@@ -36,6 +36,7 @@
   header .top nav{
     float: none;
     text-align: center;
+    font-size: 0.75em;
   }
   header .main.row .slogan {
       font-size: 0.8em;
@@ -70,11 +71,11 @@
     flex-basis: calc(100%/1);
   }
   .header-searcher-container .login-instruction .buttons ul li {
-    flex-basis: 100%;
+    flex-basis: 50%;
     padding: 5px;
   }
   .header-searcher-container .login-instruction .buttons ul li a {
-    font-size: 0.85em;
+    font-size: 0.65em;
   }
   footer .buttons ul li{
     width: 100%;
@@ -122,5 +123,82 @@
   }
   .header-searcher-container .login-holder .login-container .actions .whattodo *[class*=col-md-] a{
     text-align: left;
+  }
+  .header-searcher-container .home-searcher .input-holder .inp.inp-order {
+    flex-basis: 50%;
+    order: 9;
+  }
+  .header-searcher-container .home-searcher .input-holder .inp.inp-button-search {
+    flex-basis: 50%;
+    order: 10;
+  }
+  .header-searcher-container .home-searcher .input-holder .inp.inp-tipus,
+  .header-searcher-container .home-searcher .input-holder .inp.inp-kategoria{
+    flex-basis: 25%;
+  }
+  .header-searcher-container .home-searcher .input-holder .inp.inp-telepules,
+  .header-searcher-container .home-searcher .input-holder .inp.inp-keyword,
+  .header-searcher-container .home-searcher .input-holder .inp.inp-munkakor{
+    flex-basis: 50%;
+  }
+  .header-searcher-container .login-instruction .reg-buttons .row > div{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .header-searcher-container .login-holder .login-container,
+  body:not(.admin) aside{
+    margin-top: 0 !important;
+  }
+  .login-instruction h4 {
+    text-align: center;
+  }
+  .megye-list .head{
+    font-size: 1em;
+    line-height: 1;
+  }
+  .allasok-view,
+  .allas-view,
+  .header-searcher-container .home-instruction.ugyfelkapu, .header-searcher-container .profil-instruction.ugyfelkapu,
+  .ugyfelkapu-content-holder{
+    .page-width{
+      padding: 0 20px !important;
+    }
+  }
+  footer .menu nav ul li a{
+    line-height: 1.2;
+    display: block;
+    margin: 4px 0;
+  }
+  .profil-changer-nav ul li{
+    height: 75px;
+  }
+  .profil-changer-nav ul li a{
+    font-size: 0.4em;
+    height: 75px;
+  }
+  .profil-changer-nav ul li a .ico{
+    width: 25px;
+    height: 25px;
+  }
+  .header-searcher-container .home-instruction .instuction .ico, .header-searcher-container .profil-instruction .instuction .ico{
+    width: 80px;
+    height: 80px;
+  }
+  .instuction{
+    padding: 0 15px !important;
+  }
+  .allasok{
+    margin: -10px;
+  }
+  .allasok-view .sidebar{
+    margin-top: 15px;
+  }
+  .allasok.style-history .header.color-red .inside{
+    font-size: 1em;
+    line-height: 1;
+    border-radius: 4px;
   }
 }
