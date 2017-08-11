@@ -22,7 +22,7 @@
   </div>
   {/if}
   {if !$hide_home_instruction}
-  <div class="home-instruction">
+  <div class="home-instruction hide-on-mobile">
     <div class="page-width">
       <div class="row">
         <div class="col-md-9">

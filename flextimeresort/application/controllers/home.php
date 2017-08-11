@@ -8,6 +8,7 @@ class home extends Controller  {
 		parent::__construct();
 
 		$this->out('homepage', true);
+		$this->out('bodyclass', 'homepage');
 
 		$articles = new Articles();
 		$arg = array();

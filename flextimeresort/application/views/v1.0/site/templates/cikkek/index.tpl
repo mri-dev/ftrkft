@@ -2,7 +2,7 @@
   <div class="page-width">
     <div class="page-wrapper">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 list-col">
           <div class="list">
             <div class="header">
               <h1>{lang text="Cikkek"}</h1>
@@ -35,7 +35,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 search-col">
           <form class="" action="{$settings.articles_list}" method="get">
             <div class="sidebar-search">
               <div class="header">

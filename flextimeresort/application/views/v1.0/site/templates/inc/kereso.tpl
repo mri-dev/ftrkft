@@ -1,3 +1,6 @@
+<div class="show-on-mobile searcher-tgl">
+  <button  onclick="$('#searcher').slideToggle(400);" class="btn btn-default"><i class="fa fa-search"></i> {lang text="Kereső megjelenítése"}</button>
+</div>
 <form class="" id="searcher" action="{$settings.allas_search_slug}" method="get">
   <div class="input-holder">
     <div class="inp inp-keyword">

@@ -34,19 +34,22 @@
             {/if}
           </li>
           {if $me && $me->logged()}
-          <li class="account"><a href="/ugyfelkapu">{lang text="BEJELENTKEZVE_MINT_XY" who=$me->getName()}</a></li>
+          <li class="account hide-on-mobile"><a href="/ugyfelkapu">{lang text="BEJELENTKEZVE_MINT_XY" who=$me->getName()}</a></li>
+          <li class="account show-on-mobile"><a href="/ugyfelkapu">{if $me && $me->logged() && $total_notify && $total_notify != 0}
+            <span class="notify">{$total_notify}</span>
+          {/if}<i class="fa fa-user-circle"></i> {$me->getName()}</a></li>
           <li class="account account-logout"><a data-toggle="tooltip" data-placement="bottom" title="{lang text='KIJELENTKEZES'}" href="/ugyfelkapu/?logout=1"><i class="fa fa-sign-out"></i></a></li>
           {else}
           <li><a href="/belepes"><img src="{$smarty.const.IMG}icons/white/user.svg" class="i15" alt="{lang text="BELEPES"}">{lang text="BELEPES"}</a></li>
-          <li><a href="/regisztracio"><img src="{$smarty.const.IMG}icons/white/lock.svg" class="i15" alt="{lang text="REGISZTRACIO"}">{lang text="REGISZTRACIO"}</a></li>
+          <li class="hide-on-mobile"><a href="/regisztracio"><img src="{$smarty.const.IMG}icons/white/lock.svg" class="i15" alt="{lang text="REGISZTRACIO"}">{lang text="REGISZTRACIO"}</a></li>
           {/if}
-          <li><a href="/ugyfelkapu"><img src="{$smarty.const.IMG}icons/white/user_add.svg" class="i15" alt="{lang text="UGYFELKAPU"}">{lang text="UGYFELKAPU"}{if $me && $me->logged() && $total_notify && $total_notify != 0}
+          <li class="hide-on-mobile"><a href="/ugyfelkapu"><img src="{$smarty.const.IMG}icons/white/user_add.svg" class="i15" alt="{lang text="UGYFELKAPU"}">{lang text="UGYFELKAPU"}{if $me && $me->logged() && $total_notify && $total_notify != 0}
             <span class="notify">{$total_notify}</span>
           {/if}</a></li>
           {if $me && $me->logged() && $me->isUser()}
             <li class="cv-link"><a href="{$me->getCVUrl()}"><i class="fa fa-file-text-o"></i> {lang text="Önéletrajzom"}</a></li>
           {/if}
-          <li><a href="/kapcsolat"><img src="{$smarty.const.IMG}icons/white/envelope.svg" class="i15" alt="{lang text="KAPCSOLAT"}">{lang text="KAPCSOLAT"}</a></li>
+          <li class="hide-on-mobile"><a href="/kapcsolat"><img src="{$smarty.const.IMG}icons/white/envelope.svg" class="i15" alt="{lang text="KAPCSOLAT"}">{lang text="KAPCSOLAT"}</a></li>
           <li class="social-before"></li>
           <li class="social facebook">
             <a href="#"><i class="fa fa-facebook"></i></a>

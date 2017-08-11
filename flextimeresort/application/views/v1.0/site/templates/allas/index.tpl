@@ -22,6 +22,9 @@
         <div class="content-text">
           {$allas->getContent()}
         </div>
+        <div class="show-on-mobile show-all-params">
+          <button type="button" onclick="toggleParams();" class="btn btn-default"><i class="fa fa-list-ul"></i> {lang text="Összes paraméter megtekintése"}</button>
+        </div>
         {include file='inc/sharer.tpl'}
         {if $requested_data.show_author_info == 1 || $admin_access}
           {assign var="author_obj" value=$allas->getAuthorData('author')}
@@ -50,6 +53,11 @@
         <div class="content-text">
           {$allas->getPreContent()}
         </div>
+
+        <div class="show-on-mobile show-all-params">
+          <button type="button" onclick="toggleParams();" class="btn btn-default"><i class="fa fa-list-ul"></i> {lang text="Összes paraméter megtekintése"}</button>
+        </div>
+
         {include file='inc/sharer.tpl'}
         {/if}
         <div class="show-on-print print-details">
@@ -66,48 +74,71 @@
         </div>
       </div>
       <div class="info-side">
-        <div class="e print">
-          <div class="">
-            <a href="javascript:void(0);" onclick="window.print();"><i class="fa fa-print"></i> {lang text="Nyomtatás"}</a>
+        <div class="header show-on-mobile hide-on-print">
+          <div class="closure" onclick="toggleParams();">
+            <i class="fa fa-times"></i>
           </div>
+          <h3>{lang text="Állásajánlat paraméterei"}</h3>
         </div>
-        <div class="e">
-          <div class="title">{lang text="Megye / Város"}</div>
-          <div class="val">
-            {$allas->getMegye()}, {$allas->getCity()}
+        <div class="wrapper">
+          <div class="e print">
+            <div class="">
+              <a href="javascript:void(0);" onclick="window.print();"><i class="fa fa-print"></i> {lang text="Nyomtatás"}</a>
+            </div>
           </div>
-        </div>
-        <div class="e">
-          <div class="title">{lang text="Munkakörök"}</div>
-          <div class="val">
-            <div class="term-value">
-              {foreach from=$allas->getMetas('kulcs', 'munkakorok') item=munkakor}
-              <a href="{$settings.allas_search_slug}?mk={$munkakor.value}">{$munkakor.value_text}</a>
+          <div class="e">
+            <div class="title">{lang text="Megye / Város"}</div>
+            <div class="val">
+              {$allas->getMegye()}, {$allas->getCity()}
+            </div>
+          </div>
+          <div class="e">
+            <div class="title">{lang text="Munkakörök"}</div>
+            <div class="val">
+              <div class="term-value">
+                {foreach from=$allas->getMetas('kulcs', 'munkakorok') item=munkakor}
+                <a href="{$settings.allas_search_slug}?mk={$munkakor.value}">{$munkakor.value_text}</a>
+                {/foreach}
+              </div>
+            </div>
+          </div>
+          {foreach from=$allas->getTerms() item=term}
+          <div class="e term">
+            <div class="title">{$term.title}</div>
+            <div class="val">
+              {foreach from=$term.data item=td}
+              <div><span>{$td.name}</span></div>
               {/foreach}
             </div>
           </div>
-        </div>
-        {foreach from=$allas->getTerms() item=term}
-        <div class="e term">
-          <div class="title">{$term.title}</div>
-          <div class="val">
-            {foreach from=$term.data item=td}
-            <div><span>{$td.name}</span></div>
-            {/foreach}
-          </div>
-        </div>
-        {/foreach}
-        <div class="e">
-          <div class="title">{lang text="Kulcsszavak"}</div>
-          <div class="val">
-            <div class="keywords">
-              {foreach from=$allas->getKeywords() item=keyword}
-              <a href="{$settings.allas_search_slug}?s={$keyword}">{$keyword}</a>
-              {/foreach}
+          {/foreach}
+          <div class="e">
+            <div class="title">{lang text="Kulcsszavak"}</div>
+            <div class="val">
+              <div class="keywords">
+                {foreach from=$allas->getKeywords() item=keyword}
+                <a href="{$settings.allas_search_slug}?s={$keyword}">{$keyword}</a>
+                {/foreach}
+              </div>
             </div>
           </div>
         </div>
       </div>
+      {literal}
+        <script type="text/javascript">
+          function toggleParams() {
+            var opened = $('.info-side').hasClass('opened');
+
+            if (!opened) {
+              $('.info-side').addClass('opened');
+              $('body').addClass('noscroll');
+            } else {
+              $('.info-side').removeClass('opened');
+              $('body').removeClass('noscroll');
+            }
+          }
+        </script>
+      {/literal}
     </div>
   </div>
   {if !$user_request_in_progress}

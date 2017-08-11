@@ -560,6 +560,8 @@ header {
   }
 }
 
+.noscroll { overflow: hidden; }
+
 .content-holder {
   min-height: 600px;
 }
@@ -602,9 +604,9 @@ section.content-header{
     margin-left: 300px;
 
     h3 {
-        color: $color-primary;
-        font-size: 2.5em;
-        font-weight: 100;
+      color: $color-primary;
+      font-size: 2.5em;
+      font-weight: 100;
     }
   }
 }
