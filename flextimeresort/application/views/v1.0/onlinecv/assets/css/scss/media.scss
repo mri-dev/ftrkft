@@ -279,3 +279,55 @@ body.profil-view{
   font-style: italic;
 }
 @import "print";
+
+@media screen and (max-width: 480px) {
+  body.profil-view header .hwrapper{
+    flex-wrap: wrap;
+  }
+  body.profil-view header .hwrapper .action-buttons,
+  body.profil-view header .hwrapper .company-copy{
+    flex-basis: 100%;
+    text-align: center;
+  }
+  body.profil-view .inside{
+    margin: 0 !important;
+    padding: 10px;
+  }
+  body.profil-view .cv-title h1 {
+    font-size: 1.3em;
+  }
+  body.profil-view .cv-title {
+    padding: 5px 0;
+  }
+  body.profil-view {
+    font-size: 0.8em;
+  }
+  body.profil-view .cv-row > div{
+    flex-basis: 100% !important;
+  }
+  body.profil-view .cv-row > div.label{
+    text-align: left;
+    padding: 5px 0 0 0 !important;
+  }
+  body.profil-view .cv-row > div.value{
+    padding: 5px 0 0 0 !important;
+  }
+  body.profil-view .cv-row .data-title {
+    margin: 10px 0 10px 0;
+    font-size: 1.2em;
+  }
+  body.profil-view .cv-title{
+    padding: 15px 0 10px 0 !important;
+  }
+  .sub-group .title{
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+  .modul-groups {
+    border-left: 3px solid #ededed;
+    padding: 0 0 0 10px;
+  }
+  body.profil-view .inside .footer-copy {
+    margin: 0 -10px -35px -10px;
+  }
+}

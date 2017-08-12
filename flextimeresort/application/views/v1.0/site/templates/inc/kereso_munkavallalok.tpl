@@ -1,7 +1,11 @@
-<div class="header">
-  <h2>{lang text="Munkavállalók keresése"}</h2>
+
+<div class="show-on-mobile searcher-tgl">
+  <button  onclick="$('#searcher').slideToggle(400);" class="btn btn-default"><i class="fa fa-search"></i> {lang text="Kereső megjelenítése"}</button>
 </div>
 <form class="" id="searcher" action="{$settings.munkavallalo_search_slug}" method="get">
+  <div class="header">
+    <h2>{lang text="Munkavállalók keresése"}</h2>
+  </div>
   <div class="input-holder for-munkavallalok">
     <div class="inp inp-munkakor">
       <div class="multiselect-list">

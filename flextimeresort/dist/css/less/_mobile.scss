@@ -214,6 +214,9 @@
   .hide-on-mobile{
     display: none !important;
   }
+  .show-on-mobile{
+    display: block !important;
+  }
   header .top nav ul li a{
     border: none !important;
     height: 30px;
@@ -393,13 +396,12 @@
     text-align: center;
 
     button {
-      background: rgba(117, 117, 117, 0.79);
       color: #ffffff;
     }
   }
 
   body.homepage .home-searcher .searcher-tgl{
-    display: none;
+    display: none !important;
   }
 
   .single-page .content-wrapper, .article-page .content-wrapper {
@@ -722,5 +724,191 @@
 
   .hide-on-mobile{
     display: none !important;
+  }
+
+  .profil-changer-nav {
+    overflow: auto;
+  }
+
+  .profil-changer-container .group .input-line {
+    margin: 20px 0;
+  }
+
+  .profil-changer-container .group .input-line label {
+    padding: 0 0 10px 0;
+  }
+
+  .profil-changer-container .group .input-line .input-wrapper {
+    padding-right: 35px;
+  }
+
+  .profil-changer-container .group .input-line input + .form-helper, .profil-changer-container .group .input-line textarea + .form-helper, .profil-changer-container .group .input-line select + .form-helper, .profil-changer-container .group .input-line .select-list + .form-helper{
+    right: 0;
+  }
+
+  .profil-changer-container{
+    .row:not(.input-line){
+      margin: 0 !important;
+      padding: 0 !important;
+
+      & > div[class*=col-]{
+        padding: 10px 0 !important;
+      }
+    }
+    .multi-param{
+      .row{
+        & > div[class*=col-]{
+          padding: 4px 0 !important;
+          label{
+            padding: 10px 0 5px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .profil-changer-container .group .checkbox-list.cols4 .cb-item{
+    flex-basis: calc(100%/2);
+  }
+
+  .uploaded-documents .document{
+    padding: 0;
+    .row{
+      margin: 0 !important;
+
+      & > div[class*=col-]{
+        padding: 10px !important
+      }
+    }
+  }
+
+  .profil-changer-container .group .uploaded-documents .row{
+    margin: 0 !important;
+  }
+
+  .profil-changer-container .group .input-line input[type=checkbox].ccb + label{
+    padding-left: 25px !important;
+  }
+
+  body.ugyfelkapu-view .instuction{
+    display: none;
+  }
+
+  .profil-changer-container .buttons{
+    text-align: center;
+
+    button {
+      margin: 0 !important;
+    }
+
+    button.btn-success{
+      float: left;
+    }
+
+    button.btn-danger{
+      float: right;
+    }
+    a {
+      display: block;
+      margin: 10px 0;
+      float: none !important;
+      text-align: center;
+    }
+  }
+  body.ugyfelkapu-view .allas-list .allasok .allas .datarow {
+    line-height: 1.3;
+  }
+  body.ugyfelkapu-view .allas-list .allasok .allas .afterinfo > span {
+    margin-right: 2px;
+  }
+  body.ugyfelkapu-view .allas-list .allasok .allas .shortdesc a {
+    line-height: 1.2;
+  }
+  .allasok .allas .shortdesc {
+    line-height: 1.2;
+  }
+  body.ugyfelkapu-view .allas-list .allasok .allas .user-requests .list-wrapper .user > .wrapper .dataset{
+    flex-basis: calc(100% - 80px);
+  }
+  body.ugyfelkapu-view .allas-list .allasok .allas .user-requests .list-wrapper .user > .wrapper .status{
+    flex-basis: 100%;
+    border-top: 1px solid #ebebeb;
+    margin-top: 10px;
+    padding-top: 10px;
+  }
+  .advertise-creator .row label {
+      padding: 10px 0 0 0;
+  }
+  .advertise-creator .row input[type=checkbox].ccb + label {
+      padding: 0 0 0 20px;
+  }
+  .advertise-creator .row .input-wrapper {
+      padding-right: 20px;
+  }
+  .advertise-creator .row .input-wrapper input + .form-helper, .advertise-creator .row .input-wrapper textarea + .form-helper, .advertise-creator .row .input-wrapper select + .form-helper, .advertise-creator .row .input-wrapper .select-list + .form-helper{
+    right: -12px;
+  }
+
+  .advertise-creator .hint {
+    line-height: 1.2;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+  }
+
+  .advertise-creator .tematic-list-params .listgroup{
+    .row {
+      & > div[class*=col-]{
+        padding: 5px 0 !important;
+      }
+    }
+  }
+  .munkavallalok-view .user-list > .wrapper .lista .items{
+    margin: 5px 0 !important;
+  }
+  .header-searcher-container .home-searcher .input-holder.for-munkavallalok .inp.inp-button-search{
+    order: 10;
+    flex-basis: 100% !important;
+  }
+  .munkavallalok-view .user-list > .wrapper .lista .items .user {
+    flex-basis: calc(100%/1);
+    padding: 0 5px;
+    margin: 5px 0 !important;
+    position: relative;
+  }
+  .munkavallalok-view .user-list > .wrapper .lista .items .user .profil-percent{
+    right: 5px;
+    top: 0;
+  }
+  .munkavallalok-view .user-list > .wrapper .lista .items .user .extras{
+    left: 5px;
+    right: 5px;
+  }
+  .munkavallalok-view .tophead .wrapper .pages-info{
+    flex-basis: 100%;
+    font-size: 0.9em;
+    padding: 0 15px;
+  }
+  .munkavallalok-view .request-user-for-ad .wrapper .ico i{
+    font-size: 30px;
+  }
+  .munkavallalok-view .request-user-for-ad .wrapper .ico{
+    flex-basis: 40px;
+  }
+  .munkavallalok-view .request-user-for-ad .wrapper .text {
+    flex-basis: calc(100% - 40px);
+    font-size: 0.8em;
+    line-height: 1.3;
+  }
+  .munkavallalok-view .request-user-for-ad .wrapper{
+    padding: 0 10px;
+  }
+  .munkavallalok-view .request-user-for-ad .wrapper .button{
+    flex-basis: 100%;
+    margin-top: 10px;
+
+    button{
+      width: 100%;
+      font-size: 0.9em;
+    }
   }
 }

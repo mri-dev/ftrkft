@@ -297,3 +297,66 @@ body.profil-view {
   ::first-letter {
     margin: 0 !important;
     padding: 0 !important; } }
+@media screen and (max-width: 480px) {
+  /* line 284, scss/media.scss */
+  body.profil-view header .hwrapper {
+    flex-wrap: wrap; }
+
+  /* line 288, scss/media.scss */
+  body.profil-view header .hwrapper .action-buttons,
+  body.profil-view header .hwrapper .company-copy {
+    flex-basis: 100%;
+    text-align: center; }
+
+  /* line 292, scss/media.scss */
+  body.profil-view .inside {
+    margin: 0 !important;
+    padding: 10px; }
+
+  /* line 296, scss/media.scss */
+  body.profil-view .cv-title h1 {
+    font-size: 1.3em; }
+
+  /* line 299, scss/media.scss */
+  body.profil-view .cv-title {
+    padding: 5px 0; }
+
+  /* line 302, scss/media.scss */
+  body.profil-view {
+    font-size: 0.8em; }
+
+  /* line 305, scss/media.scss */
+  body.profil-view .cv-row > div {
+    flex-basis: 100% !important; }
+
+  /* line 308, scss/media.scss */
+  body.profil-view .cv-row > div.label {
+    text-align: left;
+    padding: 5px 0 0 0 !important; }
+
+  /* line 312, scss/media.scss */
+  body.profil-view .cv-row > div.value {
+    padding: 5px 0 0 0 !important; }
+
+  /* line 315, scss/media.scss */
+  body.profil-view .cv-row .data-title {
+    margin: 10px 0 10px 0;
+    font-size: 1.2em; }
+
+  /* line 319, scss/media.scss */
+  body.profil-view .cv-title {
+    padding: 15px 0 10px 0 !important; }
+
+  /* line 322, scss/media.scss */
+  .sub-group .title {
+    padding: 0;
+    margin: 0 0 10px 0; }
+
+  /* line 326, scss/media.scss */
+  .modul-groups {
+    border-left: 3px solid #ededed;
+    padding: 0 0 0 10px; }
+
+  /* line 330, scss/media.scss */
+  body.profil-view .inside .footer-copy {
+    margin: 0 -10px -35px -10px; } }

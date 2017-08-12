@@ -12,9 +12,11 @@ body{
   height: auto;
 }
 
-.show-on-print{
+.show-on-print,
+.show-on-mobile{
   display: none;
 }
+
 
 .page-width {
   max-width: $page-width;
@@ -390,7 +392,7 @@ header {
 
       .list{
         position: absolute;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.81);
         line-height: 1;
         top: 35px;
         left: 0;
@@ -4988,6 +4990,11 @@ label.file-uploader{
       }
     }
   }
+}
+
+.home-searcher .searcher-tgl button {
+  background: rgba(117, 117, 117, 0.82);
+  color: #ffffff;
 }
 
 @import 'print';
