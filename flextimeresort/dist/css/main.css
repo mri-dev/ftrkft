@@ -241,7 +241,7 @@ body {
 /* line 16, less/main.scss */
 .show-on-print,
 .show-on-mobile {
-  display: none;
+  display: none !important;
 }
 
 /* line 21, less/main.scss */
