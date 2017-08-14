@@ -332,24 +332,26 @@ class Users
 			$error = true;
 			$err_code[] = 'new';
 			$err_code[] = 'new2';
-			$err .= '- '.$this->controller->lang('PASSWORD_MISS_NEW') . "\r\n";
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_NEW')."\r\n";
 		}
 
 		if($new !== $new2) {
 			$error = true;
 			$err_code[] = 'new';
 			$err_code[] = 'new2';
-			$err .= '- '.$this->controller->lang('PASSWORD_MISS_DIFFERENT');
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_DIFFERENT')."\r\n";
 		}
 
 		$password = \Hash::jelszo($old);
 
-		$checkOld = $this->db->query("SELECT id, email FROM ".self::TABLE_NAME." WHERE id = {$userID} and password = '$password'");
+		$checkOld = $this->db->query($iq = "SELECT id, email FROM ".self::TABLE_NAME." WHERE id = {$userID} and password = '$password'");
+
+		//echo $iq; exit;
 
 		if($checkOld->rowCount() == 0){
 			$error = true;
 			$err_code[] = 'old';
-			$err .= '- '.$this->controller->lang('PASSWORD_MISS_OLDNOTGOOD');
+			$err .= '- '.$this->controller->lang('PASSWORD_MISS_OLDNOTGOOD')."\r\n";
 		}
 
 		if ($error) {
@@ -368,7 +370,7 @@ class Users
 		$marg = array();
 		$marg[password] = $new2;
 
-		(new Mails( $this, 'password_changed', $checkdata['email'], $marg ))->send();
+		(new Mails( $this->controller, 'password_changed', $checkdata['email'], $marg ))->send();
 	}
 
 	function getData( $account_id, $db_by = 'email', $user_group = false ){

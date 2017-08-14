@@ -7,6 +7,7 @@ class home extends Controller  {
 	function __construct(){
 		parent::__construct();
 
+		
 		$this->out('homepage', true);
 		$this->out('bodyclass', 'homepage');
 

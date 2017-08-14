@@ -2,6 +2,7 @@
 use PortalManager\Ads;
 use PortalManager\Ad;
 use PortalManager\User;
+use PortalManager\Users;
 use PortalManager\Admins;
 use PortalManager\Form;
 use PortalManager\Menus;
@@ -16,8 +17,9 @@ use ProjectManager\Payment;
 use ProjectManager\Project;
 
 class forms extends Controller {
+	public $ctrl;
 	function __construct(){
-		parent::__construct();
+		$this->ctrl = parent::__construct();
 
 		if( empty($_POST) ) {
 			Helper::reload('/');
@@ -367,7 +369,7 @@ class forms extends Controller {
 			// Munkavállaló jelszó csere
 			case 'settings_password':
 		 		// Users class
-				$users 	= $this->USERS;
+				$users 	= new Users(array('controller' => $this->ctrl));
 				$user 	= $this->getVar('user');
 
 		    /* */

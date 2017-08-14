@@ -31,7 +31,7 @@ class Mails
 		$this->reply_to 		= ( isset( $arg['from_email'] ) ) 	? $arg['from_email'] 	: $this->controller->settings['email_noreply_address'];
 		$this->reply_toname 	= ( isset( $arg['from_name'] ) ) 	? $arg['from_name'] 	: $this->controller->settings['page_title'];
 
-		$this->langkey = \PortalManager\Lang::getCurrentLang();
+		$this->langkey = $this->controller->LANGUAGES->getCurrentLang();
 
 		///////////////////////////////////
 
@@ -103,7 +103,7 @@ class Mails
 	// Felhasználó jelszó reszetelés
 	private function password_reset()
 	{
-		$this->setSubject($this->controller->controller->lang('MAIL_RESETPASSWORD_SUBJECT'));
+		$this->setSubject($this->controller->lang('MAIL_RESETPASSWORD_SUBJECT'));
 
 		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_reset.tpl' ) );
 
@@ -113,7 +113,7 @@ class Mails
 	// Felhasználó jelszó csere
 	private function password_changed()
 	{
-		$this->setSubject($this->controller->controller->lang('MAIL_CHANGEDPASSWORD_SUBJECT'));
+		$this->setSubject($this->controller->lang('MAIL_CHANGEDPASSWORD_SUBJECT'));
 
 		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_changed.tpl' ) );
 
@@ -123,7 +123,7 @@ class Mails
 	// Felhasználó jelszó csere admin által
 	private function password_changed_by_admin()
 	{
-		$this->setSubject($this->controller->controller->lang('MAIL_ADMINCHANGEDPASSWORD_SUBJECT'));
+		$this->setSubject($this->controller->lang('MAIL_ADMINCHANGEDPASSWORD_SUBJECT'));
 
 		$this->mailer->setMsg( $this->controller->smarty->fetch( 'mails/'.$this->langkey.'/password_changed_by_admin.tpl' ) );
 
