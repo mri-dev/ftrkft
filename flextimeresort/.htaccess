@@ -27,7 +27,7 @@ RewriteRule ^cp/cat-([a-zA-Z_]+)(/)?(edit|del)?(/)?(.*)$ index.php?tag=cp/terms&
 # Admin - User edit/del/create
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^cp/users/(edit|create|del)(/)?(\d)?(/)?$ index.php?tag=cp/users&sub=$1&id=$3 [NC,QSA,L]
+RewriteRule ^cp/users/(edit|create|del)(/)?(\d+)?(/)?$ index.php?tag=cp/users&sub=$1&id=$3 [NC,QSA,L]
 
 # Admin - Users
 RewriteCond %{REQUEST_FILENAME} !-d

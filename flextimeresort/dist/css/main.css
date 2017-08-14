@@ -3013,7 +3013,7 @@ body.ugyfelkapu-view .allas-list .allasok .allas .status .status-betoltott {
   width: 40px;
   height: 40px;
   margin: 0 auto 10px auto;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
 }
 /* line 2673, less/main.scss */

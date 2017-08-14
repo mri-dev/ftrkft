@@ -588,6 +588,10 @@ class cp extends Controller {
 			}
 		}
 
+		if ($_GET['a'] == '1') {
+			//print_r($_GET);
+		}
+
 		switch ($sub)
 		{
 			// Szerkesztés
