@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{$settings.page_title|strip_tags}</title>
+  <link rel="shortcut icon" type="image/png" href="{$smarty.const.IMG}/favicon.png"/>
   {include file='meta.tpl'}
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

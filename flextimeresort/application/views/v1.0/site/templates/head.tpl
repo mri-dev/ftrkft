@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{$title}</title>
+  <link rel="shortcut icon" type="image/png" href="{$smarty.const.IMG}/favicon.png"/>
   <link rel="canonical" href="{if $canonical_url}{$canonical_url}{else}{$settings.page_url|cat:$smarty.server.REQUEST_URI}{/if}" />
   {$SEOSERVICE}
   {include file='meta.tpl'}
