@@ -51,15 +51,21 @@
           {/if}
           <li class="hide-on-mobile"><a href="/kapcsolat"><img src="{$smarty.const.IMG}icons/white/envelope.svg" class="i15" alt="{lang text="KAPCSOLAT"}">{lang text="KAPCSOLAT"}</a></li>
           <li class="social-before"></li>
+          {if !empty($settings.links_social_facebook)}
           <li class="social facebook">
-            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="{$settings.links_social_facebook}" target="_blank"><i class="fa fa-facebook"></i></a>
           </li>
+          {/if}
+          {if !empty($settings.links_social_googleplus)}
           <li class="social googleplus">
-            <a href="#"><i class="fa fa-google-plus"></i></a>
+            <a href="{$settings.links_social_googleplus}" target="_blank"><i class="fa fa-google-plus"></i></a>
           </li>
+          {/if}
+          {if !empty($settings.links_social_twitter)}
           <li class="social twitter">
-            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="{$settings.links_social_twitter}" target="_blank"><i class="fa fa-twitter"></i></a>
           </li>
+          {/if}
         </ul>
         <div class="helper"></div>
       </nav>

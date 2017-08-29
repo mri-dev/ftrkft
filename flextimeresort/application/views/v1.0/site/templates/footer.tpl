@@ -50,15 +50,21 @@
             <div><strong>{lang text="TELEFONSZAM"}:</strong> <a href="tel:{$settings.phone}">{$settings.phone}</a></div>
             <div><strong>{lang text="EMAIL"}:</strong> <a href="mailto:{$settings.email}">{$settings.email}</a></div>
             <ul class="navi">
+              {if !empty($settings.links_social_facebook)}
               <li class="social facebook">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="{$settings.links_social_facebook}" target="_blank"><i class="fa fa-facebook"></i></a>
               </li>
+              {/if}
+              {if !empty($settings.links_social_googleplus)}
               <li class="social googleplus">
-                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="{$settings.links_social_googleplus}" target="_blank"><i class="fa fa-google-plus"></i></a>
               </li>
+              {/if}
+              {if !empty($settings.links_social_twitter)}
               <li class="social twitter">
-                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="{$settings.links_social_twitter}" target="_blank"><i class="fa fa-twitter"></i></a>
               </li>
+              {/if}
             </ul>
           </div>
         </div>
