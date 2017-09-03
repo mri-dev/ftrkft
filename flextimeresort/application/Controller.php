@@ -6,10 +6,8 @@ use PortalManager\User;
 use PortalManager\Portal;
 use PortalManager\Messanger;
 use PortalManager\Categories;
-use Applications\Captcha;
 use PortalManager\Lang;
 use PortalManager\Menus;
-use PortalManager\CategoryList;
 use AlertsManager\Alerts;
 
 class Controller
@@ -56,7 +54,6 @@ class Controller
     /**
     * LANGUAGES
     **/
-
     $this->LANGUAGES = new Lang( $this->smarty, array('db' => $this->db) );
 		$active_langs = $this->LANGUAGES->avaiableLanguages();
 		$this->out('active_langs', $active_langs['avaiable']);

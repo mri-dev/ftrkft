@@ -1,4 +1,4 @@
-<?
+<?php
 namespace PortalManager;
 
 /**
@@ -40,8 +40,8 @@ class Template
 			return false;
 		}
 
-		extract($this->data_list);		
-		
+		extract($this->data_list);
+
 		ob_start();
 
 		include $this->template_root.$template_name.'.php';

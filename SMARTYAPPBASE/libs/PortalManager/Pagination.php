@@ -1,6 +1,5 @@
 <?
 namespace PortalManager;
-
 /**
 * class Pagination
 * @package PortalManager

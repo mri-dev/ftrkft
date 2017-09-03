@@ -3,7 +3,6 @@ namespace PortalManager;
 
 use ExceptionManager\RedirectException;
 use PortalManager\Admin;
-
 /**
 * class Admins
 * @package PortalManager

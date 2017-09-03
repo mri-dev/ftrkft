@@ -1,6 +1,5 @@
 <?
 namespace PortalManager;
-
 /**
 * class Admin
 * @package PortalManager

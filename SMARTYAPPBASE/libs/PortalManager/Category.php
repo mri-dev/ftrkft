@@ -21,7 +21,6 @@ class Category extends \Controller
 
 		return $this;
 	}
-
 	/**
 	 * Kategória adatainak lekérése
 	 * @return void

@@ -8,7 +8,6 @@ class Categories
 {
 	const DB_LIST = 'term_list';
 	const DBTERMS = 'terms';
-
 	const TYPE_MUNKATIPUS 	= 'munkatipusok';
 	const TYPE_STUDIES 		= 'oktatas_kategoriak';
 	const TYPE_MUNKAKOROK 	= 'munkakorok';

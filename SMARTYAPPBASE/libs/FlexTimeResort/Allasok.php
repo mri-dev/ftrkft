@@ -55,7 +55,7 @@ class Allasok
   }
   public function creator( $id = false, $data = array() )
   {
-    if ( !$id ) {
+    if ( !$id ){
       // Létrehozás
       $updates = array();
       $metas = array();

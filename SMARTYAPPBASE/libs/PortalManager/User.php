@@ -8,7 +8,7 @@ use FlexTimeResort\UserCVPreparer;
 /**
  * class Users
  *
- */
+*/
 class User
 {
 	private $db = null;

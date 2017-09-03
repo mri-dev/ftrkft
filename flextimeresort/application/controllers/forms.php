@@ -1,6 +1,4 @@
-<?
-use PortalManager\Ads;
-use PortalManager\Ad;
+<?php 
 use PortalManager\User;
 use PortalManager\Users;
 use PortalManager\Admins;
@@ -10,11 +8,7 @@ use PortalManager\Pages;
 use PortalManager\Articles;
 use PortalManager\Categories;
 use PortalManager\Category;
-use TransactionManager\Barion;
-use TransactionManager\Transaction;
 use ExceptionManager\RedirectException;
-use ProjectManager\Payment;
-use ProjectManager\Project;
 
 class forms extends Controller {
 	public $ctrl;
@@ -30,75 +24,6 @@ class forms extends Controller {
 
 		// SEO Információk
 		$SEO = null;
-	}
-
-	function payments()
-	{
-		$this->hidePatern = true;
-		$return_url = $_POST['return'];
-
-		$payment = new Payment($_POST['id'], $this->Projects->arg );
-		$me = $this->getVar('me');
-
-		switch( $_POST['for'] )
-		{
-			case 'actionsave':
-				$done = false;
-
-				if(isset($_POST['setCompleted'])) {
-					$payment->setCompleted();
-					$done = sprintf("Sikeresen befizetetté jelölte a(z) %s díjbekérőt.", $payment->Name());
-				}
-
-				if(isset($_POST['setUncompleted'])) {
-					$payment->setUncompleted();
-					$done = sprintf("Sikeresen befizetetlenné jelölte a(z) %s díjbekérőt.", $payment->Name());
-				}
-
-				if(isset($_POST['remove'])) {
-					$payment->delete();
-					$return_url = '/p/'.$payment->ProjectID();
-					$done = 'Sikeresen befizetetté jelölte a(z) <strong>'.$payment->Name().'</strong> díjbekérőt.';
-				}
-
-				if($done) {
-					\PortalManager\Form::formDone( $done, false, $return_url );
-				} else {
-					Helper::reload($return_url);
-					exit;
-				}
-			break;
-			case 'edit': case 'add':
-				$return_url = $_POST['return'];
-
-				if (!$payment->canControl($me)) {
-					\PortalManager\Form::formError( 'Önnek nincs jogosultsága erre a műveletre.', false, $return_url );
-				}
-
-				try {
-					$payment->creator( $_POST );
-					\PortalManager\Form::formDone( 'Sikeresen elmentette a változásokat.', false, $return_url );
-				} catch (RedirectException $e) {
-					$e->redirect();
-				}
-
-			break;
-
-			case 'remove':
-				$return_url = $_POST['return'];
-
-				if (!$payment->canControl($me)) {
-					\PortalManager\Form::formError( 'Önnek nincs jogosultsága erre a műveletre.', false, $return_url );
-				}
-
-				try {
-					$payment->delete();
-					\PortalManager\Form::formDone( 'Sikeresen törölte a díjbekérőt.', false, $return_url );
-				} catch (RedirectException $e) {
-					$e->redirect();
-				}
-			break;
-		}
 	}
 
 	function terms()
@@ -280,27 +205,6 @@ class forms extends Controller {
 		}
 	}
 
-	function projects()
-	{
-		$this->hidePatern = true;
-		$return_url = $_POST['return'];
-
-		$me = $this->getVar('me');
-		$project = new Project($_POST['projectid'], $me, $this->Projects->arg );
-
-		switch( $_POST['for'] )
-		{
-			case 'settings':
-				try {
-					$project->save($_POST);
-					\PortalManager\Form::formDone( 'Sikeresen elmentette a változásokat.', false, $return_url );
-				} catch (RedirectException $e) {
-					$e->redirect();
-				}
-			break;
-		}
-	}
-
 	/**
 	 * Regisztrációk
 	 * */
@@ -378,58 +282,6 @@ class forms extends Controller {
 					\PortalManager\Form::formDone($this->lang('PASSWORD_SUCCESS_CHANGE'), false, $return_url, 'jelszo' );
 				} catch (RedirectException $e) {
 					$e->redirect( 'jelszo' );
-				}
-				/* */
-			break;
-			// Munkavállaló Europass önéletrajz
-			case 'europass':
-
-		        $lang = array_merge (
-		            $this->lang->loadLangText( 'class/users', true ),
-		            $this->lang->loadLangText( 'mails', true )
-		        );
-
-		        // Users class
-				$users 	= $this->User;
-				$user 	= $this->getVar('user');
-
-		        /* */
-				try {
-					$users->changeEuropass( $user['data']['ID'], $_FILES['xml'] );
-					\PortalManager\Form::formDone( $lang['lng_users_europass_success_change'], false, '/user/settings/' );
-				} catch (RedirectException $e) {
-					$e->redirect( );
-				}
-				/* */
-			break;
-
-			// Munkavállaló jelentkezés egy munkára
-			case 'app_for_job':
-
-		        $lang = array_merge (
-		            $this->lang->loadLangText( 'class/ad', true ),
-		            $this->lang->loadLangText( 'mails', true )
-		        );
-
-		        // Users class
-				$users 	= $this->User;
-				$user 	= $this->getVar('user');
-
-		    /* */
-				try {
-					$ad = new Ad( $_POST['id'], array(
-						'db' => $this->db,
-						'settings' => $this->settings,
-						'admin' => true,
-						'lang' => $lang,
-						'smarty' => $this->smarty
-					));
-
-					$ad->applicantForJob( $user['data']['ID'], $_POST['data']['message'] );
-
-					\PortalManager\Form::formDone( $lang['lng_applicant_form_apped'], false, '/user/applicant_for_job/' );
-				} catch (RedirectException $e) {
-					$e->redirect();
 				}
 				/* */
 			break;

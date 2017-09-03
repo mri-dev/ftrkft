@@ -101,32 +101,8 @@ class cp extends Controller {
 		$this->out( 'SEOSERVICE', $SEO );
 	}
 
-	function test()
-	{
-		// Aktiváló e-mail kiküldése
-		/*$mail = new Mailer( $this->settings['page_title'], $this->settings['email_noreply_address'], $this->settings['mail_sender_mode'] );
-
-		$mail->add( 'molnar.istvan@web-pro.hu' );
-		$mail->setSubject( 'Teszt' );
-		$mail->setMsg( $this->smarty->fetch( 'mails/hu/test.tpl' ) );
-
-		$re = $mail->sendMail();
-*/
-		print_r($re);
-	}
-
-	public function translator()
-	{
-		/*$t = "SELECT langkey, neve FROM terms WHERE (SELECT count(ID) FROM language_texts WHERE srcstr = langkey) = 0";
-
-		$q = $this->db->query($t)->fetchAll(\PDO::FETCH_ASSOC);
-
-		foreach ($q as $t) {
-			$this->LANGUAGES->addText($t['langkey'], $t['neve']);
-		}
-		*/
-
-	}
+	public function test() {}
+	public function translator() {}
 
 	function forms() {
 		$this->hidePatern = true;
@@ -549,22 +525,6 @@ class cp extends Controller {
 
 		$this->out("ctrl", $ctrl);
 		$this->out("check", $ctrl->get($id));
-	}
-
-	public function employers()
-	{
-		$filters = array();
-		$filters['user_group'] 	= $this->settings['USERS_GROUP_EMPLOYER'];
-		$filters['orderby'] 	= 'u.nev ASC';
-
-		$users = new UserList( array(
-			'db' => $this->db,
-			'settings' => $this->settings,
-			'filters' => $filters
-		) );
-
-		$users->getList();
-		$this->out( 'lista', $users );
 	}
 
 	public function users()

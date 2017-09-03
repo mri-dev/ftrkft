@@ -1,4 +1,4 @@
-<?
+<?php
 namespace PortalManager;
 
 use MailManager\Mailer;

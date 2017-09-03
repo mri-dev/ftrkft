@@ -1,7 +1,6 @@
 <?
 use PortalManager\Form;
 use PortalManager\Categories;
-use PortalManager\Ad;
 use DesignCreator\FormDesigns;
 use FlexTimeResort\Allasok;
 
@@ -167,17 +166,6 @@ class user extends Controller{
 			$this->out('show_ugyfelkapu_top', true);
 			$this->out('subtitle', ($subtitle != '') ? ' / <strong>'.$subtitle.'</strong>' : '');
 			$this->out('bodyclass', 'ugyfelkapu-view');
-		}
-
-		function applicant_for_job() {
-			$user = $this->getVar('user');
-
-			$this->out( 'applicants', $this->User->getApplicants( $user['data']['ID'] ) );
-
-			// Jelentkezéshez a hirdetmény
-			if( $_GET['a'] == 'applicant' && isset($_GET['job']) ) {
-				$this->out( 'app', new Ad( $_GET['job'], array( 'admin' => true, 'db' => $this->db, 'settings' => $this->settings ) ) );
-			}
 		}
 
 		function settings() {
