@@ -38,12 +38,13 @@
 <script src="/plugins/angular-ui-tinymce/dist/tinymce.min.js"></script>
 <script src="/dist/js/angular-modules/angular-nl2br.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
 <script type="text/javascript" src="/dist/js/ang.app.js"></script>
 <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={$settings.GOOGLE_API_KEY}&libraries=places"></script>
+<script src="/dist/js/jquery.cookieaccept.js"></script>
 {if !$user}
 <!-- iCheck -->
 <link rel="stylesheet" href="/plugins/iCheck/square/blue.css">
@@ -62,6 +63,8 @@
     $('header .top nav .helper').animate({
       left: top_nav_position.left + 100
     }, 0);
+
+    $.cookieAccepter('/aszf#adatvedelem');
 
     $(window).resize(function(){
       top_nav_position = $('header .top nav').position();
